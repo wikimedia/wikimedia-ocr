@@ -1,0 +1,9 @@
+<?php
+
+// The Google Cloud API key.
+$key = '';
+
+// Which endpoint URL to use (for easier development).
+// For more info see https://wikitech.wikimedia.org/wiki/Nova_Resource:Google-api-proxy/Documentation
+$endpoint = 'https://vision.google-api-proxy.wmflabs.org/';
+#$endpoint = 'https://vision.googleapis.com/';
