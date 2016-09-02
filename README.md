@@ -9,16 +9,13 @@ This works with more languages than the alternative service at https://tools.wmf
 (used by e.g. https://wikisource.org/wiki/MediaWiki:OCR.js and similar scripts
 on other Wikisources).
 
-Some caveats:
-
-* Requests can only come from Wikisources.
-* Images must be less than 10 MB.
+Requests can only be for images hosted on Commons.
 
 ## Usage
 
-Send two parameters to `index.php`:
+Send up to two parameters to `api.php`:
 
-    https://tools.wmflabs.org/ws-google-ocr/index.php?lang=[LANG_CODE]&image=[IMAGE_URL]
+    https://tools.wmflabs.org/ws-google-ocr/api.php?lang=[LANG_CODE]&image=[IMAGE_URL]
 
 And get back a JSON response with either 'text' or 'error' top-level items set:
 
@@ -30,7 +27,7 @@ And get back a JSON response with either 'text' or 'error' top-level items set:
       }
     }
 
-Note that you should only set the `lang` parameter in some particular cases.
+Note that you should only set the `lang` parameter for languages that require it.
 The [documentation](https://cloud.google.com/vision/reference/rest/v1/images/annotate#imagecontext) informs us of the following:
 
 > In most cases, an empty value yields the best results since it enables automatic language detection.
