@@ -1,0 +1,9 @@
+{
+    "name": "ws-google-ocr",
+    "title": "Wikisource Google OCR",
+    "description": "An interface to the Google Vision API for Optical Character Recognition of scanned books on Wikisources.",
+    "url": "http://tools.wmflabs.org/ws-google-ocr",
+    "keywords": "wikisource, ocr, google, proofreading, transcription",
+    "author": "Sam Wilson",
+    "repository": "https://phabricator.wikimedia.org/diffusion/1966/tool-ws-google-ocr.git"
+}
