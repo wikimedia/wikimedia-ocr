@@ -27,7 +27,11 @@ $gcv->setKey($key);
 if (!empty($endpoint)) {
     $gcv->setEndpoint($endpoint);
 }
-$gcv->setImage($_REQUEST['image']);
+try {
+    $gcv->setImage($_REQUEST['image']);
+} catch (\Wikisource\GoogleCloudVisionPHP\LimitExceededException $e) {
+    error(["message" => "Limit exceeded: " . $e->getMessage()]);
+}
 $gcv->addFeatureOCR();
 if (!empty($_REQUEST['lang']) && $_REQUEST['lang'] !== 'en') {
     $gcv->setImageContext(['languageHints' => [$_REQUEST['lang']]]);

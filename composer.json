@@ -3,12 +3,6 @@
     "type": "project",
     "license": "GPL-3.0+",
     "require": {
-        "wikisource/google-cloud-vision-php": "dev-master"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/wikisource/google-cloud-vision-php"
-        }
-    ]
+        "wikisource/google-cloud-vision-php": "1.*"
+    }
 }

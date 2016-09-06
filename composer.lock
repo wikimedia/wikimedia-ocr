@@ -4,25 +4,30 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a6b51e6ab62923735a8b3293f877d059",
-    "content-hash": "62b76ab5c7643ce8bf09b168f6dfd5df",
+    "hash": "6a8b720763a1f635ee989492d224a839",
+    "content-hash": "0c12489405b0ab832cf513396cc37cd0",
     "packages": [
         {
             "name": "wikisource/google-cloud-vision-php",
-            "version": "dev-master",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikisource/google-cloud-vision-php.git",
-                "reference": "34c01f1bbcb1d047b04c1f5421218f5202cb0940"
+                "reference": "f155bffeb304b8a9b2e7940efb008916bfedf1d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikisource/google-cloud-vision-php/zipball/34c01f1bbcb1d047b04c1f5421218f5202cb0940",
-                "reference": "34c01f1bbcb1d047b04c1f5421218f5202cb0940",
+                "url": "https://api.github.com/repos/wikisource/google-cloud-vision-php/zipball/f155bffeb304b8a9b2e7940efb008916bfedf1d6",
+                "reference": "f155bffeb304b8a9b2e7940efb008916bfedf1d6",
                 "shasum": ""
             },
+            "require": {
+                "ext-curl": "*"
+            },
             "require-dev": {
-                "phpunit/phpunit": "~5.5"
+                "ext-gd": "*",
+                "phpunit/phpunit": "~5.5",
+                "squizlabs/php_codesniffer": "~2.0"
             },
             "type": "library",
             "autoload": {
@@ -31,6 +36,7 @@
                     "Wikisource\\GoogleCloudVisionPHP\\Tests\\": "tests"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0+"
             ],
@@ -41,22 +47,27 @@
                 },
                 {
                     "name": "Sam Wilson",
-                    "email": "sam@samwilson.id.au"
+                    "email": "sam@samwilson.id.au",
+                    "homepage": "https://samwilson.id.au/"
                 }
             ],
-            "support": {
-                "source": "https://github.com/wikisource/google-cloud-vision-php/tree/master",
-                "issues": "https://github.com/wikisource/google-cloud-vision-php/issues"
-            },
-            "time": "2016-09-02 06:24:59"
+            "description": "A PHP interface to Google's Cloud Vision API.",
+            "homepage": "https://github.com/wikisource/google-cloud-vision-php",
+            "keywords": [
+                "OCR",
+                "apis",
+                "google",
+                "images",
+                "transcribing",
+                "vision"
+            ],
+            "time": "2016-09-06 06:31:57"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "wikisource/google-cloud-vision-php": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
