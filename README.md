@@ -1,6 +1,8 @@
 Wikisource Google OCR tool
 ==========================
 
+Main documentation: https://wikisource.org/wiki/Wikisource:Google_OCR
+
 This is a simple wrapper service around the Google Cloud Vision API,
 enabling Wikisources to submit images for Optical Character Recognition
 and retrieve the resultant text.
