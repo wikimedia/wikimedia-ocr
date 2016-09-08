@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6a8b720763a1f635ee989492d224a839",
-    "content-hash": "0c12489405b0ab832cf513396cc37cd0",
+    "hash": "32a33bcda5d74330fa657a96efb44148",
+    "content-hash": "78c834a3458f66dce391582e8b4ae2c3",
     "packages": [
         {
             "name": "wikisource/google-cloud-vision-php",
-            "version": "1.1.5",
+            "version": "1.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikisource/google-cloud-vision-php.git",
-                "reference": "f155bffeb304b8a9b2e7940efb008916bfedf1d6"
+                "reference": "b154305b7b21a3d891cecb7ade0e6ee108a2e045"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikisource/google-cloud-vision-php/zipball/f155bffeb304b8a9b2e7940efb008916bfedf1d6",
-                "reference": "f155bffeb304b8a9b2e7940efb008916bfedf1d6",
+                "url": "https://api.github.com/repos/wikisource/google-cloud-vision-php/zipball/b154305b7b21a3d891cecb7ade0e6ee108a2e045",
+                "reference": "b154305b7b21a3d891cecb7ade0e6ee108a2e045",
                 "shasum": ""
             },
             "require": {
@@ -61,7 +61,7 @@
                 "transcribing",
                 "vision"
             ],
-            "time": "2016-09-06 06:31:57"
+            "time": "2016-09-07 23:58:22"
         }
     ],
     "packages-dev": [],
@@ -70,6 +70,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.4"
+    },
     "platform-dev": []
 }

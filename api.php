@@ -49,7 +49,7 @@ if (isset($response['responses'][0]['textAnnotations'][0]['description'])) {
 } else {
     $text = '';
 }
-echo json_encode(['text' => $text]);
+echo json_encode(['text' => $text], JSON_UNESCAPED_UNICODE);
 
 /**
  * Return a JSON error message to the user (as the top-level 'error' element).
