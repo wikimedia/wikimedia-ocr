@@ -25,11 +25,11 @@ $i18n->registerDomain('ws-google-ocr', __DIR__ . '/messages');
             <form action="index.php" method="get">
                 <div class="form-group">
                     <label for="image" class="form-label"><?php echo $i18n->msg('image-url') ?></label>
-                    <input type="text" name="image" class="form-control" value="<?php echo $ocr->getImage() ?>" />
+                    <input type="text" name="image" class="form-control" value="<?php echo htmlspecialchars($ocr->getImage()) ?>" />
                 </div>
                 <div class="form-group">
                     <label for="lang" class="form-label"><?php echo $i18n->msg('language-code') ?></label>
-                    <input type="text" name="lang" class="form-control" value="<?php echo $ocr->getLang() ?>" />
+                    <input type="text" name="lang" class="form-control" value="<?php echo htmlspecialchars($ocr->getLang()) ?>" />
                 </div>
                 <div class="form-group">
                     <input type="submit" value="<?php echo $i18n->msg('submit') ?>" class="btn btn-info" />
@@ -37,15 +37,25 @@ $i18n->registerDomain('ws-google-ocr', __DIR__ . '/messages');
             </form>
 
             <?php if ($ocr->hasValidImage()): ?>
-            <h2><?php echo $i18n->msg('ocr-text') ?></h2>
-            <blockquote>
-                <?php echo nl2br($ocr->getText()) ?>
-            </blockquote>
+            <div class="row">
+                <div class="col-md-6">
+                    <img class="img-responsive" src="<?php echo htmlspecialchars($ocr->getImage()) ?>" alt="The original image" />
+                </div>
+                <div class="col-md-6">
+                    <?php try { $text = $ocr->getText(); } catch (\Exception $e) { ?>
+                    <div class="alert alert-danger" role="alert"><?php echo $e->getMessage() ?></div>
+                    <?php } ?>
+                    <?php if (isset($text)): ?>
+                    <textarea class="form-control" rows="<?php echo max(10, substr_count($text, "\n")) ?>"><?php echo $text ?></textarea>
+                    <p class="help-block"><?php echo $i18n->msg('textarea-help') ?></p>
+                    <?php endif ?>
+                </div>
+            </div>
             <?php endif ?>
 
-            <p class="text-muted text-right">
-                <?php echo $i18n->msg('issue-reporting') ?>
-                <a href="https://phabricator.wikimedia.org"><?php echo $i18n->msg('phabricator') ?></a>
+            <p>
+                <?php echo $i18n->msg('more-info') ?>
+                <a href="https://wikisource.org/wiki/Wikisource:Google_OCR">Wikisource:Google OCR</a>
             </p>
         </div>
         <script type="text/javascript" src="//tools-static.wmflabs.org/cdnjs/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

@@ -3,7 +3,6 @@
 namespace Wikisource\GoogleOcr;
 
 use Wikisource\GoogleCloudVisionPHP\GoogleCloudVision;
-use Wikisource\GoogleCloudVisionPHP\LimitExceededException;
 
 class Ocr
 {
@@ -71,8 +70,8 @@ class Ocr
         $response = $this->gcv->request();
 
         // Check for errors and pass any through.
-        if (isset($response['responses'][0]['error'])) {
-            error($response['responses'][0]['error']);
+        if (isset($response['responses'][0]['error']['message'])) {
+            throw new \Exception($response['responses'][0]['error']['message']);
         }
 
         // Return only the text to the user (it's not an error if there's no text).

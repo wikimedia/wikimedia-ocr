@@ -2,8 +2,7 @@
     "title": "Wikisource Google OCR",
     "image-url": "Image URL:",
     "language-code": "Two-letter language code (optional):",
-    "submit": "Submit",
-    "ocr-text": "OCR Text",
-    "issue-reporting": "Please report any bugs or feature requests via",
-    "phabricator": "Phabricator"
+    "submit": "Go",
+    "more-info": "For more information, see:",
+    "textarea-help": "Please copy the OCR text to somewhere else. This editing-box is just to make it easier for you to correct the text."
 }
