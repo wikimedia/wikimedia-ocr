@@ -53,6 +53,7 @@ $i18n->registerDomain('ws-google-ocr', __DIR__ . '/messages');
             </div>
             <?php endif ?>
 
+            <hr />
             <p>
                 <?php echo $i18n->msg('more-info') ?>
                 <a href="https://wikisource.org/wiki/Wikisource:Google_OCR">Wikisource:Google OCR</a>
