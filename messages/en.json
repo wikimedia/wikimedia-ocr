@@ -1,0 +1,9 @@
+{
+    "title": "Wikisource Google OCR",
+    "image-url": "Image URL:",
+    "language-code": "Two-letter language code (optional):",
+    "submit": "Submit",
+    "ocr-text": "OCR Text",
+    "issue-reporting": "Please report any bugs or feature requests via",
+    "phabricator": "Phabricator"
+}

@@ -2,8 +2,14 @@
     "name": "wikisource/ws-google-ocr",
     "type": "project",
     "license": "GPL-3.0+",
+    "autoload": {
+        "psr-4": {
+            "Wikisource\\GoogleOcr\\": "src"
+        }
+    },
     "require": {
         "php": ">=5.4",
-        "wikisource/google-cloud-vision-php": "1.*"
+        "wikisource/google-cloud-vision-php": "1.*",
+        "Krinkle/intuition": "^0.3"
     }
 }

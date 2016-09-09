@@ -4,9 +4,81 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "32a33bcda5d74330fa657a96efb44148",
-    "content-hash": "78c834a3458f66dce391582e8b4ae2c3",
+    "hash": "e86ec0269d573a4d64036e5ef7235af2",
+    "content-hash": "c66f464700c95e346a29f410bbce0fa7",
     "packages": [
+        {
+            "name": "krinkle/intuition",
+            "version": "v0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Krinkle/intuition.git",
+                "reference": "534f8710160b5906d55d0d3a8be337e6bac9e026"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Krinkle/intuition/zipball/534f8710160b5906d55d0d3a8be337e6bac9e026",
+                "reference": "534f8710160b5906d55d0d3a8be337e6bac9e026",
+                "shasum": ""
+            },
+            "require": {
+                "krinkle/toollabs-base": "~0.7.0",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "jakub-onderka/php-parallel-lint": "0.*",
+                "mediawiki/mediawiki-codesniffer": "0.1.0",
+                "phpunit/phpunit": "3.7.*",
+                "squizlabs/php_codesniffer": "2.1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "ToolStart.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "CC-BY-3.0"
+            ],
+            "description": "Framework for localisation in PHP.",
+            "time": "2016-07-04 17:22:45"
+        },
+        {
+            "name": "krinkle/toollabs-base",
+            "version": "v0.7.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Krinkle/toollabs-base.git",
+                "reference": "f81ffd9225db095a840022191be699ca337ebb72"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Krinkle/toollabs-base/zipball/f81ffd9225db095a840022191be699ca337ebb72",
+                "reference": "f81ffd9225db095a840022191be699ca337ebb72",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "jakub-onderka/php-parallel-lint": "0.8.*",
+                "mikey179/vfsstream": "1.*",
+                "phpunit/phpunit": "4.1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "InitTool.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Unlicense"
+            ],
+            "description": "Framework for web apps in Wikimedia's Tool Labs environment.",
+            "time": "2015-09-12 21:24:58"
+        },
         {
             "name": "wikisource/google-cloud-vision-php",
             "version": "1.1.7",
