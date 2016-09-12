@@ -25,7 +25,7 @@ $i18n->registerDomain('ws-google-ocr', __DIR__ . '/messages');
             <form action="index.php" method="get">
                 <div class="form-group">
                     <label for="image" class="form-label"><?php echo $i18n->msg('image-url') ?></label>
-                    <input type="text" name="image" class="form-control" value="<?php echo htmlspecialchars($ocr->getImage()) ?>" placeholder="https://upload.wikimedia.org/"/>
+                    <input type="text" name="image" id="image" class="form-control" value="<?php echo htmlspecialchars($ocr->getImage()) ?>" placeholder="https://upload.wikimedia.org/"/>
                     <label class="help-block"><?php echo $i18n->msg('image-url-help') ?></label>
                 </div>
                 <div class="form-group">
