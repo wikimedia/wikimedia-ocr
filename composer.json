@@ -10,6 +10,7 @@
     "require": {
         "php": ">=5.4",
         "wikisource/google-cloud-vision-php": "1.*",
-        "Krinkle/intuition": "^0.3"
+        "Krinkle/intuition": "^0.3",
+        "eloquent/asplode": "^2.2"
     }
 }

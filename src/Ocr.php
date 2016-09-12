@@ -18,6 +18,9 @@ class Ocr
 
     public function __construct($baseDir, $request)
     {
+        // Give us exceptions to handle, instead of errors.
+        \Eloquent\Asplode\Asplode::install();
+
         // Get the configuration variables.
         require $baseDir . '/config.php';
         if (empty($key)) {
@@ -48,20 +51,21 @@ class Ocr
         return $this->lang;
     }
 
-    public function hasValidImage()
+    public function checkImage()
     {
         if (!isset($this->image)) {
-            return false;
+            throw new Exception("Image parameter must be set");
         }
         $uploadUrl = 'https://upload.wikimedia.org/';
         if (substr($this->image, 0, strlen($uploadUrl)) !== $uploadUrl) {
-            return false;
+            throw new \Exception("Image URL must begin with '$uploadUrl'");
         }
         return true;
     }
 
     public function getText()
     {
+        $this->checkImage();
         $this->gcv->setImage($this->image);
         $this->gcv->addFeatureOCR();
         if ($this->getLang() !== null && $this->getLang() !== 'en') {

@@ -4,9 +4,121 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e86ec0269d573a4d64036e5ef7235af2",
-    "content-hash": "c66f464700c95e346a29f410bbce0fa7",
+    "hash": "c352c27a6ef8169d387d5f86d9e82aab",
+    "content-hash": "3b3b5ab1473c0beb2ff1f30329f055ac",
     "packages": [
+        {
+            "name": "eloquent/asplode",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eloquent/asplode.git",
+                "reference": "2c469048b4bb8948fa2ce68e894626abe1bdf99b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eloquent/asplode/zipball/2c469048b4bb8948fa2ce68e894626abe1bdf99b",
+                "reference": "2c469048b4bb8948fa2ce68e894626abe1bdf99b",
+                "shasum": ""
+            },
+            "require": {
+                "icecave/isolator": "~2|~3",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "eloquent/phony": "dev-develop",
+                "icecave/archer": "dev-develop",
+                "phpunit/phpunit": "^4",
+                "sami/sami": "^3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Eloquent\\Asplode\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Erin Millard",
+                    "email": "ezzatron@gmail.com",
+                    "homepage": "http://ezzatron.com/"
+                }
+            ],
+            "description": "Drop-in exception-based error handling for PHP.",
+            "homepage": "https://github.com/eloquent/asplode",
+            "keywords": [
+                "error",
+                "errorexception",
+                "exception",
+                "failure",
+                "fault",
+                "handler",
+                "handling"
+            ],
+            "time": "2016-04-19 01:21:09"
+        },
+        {
+            "name": "icecave/isolator",
+            "version": "3.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/IcecaveStudios/isolator.git",
+                "reference": "8fad9e64c393238b01b359e01bd7f25dcdb818e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/IcecaveStudios/isolator/zipball/8fad9e64c393238b01b359e01bd7f25dcdb818e4",
+                "reference": "8fad9e64c393238b01b359e01bd7f25dcdb818e4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "icecave/archer": "~1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Icecave\\Isolator\\": "src"
+                },
+                "files": [
+                    "src/register-autoloader.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "James Harris",
+                    "email": "james.harris@icecave.com.au",
+                    "homepage": "https://github.com/jmalloc"
+                }
+            ],
+            "description": "Dependency injection for global functions.",
+            "homepage": "https://github.com/IcecaveStudios/isolator",
+            "keywords": [
+                "Double",
+                "fake",
+                "mock",
+                "phpunit",
+                "stub",
+                "test",
+                "unit"
+            ],
+            "time": "2015-03-27 05:04:19"
+        },
         {
             "name": "krinkle/intuition",
             "version": "v0.3.0",

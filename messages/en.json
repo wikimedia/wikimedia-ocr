@@ -1,8 +1,10 @@
 {
     "title": "Wikisource Google OCR",
     "image-url": "Image URL:",
+    "image-url-help": "This must start with 'https://upload.wikimedia.org/' and be a full URL to an actual image file.",
     "language-code": "Two-letter language code (optional):",
+    "language-code-help": "The ISO639 code of the language of the text in the image.",
     "submit": "Go",
-    "more-info": "For more information, see:",
-    "textarea-help": "Please copy the OCR text to somewhere else. This editing-box is just to make it easier for you to correct the text."
+    "copy-to-clipboard": "Copy to clipboard",
+    "more-info": "For more information, see:"
 }

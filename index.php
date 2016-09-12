@@ -25,33 +25,34 @@ $i18n->registerDomain('ws-google-ocr', __DIR__ . '/messages');
             <form action="index.php" method="get">
                 <div class="form-group">
                     <label for="image" class="form-label"><?php echo $i18n->msg('image-url') ?></label>
-                    <input type="text" name="image" class="form-control" value="<?php echo htmlspecialchars($ocr->getImage()) ?>" />
+                    <input type="text" name="image" class="form-control" value="<?php echo htmlspecialchars($ocr->getImage()) ?>" placeholder="https://upload.wikimedia.org/"/>
+                    <label class="help-block"><?php echo $i18n->msg('image-url-help') ?></label>
                 </div>
                 <div class="form-group">
                     <label for="lang" class="form-label"><?php echo $i18n->msg('language-code') ?></label>
-                    <input type="text" name="lang" class="form-control" value="<?php echo htmlspecialchars($ocr->getLang()) ?>" />
+                    <input type="text" name="lang" id="lang" class="form-control" value="<?php echo htmlspecialchars($ocr->getLang()) ?>" />
+                    <label class="help-block"><?php echo $i18n->msg('language-code-help') ?></label>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="<?php echo $i18n->msg('submit') ?>" class="btn btn-info" />
                 </div>
             </form>
 
-            <?php if ($ocr->hasValidImage()): ?>
+            <?php try { $text = $ocr->getText(); ?>
             <div class="row">
                 <div class="col-md-6">
                     <img class="img-responsive" src="<?php echo htmlspecialchars($ocr->getImage()) ?>" alt="The original image" />
                 </div>
                 <div class="col-md-6">
-                    <?php try { $text = $ocr->getText(); } catch (\Exception $e) { ?>
-                    <div class="alert alert-danger" role="alert"><?php echo $e->getMessage() ?></div>
-                    <?php } ?>
-                    <?php if (isset($text)): ?>
-                    <textarea class="form-control" rows="<?php echo max(10, substr_count($text, "\n")) ?>"><?php echo $text ?></textarea>
-                    <p class="help-block"><?php echo $i18n->msg('textarea-help') ?></p>
-                    <?php endif ?>
+                    <textarea class="form-control" rows="<?php echo max(10, substr_count($text, "\n")) ?>" id="text"><?php echo $text ?></textarea>
+                    <p class="help-block">
+                        <button id="copy-button" class="btn btn-info" data-clipboard-target="text"><?php echo $i18n->msg('copy-to-clipboard') ?></button>
+                    </p>
                 </div>
             </div>
-            <?php endif ?>
+            <?php } catch (\Exception $e) { ?>
+            <div class="alert alert-danger" role="alert"><?php echo $e->getMessage() ?></div>
+            <?php } ?>
 
             <hr />
             <p>
@@ -61,5 +62,24 @@ $i18n->registerDomain('ws-google-ocr', __DIR__ . '/messages');
         </div>
         <script type="text/javascript" src="//tools-static.wmflabs.org/cdnjs/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script type="text/javascript" src="//tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="//tools-static.wmflabs.org/cdnjs/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+        <script type="text/javascript" src="//tools-static.wmflabs.org/cdnjs/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.min.js"></script>
+        <script>
+        jQuery( function( $ ) {
+
+            // Language code helper.
+            $( "#lang" ).mask( "aa", { placeholder: " " } );
+
+            // Copy transcribed text to clipboard.
+            var client = new ZeroClipboard( $("#copy-button") );
+            ZeroClipboard.config( { swfPath: "//tools-static.wmflabs.org/cdnjs/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.swf" } );
+            client.on( "ready", function( readyEvent ) {
+                client.on( "aftercopy", function( event ) {
+                    $(event.target).removeClass( "btn-info" ).addClass( "btn-default" );
+                } );
+            } );
+
+        } );
+        </script>
     </body>
 </html>

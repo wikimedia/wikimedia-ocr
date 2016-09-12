@@ -4,11 +4,6 @@ require __DIR__ . '/vendor/autoload.php';
 header("Content-Type:application/json;charset=utf-8");
 $ocr = new Wikisource\GoogleOcr\Ocr(__DIR__, $_REQUEST);
 
-// Get input, or complain.
-if (!$ocr->hasValidImage()) {
-    error(["message" => "The 'image' parameter must be present and correct"]);
-}
-
 // Get the text.
 $text = '';
 try {
