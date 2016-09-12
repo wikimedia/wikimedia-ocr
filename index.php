@@ -38,6 +38,7 @@ $i18n->registerDomain('ws-google-ocr', __DIR__ . '/messages');
                 </div>
             </form>
 
+            <?php if ($ocr->getImage() !== null): ?>
             <?php try { $text = $ocr->getText(); ?>
             <div class="row">
                 <div class="col-md-6">
@@ -53,6 +54,7 @@ $i18n->registerDomain('ws-google-ocr', __DIR__ . '/messages');
             <?php } catch (\Exception $e) { ?>
             <div class="alert alert-danger" role="alert"><?php echo $e->getMessage() ?></div>
             <?php } ?>
+            <?php endif ?>
 
             <hr />
             <p>

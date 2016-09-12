@@ -54,7 +54,7 @@ class Ocr
     public function checkImage()
     {
         if (!isset($this->image)) {
-            throw new Exception("Image parameter must be set");
+            throw new \Exception("Image parameter must be set");
         }
         $uploadUrl = 'https://upload.wikimedia.org/';
         if (substr($this->image, 0, strlen($uploadUrl)) !== $uploadUrl) {
