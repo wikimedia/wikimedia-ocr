@@ -26,12 +26,12 @@ $i18n->registerDomain('ws-google-ocr', __DIR__ . '/messages');
                 <div class="form-group">
                     <label for="image" class="form-label"><?php echo $i18n->msg('image-url') ?></label>
                     <input type="text" name="image" id="image" class="form-control" value="<?php echo htmlspecialchars($ocr->getImage()) ?>" placeholder="https://upload.wikimedia.org/"/>
-                    <label class="help-block"><?php echo $i18n->msg('image-url-help') ?></label>
+                    <p class="help-block"><?php echo $i18n->msg('image-url-help') ?></p>
                 </div>
                 <div class="form-group">
                     <label for="lang" class="form-label"><?php echo $i18n->msg('language-code') ?></label>
                     <input type="text" name="lang" id="lang" class="form-control" value="<?php echo htmlspecialchars($ocr->getLang()) ?>" />
-                    <label class="help-block"><?php echo $i18n->msg('language-code-help') ?></label>
+                    <p class="help-block"><?php echo $i18n->msg('language-code-help') ?></p>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="<?php echo $i18n->msg('submit') ?>" class="btn btn-info" />
