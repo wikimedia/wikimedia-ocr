@@ -13,14 +13,11 @@ class Ocr
     /** @var string The two-letter language code of the text in the image. */
     protected $lang;
 
-    /** @var Wikisource\GoogleCloudVisionPHP\GoogleCloudVision */
+    /** @var \Wikisource\GoogleCloudVisionPHP\GoogleCloudVision */
     protected $gcv;
 
     public function __construct($baseDir, $request)
     {
-        // Give us exceptions to handle, instead of errors.
-        \Eloquent\Asplode\Asplode::install();
-
         // Get the configuration variables.
         require $baseDir . '/config.php';
         if (empty($key)) {
