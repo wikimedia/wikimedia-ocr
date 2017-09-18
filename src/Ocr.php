@@ -2,6 +2,7 @@
 
 namespace Wikisource\GoogleOcr;
 
+use Exception;
 use Wikisource\GoogleCloudVisionPHP\GoogleCloudVision;
 
 class Ocr
@@ -13,7 +14,7 @@ class Ocr
     /** @var string The two-letter language code of the text in the image. */
     protected $lang;
 
-    /** @var \Wikisource\GoogleCloudVisionPHP\GoogleCloudVision */
+    /** @var GoogleCloudVision */
     protected $gcv;
 
     public function __construct($baseDir, $request)
@@ -21,7 +22,7 @@ class Ocr
         // Get the configuration variables.
         require $baseDir . '/config.php';
         if (empty($key)) {
-            throw new \Exception('API key value ($key) must be set in config.php');
+            throw new Exception('API key value ($key) must be set in config.php');
         }
         $this->gcv = new GoogleCloudVision();
         $this->gcv->setKey($key);
@@ -51,11 +52,11 @@ class Ocr
     public function checkImage()
     {
         if (!isset($this->image)) {
-            throw new \Exception("Image parameter must be set");
+            throw new Exception("Image parameter must be set");
         }
         $uploadUrl = 'https://upload.wikimedia.org/';
         if (substr($this->image, 0, strlen($uploadUrl)) !== $uploadUrl) {
-            throw new \Exception("Image URL must begin with '$uploadUrl'");
+            throw new Exception("Image URL must begin with '$uploadUrl'");
         }
         return true;
     }
@@ -64,15 +65,15 @@ class Ocr
     {
         $this->checkImage();
         $this->gcv->setImage($this->image);
-        $this->gcv->addFeatureOCR();
+        $this->gcv->addFeatureTextDetection();
         if ($this->getLang() !== null && $this->getLang() !== 'en') {
-            $this->gcv->setImageContext(['languageHints' => [$_REQUEST['lang']]]);
+            $this->gcv->setImageContext(['languageHints' => [$this->getLang()]]);
         }
         $response = $this->gcv->request();
 
         // Check for errors and pass any through.
         if (isset($response['responses'][0]['error']['message'])) {
-            throw new \Exception($response['responses'][0]['error']['message']);
+            throw new Exception($response['responses'][0]['error']['message']);
         }
 
         // Return only the text to the user (it's not an error if there's no text).

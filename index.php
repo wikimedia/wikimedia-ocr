@@ -2,7 +2,7 @@
 require __DIR__ . '/vendor/autoload.php';
 
 // Optical Character Recognition.
-$ocr = new Wikisource\GoogleOcr\Ocr(__DIR__, $_GET);
+$ocr = new Wikisource\GoogleOcr\Ocr(__DIR__, $_REQUEST);
 
 // Localisation.
 $i18n = new Intuition('ws-google-ocr');

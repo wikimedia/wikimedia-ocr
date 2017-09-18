@@ -1,4 +1,4 @@
-/vendor
-/nbproject
+/vendor/
+/nbproject/
+/.idea/
 /config.php
-

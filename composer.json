@@ -9,7 +9,7 @@
     },
     "require": {
         "php": ">=5.4",
-        "wikisource/google-cloud-vision-php": "1.*",
+        "wikisource/google-cloud-vision-php": "^1.2",
         "Krinkle/intuition": "^0.3"
     }
 }
