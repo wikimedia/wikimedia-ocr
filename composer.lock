@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a0bbc84d0bea4eb368ce54c4917be8fb",
+    "content-hash": "cfde625afec7e8c2421fc8c42ff2405c",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -189,75 +189,47 @@
         },
         {
             "name": "krinkle/intuition",
-            "version": "v0.3.0",
+            "version": "v0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Krinkle/intuition.git",
-                "reference": "534f8710160b5906d55d0d3a8be337e6bac9e026"
+                "reference": "c57f0be6524f7944035c90269a59bbec858ea704"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Krinkle/intuition/zipball/534f8710160b5906d55d0d3a8be337e6bac9e026",
-                "reference": "534f8710160b5906d55d0d3a8be337e6bac9e026",
+                "url": "https://api.github.com/repos/Krinkle/intuition/zipball/c57f0be6524f7944035c90269a59bbec858ea704",
+                "reference": "c57f0be6524f7944035c90269a59bbec858ea704",
                 "shasum": ""
             },
             "require": {
-                "krinkle/toollabs-base": "~0.7.0",
                 "php": ">=5.5"
             },
             "require-dev": {
-                "jakub-onderka/php-parallel-lint": "0.*",
-                "mediawiki/mediawiki-codesniffer": "0.1.0",
-                "phpunit/phpunit": "3.7.*",
-                "squizlabs/php_codesniffer": "2.1.*"
+                "jakub-onderka/php-parallel-lint": "0.9.*",
+                "mediawiki/mediawiki-codesniffer": "0.5.0",
+                "phpunit/phpunit": "4.8.*",
+                "satooshi/php-coveralls": "^1.0",
+                "squizlabs/php_codesniffer": "2.3.*"
             },
             "type": "library",
             "autoload": {
                 "files": [
-                    "ToolStart.php"
-                ]
+                    "src/defines.php",
+                    "src/compat.php"
+                ],
+                "psr-4": {
+                    "Krinkle\\Intuition\\": "src/"
+                },
+                "psr-0": {
+                    "MessagesFunctions": "language/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "CC-BY-3.0"
             ],
             "description": "Framework for localisation in PHP.",
-            "time": "2016-07-04T17:22:45+00:00"
-        },
-        {
-            "name": "krinkle/toollabs-base",
-            "version": "v0.7.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Krinkle/toollabs-base.git",
-                "reference": "f81ffd9225db095a840022191be699ca337ebb72"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Krinkle/toollabs-base/zipball/f81ffd9225db095a840022191be699ca337ebb72",
-                "reference": "f81ffd9225db095a840022191be699ca337ebb72",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5"
-            },
-            "require-dev": {
-                "jakub-onderka/php-parallel-lint": "0.8.*",
-                "mikey179/vfsstream": "1.*",
-                "phpunit/phpunit": "4.1.*"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "InitTool.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Unlicense"
-            ],
-            "description": "Framework for web apps in Wikimedia's Tool Labs environment.",
-            "time": "2015-09-12T21:24:58+00:00"
+            "time": "2017-06-20T19:54:10+00:00"
         },
         {
             "name": "psr/http-message",
