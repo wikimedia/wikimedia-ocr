@@ -19,7 +19,7 @@ echo json_encode(['text' => $text], JSON_UNESCAPED_UNICODE);
 /**
  * Return a JSON error message to the user (as the top-level 'error' element).
  *
- * @param strong $msg The message to return.
+ * @param string $msg The message to return.
  */
 function error($msg)
 {

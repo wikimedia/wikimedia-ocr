@@ -14,6 +14,9 @@ class Ocr
     /** @var string The two-letter language code of the text in the image. */
     protected $lang;
 
+    /** @var string The API key. */
+    protected $key;
+
     /** @var GoogleCloudVision */
     protected $gcv;
 
@@ -24,8 +27,9 @@ class Ocr
         if (empty($key)) {
             throw new Exception('API key value ($key) must be set in config.php');
         }
+        $this->key = $key;
         $this->gcv = new GoogleCloudVision();
-        $this->gcv->setKey($key);
+        $this->gcv->setKey($this->key);
         if (!empty($endpoint)) {
             $this->gcv->setEndpoint($endpoint);
         }
@@ -61,7 +65,25 @@ class Ocr
         return true;
     }
 
+    /**
+     * @return string
+     */
     public function getText()
+    {
+        try {
+            return $this->getTextOrFail();
+        } catch (Exception $e) {
+            $msg = str_replace($this->key, '[KEY REDACTED]', $e->getMessage());
+            throw new Exception($msg, $e->getCode(), $e);
+        }
+    }
+
+    /**
+     * Internal function for actually getting the text.
+     * @return string
+     * @throws Exception If the text could not be extracted.
+     */
+    protected function getTextOrFail()
     {
         $this->checkImage();
         $this->gcv->setImage($this->image);
