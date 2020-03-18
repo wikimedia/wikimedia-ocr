@@ -87,7 +87,7 @@ class Ocr
     {
         $this->checkImage();
         $this->gcv->setImage($this->image);
-        $this->gcv->addFeatureTextDetection();
+        $this->gcv->addFeatureDocumentTextDetection();
         if ($this->getLang() !== null && $this->getLang() !== 'en') {
             $this->gcv->setImageContext(['languageHints' => [$this->getLang()]]);
         }
