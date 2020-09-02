@@ -1,7 +1,6 @@
 {
-    "name": "wikisource/ws-google-ocr",
     "type": "project",
-    "license": "GPL-3.0+",
+    "license": "GPL-3.0-or-later",
     "autoload": {
         "psr-4": {
             "Wikisource\\GoogleOcr\\": "src"
@@ -11,5 +10,19 @@
         "php": ">=5.4",
         "wikisource/google-cloud-vision-php": "^1.2",
         "krinkle/intuition": "^0.6"
+    },
+    "require-dev": {
+        "mediawiki/minus-x": "^1.0",
+        "php-parallel-lint/php-parallel-lint": "^v1.0",
+        "mediawiki/mediawiki-codesniffer": "^31.0",
+        "symfony/var-dumper": "^5.1"
+    },
+    "scripts": {
+        "test": [
+            "composer validate --no-check-publish",
+            "parallel-lint . --exclude vendor",
+            "minus-x check .",
+            "phpcs -s ."
+        ]
     }
 }
