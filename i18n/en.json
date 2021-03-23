@@ -2,9 +2,13 @@
     "title": "Wikisource Google OCR",
     "image-url": "Image URL:",
     "image-url-help": "This must start with 'https://upload.wikimedia.org/' and be a full URL to an actual image file.",
+    "image-url-error": "Image URL must begin with '$1'",
+    "image-alt-text": "The original image",
     "language-code": "Two-letter language code (optional):",
     "language-code-help": "The ISO639 code of the language of the text in the image.",
     "submit": "Go",
     "copy-to-clipboard": "Copy to clipboard",
-    "more-info": "For more information, see:"
+    "copied-to-clipboard": "Copied!",
+    "more-info": "For more information, see:",
+    "limit-exceeded": "Limit exceeded: $1"
 }

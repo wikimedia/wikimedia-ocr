@@ -38,6 +38,10 @@ The [documentation](https://cloud.google.com/vision/reference/rest/v1/images/ann
 > (although it will be a significant hindrance if the hint is wrong).
 > Text detection returns an error if one or more of the specified languages is not one of the supported languages.
 
+## Contributing
+
+See [CONTRIBUTING.md](https://github.com/wikimedia/wikimedia-ocr/blob/main/CONTRIBUTING.md)
+
 ## External links
 
 * https://phabricator.wikimedia.org/T142768
