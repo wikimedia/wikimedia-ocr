@@ -13,6 +13,7 @@ If you need to make asset changes:
 * `composer install`
 * `npm install`
 * Add the missing values from `.env` to a `.env.local` file
+  * Use `https://vision.googleapis.com/` as the `APP_GOOGLE_CLOUD_VISION_ENDPOINT`, with your own [Cloud Vision API](https://cloud.google.com/vision) key as the `APP_GOOGLE_CLOUD_VISION_KEY`. Google gives you 1,000 free lookups per month.
 * `symfony serve` to start the application
 * `npm run dev-server` if you need to make JS/CSS changes.
   * Stop the dev-server and run `npm run build` before committing.
