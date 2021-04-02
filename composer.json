@@ -62,6 +62,9 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "test": [
+            "./vendor/bin/phpcs -s -p ."
         ]
     },
     "conflict": {
