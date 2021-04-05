@@ -26,12 +26,10 @@ services:
         resource: '../src/Controller/'
         tags: ['controller.service_arguments']
 
-    App\Controller\OcrController:
+    App\Engine\GoogleCloudVisionEngine:
         arguments:
-            - '@request_stack'
-            - '@Krinkle\Intuition\Intuition'
-            - '%env(APP_GOOGLE_CLOUD_VISION_ENDPOINT)%'
-            - '%env(APP_GOOGLE_CLOUD_VISION_KEY)%'
+            $endpoint: '%env(APP_GOOGLE_CLOUD_VISION_ENDPOINT)%'
+            $key: '%env(APP_GOOGLE_CLOUD_VISION_KEY)%'
 
     # please note that last definitions always *replace* previous ones
     # add more service definitions when explicit configuration is needed
