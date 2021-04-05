@@ -17,3 +17,27 @@ If you need to make asset changes:
 * `symfony serve` to start the application
 * `npm run dev-server` if you need to make JS/CSS changes.
   * Stop the dev-server and run `npm run build` before committing.
+
+
+Docker Developer Environment
+============================
+
+_(beta: this is a very raw setup and needs improvements)_
+
+### Requirements
+
+  - [Docker installation instructions][docker-install]
+
+[docker-install]: https://docs.docker.com/install/
+
+### Quickstart
+
+Setup container
+```
+./docker/setup.sh
+```
+
+Run container
+```
+./docker/run.sh
+```
