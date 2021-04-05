@@ -13,6 +13,14 @@
             <p class="help-block">{{ msg( 'language-code-help' ) }}</p>
         </div>
         <div class="form-group">
+            <label for="engine" class="form-label">{{ msg('engine') }}</label>
+            <select name="engine" id="engine" class="form-control">
+                <option value="google" {% if engine == 'google' %}selected{% endif %}>{{ msg('engine-name-google') }}</option>
+                <option value="tesseract" {% if engine == 'tesseract' %}selected{% endif %}>{{ msg('engine-name-tesseract') }}</option>
+            </select>
+            <p class="help-block">{{ msg( 'engine-help' ) }}</p>
+        </div>
+        <div class="form-group">
             <input type="submit" value="{{ msg( 'submit' ) }}" class="btn btn-info" />
         </div>
     </form>
