@@ -22,7 +22,9 @@
         "wikisource/google-cloud-vision-php": "^1.2"
     },
     "require-dev": {
+        "drenso/phan-extensions": "^3.3",
         "mediawiki/minus-x": "^1.1",
+        "phan/phan": "^4.0",
         "slevomat/coding-standard": "^4.8",
         "symfony/stopwatch": "^5.2",
         "symfony/web-profiler-bundle": "^5.2"
@@ -64,7 +66,12 @@
             "@auto-scripts"
         ],
         "test": [
-            "./vendor/bin/phpcs -s -p ."
+            "composer validate",
+            "phpcs -s -p .",
+            "./bin/console lint:twig ./templates",
+            "./bin/console lint:yaml ./config",
+            "minus-x check .",
+            "phan --allow-polyfill-parser"
         ]
     },
     "conflict": {
