@@ -5,7 +5,6 @@ namespace App\Controller;
 
 use App\Engine\EngineBase;
 use App\Engine\EngineFactory;
-use App\Engine\GoogleCloudVisionEngine;
 use App\Engine\TesseractEngine;
 use App\Exception\OcrException;
 use Krinkle\Intuition\Intuition;
