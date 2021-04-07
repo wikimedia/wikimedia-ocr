@@ -1,6 +1,8 @@
 Wikisource Google OCR tool
 ==========================
 
+![CI](https://github.com/wikimedia/wikimedia-ocr/workflows/CI/badge.svg)
+
 Main documentation: https://wikisource.org/wiki/Wikisource:Google_OCR
 
 This is a simple wrapper service around the Google Cloud Vision API,
