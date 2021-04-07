@@ -65,6 +65,7 @@ class GoogleCloudVisionEngine
         $response = $this->gcv->request();
 
         // Check for errors and pass any through.
+        /* @phan-suppress-next-line PhanTypeMismatchDimFetch */
         $error = $response['responses'][0]['error']['message'] ?? '';
         if ($error) {
             $msg = str_replace($this->key, '[KEY REDACTED]', $error);
@@ -72,6 +73,7 @@ class GoogleCloudVisionEngine
         }
 
         // Return only the text (it's not an error if there's no text).
+        /* @phan-suppress-next-line PhanTypeMismatchDimFetch */
         return $response['responses'][0]['textAnnotations'][0]['description'] ?? '';
     }
 }
