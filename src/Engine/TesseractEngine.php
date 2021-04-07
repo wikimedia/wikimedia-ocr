@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types = 1);
 
 namespace App\Engine;
 
@@ -27,7 +27,7 @@ class TesseractEngine extends EngineBase
         try {
             $imageContent = $imageResponse->getContent();
         } catch (ClientException $exception) {
-            throw new OcrException( 'image-retrieval-failed', [$exception->getMessage()]);
+            throw new OcrException('image-retrieval-failed', [$exception->getMessage()]);
         }
 
         // Sanitize the language code.
