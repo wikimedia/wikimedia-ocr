@@ -6,6 +6,7 @@ namespace App\Engine;
 use App\Exception\OcrException;
 use Symfony\Component\HttpClient\Exception\ClientException;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use thiagoalessio\TesseractOCR\FriendlyErrors;
 use thiagoalessio\TesseractOCR\TesseractOCR;
 
 class TesseractEngine extends EngineBase
@@ -35,6 +36,8 @@ class TesseractEngine extends EngineBase
 
         // Run OCR.
         $ocr = new TesseractOCR();
+        // @TODO Remove this after this is resolved: https://github.com/thiagoalessio/tesseract-ocr-for-php/issues/210
+        FriendlyErrors::checkTesseractPresence($ocr->command->executable);
         $ocr->imageData($imageContent, $imageResponse->getHeaders()['content-length'][0]);
         if ($cleanLang) {
             $ocr->lang($cleanLang);
