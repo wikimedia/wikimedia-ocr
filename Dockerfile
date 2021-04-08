@@ -11,6 +11,7 @@ RUN apt-get update -q && apt-get install -y \
 	libicu-dev \
 	libzip-dev \
 	unzip \
+      tesseract-ocr \
       && docker-php-ext-install intl \
       && wget -nv -O- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
       && wget -nv -O- https://get.symfony.com/cli/installer | bash \
