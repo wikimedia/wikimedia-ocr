@@ -7,6 +7,7 @@ use App\Exception\OcrException;
 
 abstract class EngineBase
 {
+    public const ALLOWED_FORMATS = ['png', 'jpeg', 'jpg', 'gif', 'tiff', 'tif', 'webp'];
 
     /**
      * @param string $imageUrl
@@ -22,9 +23,10 @@ abstract class EngineBase
      */
     public function checkImageUrl(string $imageUrl): void
     {
-        $uploadUrl = 'https://upload.wikimedia.org/';
-        if (substr($imageUrl, 0, strlen($uploadUrl)) !== $uploadUrl) {
-            throw new OcrException('image-url-error', [$uploadUrl]);
+        $formatRegex = implode('|', self::ALLOWED_FORMATS);
+        $matches = preg_match("/^https?:\/\/upload\.wikimedia\.org\/.*($formatRegex)$/", strtolower($imageUrl));
+        if (1 !== $matches) {
+            throw new OcrException('image-url-error', ['https://upload.wikimeida.org']);
         }
     }
 }
