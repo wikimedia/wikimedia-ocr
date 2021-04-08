@@ -35,21 +35,16 @@ class OcrController extends AbstractController
      * OcrController constructor.
      * @param RequestStack $requestStack
      * @param Intuition $intuition
-     * @param string $endpoint
-     * @param string $key
+     * @param EngineFactory $engineFactory
      */
-    public function __construct(
-        RequestStack $requestStack,
-        Intuition $intuition,
-        EngineFactory $engineFactory
-    ) {
+    public function __construct(RequestStack $requestStack, Intuition $intuition, EngineFactory $engineFactory) {
         // Dependencies.
         $this->intuition = $intuition;
 
         $request = $requestStack->getCurrentRequest();
 
         // Engine.
-        $this->engine = $engineFactory->get($request->get('engine'));
+        $this->engine = $engineFactory->get($request->get('engine', 'google'));
         $this->params['engine'] = $this->engine instanceof TesseractEngine ? 'tesseract' : 'google';
 
         // Parameters.

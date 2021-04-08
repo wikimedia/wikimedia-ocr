@@ -10,7 +10,7 @@ abstract class EngineBase
 
     /**
      * @param string $imageUrl
-     * @param string $lang
+     * @param string|null $lang
      * @return string
      */
     abstract public function getText(string $imageUrl, ?string $lang = null): string;
