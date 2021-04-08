@@ -37,7 +37,8 @@ class OcrController extends AbstractController
      * @param Intuition $intuition
      * @param EngineFactory $engineFactory
      */
-    public function __construct(RequestStack $requestStack, Intuition $intuition, EngineFactory $engineFactory) {
+    public function __construct(RequestStack $requestStack, Intuition $intuition, EngineFactory $engineFactory)
+    {
         // Dependencies.
         $this->intuition = $intuition;
 
