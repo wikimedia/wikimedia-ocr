@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9975eb0e515bbf4e75cd46c2c422259b",
+    "content-hash": "0a32e76d4f81151e949751efbb611fc5",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -247,33 +247,32 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "2.10.4",
+            "version": "2.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "47433196b6390d14409a33885ee42b6208160643"
+                "reference": "67d56d3203b33db29834e6b2fcdbfdc50535d796"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/47433196b6390d14409a33885ee42b6208160643",
-                "reference": "47433196b6390d14409a33885ee42b6208160643",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/67d56d3203b33db29834e6b2fcdbfdc50535d796",
+                "reference": "67d56d3203b33db29834e6b2fcdbfdc50535d796",
                 "shasum": ""
             },
             "require": {
                 "doctrine/cache": "^1.0",
+                "doctrine/deprecations": "^0.5.3",
                 "doctrine/event-manager": "^1.0",
                 "ext-pdo": "*",
-                "php": "^7.2"
+                "php": "^7.1 || ^8"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^8.1",
-                "jetbrains/phpstorm-stubs": "^2019.1",
-                "nikic/php-parser": "^4.4",
-                "phpstan/phpstan": "^0.12.40",
-                "phpunit/phpunit": "^8.5.5",
-                "psalm/plugin-phpunit": "^0.10.0",
+                "doctrine/coding-standard": "8.2.0",
+                "jetbrains/phpstorm-stubs": "2020.2",
+                "phpstan/phpstan": "0.12.81",
+                "phpunit/phpunit": "^7.5.20|^8.5|9.5.0",
                 "symfony/console": "^2.0.5|^3.0|^4.0|^5.0",
-                "vimeo/psalm": "^3.14.2"
+                "vimeo/psalm": "4.6.4"
             },
             "suggest": {
                 "symfony/console": "For helpful console commands such as SQL execution and import of files."
@@ -282,12 +281,6 @@
                 "bin/doctrine-dbal"
             ],
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.10.x-dev",
-                    "dev-develop": "3.0.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Doctrine\\DBAL\\": "lib/Doctrine/DBAL"
@@ -352,20 +345,59 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-12T21:20:41+00:00"
+            "time": "2021-03-28T18:10:53+00:00"
         },
         {
-            "name": "doctrine/doctrine-bundle",
-            "version": "2.3.0",
+            "name": "doctrine/deprecations",
+            "version": "v0.5.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "8b922578bdee2243a26202b13df795e170efaef8"
+                "url": "https://github.com/doctrine/deprecations.git",
+                "reference": "9504165960a1f83cc1480e2be1dd0a0478561314"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/8b922578bdee2243a26202b13df795e170efaef8",
-                "reference": "8b922578bdee2243a26202b13df795e170efaef8",
+                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/9504165960a1f83cc1480e2be1dd0a0478561314",
+                "reference": "9504165960a1f83cc1480e2be1dd0a0478561314",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1|^8.0"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^6.0|^7.0|^8.0",
+                "phpunit/phpunit": "^7.0|^8.0|^9.0",
+                "psr/log": "^1.0"
+            },
+            "suggest": {
+                "psr/log": "Allows logging deprecations via PSR-3 logger implementation"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Deprecations\\": "lib/Doctrine/Deprecations"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A small layer on top of trigger_error(E_USER_DEPRECATED) or PSR-3 logging with options to disable all deprecations or selectively for packages.",
+            "homepage": "https://www.doctrine-project.org/",
+            "time": "2021-03-21T12:59:47+00:00"
+        },
+        {
+            "name": "doctrine/doctrine-bundle",
+            "version": "2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/DoctrineBundle.git",
+                "reference": "a08bc3b4d8567cdff05e89b272ba1e06e9d71c21"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/a08bc3b4d8567cdff05e89b272ba1e06e9d71c21",
+                "reference": "a08bc3b4d8567cdff05e89b272ba1e06e9d71c21",
                 "shasum": ""
             },
             "require": {
@@ -377,7 +409,7 @@
                 "symfony/config": "^4.3.3|^5.0",
                 "symfony/console": "^3.4.30|^4.3.3|^5.0",
                 "symfony/dependency-injection": "^4.3.3|^5.0",
-                "symfony/doctrine-bridge": "^4.3.7|^5.0",
+                "symfony/doctrine-bridge": "^4.4.7|^5.0",
                 "symfony/framework-bundle": "^3.4.30|^4.3.3|^5.0",
                 "symfony/service-contracts": "^1.1.1|^2.0"
             },
@@ -390,25 +422,25 @@
                 "doctrine/orm": "^2.6",
                 "friendsofphp/proxy-manager-lts": "^1.0",
                 "phpunit/phpunit": "^7.5 || ^8.0 || ^9.3",
-                "symfony/phpunit-bridge": "^4.2",
+                "psalm/plugin-phpunit": "^0.15.1",
+                "psalm/plugin-symfony": "^2.2.4",
+                "symfony/phpunit-bridge": "^5.2",
                 "symfony/property-info": "^4.3.3|^5.0",
                 "symfony/proxy-manager-bridge": "^3.4|^4.3.3|^5.0",
+                "symfony/security-bundle": "^4.4|5.0",
                 "symfony/twig-bridge": "^3.4.30|^4.3.3|^5.0",
                 "symfony/validator": "^3.4.30|^4.3.3|^5.0",
                 "symfony/web-profiler-bundle": "^3.4.30|^4.3.3|^5.0",
                 "symfony/yaml": "^3.4.30|^4.3.3|^5.0",
-                "twig/twig": "^1.34|^2.12|^3.0"
+                "twig/twig": "^1.34|^2.12|^3.0",
+                "vimeo/psalm": "^4.7"
             },
             "suggest": {
                 "doctrine/orm": "The Doctrine ORM integration is optional in the bundle.",
+                "ext-pdo": "*",
                 "symfony/web-profiler-bundle": "To use the data collector."
             },
             "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.3.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Doctrine\\Bundle\\DoctrineBundle\\": ""
@@ -458,7 +490,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-16T16:24:04+00:00"
+            "time": "2021-04-05T14:21:02+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -4478,6 +4510,50 @@
             "time": "2021-03-06T07:59:01+00:00"
         },
         {
+            "name": "thiagoalessio/tesseract_ocr",
+            "version": "2.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thiagoalessio/tesseract-ocr-for-php.git",
+                "reference": "d288750532593ba3eaf2e7446f426fc561caf2a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thiagoalessio/tesseract-ocr-for-php/zipball/d288750532593ba3eaf2e7446f426fc561caf2a2",
+                "reference": "d288750532593ba3eaf2e7446f426fc561caf2a2",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/php-code-coverage": "^2.2.4 || ^9.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "thiagoalessio\\TesseractOCR\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "thiagoalessio",
+                    "email": "thiagoalessio@me.com"
+                }
+            ],
+            "description": "A wrapper to work with Tesseract OCR inside PHP.",
+            "keywords": [
+                "OCR",
+                "Tesseract",
+                "text recognition"
+            ],
+            "time": "2021-02-10T17:51:31+00:00"
+        },
+        {
             "name": "twig/extra-bundle",
             "version": "v3.3.0",
             "source": {
@@ -4885,16 +4961,16 @@
         },
         {
             "name": "drenso/phan-extensions",
-            "version": "v3.3.0",
+            "version": "v3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Drenso/PhanExtensions.git",
-                "reference": "bd479813f4d9275262a04b655f966a6503cafa3b"
+                "reference": "af53f4a4edf9e12ca74780a32e63c7112c026476"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Drenso/PhanExtensions/zipball/bd479813f4d9275262a04b655f966a6503cafa3b",
-                "reference": "bd479813f4d9275262a04b655f966a6503cafa3b",
+                "url": "https://api.github.com/repos/Drenso/PhanExtensions/zipball/af53f4a4edf9e12ca74780a32e63c7112c026476",
+                "reference": "af53f4a4edf9e12ca74780a32e63c7112c026476",
                 "shasum": ""
             },
             "require-dev": {
@@ -4925,7 +5001,7 @@
                 "stubs",
                 "symfony"
             ],
-            "time": "2021-03-28T13:04:31+00:00"
+            "time": "2021-04-07T19:40:11+00:00"
         },
         {
             "name": "felixfbecker/advanced-json-rpc",

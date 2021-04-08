@@ -1,14 +1,19 @@
 {
-    "title": "Wikisource Google OCR",
+    "title": "Wikimedia OCR",
     "image-url": "Image URL:",
     "image-url-help": "This must start with 'https://upload.wikimedia.org/' and be a full URL to an actual image file.",
     "image-url-error": "Image URL must begin with '$1'",
     "image-alt-text": "The original image",
     "language-code": "Two-letter language code (optional):",
     "language-code-help": "The ISO639 code of the language of the text in the image.",
+    "engine": "OCR engine:",
+    "engine-help": "Choose between the open-source Wikimedia-hosted Tesseract, and Google's Cloud Vision API.",
+    "engine-name-google": "Google",
+    "engine-name-tesseract": "Tesseract",
     "submit": "Go",
     "copy-to-clipboard": "Copy to clipboard",
     "copied-to-clipboard": "Copied!",
     "more-info": "For more information, see:",
-    "limit-exceeded": "Limit exceeded: $1"
+    "limit-exceeded": "Limit exceeded: $1",
+    "image-retrieval-failed": "Image retrieval failed: $1"
 }

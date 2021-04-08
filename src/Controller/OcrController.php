@@ -3,7 +3,9 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
-use App\Engine\GoogleCloudVisionEngine;
+use App\Engine\EngineBase;
+use App\Engine\EngineFactory;
+use App\Engine\TesseractEngine;
 use App\Exception\OcrException;
 use Krinkle\Intuition\Intuition;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,7 +19,7 @@ class OcrController extends AbstractController
     /** @var Intuition */
     protected $intuition;
 
-    /** @var GoogleCloudVisionEngine */
+    /** @var EngineBase */
     protected $engine;
 
     /** @var mixed[] Output params for the view or API response. */
@@ -33,16 +35,18 @@ class OcrController extends AbstractController
      * OcrController constructor.
      * @param RequestStack $requestStack
      * @param Intuition $intuition
-     * @param string $endpoint
-     * @param string $key
+     * @param EngineFactory $engineFactory
      */
-    public function __construct(RequestStack $requestStack, Intuition $intuition, string $endpoint, string $key)
+    public function __construct(RequestStack $requestStack, Intuition $intuition, EngineFactory $engineFactory)
     {
-        $request = $requestStack->getCurrentRequest();
-
         // Dependencies.
         $this->intuition = $intuition;
-        $this->engine = new GoogleCloudVisionEngine($endpoint, $key);
+
+        $request = $requestStack->getCurrentRequest();
+
+        // Engine.
+        $this->engine = $engineFactory->get($request->get('engine', 'google'));
+        $this->params['engine'] = $this->engine instanceof TesseractEngine ? 'tesseract' : 'google';
 
         // Parameters.
         $this->imageUrl = (string)$request->query->get('image');

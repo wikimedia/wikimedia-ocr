@@ -1,6 +1,6 @@
 {
     "name": "wikimedia/wikimedia-ocr",
-    "description": "A simple wrapper around the Google Cloud Vision API, enabling Wikisources to submit images for OCR and retrieve the resultant text.",
+    "description": "A simple wrapper around multiple OCR engines, enabling Wikisources to submit images for OCR and retrieve the resultant text.",
     "type": "project",
     "license": "GPL-3.0-or-later",
     "require": {
@@ -16,6 +16,7 @@
         "symfony/twig-bundle": "5.2.*",
         "symfony/webpack-encore-bundle": "^1.11",
         "symfony/yaml": "5.2.*",
+        "thiagoalessio/tesseract_ocr": "^2.11",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
         "wikimedia/toolforge-bundle": "^1.3",
