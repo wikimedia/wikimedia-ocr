@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace App\Engine;
 
 use App\Exception\OcrException;
+use ErrorException;
 use Wikisource\GoogleCloudVisionPHP\GoogleCloudVision;
 use Wikisource\GoogleCloudVisionPHP\LimitExceededException;
 
@@ -43,6 +44,14 @@ class GoogleCloudVisionEngine extends EngineBase
             $this->gcv->setImage($imageUrl);
         } catch (LimitExceededException $e) {
             throw new OcrException('limit-exceeded', [$e->getMessage()]);
+        } catch (ErrorException $e) {
+            if (false !== strpos($e->getMessage(), '404 Not Found')) {
+                // The 'image-retrieval-failed' message is the important part that is localized.
+                throw new OcrException('image-retrieval-failed', ['404 Not Found']);
+            }
+
+            // Unknown error.
+            throw $e;
         }
 
         $this->gcv->addFeatureDocumentTextDetection();
