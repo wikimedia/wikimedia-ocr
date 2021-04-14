@@ -26,7 +26,7 @@ abstract class EngineBase
         $formatRegex = implode('|', self::ALLOWED_FORMATS);
         $matches = preg_match("/^https?:\/\/upload\.wikimedia\.org\/.*($formatRegex)$/", strtolower($imageUrl));
         if (1 !== $matches) {
-            throw new OcrException('image-url-error', ['https://upload.wikimeida.org']);
+            throw new OcrException('image-url-error', ['https://upload.wikimedia.org']);
         }
     }
 }
