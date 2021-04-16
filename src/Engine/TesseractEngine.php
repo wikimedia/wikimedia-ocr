@@ -19,7 +19,12 @@ class TesseractEngine extends EngineBase
         $this->httpClient = $httpClient;
     }
 
-    public function getText(string $imageUrl, ?string $lang = null): string
+    /**
+     * @param string $imageUrl
+     * @param string[]|null $langs
+     * @return string
+     */
+    public function getText(string $imageUrl, ?array $langs = null): string
     {
         // Check the URL and fetch the image data.
         $this->checkImageUrl($imageUrl);
@@ -30,14 +35,11 @@ class TesseractEngine extends EngineBase
             throw new OcrException('image-retrieval-failed', [$exception->getMessage()]);
         }
 
-        // Sanitize the language code.
-        $cleanLang = preg_replace('/[a-zA-Z]+/', '', $lang);
-
         // Run OCR.
         $ocr = new TesseractOCR();
         $ocr->imageData($imageContent, $imageResponse->getHeaders()['content-length'][0]);
-        if ($cleanLang) {
-            $ocr->lang($cleanLang);
+        if ($langs && count($langs) > 0) {
+            $ocr->lang(...$langs);
         }
         $text = $ocr->run();
         return $text;

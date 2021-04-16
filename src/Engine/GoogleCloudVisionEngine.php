@@ -32,11 +32,11 @@ class GoogleCloudVisionEngine extends EngineBase
     /**
      * Get transcribed text from the given image.
      * @param string $imageUrl
-     * @param string|null $lang
+     * @param string[]|null $langs
      * @return string
      * @throws OcrException
      */
-    public function getText(string $imageUrl, ?string $lang = null): string
+    public function getText(string $imageUrl, ?array $langs = null): string
     {
         $this->checkImageUrl($imageUrl);
 
@@ -55,8 +55,8 @@ class GoogleCloudVisionEngine extends EngineBase
         }
 
         $this->gcv->addFeatureDocumentTextDetection();
-        if (null !== $lang && 'en' !== $lang) {
-            $this->gcv->setImageContext(['languageHints' => [$lang]]);
+        if (null !== $langs) {
+            $this->gcv->setImageContext(['languageHints' => $langs]);
         }
         $response = $this->gcv->request();
 
