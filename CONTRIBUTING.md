@@ -13,7 +13,11 @@ If you need to make asset changes:
 * `composer install`
 * `npm install`
 * Add the missing values from `.env` to a `.env.local` file
-  * Use `https://vision.googleapis.com/` as the `APP_GOOGLE_CLOUD_VISION_ENDPOINT`, with your own [Cloud Vision API](https://cloud.google.com/vision) key as the `APP_GOOGLE_CLOUD_VISION_KEY`. Google gives you 1,000 free lookups per month.
+  * Enable the Cloud Vision API at https://console.cloud.google.com/apis/api/vision.googleapis.com/overview
+  * Create a new Google service account at https://console.cloud.google.com/iam-admin/serviceaccounts Google gives you 1,000 free lookups per month.
+  * Give the service account the *Compute Engine Service Account* role.
+  * Add a new key for the service account, and download the key's JSON file. Nothing needs to be changed in this file.
+  * Add the path of that file to your `.env.local` as `APP_GOOGLE_KEYFILE`.
 * Install [Tesseract](https://tesseract-ocr.github.io) and make sure it's in your `$PATH`
 * `symfony serve` to start the application
 * `npm run dev-server` if you need to make JS/CSS changes.
