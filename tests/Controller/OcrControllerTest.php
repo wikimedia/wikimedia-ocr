@@ -26,10 +26,11 @@ class OcrControllerTest extends TestCase
         $request = new Request($getParams);
         $requestStack = new RequestStack();
         $requestStack->push($request);
+        $gcv = new GoogleCloudVisionEngine(dirname(__DIR__).'/fixtures/google-account-keyfile.json');
         $controller = new OcrController(
             $requestStack,
             new Intuition([]),
-            new EngineFactory(new GoogleCloudVisionEngine('', ''), new TesseractEngine(new MockHttpClient()))
+            new EngineFactory($gcv, new TesseractEngine(new MockHttpClient()))
         );
         $this->assertSame($expectedLangs, $controller->getLangs($request));
     }

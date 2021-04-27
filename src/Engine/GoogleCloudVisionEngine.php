@@ -5,6 +5,7 @@ namespace App\Engine;
 
 use App\Exception\OcrException;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+use Google\Cloud\Vision\V1\ImageContext;
 
 class GoogleCloudVisionEngine extends EngineBase
 {
@@ -34,23 +35,9 @@ class GoogleCloudVisionEngine extends EngineBase
     {
         $this->checkImageUrl($imageUrl);
 
-        try {
-            $this->gcv->setImage($imageUrl);
-        } catch (LimitExceededException $e) {
-            throw new OcrException('limit-exceeded', [$e->getMessage()]);
-        } catch (ErrorException $e) {
-            if (false !== strpos($e->getMessage(), '404 Not Found')) {
-                // The 'image-retrieval-failed' message is the important part that is localized.
-                throw new OcrException('image-retrieval-failed', ['404 Not Found']);
-            }
-
-            // Unknown error.
-            throw $e;
-        }
-
-        $this->gcv->addFeatureDocumentTextDetection();
+        $imageContext = new ImageContext();
         if (null !== $langs) {
-            $this->gcv->setImageContext(['languageHints' => $langs]);
+            $imageContext->setLanguageHints($langs);
         }
 
         $response = $this->imageAnnotator->textDetection($imageUrl, ['imageContext' => $imageContext]);
