@@ -13,6 +13,7 @@ RUN apt-get update -q && apt-get install -y \
 	unzip \
       tesseract-ocr-all \
       && docker-php-ext-install intl \
+      && docker-php-ext-install bcmath \
       && wget -nv -O- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
       && wget -nv -O- https://get.symfony.com/cli/installer | bash \
       && mv /root/.symfony/bin/symfony /usr/local/bin/symfony \

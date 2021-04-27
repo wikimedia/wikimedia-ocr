@@ -28,8 +28,7 @@ services:
 
     App\Engine\GoogleCloudVisionEngine:
         arguments:
-            $endpoint: '%env(APP_GOOGLE_CLOUD_VISION_ENDPOINT)%'
-            $key: '%env(APP_GOOGLE_CLOUD_VISION_KEY)%'
+            $keyFile: '%env(APP_GOOGLE_KEYFILE)%'
 
     # please note that last definitions always *replace* previous ones
     # add more service definitions when explicit configuration is needed

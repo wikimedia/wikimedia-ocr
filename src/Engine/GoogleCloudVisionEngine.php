@@ -4,29 +4,23 @@ declare(strict_types = 1);
 namespace App\Engine;
 
 use App\Exception\OcrException;
-use ErrorException;
-use Wikisource\GoogleCloudVisionPHP\GoogleCloudVision;
-use Wikisource\GoogleCloudVisionPHP\LimitExceededException;
+use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 
 class GoogleCloudVisionEngine extends EngineBase
 {
     /** @var string The API key. */
     protected $key;
 
-    /** @var GoogleCloudVision */
-    protected $gcv;
+    /** @var ImageAnnotatorClient */
+    protected $imageAnnotator;
 
     /**
      * GoogleCloudVisionEngine constructor.
-     * @param string $endpoint Google Cloud Vision API endpoint.
-     * @param string $key Google Cloud Vision API key.
+     * @param string $keyFile Filesystem path to the credentials JSON file.
      */
-    public function __construct(string $endpoint, string $key)
+    public function __construct(string $keyFile)
     {
-        $this->key = $key;
-        $this->gcv = new GoogleCloudVision();
-        $this->gcv->setKey($this->key);
-        $this->gcv->setEndpoint($endpoint);
+        $this->imageAnnotator = new ImageAnnotatorClient(['credentials' => $keyFile]);
     }
 
     /**
@@ -58,18 +52,13 @@ class GoogleCloudVisionEngine extends EngineBase
         if (null !== $langs) {
             $this->gcv->setImageContext(['languageHints' => $langs]);
         }
-        $response = $this->gcv->request();
 
-        // Check for errors and pass any through.
-        /* @phan-suppress-next-line PhanTypeMismatchDimFetch */
-        $error = $response['responses'][0]['error']['message'] ?? '';
-        if ($error) {
-            $msg = str_replace($this->key, '[KEY REDACTED]', $error);
-            throw new OcrException($msg);
+        $response = $this->imageAnnotator->textDetection($imageUrl, ['imageContext' => $imageContext]);
+
+        if ($response->getError()) {
+            throw new OcrException('google-error', [$response->getError()->getMessage()]);
         }
 
-        // Return only the text (it's not an error if there's no text).
-        /* @phan-suppress-next-line PhanTypeMismatchDimFetch */
-        return $response['responses'][0]['textAnnotations'][0]['description'] ?? '';
+        return $response->getFullTextAnnotation()->getText();
     }
 }
