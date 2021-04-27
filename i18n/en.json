@@ -13,7 +13,9 @@
     "submit": "Go",
     "copy-to-clipboard": "Copy to clipboard",
     "copied-to-clipboard": "Copied!",
-    "more-info": "For more information, see:",
     "google-error": "The Google service returned an error: $1",
-    "image-retrieval-failed": "Image retrieval failed: $1"
+    "image-retrieval-failed": "Image retrieval failed: $1",
+    "documentation": "Documentation",
+    "version": "Version $1",
+    "report-issue": "Report an issue"
 }
