@@ -19,7 +19,7 @@ Requests can only be for images hosted on Commons.
 
 Send up to two parameters to `api.php`:
 
-    https://tools.wmflabs.org/ws-google-ocr/api.php?lang=[LANG_CODE]&image=[IMAGE_URL]
+    https://example.org/api.php?langs[]=[LANG_CODE_1]&langs[]=[LANG_CODE_2]&image=[IMAGE_URL]
 
 And get back a JSON response with either 'text' or 'error' top-level items set:
 
@@ -31,6 +31,10 @@ And get back a JSON response with either 'text' or 'error' top-level items set:
       }
     }
 
+### Languages
+
+#### Google
+
 Note that you should only set the `lang` parameter for languages that require it.
 The [documentation](https://cloud.google.com/vision/reference/rest/v1/images/annotate#imagecontext) informs us of the following:
 
@@ -38,7 +42,12 @@ The [documentation](https://cloud.google.com/vision/reference/rest/v1/images/ann
 > For languages based on the Latin alphabet, setting languageHints is not needed.
 > In rare cases, when the language of the text in the image is known, setting a hint will help get better results
 > (although it will be a significant hindrance if the hint is wrong).
-> Text detection returns an error if one or more of the specified languages is not one of the supported languages.
+> Text detection returns an error if one or more of the specified languages is not
+> one of the [supported languages](https://cloud.google.com/vision/docs/languages).
+
+#### Tesseract
+
+Languages supported by Tesseract are [listed in the user manual](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions.html).
 
 ## Contributing
 

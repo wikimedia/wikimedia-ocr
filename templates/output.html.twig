@@ -7,11 +7,19 @@
             <input name="image" id="image" class="form-control" placeholder="https://upload.wikimedia.org/" value="{{ app.request.get('image') }}" required />
             <p class="help-block">{{ msg( 'image-url-help' ) }}</p>
         </div>
-        <div class="form-group">
-            <label for="lang" class="form-label">{{ msg('language-code') }}</label>
-            <input name="lang" id="lang" class="form-control" value="{{ app.request.get('lang') }}" />
-            <p class="help-block">{{ msg( 'language-code-help' ) }}</p>
-        </div>
+        <ol>
+            {# Add an additional blank language, to create an extra form field. #}
+            {% for lang_num,lang in langs|merge(['']) %}
+                {# @TODO Use a better system of selecting and displaying multiple languages. #}
+                <li>
+                    <div class="form-group">
+                        <label for="lang-{{ lang_num }}" class="form-label">{{ msg('language-code') }}</label>
+                        <input name="langs[]" id="lang-{{ lang_num }}" class="form-control" value="{{ lang }}" />
+                        <p class="help-block">{{ msg( 'language-code-help' ) }}</p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ol>
         <div class="form-group">
             <label for="engine" class="form-label">{{ msg('engine') }}</label>
             <select name="engine" id="engine" class="form-control">

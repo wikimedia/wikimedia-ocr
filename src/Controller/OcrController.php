@@ -10,6 +10,7 @@ use App\Exception\OcrException;
 use Krinkle\Intuition\Intuition;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,9 +28,6 @@ class OcrController extends AbstractController
 
     /** @var string */
     protected $imageUrl;
-
-    /** @var string */
-    protected $lang;
 
     /**
      * OcrController constructor.
@@ -50,7 +48,28 @@ class OcrController extends AbstractController
 
         // Parameters.
         $this->imageUrl = (string)$request->query->get('image');
-        $this->lang = (string)$request->query->get('lang');
+        $this->params['langs'] = $this->getLangs($request);
+    }
+
+    /**
+     * Get a list of language codes from the request.
+     * Looks for both the string `?lang=xx` and array `?langs[]=xx&langs[]=yy` versions.
+     * @param Request $request
+     * @return string[]
+     */
+    public function getLangs(Request $request): array
+    {
+        $lang = $request->query->get('lang');
+        $langs = $request->query->all('langs');
+        $langArray = array_merge([ $lang ], $langs);
+        // Remove non-alpha chars.
+        $langsSanitized = preg_replace('/[^a-zA-Z]/', '', $langArray);
+        // Remove empty and duplicated values, and then reorder keys (just for easier testing).
+        $langsFiltered = array_values(array_unique(array_filter($langsSanitized)));
+        // If no languages specified, default to the user's.
+        // @TODO The default language code needs to vary based on the engine. T280617.
+        //return 0 === count($langsFiltered) ? [$this->intuition->getLang()] : $langsFiltered;
+        return $langsFiltered;
     }
 
     /**
@@ -62,7 +81,7 @@ class OcrController extends AbstractController
     {
         if ($this->imageUrl) {
             try {
-                $this->params['text'] = $this->engine->getText($this->imageUrl, $this->lang);
+                $this->params['text'] = $this->engine->getText($this->imageUrl, $this->params['langs']);
             } catch (OcrException $e) {
                 $this->addFlash(
                     'error',
@@ -85,7 +104,7 @@ class OcrController extends AbstractController
         $response->setStatusCode(Response::HTTP_OK);
 
         try {
-            $this->params['text'] = $this->engine->getText($this->imageUrl, $this->lang);
+            $this->params['text'] = $this->engine->getText($this->imageUrl, $this->params['langs']);
         } catch (OcrException $e) {
             $this->params['error'] = $this->intuition->msg($e->getI18nKey(), ['variables' => $e->getI18nParams()]);
             $response->setStatusCode(Response::HTTP_BAD_REQUEST);

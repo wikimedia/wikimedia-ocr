@@ -27,17 +27,17 @@ class GoogleCloudVisionEngine extends EngineBase
     /**
      * Get transcribed text from the given image.
      * @param string $imageUrl
-     * @param string|null $lang
+     * @param string[]|null $langs
      * @return string
      * @throws OcrException
      */
-    public function getText(string $imageUrl, ?string $lang = null): string
+    public function getText(string $imageUrl, ?array $langs = null): string
     {
         $this->checkImageUrl($imageUrl);
 
         $imageContext = new ImageContext();
-        if (null !== $lang && 'en' !== $lang) {
-            $imageContext->setLanguageHints([$lang]);
+        if (null !== $langs) {
+            $imageContext->setLanguageHints($langs);
         }
 
         $response = $this->imageAnnotator->textDetection($imageUrl, ['imageContext' => $imageContext]);
