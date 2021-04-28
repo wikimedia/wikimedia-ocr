@@ -17,6 +17,18 @@ class TesseractEngine extends EngineBase
     /** @var TesseractOCR */
     private $ocr;
 
+    /** @var int Maximum value for page segmentation mode. */
+    public const MAX_PSM = 13;
+
+    /** @var int Default value for page segmentation mode. */
+    public const DEFAULT_PSM = 3;
+
+    /** @var int Maximum value for OCR engine mde. */
+    public const MAX_OEM = 3;
+
+    /** @var int Default value for OCR engine mode. */
+    public const DEFAULT_OEM = 3;
+
     public function __construct(HttpClientInterface $httpClient, Intuition $intuition, TesseractOCR $tesseractOcr)
     {
         parent::__construct($intuition);
@@ -28,6 +40,7 @@ class TesseractEngine extends EngineBase
      * @param string $imageUrl
      * @param string[]|null $langs
      * @return string
+     * @throws OcrException
      */
     public function getText(string $imageUrl, ?array $langs = null): string
     {
@@ -47,6 +60,7 @@ class TesseractEngine extends EngineBase
         if ($langs && count($langs) > 0) {
             $this->ocr->lang(...$langs);
         }
+
         // Env vars are passed through by the thiagoalessio/tesseract_ocr package to the tesseract command,
         // but when they're loaded from Symfony's .env they aren't actually available (by design),
         // so we have to load this one manually. We only process one image at a time, so don't benefit from
@@ -63,5 +77,46 @@ class TesseractEngine extends EngineBase
     public function getValidLangs(): array
     {
         return $this->ocr->availableLanguages();
+    }
+
+    /**
+     * Set the page segmentation mode.
+     * @param int $psm
+     */
+    public function setPsm(int $psm): void
+    {
+        $this->validateOption('psm', $psm, self::MAX_PSM);
+        $this->ocr->psm($psm);
+    }
+
+    /**
+     * Set the OCR engine mode.
+     * @param int $oem
+     */
+    public function setOem(int $oem): void
+    {
+        $this->validateOption('oem', $oem, self::MAX_OEM);
+        $this->ocr->oem($oem);
+    }
+
+    /**
+     * Validates the given option.
+     * @param string $option
+     * @param int $given
+     * @param int $maximum
+     * @throws OcrException
+     */
+    private function validateOption(string $option, int $given, int $maximum): void
+    {
+        if ($given > $maximum) {
+            throw new OcrException(
+                'tesseract-param-error',
+                [
+                    $this->intuition->msg("tesseract-$option-label"),
+                    $given,
+                    $maximum,
+                ]
+            );
+        }
     }
 }
