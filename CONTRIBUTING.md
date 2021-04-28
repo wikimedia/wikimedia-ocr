@@ -20,9 +20,7 @@ If you need to make asset changes:
   * Add the path of that file to your `.env.local` as `APP_GOOGLE_KEYFILE`.
 * Install [Tesseract](https://tesseract-ocr.github.io) and make sure it's in your `$PATH`
 * `symfony serve` to start the application
-* `npm run dev-server` if you need to make JS/CSS changes.
-  * Stop the dev-server and run `npm run build` before committing.
-
+* `npm run watch` if you need to make JS/CSS changes. Compiled assets are not committed.
 
 Docker Developer Environment
 ============================

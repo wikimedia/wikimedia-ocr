@@ -1,1 +1,5 @@
 @import '~bootstrap';
+@import '~select2';
+
+/* Encore can't find '~select2-bootstrap-theme' with @import */
+@import '../../node_modules/select2-bootstrap-theme/dist/select2-bootstrap.min.css';
