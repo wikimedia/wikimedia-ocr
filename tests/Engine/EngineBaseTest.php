@@ -5,6 +5,7 @@ namespace App\Tests\Engine;
 
 use App\Engine\GoogleCloudVisionEngine;
 use App\Exception\OcrException;
+use Krinkle\Intuition\Intuition;
 use PHPUnit\Framework\TestCase;
 
 class EngineBaseTest extends TestCase
@@ -16,6 +17,7 @@ class EngineBaseTest extends TestCase
     {
         $engine = new GoogleCloudVisionEngine(dirname(__DIR__).'/fixtures/google-account-keyfile.json');
         $engine->setImageHosts('upload.wikimedia.org, foo.example.com');
+        $engine->setIntuition(new Intuition());
 
         // Should not throw an exception.
         $engine->checkImageUrl('https://upload.wikimedia.org/wikipedia/commons/a/a9/Example.jpg');

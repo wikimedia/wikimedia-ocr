@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace App\Engine;
 
 use App\Exception\OcrException;
+use Krinkle\Intuition\Intuition;
 
 abstract class EngineBase
 {
@@ -13,12 +14,25 @@ abstract class EngineBase
     /** @var string[] The host names for the images. */
     protected $imageHosts = [];
 
+    /** @var Intuition */
+    private $intuition;
+
     /**
      * @param string $imageUrl
      * @param string[]|null $langs
      * @return string
      */
     abstract public function getText(string $imageUrl, ?array $langs = null): string;
+
+    public function setIntuition(Intuition $intuition): void
+    {
+        $this->intuition = $intuition;
+    }
+
+    protected function getIntuition(): Intuition
+    {
+        return $this->intuition ?? new Intuition();
+    }
 
     public function setImageHosts(string $imageHosts): void
     {
@@ -45,7 +59,7 @@ abstract class EngineBase
         $regex = "/https?:\/\/($hostRegex).*($formatRegex)$/";
         $matches = preg_match($regex, strtolower($imageUrl));
         if (1 !== $matches) {
-            throw new OcrException('image-url-error', [join(', ', $this->getImageHosts())]);
+            throw new OcrException('image-url-error', [$this->getIntuition()->listToText($this->getImageHosts())]);
         }
     }
 }
