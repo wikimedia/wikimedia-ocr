@@ -71,6 +71,8 @@ class OcrController extends AbstractController
             }
         }
 
+        $this->params['image_hosts'] = implode(', ', $this->engine->getImageHosts());
+
         return $this->render('output.html.twig', $this->params);
     }
 
@@ -90,6 +92,9 @@ class OcrController extends AbstractController
             $this->params['error'] = $this->intuition->msg($e->getI18nKey(), ['variables' => $e->getI18nParams()]);
             $response->setStatusCode(Response::HTTP_BAD_REQUEST);
         }
+
+        // Allow API requests from the Wikisource extension wherever it's installed.
+        $response->headers->set('Access-Control-Allow-Origin', '*');
 
         $response->setData($this->params);
         return $response;
