@@ -90,7 +90,7 @@ class OcrController extends AbstractController
             }
         }
 
-        $this->params['image_hosts'] = implode(', ', $this->engine->getImageHosts());
+        $this->params['image_hosts'] = $this->intuition->listToText($this->engine->getImageHosts());
 
         return $this->render('output.html.twig', $this->params);
     }
