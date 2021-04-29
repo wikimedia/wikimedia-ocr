@@ -15,10 +15,10 @@ abstract class EngineBase
 
     /**
      * @param string $imageUrl
-     * @param string|null $lang
+     * @param string[]|null $langs
      * @return string
      */
-    abstract public function getText(string $imageUrl, ?string $lang = null): string;
+    abstract public function getText(string $imageUrl, ?array $langs = null): string;
 
     public function setImageHosts(string $imageHosts): void
     {

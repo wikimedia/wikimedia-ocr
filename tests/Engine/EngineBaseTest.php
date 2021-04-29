@@ -14,7 +14,7 @@ class EngineBaseTest extends TestCase
      */
     public function testCheckImageUrl(): void
     {
-        $engine = new GoogleCloudVisionEngine('foo', 'bar');
+        $engine = new GoogleCloudVisionEngine(dirname(__DIR__).'/fixtures/google-account-keyfile.json');
         $engine->setImageHosts('upload.wikimedia.org, foo.example.com');
 
         // Should not throw an exception.
