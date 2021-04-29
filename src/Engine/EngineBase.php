@@ -43,8 +43,8 @@ abstract class EngineBase
         $hostRegex = implode('|', array_map('preg_quote', $this->getImageHosts()));
         $formatRegex = implode('|', self::ALLOWED_FORMATS);
         $regex = "/https?:\/\/($hostRegex).*($formatRegex)$/";
-        $formatMatches = preg_match($regex, strtolower($imageUrl));
-        if (1 !== $formatMatches) {
+        $matches = preg_match($regex, strtolower($imageUrl));
+        if (1 !== $matches) {
             throw new OcrException('image-url-error', [join(', ', $this->getImageHosts())]);
         }
     }
