@@ -2,7 +2,7 @@
     "title": "Wikimedia OCR",
     "image-url": "Image URL:",
     "image-url-help": "This must start with one of the following domain names and be a full URL to an actual image file: $1",
-    "image-url-error": "Image URL must begin with one of the following domain names and end with a valid file extension: $1",
+    "image-url-error": "Image URL must begin with {{PLURAL:$1|the following domain name|one of the following domain names}} and end with a valid file extension: $2",
     "image-alt-text": "The original image",
     "language-code": "Two-letter language code (optional):",
     "language-code-help": "The ISO639 code of the language of the text in the image.",

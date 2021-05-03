@@ -59,7 +59,11 @@ abstract class EngineBase
         $regex = "/https?:\/\/($hostRegex).*($formatRegex)$/";
         $matches = preg_match($regex, strtolower($imageUrl));
         if (1 !== $matches) {
-            throw new OcrException('image-url-error', [$this->getIntuition()->listToText($this->getImageHosts())]);
+            $params = [
+                count($this->getImageHosts()),
+                $this->getIntuition()->listToText($this->getImageHosts()),
+            ];
+            throw new OcrException('image-url-error', $params);
         }
     }
 }
