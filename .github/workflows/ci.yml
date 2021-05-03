@@ -27,7 +27,11 @@ jobs:
     - name: Install wikimedia-ocr
       run: |
         composer install
+        npm ci
    
     - name: Test
       run: |
         composer test
+        npm run test
+        git status
+        git status | grep "nothing to commit, working tree clean"

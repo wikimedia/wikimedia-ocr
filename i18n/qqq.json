@@ -1,0 +1,22 @@
+{
+  "@metadata": {},
+  "title": "App title",
+  "image-url": "Form label for the 'image' field.",
+  "image-url-help": "Help text for the 'image' field.",
+  "image-url-error": "Error message shown when the 'image' field is not valid.",
+  "image-alt-text": "Alt text for the displayed image, next to the OCR text box.",
+  "language-code": "Form label for the 'language' field.",
+  "language-code-help": "Help text for the 'language' field.",
+  "engine": "Form label for the 'engine' field.",
+  "engine-help": "Help text for the 'engine' field.",
+  "engine-name-google": "Option text for the 'google' engine.",
+  "engine-name-tesseract": "Option text for the 'tesseract' engine.",
+  "submit": "Submit button text.",
+  "copy-to-clipboard": "Button text for the copy-to-clipboard button.",
+  "copied-to-clipboard": "Button text shown after the copy-to-clipboard button is clicked.",
+  "google-error": "Error message prefix for the Google engine.\n\nParameter:\n* $1 – the error message.",
+  "image-retrieval-failed": "Error message displayed when the image could not be found.\n\nParameter:\n* $1 – the error message.",
+  "documentation": "Link text in the footer for the documentation link",
+  "version": "Link text in the footer for the source code link.\n\nParameter:\n* $1 – the current application version number.",
+  "report-issue": "Link text in the footer for the issue-reporting link."
+}
