@@ -6,6 +6,7 @@ namespace App\Engine;
 use App\Exception\OcrException;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use Google\Cloud\Vision\V1\ImageContext;
+use Google\Cloud\Vision\V1\TextAnnotation;
 
 class GoogleCloudVisionEngine extends EngineBase
 {
@@ -46,6 +47,7 @@ class GoogleCloudVisionEngine extends EngineBase
             throw new OcrException('google-error', [$response->getError()->getMessage()]);
         }
 
-        return $response->getFullTextAnnotation()->getText();
+        $annotation = $response->getFullTextAnnotation();
+        return $annotation instanceof TextAnnotation ? $annotation->getText() : '';
     }
 }
