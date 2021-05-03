@@ -18,5 +18,6 @@
   "image-retrieval-failed": "Error message displayed when the image could not be found.\n\nParameter:\n* $1 – the error message.",
   "documentation": "Link text in the footer for the documentation link",
   "version": "Link text in the footer for the source code link.\n\nParameter:\n* $1 – the current application version number.",
-  "report-issue": "Link text in the footer for the issue-reporting link."
+  "report-issue": "Link text in the footer for the issue-reporting link.",
+  "langs-param-error": "Error message displayed when invalid language(s) are submitted.\n\nParameters:\n* $1 – number of invalid languages\n* $2 - the list of invalid languages"
 }
