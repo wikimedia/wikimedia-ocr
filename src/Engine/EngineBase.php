@@ -15,7 +15,12 @@ abstract class EngineBase
     protected $imageHosts = [];
 
     /** @var Intuition */
-    private $intuition;
+    protected $intuition;
+
+    public function __construct(Intuition $intuition)
+    {
+        $this->intuition = $intuition;
+    }
 
     /**
      * @param string $imageUrl
@@ -24,15 +29,10 @@ abstract class EngineBase
      */
     abstract public function getText(string $imageUrl, ?array $langs = null): string;
 
-    public function setIntuition(Intuition $intuition): void
-    {
-        $this->intuition = $intuition;
-    }
-
-    protected function getIntuition(): Intuition
-    {
-        return $this->intuition ?? new Intuition();
-    }
+    /**
+     * @return string[]
+     */
+    abstract public function getValidLangs(): array;
 
     public function setImageHosts(string $imageHosts): void
     {
@@ -59,11 +59,25 @@ abstract class EngineBase
         $regex = "/https?:\/\/($hostRegex).*($formatRegex)$/";
         $matches = preg_match($regex, strtolower($imageUrl));
         if (1 !== $matches) {
-            $params = [
-                count($this->getImageHosts()),
-                $this->getIntuition()->listToText($this->getImageHosts()),
-            ];
+            $params = [count($this->getImageHosts()), $this->intuition->listToText($this->getImageHosts())];
             throw new OcrException('image-url-error', $params);
+        }
+    }
+
+    /**
+     * @param string[]|null $langs
+     * @throws OcrException
+     */
+    public function validateLangs(?array $langs): void
+    {
+        $invalidLangs = array_diff($langs, $this->getValidLangs());
+
+        if (count($invalidLangs)) {
+            $invalidLangs = array_values($invalidLangs);
+            throw new OcrException('langs-param-error', [
+                count($invalidLangs),
+                $this->intuition->listToText($invalidLangs),
+            ]);
         }
     }
 }

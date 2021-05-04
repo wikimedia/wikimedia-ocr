@@ -40,5 +40,8 @@ services:
         arguments:
             $keyFile: '%env(APP_GOOGLE_KEYFILE)%'
 
+    # Vendor services for autowiring
+    thiagoalessio\TesseractOCR\TesseractOCR:
+
     # please note that last definitions always *replace* previous ones
     # add more service definitions when explicit configuration is needed

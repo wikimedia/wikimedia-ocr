@@ -1,4 +1,5 @@
 {
+    "@metadata": {},
     "title": "Wikimedia OCR",
     "image-url": "Image URL:",
     "image-url-help": "This must start with one of the following domain names and be a full URL to an actual image file: $1",
@@ -17,5 +18,6 @@
     "image-retrieval-failed": "Image retrieval failed: $1",
     "documentation": "Documentation",
     "version": "Version $1",
-    "report-issue": "Report an issue"
+    "report-issue": "Report an issue",
+    "langs-param-error": "The following {{PLURAL:$1|language is|languages are}} not supported by the OCR engine: $2"
 }
