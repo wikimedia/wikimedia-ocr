@@ -30,7 +30,6 @@ services:
     App\Engine\EngineBase:
         calls:
             - setImageHosts: [ '%env(APP_IMAGE_HOSTS)%' ]
-            - setIntuition: [ '@Krinkle\Intuition\Intuition' ]
 
     App\Engine\TesseractEngine:
         parent: App\Engine\EngineBase
