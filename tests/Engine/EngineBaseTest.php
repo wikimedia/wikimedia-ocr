@@ -36,17 +36,32 @@ class EngineBaseTest extends TestCase
 
     /**
      * @covers EngineBase::checkImageUrl
+     * @dataProvider provideCheckImageUrl()
      */
-    public function testCheckImageUrl(): void
+    public function testCheckImageUrl(string $url, bool $exceptionExpected): void
     {
-        // Should not throw an exception.
-        $this->tesseractEngine->checkImageUrl('https://upload.wikimedia.org/wikipedia/commons/a/a9/Example.jpg');
-        $this->tesseractEngine->checkImageUrl('https://foo.example.com/wikipedia/commons/a/a9/Example.jpg');
+        $this->tesseractEngine->setImageHosts('upload.wikimedia.org,localhost');
+        if ($exceptionExpected) {
+            static::expectException(OcrException::class);
+        }
+        $this->tesseractEngine->checkImageUrl($url);
+        static::assertTrue(true);
+    }
 
-        // Should throw an exception.
-        static::expectException(OcrException::class);
-        $this->tesseractEngine->checkImageUrl('https://upload.wikimedia.org/wikipedia/commons/file.jpg');
-        $this->tesseractEngine->checkImageUrl('https://en.wikisource.org/file.mov');
+    /**
+     * @return mixed[][]
+     */
+    public function provideCheckImageUrl(): array
+    {
+        return [
+            // Pass:
+            ['https://upload.wikimedia.org/wikipedia/commons/a/a9/Example.jpg', false],
+            ['https://upload.wikimedia.org/wikipedia/commons/file.jpg', false],
+            // Fail:
+            ['https://foo.example.com/wikipedia/commons/a/a9/Example.jpg', true],
+            ['https://en.wikisource.org/file.mov', true],
+            ['https://localhosts/file.jpg', true],
+        ];
     }
 
     /**

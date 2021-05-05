@@ -56,7 +56,7 @@ abstract class EngineBase
     {
         $hostRegex = implode('|', array_map('preg_quote', $this->getImageHosts()));
         $formatRegex = implode('|', self::ALLOWED_FORMATS);
-        $regex = "/https?:\/\/($hostRegex).*($formatRegex)$/";
+        $regex = "/https?:\/\/($hostRegex)\/.+($formatRegex)$/";
         $matches = preg_match($regex, strtolower($imageUrl));
         if (1 !== $matches) {
             $params = [count($this->getImageHosts()), $this->intuition->listToText($this->getImageHosts())];

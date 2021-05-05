@@ -58,6 +58,7 @@ class OcrController extends AbstractController
         // Parameters.
         $this->imageUrl = (string)$request->query->get('image');
         static::$params['langs'] = $this->getLangs($request);
+        static::$params['image_hosts'] = $this->intuition->listToText($this->engine->getImageHosts());
 
         $this->setEngineOptions($request);
     }
@@ -112,8 +113,6 @@ class OcrController extends AbstractController
         if ($this->imageUrl) {
             static::$params['text'] = $this->engine->getText($this->imageUrl, static::$params['langs']);
         }
-
-        static::$params['image_hosts'] = $this->intuition->listToText($this->engine->getImageHosts());
 
         return $this->render('output.html.twig', static::$params);
     }
