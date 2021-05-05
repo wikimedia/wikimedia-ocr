@@ -30,6 +30,15 @@ services:
         arguments:
             $keyFile: '%env(APP_GOOGLE_KEYFILE)%'
 
+    App\EventListener\ExceptionListener:
+        arguments:
+            - '@request_stack'
+            - '@session'
+            - '@twig'
+            - '@Krinkle\Intuition\Intuition'
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
+
     # Vendor services for autowiring
     thiagoalessio\TesseractOCR\TesseractOCR:
 

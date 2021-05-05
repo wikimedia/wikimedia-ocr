@@ -52,6 +52,10 @@ return [
         'vendor/',
     ],
 
+    'suppress_issue_types' => [
+        'PhanUnreferencedUseNormal', // PHPCS does this already and without false positives.
+    ],
+
     'plugins' => [
         'vendor/drenso/phan-extensions/Plugin/Annotation/SymfonyAnnotationPlugin.php',
     ],
