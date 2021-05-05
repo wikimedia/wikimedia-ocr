@@ -26,7 +26,16 @@ services:
         resource: '../src/Controller/'
         tags: ['controller.service_arguments']
 
+    # https://symfony.com/doc/current/service_container/parent_services.html
+    App\Engine\EngineBase:
+        calls:
+            - setImageHosts: [ '%env(APP_IMAGE_HOSTS)%' ]
+
+    App\Engine\TesseractEngine:
+        parent: App\Engine\EngineBase
+
     App\Engine\GoogleCloudVisionEngine:
+        parent: App\Engine\EngineBase
         arguments:
             $keyFile: '%env(APP_GOOGLE_KEYFILE)%'
 

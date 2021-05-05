@@ -58,6 +58,7 @@ class OcrController extends AbstractController
         // Parameters.
         $this->imageUrl = (string)$request->query->get('image');
         static::$params['langs'] = $this->getLangs($request);
+        static::$params['image_hosts'] = $this->intuition->listToText($this->engine->getImageHosts());
 
         $this->setEngineOptions($request);
     }
@@ -127,6 +128,9 @@ class OcrController extends AbstractController
         $response->setStatusCode(Response::HTTP_OK);
 
         static::$params['text'] = $this->engine->getText($this->imageUrl, static::$params['langs']);
+
+        // Allow API requests from the Wikisource extension wherever it's installed.
+        $response->headers->set('Access-Control-Allow-Origin', '*');
 
         $response->setData(static::$params);
         return $response;
