@@ -3,10 +3,9 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
-use App\Engine\EngineBase;
 use App\Engine\EngineFactory;
+use App\Engine\GoogleCloudVisionEngine;
 use App\Engine\TesseractEngine;
-use App\Exception\OcrException;
 use Krinkle\Intuition\Intuition;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,11 +19,21 @@ class OcrController extends AbstractController
     /** @var Intuition */
     protected $intuition;
 
-    /** @var EngineBase */
+    /** @var TesseractEngine|GoogleCloudVisionEngine */
     protected $engine;
 
-    /** @var mixed[] Output params for the view or API response. */
-    protected $params = [];
+    /**
+     * The output params for the view or API response.
+     * This also serves as where you define the defaults.
+     * Note this is used by the ExceptionListener.
+     * @var mixed[]
+     */
+    public static $params = [
+        'engine' => 'google',
+        'langs' => [],
+        'psm' => TesseractEngine::DEFAULT_PSM,
+        'oem' => TesseractEngine::DEFAULT_OEM,
+    ];
 
     /** @var string */
     protected $imageUrl;
@@ -43,12 +52,33 @@ class OcrController extends AbstractController
         $request = $requestStack->getCurrentRequest();
 
         // Engine.
-        $this->engine = $engineFactory->get($request->get('engine', 'google'));
-        $this->params['engine'] = $this->engine instanceof TesseractEngine ? 'tesseract' : 'google';
+        $this->engine = $engineFactory->get($request->get('engine', static::$params['engine']));
+        static::$params['engine'] = $this->engine instanceof TesseractEngine ? 'tesseract' : 'google';
 
         // Parameters.
         $this->imageUrl = (string)$request->query->get('image');
-        $this->params['langs'] = $this->getLangs($request);
+        static::$params['langs'] = $this->getLangs($request);
+
+        $this->setEngineOptions($request);
+    }
+
+    /**
+     * Set Engine-specific options based on user-provided input or the defaults.
+     * @param Request $request
+     */
+    public function setEngineOptions(Request $request): void
+    {
+        // These are always set, even if Tesseract isn't initially chosen as the engine
+        // because we want these defaults set if the user changes the engine to Tesseract.
+        static::$params['psm'] = (int)$request->query->get('psm', (string)static::$params['psm']);
+        static::$params['oem'] = (int)$request->query->get('oem', (string)static::$params['oem']);
+
+        // Apply the settings to the Engine itself. This is only done when Tesseract is chosen
+        // because these setters don't exist for the GoogleCloudVisionEngine.
+        if ('tesseract' === static::$params['engine']) {
+            $this->engine->setPsm(static::$params['psm']);
+            $this->engine->setOem(static::$params['oem']);
+        }
     }
 
     /**
@@ -80,19 +110,12 @@ class OcrController extends AbstractController
     public function home(): Response
     {
         if ($this->imageUrl) {
-            try {
-                $this->params['text'] = $this->engine->getText($this->imageUrl, $this->params['langs']);
-            } catch (OcrException $e) {
-                $this->addFlash(
-                    'error',
-                    $this->intuition->msg($e->getI18nKey(), ['variables' => $e->getI18nParams()])
-                );
-            }
+            static::$params['text'] = $this->engine->getText($this->imageUrl, static::$params['langs']);
         }
 
-        $this->params['image_hosts'] = $this->intuition->listToText($this->engine->getImageHosts());
+        static::$params['image_hosts'] = $this->intuition->listToText($this->engine->getImageHosts());
 
-        return $this->render('output.html.twig', $this->params);
+        return $this->render('output.html.twig', static::$params);
     }
 
     /**
@@ -105,17 +128,12 @@ class OcrController extends AbstractController
         $response->setEncodingOptions(JSON_NUMERIC_CHECK);
         $response->setStatusCode(Response::HTTP_OK);
 
-        try {
-            $this->params['text'] = $this->engine->getText($this->imageUrl, $this->params['langs']);
-        } catch (OcrException $e) {
-            $this->params['error'] = $this->intuition->msg($e->getI18nKey(), ['variables' => $e->getI18nParams()]);
-            $response->setStatusCode(Response::HTTP_BAD_REQUEST);
-        }
+        static::$params['text'] = $this->engine->getText($this->imageUrl, static::$params['langs']);
 
         // Allow API requests from the Wikisource extension wherever it's installed.
         $response->headers->set('Access-Control-Allow-Origin', '*');
 
-        $response->setData($this->params);
+        $response->setData(static::$params);
         return $response;
     }
 }

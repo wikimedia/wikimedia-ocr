@@ -59,6 +59,9 @@
     "drenso/phan-extensions": {
         "version": "v3.3.0"
     },
+    "egulias/email-validator": {
+        "version": "3.1.1"
+    },
     "felixfbecker/advanced-json-rpc": {
         "version": "v3.2.0"
     },
@@ -280,6 +283,21 @@
     "symfony/http-kernel": {
         "version": "v5.2.4"
     },
+    "symfony/mailer": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "15658c2a0176cda2e7dba66276a2030b52bd81b2"
+        },
+        "files": [
+            "config/packages/mailer.yaml"
+        ]
+    },
+    "symfony/mime": {
+        "version": "v5.2.7"
+    },
     "symfony/monolog-bridge": {
         "version": "v5.2.5"
     },
@@ -314,6 +332,9 @@
         ]
     },
     "symfony/polyfill-intl-grapheme": {
+        "version": "v1.22.1"
+    },
+    "symfony/polyfill-intl-idn": {
         "version": "v1.22.1"
     },
     "symfony/polyfill-intl-normalizer": {

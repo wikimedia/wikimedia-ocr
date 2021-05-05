@@ -15,3 +15,17 @@ monolog:
             type: console
             process_psr_3_messages: false
             channels: ["!event", "!doctrine"]
+        mailer:
+            type: deduplication
+            time: 300
+            handler: symfony_mailer
+        symfony_mailer:
+            type: symfony_mailer
+            level: critical
+            from_email: '%env(APP_MAIL_SENDER)%'
+            to_email:
+                - '%env(APP_LOG_RECIPIENT_1)%'
+                - '%env(APP_LOG_RECIPIENT_2)%'
+            subject: '%env(APP_LOG_SUBJECT)% %%message%%'
+            formatter: monolog.formatter.html
+            content_type: text/html
