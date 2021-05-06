@@ -7,11 +7,11 @@ const $ = require('jquery');
 $(function () {
     // Initiate Select2, which allows dynamic entry of languages.
     $('#lang').select2({
-        tags: true,
         theme: 'bootstrap',
     });
 
     // Show engine-specific options.
+    // TODO: Update the Select2 options with available languages.
     $('#engine').on('change',  e => {
         $('.engine-options').addClass('hidden');
         $(`#${e.target.value}-options`).removeClass('hidden');
