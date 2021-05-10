@@ -10,8 +10,14 @@
         <div class="form-group">
             <label for="lang">{{ msg('language-code') }}</label>
             <select id="lang" class="form-control" name="langs[]" multiple>
-                {% for lang in langs %}
-                    <option value="{{ lang }}" selected>{{ lang }}</option>
+                {% for lang in available_langs %}
+                    <option value="{{ lang }}" {% if lang in langs %}selected{% endif %}>
+                        {{ lang }}
+                        {% if lang_name(lang) is not empty %}
+                            &ndash;
+                            {{ lang_name(lang) }}
+                        {% endif %}
+                    </option>
                 {% endfor %}
             </select>
             <p class="help-block">{{ msg( 'language-code-help' ) }}</p>

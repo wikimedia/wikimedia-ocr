@@ -58,7 +58,7 @@ class OcrController extends AbstractController
         // Parameters.
         $this->imageUrl = (string)$request->query->get('image');
         static::$params['langs'] = $this->getLangs($request);
-        static::$params['image_hosts'] = $this->intuition->listToText($this->engine->getImageHosts());
+        static::$params['image_hosts'] = $this->engine->getImageHosts();
 
         $this->setEngineOptions($request);
     }
@@ -108,8 +108,15 @@ class OcrController extends AbstractController
      * @Route("/", name="home")
      * @return Response
      */
-    public function home(): Response
+    public function homeAction(): Response
     {
+        // Pre-supply available langs for autocompletion in the form.
+        static::$params['available_langs'] = $this->engine->getValidLangs();
+        sort(static::$params['available_langs']);
+
+        // Intution::listToText() isn't available via Twig, and we only want to do this for the view and not the API.
+        static::$params['image_hosts'] = $this->intuition->listToText(static::$params['image_hosts']);
+
         if ($this->imageUrl) {
             static::$params['text'] = $this->engine->getText($this->imageUrl, static::$params['langs']);
         }
@@ -118,21 +125,44 @@ class OcrController extends AbstractController
     }
 
     /**
-     * @Route("/api.php", name="api")
+     * @Route("/api", name="api")
+     * @Route("/api.php", name="apiPhp")
      * @return JsonResponse
      */
-    public function api(): JsonResponse
+    public function apiAction(): JsonResponse
+    {
+        return $this->getApiResponse(array_merge(static::$params, [
+            'text' => $this->engine->getText($this->imageUrl, static::$params['langs']),
+        ]));
+    }
+
+    /**
+     * @Route("/api/available_langs", name="apiLangs")
+     * @return JsonResponse
+     */
+    public function apiAvailableLangsAction(): JsonResponse
+    {
+        return $this->getApiResponse([
+            'engine' => static::$params['engine'],
+            'available_langs' => $this->engine->getValidLangs(),
+        ]);
+    }
+
+    /**
+     * Return a new JsonResponse with the given $params merged into static::$params.
+     * @param mixed[] $params
+     * @return JsonResponse
+     */
+    private function getApiResponse(array $params): JsonResponse
     {
         $response = new JsonResponse();
         $response->setEncodingOptions(JSON_NUMERIC_CHECK);
         $response->setStatusCode(Response::HTTP_OK);
 
-        static::$params['text'] = $this->engine->getText($this->imageUrl, static::$params['langs']);
-
         // Allow API requests from the Wikisource extension wherever it's installed.
         $response->headers->set('Access-Control-Allow-Origin', '*');
 
-        $response->setData(static::$params);
+        $response->setData($params);
         return $response;
     }
 }

@@ -50,7 +50,7 @@ class ExceptionListener
             return;
         }
 
-        $isApi = str_contains($this->request->getPathInfo(), 'api.php');
+        $isApi = str_contains($this->request->getPathInfo(), '/api');
         $params = array_merge(
             OcrController::$params,
             $this->request->query->all()
