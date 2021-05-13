@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Cache\CacheInterface;
+use Symfony\Contracts\Cache\ItemInterface;
 
 class OcrController extends AbstractController
 {
@@ -21,6 +23,9 @@ class OcrController extends AbstractController
 
     /** @var TesseractEngine|GoogleCloudVisionEngine */
     protected $engine;
+
+    /** @var CacheInterface */
+    protected $cache;
 
     /**
      * The output params for the view or API response.
@@ -43,11 +48,17 @@ class OcrController extends AbstractController
      * @param RequestStack $requestStack
      * @param Intuition $intuition
      * @param EngineFactory $engineFactory
+     * @param CacheInterface $cache
      */
-    public function __construct(RequestStack $requestStack, Intuition $intuition, EngineFactory $engineFactory)
-    {
+    public function __construct(
+        RequestStack $requestStack,
+        Intuition $intuition,
+        EngineFactory $engineFactory,
+        CacheInterface $cache
+    ) {
         // Dependencies.
         $this->intuition = $intuition;
+        $this->cache = $cache;
 
         $request = $requestStack->getCurrentRequest();
 
@@ -118,7 +129,7 @@ class OcrController extends AbstractController
         static::$params['image_hosts'] = $this->intuition->listToText(static::$params['image_hosts']);
 
         if ($this->imageUrl) {
-            static::$params['text'] = $this->engine->getText($this->imageUrl, static::$params['langs']);
+            static::$params['text'] = $this->getText();
         }
 
         return $this->render('output.html.twig', static::$params);
@@ -132,7 +143,7 @@ class OcrController extends AbstractController
     public function apiAction(): JsonResponse
     {
         return $this->getApiResponse(array_merge(static::$params, [
-            'text' => $this->engine->getText($this->imageUrl, static::$params['langs']),
+            'text' => $this->getText(),
         ]));
     }
 
@@ -164,5 +175,28 @@ class OcrController extends AbstractController
 
         $response->setData($params);
         return $response;
+    }
+
+    /**
+     * Get and cache the transcription based on options set in static::$params.
+     * @return string
+     */
+    private function getText(): string
+    {
+        $cacheKey = md5(implode(
+            '|',
+            [
+                $this->imageUrl,
+                static::$params['engine'],
+                implode('|', static::$params['langs']),
+                static::$params['psm'],
+                static::$params['oem'],
+            ]
+        ));
+
+        return $this->cache->get($cacheKey, function (ItemInterface $item) {
+            $item->expiresAfter((int)$this->getParameter('cache_ttl'));
+            return $this->engine->getText($this->imageUrl, static::$params['langs']);
+        });
     }
 }
