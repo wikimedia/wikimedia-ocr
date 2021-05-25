@@ -9,6 +9,7 @@ use App\Engine\GoogleCloudVisionEngine;
 use App\Engine\TesseractEngine;
 use Krinkle\Intuition\Intuition;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -32,7 +33,8 @@ class OcrControllerTest extends TestCase
         $controller = new OcrController(
             $requestStack,
             $intuition,
-            new EngineFactory($gcv, new TesseractEngine(new MockHttpClient(), $intuition, new TesseractOCR()))
+            new EngineFactory($gcv, new TesseractEngine(new MockHttpClient(), $intuition, new TesseractOCR())),
+            new FilesystemAdapter()
         );
         $this->assertSame($expectedLangs, $controller->getLangs($request));
     }
