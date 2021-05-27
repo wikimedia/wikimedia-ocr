@@ -29,17 +29,34 @@ class TesseractEngine extends EngineBase
     /** @var int Default value for OCR engine mode. */
     public const DEFAULT_OEM = 3;
 
-    public function __construct(HttpClientInterface $httpClient, Intuition $intuition, TesseractOCR $tesseractOcr)
-    {
-        parent::__construct($intuition);
+    /**
+     * TesseractEngine constructor.
+     * @param HttpClientInterface $httpClient
+     * @param Intuition $intuition
+     * @param string $projectDir
+     * @param TesseractOCR $tesseractOcr
+     */
+    public function __construct(
+        HttpClientInterface $httpClient,
+        Intuition $intuition,
+        string $projectDir,
+        TesseractOCR $tesseractOcr
+    ) {
+        parent::__construct($intuition, $projectDir);
         $this->httpClient = $httpClient;
         $this->ocr = $tesseractOcr;
     }
 
     /**
-     * @param string $imageUrl
-     * @param string[]|null $langs
-     * @return string
+     * @inheritDoc
+     */
+    public static function getId(): string
+    {
+        return 'tesseract';
+    }
+
+    /**
+     * @inheritDoc
      * @throws OcrException
      */
     public function getText(string $imageUrl, ?array $langs = null): string
@@ -68,15 +85,6 @@ class TesseractEngine extends EngineBase
         putenv('OMP_THREAD_LIMIT=1');
         $text = $this->ocr->run();
         return $text;
-    }
-
-    /**
-     * Get the valid language codes
-     * @return string[]
-     */
-    public function getValidLangs(): array
-    {
-        return $this->ocr->availableLanguages();
     }
 
     /**

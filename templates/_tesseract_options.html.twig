@@ -1,4 +1,4 @@
-<fieldset id="tesseract-options" class="engine-options hidden">
+<fieldset id="tesseract-options" class="engine-options {% if engine != 'tesseract' %}hidden{% endif %}">
     <legend>{{ msg('tesseract-options') }}</legend>
     <div class="form-group">
         <label for="psm">{{ msg('tesseract-psm-label') }}</label>

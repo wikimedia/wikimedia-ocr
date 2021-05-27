@@ -13,9 +13,9 @@
                 {% for lang in available_langs %}
                     <option value="{{ lang }}" {% if lang in langs %}selected{% endif %}>
                         {{ lang }}
-                        {% if lang_name(lang) is not empty %}
+                        {% if ocr_lang_name(lang) is not empty %}
                             &ndash;
-                            {{ lang_name(lang) }}
+                            {{ ocr_lang_name(lang) }}
                         {% endif %}
                     </option>
                 {% endfor %}
@@ -30,7 +30,7 @@
             </select>
             <p class="help-block">{{ msg( 'engine-help' ) }}</p>
         </div>
-        {% include '_tesseract_options.html.twig' %}
+        {% include '_tesseract_options.html.twig' with {engine: engine} %}
         <div class="form-group">
             <input type="submit" value="{{ msg( 'submit' ) }}" class="btn btn-info" />
         </div>

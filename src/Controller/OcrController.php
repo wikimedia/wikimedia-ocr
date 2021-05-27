@@ -64,7 +64,7 @@ class OcrController extends AbstractController
 
         // Engine.
         $this->engine = $engineFactory->get($request->get('engine', static::$params['engine']));
-        static::$params['engine'] = $this->engine instanceof TesseractEngine ? 'tesseract' : 'google';
+        static::$params['engine'] = $this->engine::getId();
 
         // Parameters.
         $this->imageUrl = (string)$request->query->get('image');
@@ -155,7 +155,7 @@ class OcrController extends AbstractController
     {
         return $this->getApiResponse([
             'engine' => static::$params['engine'],
-            'available_langs' => $this->engine->getValidLangs(),
+            'available_langs' => $this->engine->getValidLangs(true),
         ]);
     }
 

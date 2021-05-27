@@ -6,12 +6,12 @@ namespace App\Tests\Engine;
 use App\Engine\GoogleCloudVisionEngine;
 use App\Engine\TesseractEngine;
 use App\Exception\OcrException;
+use App\Tests\OcrTestCase;
 use Krinkle\Intuition\Intuition;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\MockHttpClient;
 use thiagoalessio\TesseractOCR\TesseractOCR;
 
-class EngineBaseTest extends TestCase
+class EngineBaseTest extends OcrTestCase
 {
     /** @var GoogleCloudVisionEngine */
     private $googleEngine;
@@ -25,13 +25,19 @@ class EngineBaseTest extends TestCase
         $intuition = new Intuition();
         $this->googleEngine = new GoogleCloudVisionEngine(
             dirname(__DIR__).'/fixtures/google-account-keyfile.json',
-            $intuition
+            $intuition,
+            $this->projectDir
         );
 
         $tesseractOCR = $this->getMockBuilder(TesseractOCR::class)->disableOriginalConstructor()->getMock();
         $tesseractOCR->method('availableLanguages')
             ->will($this->returnValue(['eng', 'spa', 'tha', 'tir']));
-        $this->tesseractEngine = new TesseractEngine(new MockHttpClient(), $intuition, $tesseractOCR);
+        $this->tesseractEngine = new TesseractEngine(
+            new MockHttpClient(),
+            $intuition,
+            $this->projectDir,
+            $tesseractOCR
+        );
     }
 
     /**
@@ -83,10 +89,19 @@ class EngineBaseTest extends TestCase
     public function testValidateLangsTesseractEngine(): void
     {
         // Should not throw an exception.
-        $this->tesseractEngine->validateLangs(['eng', 'spa']);
+        $this->tesseractEngine->validateLangs(['en', 'fr']);
 
-        // Should throw an exception. `en` is not a valid lang
+        // Should throw an exception. `foo` is not a valid lang
         static::expectException(OcrException::class);
-        $this->tesseractEngine->validateLangs(['en', 'spa']);
+        $this->tesseractEngine->validateLangs(['foo', 'fr']);
+    }
+
+    /**
+     * @covers EngineBase::getLangCodes
+     */
+    public function testLangCodes(): void
+    {
+        static::assertSame(['eng', 'fra'], $this->tesseractEngine->getLangCodes(['en', 'fr']));
+        static::assertSame(['en', 'iw'], $this->googleEngine->getLangCodes(['en', 'he']));
     }
 }
