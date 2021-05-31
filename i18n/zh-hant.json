@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kly"
+		]
+	},
+	"title": "Wikimedia OCR",
+	"image-url": "圖像 URL：",
+	"image-alt-text": "原始圖片",
+	"engine": "OCR 引擎：",
+	"engine-help": "挑選開放原始碼的 Wikimedia 託管 Tesseract，或是 Google 的雲端辨識 API。",
+	"submit": "送出",
+	"copy-to-clipboard": "複製到剪貼簿",
+	"copied-to-clipboard": "已複製!",
+	"google-error": "Google 服務回傳一個錯誤：$1",
+	"image-retrieval-failed": "圖片取回失敗：$1",
+	"documentation": "文件",
+	"version": "版本 $1",
+	"report-issue": "問題回報",
+	"tesseract-options": "Tesseract 選項",
+	"tesseract-psm-label": "頁面拆分方式",
+	"tesseract-psm-7": "將圖片視為單行文字。",
+	"tesseract-psm-8": "將圖片視為單一字詞。",
+	"tesseract-psm-9": "將圖片視為環繞狀的單一字詞。",
+	"tesseract-psm-10": "將圖片視為單一字元。",
+	"tesseract-oem-label": "OCR 引擎模式"
+}

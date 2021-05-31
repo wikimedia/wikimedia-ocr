@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joao Xavier"
+		]
+	},
+	"title": "Wikimedio OCR",
+	"image-url": "URL dil imajo:",
+	"image-url-help": "To mustas komencar uzanta un ek la sequanta 'domain names', ed esar kompleta URL ligata ad ula imajo-arkivo: $1",
+	"image-url-error": "La URL di ula imajo mustas komencar kun {{PLURAL:$1|la sequanta domeno-nomo|un ek la sequanta domeno-nomi}}, e finar kun ula valida sufixo: $2",
+	"image-alt-text": "L'originala imajo",
+	"language-code": "Du-litera linguala kodeko (exemple: en, fr, de...) (fakultativa)",
+	"language-code-help": "Linguala kodexo ''ISO639'' dil texto en la imajo.",
+	"engine": "Mashino OCR:",
+	"engine-help": "Choose between the open-source Wikimedia-hosted Tesseract, and Google's Cloud Vision API.",
+	"submit": "Irez",
+	"copy-to-clipboard": "Kopiez a ''clipboard''",
+	"copied-to-clipboard": "Kopiita!",
+	"google-error": "La servado Google montris eroro: $1",
+	"image-retrieval-failed": "Faliis la rekupero dil imajo: $1",
+	"documentation": "Dokumentigo",
+	"version": "Versiono $1",
+	"report-issue": "Informez problemo",
+	"langs-param-error": "La sequanta {{PLURAL:$1|linguo|lingui}} ne agnoskesas dal OCR-softwaro*: $2",
+	"tesseract-options": "Tesseract-opcioni",
+	"tesseract-psm-label": "Metodo por sementigo di pagini",
+	"tesseract-psm-0": "Orientation and script detection (OSD) only.",
+	"tesseract-psm-1": "Automatic page segmentation with OSD.",
+	"tesseract-psm-2": "Automatic page segmentation, but no OSD, or OCR. (not implemented)",
+	"tesseract-psm-3": "Fully automatic page segmentation, but no OSD. (Default)",
+	"tesseract-psm-4": "Supozar singla kolumno di texto kun varianta grandesi."
+}
