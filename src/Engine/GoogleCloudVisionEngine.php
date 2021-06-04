@@ -20,18 +20,25 @@ class GoogleCloudVisionEngine extends EngineBase
     /**
      * GoogleCloudVisionEngine constructor.
      * @param string $keyFile Filesystem path to the credentials JSON file.
+     * @param Intuition $intuition
+     * @param string $projectDir
      */
-    public function __construct(string $keyFile, Intuition $intuition)
+    public function __construct(string $keyFile, Intuition $intuition, string $projectDir)
     {
-        parent::__construct($intuition);
+        parent::__construct($intuition, $projectDir);
         $this->imageAnnotator = new ImageAnnotatorClient(['credentials' => $keyFile]);
     }
 
     /**
-     * Get transcribed text from the given image.
-     * @param string $imageUrl
-     * @param string[]|null $langs
-     * @return string
+     * @inheritDoc
+     */
+    public static function getId(): string
+    {
+        return 'google';
+    }
+
+    /**
+     * @inheritDoc
      * @throws OcrException
      */
     public function getText(string $imageUrl, ?array $langs = null): string
@@ -54,76 +61,5 @@ class GoogleCloudVisionEngine extends EngineBase
 
         $annotation = $response->getFullTextAnnotation();
         return $annotation instanceof TextAnnotation ? $annotation->getText() : '';
-    }
-
-    /**
-     * Get the valid language codes
-     * @return string[]
-     */
-    public function getValidLangs(): array
-    {
-        return [
-            "af",
-            "sq",
-            "ar",
-            "hy",
-            "be",
-            "bn",
-            "bg",
-            "ca",
-            "zh",
-            "hr",
-            "cs",
-            "da",
-            "nl",
-            "en",
-            "et",
-            "fil",
-            "tl",
-            "fi",
-            "fr",
-            "de",
-            "el",
-            "gu",
-            "iw",
-            "hi",
-            "hu",
-            "is",
-            "id",
-            "it",
-            "ja",
-            "kn",
-            "km",
-            "ko",
-            "lo",
-            "lv",
-            "lt",
-            "mk",
-            "ms",
-            "ml",
-            "mr",
-            "ne",
-            "no",
-            "fa",
-            "pl",
-            "pt",
-            "pa",
-            "ro",
-            "ru",
-            "ru-PETR1708",
-            "sr",
-            "sr-Latn",
-            "sk",
-            "sl",
-            "es",
-            "sv",
-            "ta",
-            "te",
-            "th",
-            "tr",
-            "uk",
-            "vi",
-            "yi",
-        ];
     }
 }

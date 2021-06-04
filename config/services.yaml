@@ -29,6 +29,8 @@ services:
 
     # https://symfony.com/doc/current/service_container/parent_services.html
     App\Engine\EngineBase:
+        arguments:
+            $projectDir: '%kernel.project_dir%'
         calls:
             - setImageHosts: [ '%env(APP_IMAGE_HOSTS)%' ]
 

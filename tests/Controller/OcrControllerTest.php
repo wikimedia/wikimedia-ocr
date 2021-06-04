@@ -7,15 +7,15 @@ use App\Controller\OcrController;
 use App\Engine\EngineFactory;
 use App\Engine\GoogleCloudVisionEngine;
 use App\Engine\TesseractEngine;
+use App\Tests\OcrTestCase;
 use Krinkle\Intuition\Intuition;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use thiagoalessio\TesseractOCR\TesseractOCR;
 
-class OcrControllerTest extends TestCase
+class OcrControllerTest extends OcrTestCase
 {
 
     /**
@@ -29,11 +29,18 @@ class OcrControllerTest extends TestCase
         $requestStack = new RequestStack();
         $requestStack->push($request);
         $intuition = new Intuition([]);
-        $gcv = new GoogleCloudVisionEngine(dirname(__DIR__).'/fixtures/google-account-keyfile.json', $intuition);
+        $gcv = new GoogleCloudVisionEngine(
+            dirname(__DIR__).'/fixtures/google-account-keyfile.json',
+            $intuition,
+            $this->projectDir
+        );
         $controller = new OcrController(
             $requestStack,
             $intuition,
-            new EngineFactory($gcv, new TesseractEngine(new MockHttpClient(), $intuition, new TesseractOCR())),
+            new EngineFactory(
+                $gcv,
+                new TesseractEngine(new MockHttpClient(), $intuition, $this->projectDir, new TesseractOCR())
+            ),
             new FilesystemAdapter()
         );
         $this->assertSame($expectedLangs, $controller->getLangs($request));
