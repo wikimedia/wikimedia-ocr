@@ -73,9 +73,10 @@ class TesseractEngine extends EngineBase
         } catch (ClientException $exception) {
             throw new OcrException('image-retrieval-failed', [$exception->getMessage()]);
         }
+
         $this->ocr->imageData($imageContent, $imageResponse->getHeaders()['content-length'][0]);
         if ($langs && count($langs) > 0) {
-            $this->ocr->lang(...$langs);
+            $this->ocr->lang(...$this->getLangCodes($langs));
         }
 
         // Env vars are passed through by the thiagoalessio/tesseract_ocr package to the tesseract command,
