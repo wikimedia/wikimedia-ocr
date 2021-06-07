@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tacsipacsi"
+		]
+	},
+	"title": "Wikimédia OCR",
+	"image-url": "Kép URL-címe:",
+	"image-url-help": "Egy tényleges képfájl teljes URL-je, a következő domainek egyikével: $1",
+	"image-url-error": "A fájlnévnek egy érvényes kiterjesztéssel kell végződnie, és a következő {{PLURAL:$1|domainnévvel|domainnevek egyikével}} kell kezdődnie: $2",
+	"image-alt-text": "Az eredeti kép",
+	"language-code": "Két betűs nyelvkód (nem kötelező):",
+	"language-code-help": "A képen látható szöveg ISO 639-kódja.",
+	"engine": "OCR-motor:",
+	"submit": "Mehet",
+	"copy-to-clipboard": "Másolás a vágólapra",
+	"copied-to-clipboard": "Kimásolva!",
+	"google-error": "A Google-szolgáltatás hibát adott vissza: $1",
+	"image-retrieval-failed": "A kép lekérése sikertelen: $1",
+	"documentation": "Dokumentáció",
+	"version": "$1 verzió",
+	"report-issue": "Hibabejelentés",
+	"langs-param-error": "Az OCR-motor a következő {{PLURAL:$1|nyelvet|nyelveket}} nem támogatja: $2",
+	"tesseract-options": "Tesseract-beállítások"
+}

@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Robby"
+		]
 	},
 	"title": "App title",
 	"image-url": "Form label for the 'image' field.",
@@ -13,13 +15,13 @@
 	"engine-help": "Help text for the 'engine' field.",
 	"engine-name-google": "Option text for the 'google' engine.",
 	"engine-name-tesseract": "Option text for the 'tesseract' engine.",
-	"submit": "Submit button text.",
+	"submit": "Submit button text.\n{{identical|Go}}",
 	"copy-to-clipboard": "Button text for the copy-to-clipboard button.",
 	"copied-to-clipboard": "Button text shown after the copy-to-clipboard button is clicked.",
 	"google-error": "Error message prefix for the Google engine.\n\nParameter:\n* $1 – the error message.",
 	"image-retrieval-failed": "Error message displayed when the image could not be found.\n\nParameter:\n* $1 – the error message.",
-	"documentation": "Link text in the footer for the documentation link",
-	"version": "Link text in the footer for the source code link.\n\nParameter:\n* $1 – the current application version number.",
+	"documentation": "Link text in the footer for the documentation link\n{{identical|Documentation}}",
+	"version": "Link text in the footer for the source code link.\n\nParameter:\n* $1 – the current application version number.\n\n{{identical|Version}}",
 	"report-issue": "Link text in the footer for the issue-reporting link.",
 	"langs-param-error": "Error message displayed when invalid language(s) are submitted.\n\nParameters:\n* $1 – number of invalid languages\n* $2 - the list of invalid languages",
 	"tesseract-options": "Heading for Tesseract-specific options.",
