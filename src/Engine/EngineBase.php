@@ -31,7 +31,7 @@ abstract class EngineBase
         'es-old' => 'español (viejo)',
         'equ' => 'Math / equation detection module',
         'fro' => 'Franceis, François, Romanz (1400-1600)',
-        'it-old' => 'italiano (vecchio)',
+        'it-old' => 'italiano antico',
         'ka-old' => 'ქართული (ძველი)',
         'ko-vert' => '한국어 (세로)',
         'osd' => 'Orientation and script detection module',
