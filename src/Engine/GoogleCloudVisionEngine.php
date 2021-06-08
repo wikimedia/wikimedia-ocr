@@ -50,7 +50,7 @@ class GoogleCloudVisionEngine extends EngineBase
 
         $imageContext = new ImageContext();
         if (null !== $langs) {
-            $imageContext->setLanguageHints($langs);
+            $imageContext->setLanguageHints($this->getLangCodes($langs));
         }
 
         $response = $this->imageAnnotator->textDetection($imageUrl, ['imageContext' => $imageContext]);
