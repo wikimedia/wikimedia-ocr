@@ -104,8 +104,8 @@ class OcrController extends AbstractController
         $lang = $request->query->get('lang');
         $langs = $request->query->all('langs');
         $langArray = array_merge([ $lang ], $langs);
-        // Remove non-alpha chars.
-        $langsSanitized = preg_replace('/[^a-zA-Z]/', '', $langArray);
+        // Remove invalid chars.
+        $langsSanitized = preg_replace('/[^a-zA-Z\-_]/', '', $langArray);
         // Remove empty and duplicated values, and then reorder keys (just for easier testing).
         $langsFiltered = array_values(array_unique(array_filter($langsSanitized)));
         // If no languages specified, default to the user's.
