@@ -60,6 +60,10 @@ class OcrControllerTest extends OcrTestCase
                 ['langs' => ['a|b', 'c!', 'ab']],
                 ['ab', 'c'],
             ],
+            'special characters' => [
+                ['langs' => ['sr-Latn', 'Canadian_Aboriginal']],
+                ['sr-Latn', 'Canadian_Aboriginal'],
+            ],
         ];
     }
 }
