@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+use thiagoalessio\TesseractOCR\TesseractOcrException;
 use Twig\Environment;
 
 class ExceptionListener
@@ -45,8 +46,11 @@ class ExceptionListener
     {
         $exception = $event->getThrowable();
 
-        // We only care about OcrExceptions.
-        if (!$exception instanceof OcrException || !$event->isMasterRequest()) {
+        // We only care about OcrExceptions, and TesseractOcrException thrown by the library (T282141).
+        if (
+            !( $exception instanceof OcrException || $exception instanceof TesseractOcrException )
+            || !$event->isMasterRequest()
+        ) {
             return;
         }
 
@@ -55,7 +59,9 @@ class ExceptionListener
             OcrController::$params,
             $this->request->query->all()
         );
-        $errorMessage = $this->intuition->msg($exception->getI18nKey(), ['variables' => $exception->getI18nParams()]);
+        $errorMessage = $exception instanceof TesseractOcrException
+            ? $this->getMessageForTesseractException( $exception )
+            : $this->intuition->msg($exception->getI18nKey(), ['variables' => $exception->getI18nParams()]);
 
         if ($isApi) {
             $params['error'] = $errorMessage;
@@ -73,4 +79,17 @@ class ExceptionListener
         $response->setStatusCode(Response::HTTP_BAD_REQUEST);
         $event->setResponse($response);
     }
+
+	/**
+	 * Given a tesseract-specific exception, try and extract a useful error message. Tries to balance between
+	 * being helpful and not giving away any potentially sensitive information (as might happen if we were
+	 * to pass any error message through).
+	 *
+	 * @param TesseractOcrException $exc @phan-unused-param
+	 * @return string
+	 */
+    private function getMessageForTesseractException( TesseractOcrException $exc ) : string {
+        // TODO: How can we be more specific about what's gone wrong?
+        return $this->intuition->msg( 'tesseract-internal-error' );
+	}
 }

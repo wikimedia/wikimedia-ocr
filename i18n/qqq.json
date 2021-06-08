@@ -45,5 +45,6 @@
 	"tesseract-oem-1": "Form option for Tesseract OCR engine mode.",
 	"tesseract-oem-2": "Form option for Tesseract OCR engine mode.",
 	"tesseract-oem-3": "Form option for Tesseract OCR engine mode.",
-	"tesseract-param-error": "Error message displayed when invalid values for Tesseract options are submitted.\n\nParameters:\n* $1 – the form label for the option. This will either be {{msg-wm|tesseract-psm-label}} or {{msg-wm|tesseract-oem-label}}.\n* $2 – The value that was given.\n* $3 – the maximum value for the option (this will be an integer)."
+	"tesseract-param-error": "Error message displayed when invalid values for Tesseract options are submitted.\n\nParameters:\n* $1 – the form label for the option. This will either be {{msg-wm|tesseract-psm-label}} or {{msg-wm|tesseract-oem-label}}.\n* $2 – The value that was given.\n* $3 – the maximum value for the option (this will be an integer).",
+	"tesseract-internal-error": "Generic error message displayed when the tesseract command fails."
 }
