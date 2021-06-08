@@ -42,5 +42,5 @@
     "tesseract-oem-2": "Legacy + LSTM engines.",
     "tesseract-oem-3": "Default, based on what is available.",
     "tesseract-param-error": "The '$1' option with a value of $2 is not supported by Tesseract. Maximum value: $3",
-	"tesseract-internal-error": "The tesseract engine returned an internal error."
+    "tesseract-internal-error": "The tesseract engine returned an internal error."
 }
