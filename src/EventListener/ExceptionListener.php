@@ -47,8 +47,7 @@ class ExceptionListener
         $exception = $event->getThrowable();
 
         // We only care about OcrExceptions, and TesseractOcrException thrown by the library (T282141).
-        if (
-            !( $exception instanceof OcrException || $exception instanceof TesseractOcrException )
+        if (!( $exception instanceof OcrException || $exception instanceof TesseractOcrException )
             || !$event->isMasterRequest()
         ) {
             return;
@@ -60,7 +59,7 @@ class ExceptionListener
             $this->request->query->all()
         );
         $errorMessage = $exception instanceof TesseractOcrException
-            ? $this->getMessageForTesseractException( $exception )
+            ? $this->getMessageForTesseractException($exception)
             : $this->intuition->msg($exception->getI18nKey(), ['variables' => $exception->getI18nParams()]);
 
         if ($isApi) {
@@ -80,16 +79,17 @@ class ExceptionListener
         $event->setResponse($response);
     }
 
-	/**
-	 * Given a tesseract-specific exception, try and extract a useful error message. Tries to balance between
-	 * being helpful and not giving away any potentially sensitive information (as might happen if we were
-	 * to pass any error message through).
-	 *
-	 * @param TesseractOcrException $exc @phan-unused-param
-	 * @return string
-	 */
-    private function getMessageForTesseractException( TesseractOcrException $exc ) : string {
+    /**
+     * Given a tesseract-specific exception, try and extract a useful error message. Tries to balance between
+     * being helpful and not giving away any potentially sensitive information (as might happen if we were
+     * to pass any error message through).
+     *
+     * @param TesseractOcrException $exc @phan-unused-param
+     * @return string
+     */
+    private function getMessageForTesseractException(TesseractOcrException $exc) : string
+    {
         // TODO: How can we be more specific about what's gone wrong?
-        return $this->intuition->msg( 'tesseract-internal-error' );
-	}
+        return $this->intuition->msg('tesseract-internal-error');
+    }
 }
