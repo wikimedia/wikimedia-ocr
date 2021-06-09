@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d08d7034eeb0343aabdff24cd6cf7c72",
+    "content-hash": "3d7d52765d21f7e14fed7bc53af09413",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -6075,6 +6075,76 @@
             "time": "2021-01-06T01:11:18+00:00"
         },
         {
+            "name": "mediawiki/phan-taint-check-plugin",
+            "version": "3.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wikimedia/phan-taint-check-plugin.git",
+                "reference": "4bc471bd790644398a6749eedd7a841e9a759bd6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wikimedia/phan-taint-check-plugin/zipball/4bc471bd790644398a6749eedd7a841e9a759bd6",
+                "reference": "4bc471bd790644398a6749eedd7a841e9a759bd6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "phan/phan": "3.2.6",
+                "php": "^7.2.0 | ^8.0.0"
+            },
+            "require-dev": {
+                "mediawiki/mediawiki-codesniffer": "34.0.0",
+                "mediawiki/minus-x": "1.1.0",
+                "php-parallel-lint/php-console-highlighter": "0.5.0",
+                "php-parallel-lint/php-parallel-lint": "1.2.0",
+                "phpunit/phpunit": "^8.5"
+            },
+            "bin": [
+                "scripts/seccheck-mwext",
+                "scripts/seccheck-slow-mwext",
+                "scripts/seccheck-fast-mwext",
+                "scripts/seccheck-mw",
+                "scripts/seccheck-generic"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SecurityCheckPlugin\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Wolff",
+                    "email": "bawolff+wn@gmail.com"
+                },
+                {
+                    "name": "Daimona Eaytoy",
+                    "email": "daimona.wiki@gmail.com"
+                }
+            ],
+            "description": "A Phan plugin to do security checking",
+            "keywords": [
+                "analyzer",
+                "phan",
+                "php",
+                "security",
+                "static",
+                "taint"
+            ],
+            "support": {
+                "irc": "irc://freenode.net/wikimedia-dev",
+                "issues": "https://phabricator.wikimedia.org/maniphest/task/edit/form/1/?projects=securitycheckplugin",
+                "source": "https://phabricator.wikimedia.org/diffusion/MTPS/",
+                "wiki": "https://www.mediawiki.org/wiki/SecurityCheckPlugin"
+            },
+            "time": "2020-12-14T11:11:43+00:00"
+        },
+        {
             "name": "microsoft/tolerant-php-parser",
             "version": "v0.0.23",
             "source": {
@@ -6163,16 +6233,16 @@
         },
         {
             "name": "phan/phan",
-            "version": "4.0.3",
+            "version": "3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phan/phan.git",
-                "reference": "95171b8a89ff2433e7ebc27d8a133743f7d78d3b"
+                "reference": "e14110d4bef8643562b02a4003015c2c0dcc9fe4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phan/phan/zipball/95171b8a89ff2433e7ebc27d8a133743f7d78d3b",
-                "reference": "95171b8a89ff2433e7ebc27d8a133743f7d78d3b",
+                "url": "https://api.github.com/repos/phan/phan/zipball/e14110d4bef8643562b02a4003015c2c0dcc9fe4",
+                "reference": "e14110d4bef8643562b02a4003015c2c0dcc9fe4",
                 "shasum": ""
             },
             "require": {
@@ -6194,7 +6264,7 @@
                 "phpunit/phpunit": "^8.5.0"
             },
             "suggest": {
-                "ext-ast": "Needed for parsing ASTs (unless --use-fallback-parser is used). 1.0.1+ is needed, 1.0.10+ is recommended.",
+                "ext-ast": "Needed for parsing ASTs (unless --use-fallback-parser is used). 1.0.1+ is needed, 1.0.8+ is recommended.",
                 "ext-iconv": "Either iconv or mbstring is needed to ensure issue messages are valid utf-8",
                 "ext-igbinary": "Improves performance of polyfill when ext-ast is unavailable",
                 "ext-mbstring": "Either iconv or mbstring is needed to ensure issue messages are valid utf-8",
@@ -6232,7 +6302,11 @@
                 "php",
                 "static"
             ],
-            "time": "2021-01-30T00:08:54+00:00"
+            "support": {
+                "issues": "https://github.com/phan/phan/issues",
+                "source": "https://github.com/phan/phan/tree/3.2.6"
+            },
+            "time": "2020-11-27T19:39:49+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -6823,5 +6897,5 @@
     "platform-overrides": {
         "php": "7.2.31"
     },
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
