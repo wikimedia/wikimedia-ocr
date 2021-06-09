@@ -78,7 +78,7 @@
             "./bin/console lint:twig ./templates",
             "./bin/console lint:yaml ./config",
             "minus-x check .",
-            "phan --allow-polyfill-parser",
+            "phan --allow-polyfill-parser --long-progress-bar",
             "./bin/phpunit"
         ]
     },
