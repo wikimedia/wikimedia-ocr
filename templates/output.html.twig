@@ -12,11 +12,7 @@
             <select id="lang" class="form-control" name="langs[]" multiple>
                 {% for lang in available_langs %}
                     <option value="{{ lang }}" {% if lang in langs %}selected{% endif %}>
-                        {{ lang }}
-                        {% if ocr_lang_name(lang) is not empty %}
-                            &ndash;
-                            {{ ocr_lang_name(lang) }}
-                        {% endif %}
+                        {{- lang }}{% if ocr_lang_name(lang) is not empty %} &ndash; {{ ocr_lang_name(lang) }}{% endif -%}
                     </option>
                 {% endfor %}
             </select>
