@@ -110,6 +110,9 @@
     "mediawiki/oauthclient": {
         "version": "1.1.0"
     },
+    "mediawiki/phan-taint-check-plugin": {
+        "version": "3.2.1"
+    },
     "microsoft/tolerant-php-parser": {
         "version": "v0.0.23"
     },
@@ -348,6 +351,9 @@
     },
     "symfony/polyfill-php80": {
         "version": "v1.22.1"
+    },
+    "symfony/polyfill-php81": {
+        "version": "v1.23.0"
     },
     "symfony/process": {
         "version": "v5.2.4"

@@ -23,6 +23,7 @@ jobs:
       with:
         php-version: ${{matrix.php}}
         coverage: none
+        extensions: ast
 
     - name: Install wikimedia-ocr
       run: |
