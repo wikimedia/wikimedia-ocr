@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace App\Engine;
 
-use Exception;
+use App\Exception\EngineNotFoundException;
 
 class EngineFactory
 {
@@ -22,7 +22,7 @@ class EngineFactory
     public function get(string $name): EngineBase
     {
         if (!isset($this->engines[$name])) {
-            throw new Exception('Engine not found: '.$name);
+            throw new EngineNotFoundException();
         }
         return $this->engines[$name];
     }

@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Engine\EngineFactory;
 use App\Engine\GoogleCloudVisionEngine;
 use App\Engine\TesseractEngine;
+use App\Exception\EngineNotFoundException;
 use Krinkle\Intuition\Intuition;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -24,8 +25,17 @@ class OcrController extends AbstractController
     /** @var TesseractEngine|GoogleCloudVisionEngine */
     protected $engine;
 
+    /** @var string The default OCR engine. */
+    public const DEFAULT_ENGINE = 'google';
+
     /** @var CacheInterface */
     protected $cache;
+
+    /** @var Request */
+    protected $request;
+
+    /** @var EngineFactory */
+    protected $engineFactory;
 
     /**
      * The output params for the view or API response.
@@ -34,7 +44,7 @@ class OcrController extends AbstractController
      * @var mixed[]
      */
     public static $params = [
-        'engine' => 'google',
+        'engine' => self::DEFAULT_ENGINE,
         'langs' => [],
         'psm' => TesseractEngine::DEFAULT_PSM,
         'oem' => TesseractEngine::DEFAULT_OEM,
@@ -56,38 +66,50 @@ class OcrController extends AbstractController
         EngineFactory $engineFactory,
         CacheInterface $cache
     ) {
-        // Dependencies.
+        $this->request = $requestStack->getCurrentRequest();
         $this->intuition = $intuition;
+        $this->engineFactory = $engineFactory;
         $this->cache = $cache;
+    }
 
-        $request = $requestStack->getCurrentRequest();
+    /**
+     * Setup the engine and parameters needed for the view. This must be called before every action.
+     */
+    private function setup(): void
+    {
+        $requestedEngine = $this->request->get('engine', static::$params['engine']);
+        try {
+            $this->engine = $this->engineFactory->get($requestedEngine);
+        } catch (EngineNotFoundException $e) {
+            $this->addFlash('error', $this->intuition->msg(
+                'engine-not-found-warning',
+                ['variables' => [$requestedEngine, static::DEFAULT_ENGINE]]
+            ));
+            $this->engine = $this->engineFactory->get(static::DEFAULT_ENGINE);
+        }
 
-        // Engine.
-        $this->engine = $engineFactory->get($request->get('engine', static::$params['engine']));
         static::$params['engine'] = $this->engine::getId();
+        $this->setEngineOptions();
 
         // Parameters.
-        $this->imageUrl = (string)$request->query->get('image');
-        static::$params['langs'] = $this->getLangs($request);
+        $this->imageUrl = (string)$this->request->query->get('image');
+        static::$params['langs'] = $this->getLangs($this->request);
         static::$params['image_hosts'] = $this->engine->getImageHosts();
-
-        $this->setEngineOptions($request);
     }
 
     /**
      * Set Engine-specific options based on user-provided input or the defaults.
-     * @param Request $request
      */
-    public function setEngineOptions(Request $request): void
+    private function setEngineOptions(): void
     {
         // These are always set, even if Tesseract isn't initially chosen as the engine
         // because we want these defaults set if the user changes the engine to Tesseract.
-        static::$params['psm'] = (int)$request->query->get('psm', (string)static::$params['psm']);
-        static::$params['oem'] = (int)$request->query->get('oem', (string)static::$params['oem']);
+        static::$params['psm'] = (int)$this->request->query->get('psm', (string)static::$params['psm']);
+        static::$params['oem'] = (int)$this->request->query->get('oem', (string)static::$params['oem']);
 
         // Apply the settings to the Engine itself. This is only done when Tesseract is chosen
         // because these setters don't exist for the GoogleCloudVisionEngine.
-        if ('tesseract' === static::$params['engine']) {
+        if (TesseractEngine::getId() === static::$params['engine']) {
             $this->engine->setPsm(static::$params['psm']);
             $this->engine->setOem(static::$params['oem']);
         }
@@ -121,6 +143,8 @@ class OcrController extends AbstractController
      */
     public function homeAction(): Response
     {
+        $this->setup();
+
         // Pre-supply available langs for autocompletion in the form.
         static::$params['available_langs'] = $this->engine->getValidLangs();
         sort(static::$params['available_langs']);
@@ -142,6 +166,7 @@ class OcrController extends AbstractController
      */
     public function apiAction(): JsonResponse
     {
+        $this->setup();
         return $this->getApiResponse(array_merge(static::$params, [
             'text' => $this->getText(),
         ]));
@@ -153,6 +178,7 @@ class OcrController extends AbstractController
      */
     public function apiAvailableLangsAction(): JsonResponse
     {
+        $this->setup();
         return $this->getApiResponse([
             'engine' => static::$params['engine'],
             'available_langs' => $this->engine->getValidLangs(true),

@@ -11,6 +11,7 @@
     "engine-help": "Choose between the open-source Wikimedia-hosted Tesseract, and Google's Cloud Vision API.",
     "engine-name-google": "Google",
     "engine-name-tesseract": "Tesseract",
+    "engine-not-found-warning": "The requested engine '$1' was not found. Using the default engine '$2' instead.",
     "submit": "Go",
     "copy-to-clipboard": "Copy to clipboard",
     "copied-to-clipboard": "Copied!",

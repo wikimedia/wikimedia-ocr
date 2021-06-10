@@ -15,6 +15,7 @@
 	"engine-help": "Help text for the 'engine' field.",
 	"engine-name-google": "Option text for the 'google' engine.",
 	"engine-name-tesseract": "Option text for the 'tesseract' engine.",
+	"engine-not-found-warning": "Error message displayed when an invalid engine is requested.\n\nParameter:\n* $1 – the requested engine.\n* $2 – the default engine that is being used instead.",
 	"submit": "Submit button text.\n{{identical|Go}}",
 	"copy-to-clipboard": "Button text for the copy-to-clipboard button.",
 	"copied-to-clipboard": "Button text shown after the copy-to-clipboard button is clicked.",
