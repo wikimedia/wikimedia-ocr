@@ -48,6 +48,7 @@ services:
             - '@session'
             - '@twig'
             - '@Krinkle\Intuition\Intuition'
+            - '@monolog.logger.tesseract'
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
 
