@@ -139,8 +139,10 @@
         "google": "fr"
     },
     "fro": {
-        "tesseract": "frm",
         "google": "fro"
+    },
+    "frm": {
+        "tesseract": "frm"
     },
     "fy": {
         "tesseract": "fry",
@@ -165,9 +167,6 @@
     "gu": {
         "tesseract": "guj",
         "google": "gu"
-    },
-    "gv": {
-        "tesseract": ""
     },
     "he": {
         "tesseract": "heb",
@@ -251,6 +250,9 @@
     },
     "ku": {
         "tesseract": "kmr"
+    },
+    "kur": {
+        "tesseract": "kur"
     },
     "la": {
         "tesseract": "lat",
@@ -357,6 +359,9 @@
     "ru": {
         "tesseract": "rus",
         "google": "ru"
+    },
+    "ru-petr1708": {
+        "google": "ru-PETR1708"
     },
     "sa": {
         "tesseract": "san",
