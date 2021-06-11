@@ -1,4 +1,5 @@
 monolog:
+    channels: ['main', 'nested', 'tesseract']
     handlers:
         main:
             type: fingers_crossed
@@ -10,3 +11,7 @@ monolog:
             type: stream
             path: "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
+        tesseract:
+            type: fingers_crossed
+            action_level: error
+            handler: nested
