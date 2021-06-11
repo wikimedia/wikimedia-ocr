@@ -1,4 +1,5 @@
 monolog:
+    channels: ['main', 'tesseract']
     handlers:
         main:
             type: fingers_crossed
@@ -29,3 +30,7 @@ monolog:
             subject: '%env(APP_LOG_SUBJECT)% %%message%%'
             formatter: monolog.formatter.html
             content_type: text/html
+        tesseract:
+            type: fingers_crossed
+            action_level: error
+            handler: nested
