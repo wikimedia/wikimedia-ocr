@@ -84,16 +84,31 @@ class EngineBaseTest extends OcrTestCase
     }
 
     /**
+     * @param string[] $langs Language codes
+     * @param bool $valid
      * @covers EngineBase::validateLangs for Tesseract Engine
+     * @dataProvider provideTesseractLangs
      */
-    public function testValidateLangsTesseractEngine(): void
+    public function testValidateLangsTesseractEngine(array $langs, bool $valid): void
     {
-        // Should not throw an exception.
-        $this->tesseractEngine->validateLangs(['en', 'fr']);
+        if (!$valid) {
+            $this->expectException(OcrException::class);
+        }
+        $this->tesseractEngine->validateLangs($langs);
+        $this->addToAssertionCount(1);
+    }
 
-        // Should throw an exception. `foo` is not a valid lang
-        static::expectException(OcrException::class);
-        $this->tesseractEngine->validateLangs(['foo', 'fr']);
+    /**
+     * @return array<array<string[]|bool>>
+     */
+    public function provideTesseractLangs(): array
+    {
+        return [
+            'valid' => [ [ 'en', 'fr' ], true ],
+            'invalid' => [ [ 'foo', 'fr' ], false ],
+            // 'equ' is excluded on purpose: T284827
+            'intentionally excluded' => [ [ 'equ' ], false ],
+        ];
     }
 
     /**

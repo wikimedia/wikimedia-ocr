@@ -104,9 +104,6 @@
         "tesseract": "epo",
         "google": "eo"
     },
-    "equ": {
-        "tesseract": "equ"
-    },
     "es": {
         "tesseract": "spa",
         "google": "es"
