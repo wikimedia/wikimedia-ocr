@@ -29,7 +29,7 @@ abstract class EngineBase
         'de-frk' => 'Deutsch (Fraktur)',
         'enm' => 'Middle English (1100-1500)',
         'es-old' => 'español (viejo)',
-        'equ' => 'Math / equation detection module',
+        'frm' => 'moyen français (1400-1600)',
         'fro' => 'Franceis, François, Romanz (1400-1600)',
         'it-old' => 'italiano antico',
         'ka-old' => 'ქართული (ძველი)',
