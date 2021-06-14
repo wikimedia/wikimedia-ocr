@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bodhisattwa",
+			"আফতাবুজ্জামান"
+		]
+	},
+	"title": "উইকিমিডিয়া ওসিআর",
+	"image-url": "চিত্রের ইউআরএল:",
+	"image-alt-text": "প্রকৃত চিত্র",
+	"language-code": "দুই-অক্ষরের ভাষা কোড (ঐচ্ছিক):",
+	"language-code-help": "ছবিতে থাকা লেখাগুলির ভাষার আইএসও ৬৩৯ কোড।",
+	"engine": "ওসিআর ইঞ্জিন:",
+	"engine-name-google": "গুগল",
+	"engine-name-tesseract": "টেসারেক্ট",
+	"submit": "চলুন",
+	"copy-to-clipboard": "ক্লিপবোর্ডে অনুলিপি করুন",
+	"copied-to-clipboard": "অনুলিপি করা হয়েছে!",
+	"documentation": "নথিপত্র",
+	"version": "সংস্করণ $1",
+	"report-issue": "সমস্যা প্রতিবেদন করুন",
+	"tesseract-oem-label": "ওসিআর ইঞ্জিন মোড",
+	"tesseract-oem-0": "পূর্বের ইঞ্জিন শুধুমাত্র।",
+	"tesseract-oem-3": "যা উপলব্ধ তার উপর ভিত্তি করে, পূর্বনির্ধারিত।"
+}

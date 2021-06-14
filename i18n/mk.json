@@ -43,5 +43,6 @@
 	"tesseract-oem-1": "Само LSTM-погон на невронски мрежи.",
 	"tesseract-oem-2": "Оставнински + LSTM-погони.",
 	"tesseract-oem-3": "По основно, според достапното.",
-	"tesseract-param-error": "Можноста „$1“ со вредност $2 не е поддржана од Tesseract. Најголема допуштена вредност: $3"
+	"tesseract-param-error": "Можноста „$1“ со вредност $2 не е поддржана од Tesseract. Најголема допуштена вредност: $3",
+	"tesseract-internal-error": "Погонот Tesseract даде внатрешна грешка."
 }

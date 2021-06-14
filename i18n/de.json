@@ -41,5 +41,6 @@
 	"tesseract-oem-1": "Nur neuronale Netze LSTM-Engine.",
 	"tesseract-oem-2": "Legacy + LSTM Engines.",
 	"tesseract-oem-3": "Standard, basierend auf dem, was verfügbar ist.",
-	"tesseract-param-error": "Die Option „$1“ mit einem Wert von $2 wird von Tesseract nicht unterstützt. Maximaler Wert: $3"
+	"tesseract-param-error": "Die Option „$1“ mit einem Wert von $2 wird von Tesseract nicht unterstützt. Maximaler Wert: $3",
+	"tesseract-internal-error": "Die Tesseract-Engine hat einen internen Fehler zurückgegeben."
 }
