@@ -119,4 +119,25 @@ class EngineBaseTest extends OcrTestCase
         static::assertSame(['eng', 'fra'], $this->tesseractEngine->getLangCodes(['en', 'fr']));
         static::assertSame(['en', 'iw'], $this->googleEngine->getLangCodes(['en', 'he']));
     }
+
+    /**
+     * @covers EngineBase::getLangName
+     * @covers EngineBase::getValidLangs
+     */
+    public function testLangNames(): void
+    {
+        // From Intuition.
+        static::assertSame('français', $this->tesseractEngine->getLangName('fr'));
+
+        // From EngineBase::LANG_NAMES
+        static::assertSame('moyen français (1400-1600)', $this->tesseractEngine->getLangName('frm'));
+
+        // Make sure every language has a name.
+        foreach ($this->tesseractEngine->getValidLangs(true) as $lang => $name) {
+            static::assertNotEmpty($name, "Missing lang name for '$lang'");
+        }
+        foreach ($this->googleEngine->getValidLangs(true) as $lang => $name) {
+            static::assertNotEmpty($name, "Missing lang name for '$lang'");
+        }
+    }
 }
