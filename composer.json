@@ -66,11 +66,14 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
+        "check-tesseract": "./check_tesseract.sh",
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "@check-tesseract"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "@check-tesseract"
         ],
         "test": [
             "composer validate",
@@ -79,6 +82,7 @@
             "./bin/console lint:yaml ./config",
             "minus-x check .",
             "phan --allow-polyfill-parser --long-progress-bar",
+            "@check-tesseract",
             "./bin/phpunit"
         ]
     },
