@@ -45,5 +45,6 @@
 	"tesseract-oem-1": "Moteur LSTM de réseaux neuronaux uniquement.",
 	"tesseract-oem-2": "Moteurs traditionnel + LSTM",
 	"tesseract-oem-3": "Par défaut, basé sur ce qui est disponible.",
-	"tesseract-param-error": "L’option '$1' avec une valeur de $2 n’est pas supportée par Tesseract. Valeur maximale: $3"
+	"tesseract-param-error": "L’option '$1' avec une valeur de $2 n’est pas supportée par Tesseract. Valeur maximale: $3",
+	"tesseract-internal-error": "Le moteur Tesseract a renvoyé une erreur interne."
 }
