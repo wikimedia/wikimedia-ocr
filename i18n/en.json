@@ -37,11 +37,6 @@
     "tesseract-psm-11": "Sparse text. Find as much text as possible in no particular order.",
     "tesseract-psm-12": "Sparse text with OSD.",
     "tesseract-psm-13": "Raw line. Treat the image as a single text line, bypassing hacks that are Tesseract-specific.",
-    "tesseract-oem-label": "OCR Engine modes",
-    "tesseract-oem-0": "Legacy engine only.",
-    "tesseract-oem-1": "Neural nets LSTM engine only.",
-    "tesseract-oem-2": "Legacy + LSTM engines.",
-    "tesseract-oem-3": "Default, based on what is available.",
     "tesseract-param-error": "The '$1' option with a value of $2 is not supported by Tesseract. Maximum value: $3",
     "tesseract-internal-error": "The tesseract engine returned an internal error."
 }
