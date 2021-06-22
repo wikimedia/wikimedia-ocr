@@ -5,17 +5,27 @@
         <title>{% block title %}{{ msg('title') }}{% endblock %}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
+            {% if is_rtl() %}
+                <link type="text/css" href="https://tools-static.wmflabs.org/cdnjs/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-flipped.css" rel="stylesheet"/>
+            {% endif %}
         {% endblock %}
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
+    <body class="{% if is_rtl() %}rtl{% endif %}">
+        <header class="page-header">
+            <div class="container">
+                <p class="logo">
+                    <img src="{{ asset('build/images/WikimediaOCR-logo.svg') }}" alt="{{ msg('title') }}" />
+                </p>
+                <div>
+                    <h1 class="page-title">{{ msg('title') }}</h1>
+                    <p class="page-subtitle">{{ msg('subtitle') }}</p>
+                </div>
+            </div>
+        </header>
         <main class="container">
-            <header class="page-header">
-                <h1>{{ msg('title') }}</h1>
-            </header>
-
             {% for label, messages in app.flashes(['error']) %}
                 {% for message in messages %}
                     <div class="alert alert-danger">

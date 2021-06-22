@@ -11,5 +11,8 @@
                 <option value="{{ i }}" {% if i == psm %}selected="selected"{% endif %}>{{ msg('tesseract-psm-' ~ i) }}</option>
             {% endfor %}
         </select>
+        <p class="help-block">
+            {{ msg('tesseract-psm-help') }}
+        </p>
     </div>
 </fieldset>

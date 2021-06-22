@@ -44,17 +44,18 @@ $(function () {
     // Initiate Select2, which allows dynamic entry of languages.
     $select2.select2({
         theme: 'bootstrap',
+        placeholder: $select2.data('placeholder'),
     });
 
     // Show engine-specific options.
-    $('#engine').on('change',  e => {
+    $('[name=engine]').on('change',  e => {
         updateSelect2Options(e.target.value);
         $('.engine-options').addClass('hidden');
         $(`#${e.target.value}-options`).removeClass('hidden');
     });
 
     // For the result page. Makes the 'Copy' button copy the transcription to the clipboard.
-    const $copyButton = $('#copy-button');
+    const $copyButton = $('.copy-button');
     if ($copyButton.length) {
         $copyButton.on('click', () => {
             const $textarea = $('#text');
@@ -63,4 +64,9 @@ $(function () {
             $copyButton.text($copyButton.data('copied-text'));
         });
     }
+
+    // Make textarea match height of image.
+    $('#text').css({
+        height: $('#source-image').outerHeight(),
+    });
 });
