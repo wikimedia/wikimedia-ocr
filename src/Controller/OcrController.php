@@ -47,7 +47,6 @@ class OcrController extends AbstractController
         'engine' => self::DEFAULT_ENGINE,
         'langs' => [],
         'psm' => TesseractEngine::DEFAULT_PSM,
-        'oem' => TesseractEngine::DEFAULT_OEM,
     ];
 
     /** @var string */
@@ -102,16 +101,14 @@ class OcrController extends AbstractController
      */
     private function setEngineOptions(): void
     {
-        // These are always set, even if Tesseract isn't initially chosen as the engine
-        // because we want these defaults set if the user changes the engine to Tesseract.
+        // This is always set, even if Tesseract isn't initially chosen as the engine
+        // because we want the default set if the user changes the engine to Tesseract.
         static::$params['psm'] = (int)$this->request->query->get('psm', (string)static::$params['psm']);
-        static::$params['oem'] = (int)$this->request->query->get('oem', (string)static::$params['oem']);
 
-        // Apply the settings to the Engine itself. This is only done when Tesseract is chosen
-        // because these setters don't exist for the GoogleCloudVisionEngine.
+        // Apply the tesseract-specific settings
+        // NOTE: Intentionally excluding `oem`, see T285262
         if (TesseractEngine::getId() === static::$params['engine']) {
             $this->engine->setPsm(static::$params['psm']);
-            $this->engine->setOem(static::$params['oem']);
         }
     }
 
@@ -216,7 +213,6 @@ class OcrController extends AbstractController
                 static::$params['engine'],
                 implode('|', static::$params['langs']),
                 static::$params['psm'],
-                static::$params['oem'],
             ]
         ));
 

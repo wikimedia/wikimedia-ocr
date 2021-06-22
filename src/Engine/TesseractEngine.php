@@ -23,12 +23,6 @@ class TesseractEngine extends EngineBase
     /** @var int Default value for page segmentation mode. */
     public const DEFAULT_PSM = 3;
 
-    /** @var int Maximum value for OCR engine mde. */
-    public const MAX_OEM = 3;
-
-    /** @var int Default value for OCR engine mode. */
-    public const DEFAULT_OEM = 3;
-
     /**
      * TesseractEngine constructor.
      * @param HttpClientInterface $httpClient
@@ -96,16 +90,6 @@ class TesseractEngine extends EngineBase
     {
         $this->validateOption('psm', $psm, self::MAX_PSM);
         $this->ocr->psm($psm);
-    }
-
-    /**
-     * Set the OCR engine mode.
-     * @param int $oem
-     */
-    public function setOem(int $oem): void
-    {
-        $this->validateOption('oem', $oem, self::MAX_OEM);
-        $this->ocr->oem($oem);
     }
 
     /**
