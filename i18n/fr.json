@@ -15,6 +15,7 @@
 	"language-code-help": "Le code ISO639 de la langue du texte dans l’image.",
 	"engine": "Moteur OCR :",
 	"engine-help": "Choisir entre le source liber Tesseract hébergé par Wikimédia, et l’API Cloud Vision de Google.",
+	"engine-not-found-warning": "Le moteur '$1' demandé n’a pas été trouvé. Utilisation du moteur par défaut '$2' à la place.",
 	"submit": "Aller",
 	"copy-to-clipboard": "Copier dans le presse-papier",
 	"copied-to-clipboard": "Copié !",
@@ -40,11 +41,6 @@
 	"tesseract-psm-11": "Texte épars. Trouver autant de texte que possible, sans ordre particulier.",
 	"tesseract-psm-12": "Texte épars avec OSD.",
 	"tesseract-psm-13": "Ligne brute. Traiter l’image comme une ligne de texte unique, en sautant les raccourcis spécifiques à Tesseract.",
-	"tesseract-oem-label": "Modes de moteur OCR",
-	"tesseract-oem-0": "Moteur traditionnel uniquement.",
-	"tesseract-oem-1": "Moteur LSTM de réseaux neuronaux uniquement.",
-	"tesseract-oem-2": "Moteurs traditionnel + LSTM",
-	"tesseract-oem-3": "Par défaut, basé sur ce qui est disponible.",
 	"tesseract-param-error": "L’option '$1' avec une valeur de $2 n’est pas supportée par Tesseract. Valeur maximale: $3",
 	"tesseract-internal-error": "Le moteur Tesseract a renvoyé une erreur interne."
 }

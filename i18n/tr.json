@@ -38,11 +38,6 @@
 	"tesseract-psm-11": "Aralıklı metin. Belirli bir sırayla mümkün olduğunca fazla metin bulun.",
 	"tesseract-psm-12": "OSD ile aralıklı metin.",
 	"tesseract-psm-13": "Ham satır. Görüntüyü, Tesseract'a özgü saldırıları atlayarak tek bir metin satırı olarak ele alın.",
-	"tesseract-oem-label": "OCR Motoru modları",
-	"tesseract-oem-0": "Yalnızca eski motor.",
-	"tesseract-oem-1": "Yalnızca yazılım programı LSTM motoru",
-	"tesseract-oem-2": "Eski + LSTM motorları.",
-	"tesseract-oem-3": "Mevcut olana bağlı olarak varsayılan.",
 	"tesseract-param-error": "$2 değerine sahip '$1' seçeneği Tesseract tarafından desteklenmez. Maksimum değer: $3",
 	"tesseract-internal-error": "Tesseract motoru dahili bir hata verdi."
 }

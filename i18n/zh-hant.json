@@ -22,6 +22,5 @@
 	"tesseract-psm-7": "將圖片視為單行文字。",
 	"tesseract-psm-8": "將圖片視為單一字詞。",
 	"tesseract-psm-9": "將圖片視為環繞狀的單一字詞。",
-	"tesseract-psm-10": "將圖片視為單一字元。",
-	"tesseract-oem-label": "OCR 引擎模式"
+	"tesseract-psm-10": "將圖片視為單一字元。"
 }

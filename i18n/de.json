@@ -11,6 +11,7 @@
 	"language-code-help": "Der ISO639-Code der Sprache des Textes im Bild.",
 	"engine": "OCR-Modul:",
 	"engine-help": "Wähle zwischen dem von Wikimedia gehosteten Open-Source-Programm Tesseract und der Cloud Vision API von Google.",
+	"engine-not-found-warning": "Die angeforderte Engine „$1“ wurde nicht gefunden. Verwende stattdessen die Standard-Engine „$2“.",
 	"submit": "Suche",
 	"copy-to-clipboard": "In die Zwischenablage kopieren",
 	"copied-to-clipboard": "Kopiert!",
@@ -36,11 +37,6 @@
 	"tesseract-psm-11": "Wenig Text. Möglichst viel Text in keiner bestimmten Reihenfolge finden.",
 	"tesseract-psm-12": "Knapper Text mit OSD.",
 	"tesseract-psm-13": "Rohzeile. Behandelt das Bild wie eine einzelne Textzeile und umgeht damit Tesseract-spezifische Hacks.",
-	"tesseract-oem-label": "Modi der OCR-Engine",
-	"tesseract-oem-0": "Nur Legacy-Engine.",
-	"tesseract-oem-1": "Nur neuronale Netze LSTM-Engine.",
-	"tesseract-oem-2": "Legacy + LSTM Engines.",
-	"tesseract-oem-3": "Standard, basierend auf dem, was verfügbar ist.",
 	"tesseract-param-error": "Die Option „$1“ mit einem Wert von $2 wird von Tesseract nicht unterstützt. Maximaler Wert: $3",
 	"tesseract-internal-error": "Die Tesseract-Engine hat einen internen Fehler zurückgegeben."
 }

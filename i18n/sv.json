@@ -38,10 +38,5 @@
 	"tesseract-psm-11": "Gles text. Hitta så mycket text som möjligt utan en bestämd ordning.",
 	"tesseract-psm-12": "Gles text med OSD.",
 	"tesseract-psm-13": "Rå rad. Behandla bilden som en textrad, förbigå hackningar som är Tesseract-specifika.",
-	"tesseract-oem-label": "OCR-motorlägen",
-	"tesseract-oem-0": "Bara äldre motorer.",
-	"tesseract-oem-1": "Bara nervnät LSTM-motorer.",
-	"tesseract-oem-2": "Äldre + LSTM-motorer.",
-	"tesseract-oem-3": "Standard, baserat på vad som finns tillgängligt.",
 	"tesseract-param-error": "Alternativet \"$1\" med ett värde av $2 stöds inte av Tesseract. Högsta värdet: $3"
 }

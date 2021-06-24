@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Agent",
+			"Mpayansilva"
+		]
+	},
+	"title": "ROC (OCR) Wikimedia",
+	"image-url": "Enlace de la imagen:",
+	"image-url-help": "Esto debe empezar con uno de los siguientes dominios y debe ser un LRU (URL) completo que apunta hacia una imagen: $1",
+	"image-url-error": "Los LRUs (URLs) de imagenes deben empezar con {{PLURAL:$1|el siguiente dominio de internet|uno de los siguientes dominios de internet}} y deben terminar en una extensión de archivo válida: $2",
+	"image-alt-text": "La imagen original",
+	"copy-to-clipboard": "Copiar a el portapapeles",
+	"google-error": "El servicio de Google retornó un error: $1",
+	"version": "Versión $1",
+	"report-issue": "Reportar un problema",
+	"tesseract-internal-error": "El motor teseracto regresó un error interno."
+}
