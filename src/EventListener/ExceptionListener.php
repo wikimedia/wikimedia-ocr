@@ -87,6 +87,8 @@ class ExceptionListener
             );
         }
 
+        // Allow cross-origin requests like we do for successful requests. See T285543
+        $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->setStatusCode(Response::HTTP_BAD_REQUEST);
         $event->setResponse($response);
     }
