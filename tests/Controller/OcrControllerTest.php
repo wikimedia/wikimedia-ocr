@@ -13,6 +13,8 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use thiagoalessio\TesseractOCR\TesseractOCR;
 
 class OcrControllerTest extends OcrTestCase
@@ -28,6 +30,7 @@ class OcrControllerTest extends OcrTestCase
         $request = new Request($getParams);
         $requestStack = new RequestStack();
         $requestStack->push($request);
+        $session = new Session(new MockArraySessionStorage());
         $intuition = new Intuition([]);
         $gcv = new GoogleCloudVisionEngine(
             dirname(__DIR__).'/fixtures/google-account-keyfile.json',
@@ -36,6 +39,7 @@ class OcrControllerTest extends OcrTestCase
         );
         $controller = new OcrController(
             $requestStack,
+            $session,
             $intuition,
             new EngineFactory(
                 $gcv,
