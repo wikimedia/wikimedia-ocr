@@ -42,8 +42,9 @@ The [documentation](https://cloud.google.com/vision/reference/rest/v1/images/ann
 > For languages based on the Latin alphabet, setting languageHints is not needed.
 > In rare cases, when the language of the text in the image is known, setting a hint will help get better results
 > (although it will be a significant hindrance if the hint is wrong).
-> Text detection returns an error if one or more of the specified languages is not
-> one of the [supported languages](https://cloud.google.com/vision/docs/languages).
+> Text detection via the web interface returns an error if one or more of the specified languages is not
+> one of the [supported languages](https://cloud.google.com/vision/docs/languages). API requests will succeed
+> with a warning reporting invalid languages.
 
 #### Tesseract
 

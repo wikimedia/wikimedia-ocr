@@ -53,13 +53,12 @@ class TesseractEngine extends EngineBase
      * @inheritDoc
      * @throws OcrException
      */
-    public function getText(string $imageUrl, ?array $langs = null): string
+    public function getResult(string $imageUrl, string $invalidLangsMode, ?array $langs = null): EngineResult
     {
         // Check the URL and fetch the image data.
         $this->checkImageUrl($imageUrl);
 
-        // Validate the languages
-        $this->validateLangs($langs);
+        [ $validLangs, $invalidLangs ] = $this->filterValidLangs($langs, $invalidLangsMode);
 
         $imageResponse = $this->httpClient->request('GET', $imageUrl);
         try {
@@ -69,8 +68,8 @@ class TesseractEngine extends EngineBase
         }
 
         $this->ocr->imageData($imageContent, $imageResponse->getHeaders()['content-length'][0]);
-        if ($langs && count($langs) > 0) {
-            $this->ocr->lang(...$this->getLangCodes($langs));
+        if ($validLangs) {
+            $this->ocr->lang(...$this->getLangCodes($validLangs));
         }
 
         // Env vars are passed through by the thiagoalessio/tesseract_ocr package to the tesseract command,
@@ -79,7 +78,9 @@ class TesseractEngine extends EngineBase
         // multiple threads. See https://github.com/tesseract-ocr/tesseract/issues/898 for some more info.
         putenv('OMP_THREAD_LIMIT=1');
         $text = $this->ocr->run();
-        return $text;
+
+        $warnings = $invalidLangs ? [ $this->getInvalidLangsWarning($invalidLangs) ] : [];
+        return new EngineResult($text, $warnings);
     }
 
     /**
