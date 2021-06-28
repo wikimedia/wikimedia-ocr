@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
@@ -33,6 +35,9 @@ class OcrController extends AbstractController
 
     /** @var Request */
     protected $request;
+
+    /** @var SessionInterface */
+    protected $session;
 
     /** @var EngineFactory */
     protected $engineFactory;
@@ -55,17 +60,20 @@ class OcrController extends AbstractController
     /**
      * OcrController constructor.
      * @param RequestStack $requestStack
+     * @param SessionInterface $session
      * @param Intuition $intuition
      * @param EngineFactory $engineFactory
      * @param CacheInterface $cache
      */
     public function __construct(
         RequestStack $requestStack,
+        SessionInterface $session,
         Intuition $intuition,
         EngineFactory $engineFactory,
         CacheInterface $cache
     ) {
         $this->request = $requestStack->getCurrentRequest();
+        $this->session = $session;
         $this->intuition = $intuition;
         $this->engineFactory = $engineFactory;
         $this->cache = $cache;
@@ -192,6 +200,14 @@ class OcrController extends AbstractController
         $response = new JsonResponse();
         $response->setEncodingOptions(JSON_NUMERIC_CHECK);
         $response->setStatusCode(Response::HTTP_OK);
+
+        // Expose flash messages.
+        /** @var FlashBag $flashBag */
+        $flashBag = $this->session->getBag('flashes');
+        '@phan-var FlashBag $flashBag';
+        if ($flashBag->has('error')) {
+            $params['error'] = $flashBag->get('error');
+        }
 
         // Allow API requests from the Wikisource extension wherever it's installed.
         $response->headers->set('Access-Control-Allow-Origin', '*');
