@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joetaras"
+		]
+	},
+	"title": "Uicchimedie OCR",
+	"image-url": "URL de l'immaggine:",
+	"image-url-help": "Quiste adda accumenzà cu une de le nome de dominie seguende e adda essere 'na URL chiene a 'u file de l'immaggine de mò: $1",
+	"engine": "Motore OCR:",
+	"submit": "Véje",
+	"copy-to-clipboard": "Copie jndr'à l'appunde",
+	"copied-to-clipboard": "Copiate!",
+	"documentation": "Documendazione",
+	"version": "Versione $1",
+	"report-issue": "Segnale 'nu probbleme"
+}
