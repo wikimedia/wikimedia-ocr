@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"DraconicDark",
 			"Sabelöga"
 		]
 	},
@@ -13,6 +14,7 @@
 	"language-code-help": "Texten i bildens ISO-639-språkkod.",
 	"engine": "OCR-motor:",
 	"engine-help": "Välj mellan Wikimedias egna Tesseract med öppen källkod, och Googles Cloud Vision API.",
+	"engine-not-found-warning": "Den begärda motorn '$1' hittades inte. Använd standardmotorn '$2' i stället.",
 	"submit": "Kör",
 	"copy-to-clipboard": "Kopiera till urklipp",
 	"copied-to-clipboard": "Kopierades!",
@@ -38,5 +40,6 @@
 	"tesseract-psm-11": "Gles text. Hitta så mycket text som möjligt utan en bestämd ordning.",
 	"tesseract-psm-12": "Gles text med OSD.",
 	"tesseract-psm-13": "Rå rad. Behandla bilden som en textrad, förbigå hackningar som är Tesseract-specifika.",
-	"tesseract-param-error": "Alternativet \"$1\" med ett värde av $2 stöds inte av Tesseract. Högsta värdet: $3"
+	"tesseract-param-error": "Alternativet \"$1\" med ett värde av $2 stöds inte av Tesseract. Högsta värdet: $3",
+	"tesseract-internal-error": "Tesseract-motorn returnerade ett internt fel."
 }
