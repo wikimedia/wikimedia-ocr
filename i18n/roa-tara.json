@@ -7,11 +7,16 @@
 	"title": "Uicchimedie OCR",
 	"image-url": "URL de l'immaggine:",
 	"image-url-help": "Quiste adda accumenzà cu une de le nome de dominie seguende e adda essere 'na URL chiene a 'u file de l'immaggine de mò: $1",
+	"image-alt-text": "L'immaggine origgenale",
+	"language-code": "Codece d'a lènghe a doje lettere (facoltative):",
 	"engine": "Motore OCR:",
 	"submit": "Véje",
 	"copy-to-clipboard": "Copie jndr'à l'appunde",
 	"copied-to-clipboard": "Copiate!",
+	"image-retrieval-failed": "Recupere de l'immaggine fallite: $1",
 	"documentation": "Documendazione",
 	"version": "Versione $1",
-	"report-issue": "Segnale 'nu probbleme"
+	"report-issue": "Segnale 'nu probbleme",
+	"tesseract-options": "Opziune de tesseract",
+	"tesseract-psm-label": "Metode d'a segmentazione d'a pàgene"
 }

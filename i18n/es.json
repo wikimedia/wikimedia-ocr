@@ -2,7 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Agent",
-			"Mpayansilva"
+			"Jackiezelaya",
+			"Mpayansilva",
+			"Ninovolador"
 		]
 	},
 	"title": "ROC (OCR) Wikimedia",
@@ -10,9 +12,36 @@
 	"image-url-help": "Esto debe empezar con uno de los siguientes dominios y debe ser un LRU (URL) completo que apunta hacia una imagen: $1",
 	"image-url-error": "Los LRUs (URLs) de imagenes deben empezar con {{PLURAL:$1|el siguiente dominio de internet|uno de los siguientes dominios de internet}} y deben terminar en una extensión de archivo válida: $2",
 	"image-alt-text": "La imagen original",
+	"language-code": "Código de idioma de dos letras (opcional):",
+	"language-code-help": "El código ISO639 del idioma del texto de la imagen.",
+	"engine": "Motor de OCR:",
+	"engine-help": "Elija entre el motor de código abierto Tesseract alojado en Wikimedia y la API Cloud Vision de Google.",
+	"engine-not-found-warning": "No se encontró el motor solicitado '$1'. Usando el motor predeterminado '$2' en su lugar.",
+	"submit": "Ir",
 	"copy-to-clipboard": "Copiar a el portapapeles",
+	"copied-to-clipboard": "¡Copiado!",
 	"google-error": "El servicio de Google retornó un error: $1",
+	"image-retrieval-failed": "Error al recuperar la imagen: $1",
+	"documentation": "Documentación",
 	"version": "Versión $1",
 	"report-issue": "Reportar un problema",
-	"tesseract-internal-error": "El motor teseracto regresó un error interno."
+	"langs-param-error": "{{PLURAL:$1|El siguiente idioma no es compatible|Los siguientes idiomas no son compatibles}} con el motor de OCR: $2",
+	"tesseract-options": "Opciones de Tesseract:",
+	"tesseract-psm-label": "Método de segmentación de páginas",
+	"tesseract-psm-0": "Sólo detección de orientación y sistema de escritura (OSD).",
+	"tesseract-psm-1": "Segmentación automática de páginas con OSD.",
+	"tesseract-psm-2": "Segmentación automática de páginas, pero sin OSD ni OCR. (no implementado)",
+	"tesseract-psm-3": "Segmentación de páginas totalmente automática, pero sin OSD. (Valor predeterminado)",
+	"tesseract-psm-4": "Asumir una sola columna de texto de tamaños variables.",
+	"tesseract-psm-5": "Asumir un solo bloque uniforme de texto alineado verticalmente.",
+	"tesseract-psm-6": "Asumir un solo bloque uniforme de texto.",
+	"tesseract-psm-7": "Tratar la imagen como una sola línea de texto.",
+	"tesseract-psm-8": "Tratar la imagen como una sola palabra.",
+	"tesseract-psm-9": "Tratar la imagen como una sola palabra en un círculo.",
+	"tesseract-psm-10": "Tratar la imagen como un solo carácter.",
+	"tesseract-psm-11": "Texto escaso. Busque la mayor cantidad de texto posible sin ningún orden en particular.",
+	"tesseract-psm-12": "Texto escaso con OSD.",
+	"tesseract-psm-13": "Línea cruda. Tratar la imagen como una sola línea de texto, ignorando los hacks que son específicos de Tesseract.",
+	"tesseract-param-error": "Tesseract no admite la opción \"$1\" con un valor de $2. Valor máximo: $3",
+	"tesseract-internal-error": "El motor Tesseract regresó un error interno."
 }
