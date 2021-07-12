@@ -13,6 +13,7 @@
 	"language-code-help": "Resimdeki metin dilinin ISO 639 kodu.",
 	"engine": "OCR motoru:",
 	"engine-help": "Açık kaynaklı Wikimedia tarafından barındırılan Tesseract ile Google'ın Cloud Vision API'si arasında seçim yapın.",
+	"engine-not-found-warning": "İstenen motor ' $1 ' bulunamadı. Bunun yerine varsayılan motor ' $2 ' kullanılıyor.",
 	"submit": "Git",
 	"copy-to-clipboard": "Panoya kopyala",
 	"copied-to-clipboard": "Kopyalandı!",
