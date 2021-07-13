@@ -3,3 +3,74 @@
 
 /* Encore can't find '~select2-bootstrap-theme' with @import */
 @import '../../node_modules/select2-bootstrap-theme/dist/select2-bootstrap.min.css';
+
+.page-header {
+	background-color: #f5f5f5;
+	margin: 0 0 25px;
+	padding: 24px 0 18px;
+}
+
+.container {
+	max-width: 1170px;
+}
+
+.page-header .container {
+	align-items: center;
+	display: flex;
+	/* Width of container + logo size and it's padding */
+	max-width: calc( 1170px + ( (50px + 20px) * 2) );
+	width: auto;
+}
+
+.logo {
+	margin: 10px 20px 25px 0;
+}
+
+body.rtl .logo {
+	float: right;
+	margin: 10px 0 25px 20px;
+}
+
+.page-title {
+	font-weight: bold;
+	margin-bottom: 0;
+}
+
+.page-subtitle {
+	font-size: 14px;
+}
+
+.form-heading {
+	border-bottom: 1px solid #e5e5e5;
+	font-size: 22px;
+	margin: 25px 0;
+}
+
+fieldset,
+.alert {
+	max-width: 541px;
+}
+
+/* Avoid select2 input from exceeding viewport on smaller screens */
+.select2-container {
+	/* stylelint-disable declaration-no-important */
+	width: 100% !important;
+}
+
+.radio:first-of-type {
+	margin-top: 0;
+}
+
+.engine-options {
+	margin-top: 30px;
+}
+
+.submit-btn {
+	margin-top: 40px;
+}
+
+.copy-button {
+	position: absolute;
+	right: 30px;
+	top: 15px;
+}
