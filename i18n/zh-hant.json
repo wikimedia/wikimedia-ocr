@@ -8,7 +8,6 @@
 	"image-url": "圖像 URL：",
 	"image-alt-text": "原始圖片",
 	"engine": "OCR 引擎：",
-	"engine-help": "挑選開放原始碼的 Wikimedia 託管 Tesseract，或是 Google 的雲端辨識 API。",
 	"submit": "送出",
 	"copy-to-clipboard": "複製到剪貼簿",
 	"copied-to-clipboard": "已複製!",

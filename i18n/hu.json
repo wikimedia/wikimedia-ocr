@@ -10,7 +10,6 @@
 	"image-url-error": "A fájlnévnek egy érvényes kiterjesztéssel kell végződnie, és a következő {{PLURAL:$1|domainnévvel|domainnevek egyikével}} kell kezdődnie: $2",
 	"image-alt-text": "Az eredeti kép",
 	"language-code": "Két betűs nyelvkód (nem kötelező):",
-	"language-code-help": "A képen látható szöveg ISO 639-kódja.",
 	"engine": "OCR-motor:",
 	"submit": "Mehet",
 	"copy-to-clipboard": "Másolás a vágólapra",
