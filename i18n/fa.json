@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jeeputer"
+		]
+	},
+	"subtitle": "رونویسی متن از تصاویر",
+	"form-heading": "رونویسی یک تصویر",
+	"image-url": "نشانی تصویر",
+	"image-alt-text": "تصویر اصلی",
+	"language-code": "زبان‌ها (اختیاری)",
+	"engine": "موتور OCR",
+	"submit": "رونویسی",
+	"copy-to-clipboard": "کپی به بریده‌دان",
+	"copied-to-clipboard": "کپی شد!",
+	"documentation": "مستندات",
+	"version": "نسخهٔ $1",
+	"report-issue": "گزارش مشکل",
+	"langs-placeholder": "برای شناسایی خودکار زبان، خالی بگذارید."
+}

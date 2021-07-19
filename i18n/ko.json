@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Apzp79",
+			"Ykhwong",
+			"그냥기여자"
+		]
+	},
+	"title": "위키미디어OCR",
+	"form-heading": "이미지를 복사하기",
+	"image-url": "이미지 URL",
+	"language-code": "언어 (선택사항)",
+	"engine": "OCR 엔진",
+	"submit": "복사",
+	"copy-to-clipboard": "클립보드에 복사",
+	"copied-to-clipboard": "복사 완료!",
+	"documentation": "문서",
+	"version": "버전 $1",
+	"report-issue": "문제점 보고",
+	"langs-placeholder": "자동 언어 감지를 위해 공란으로 남깁니다."
+}
