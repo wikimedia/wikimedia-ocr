@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Candalua"
+		]
+	},
+	"title": "WikimediaOCR",
+	"subtitle": "Scrivi zo el testo da le imagini",
+	"form-heading": "Trascrivi un'imagine",
+	"image-url": "URL de l'imagine",
+	"image-url-help": "Scrivi qua un indirizo de na imagine ospità su de un server Wikimedia, tipo: $1",
+	"image-alt-text": "L’imagine orixenal",
+	"language-code": "Lengue (facoltatìo)",
+	"engine": "Motór OCR",
+	"submit": "Trascrivi",
+	"copy-to-clipboard": "Copia sui apunti",
+	"copied-to-clipboard": "Copià!",
+	"documentation": "Documentasion",
+	"version": "Versión $1",
+	"report-issue": "Segnała on problema",
+	"langs-placeholder": "Lassa vodo par capir en automàtego la lengoa."
+}
