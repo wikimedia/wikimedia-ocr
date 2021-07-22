@@ -3,7 +3,9 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
+use App\Engine\EngineBase;
 use App\Engine\EngineFactory;
+use App\Engine\EngineResult;
 use App\Engine\GoogleCloudVisionEngine;
 use App\Engine\TesseractEngine;
 use App\Exception\EngineNotFoundException;
@@ -158,7 +160,11 @@ class OcrController extends AbstractController
         static::$params['image_hosts'] = $this->intuition->listToText(static::$params['image_hosts']);
 
         if ($this->imageUrl) {
-            static::$params['text'] = $this->getText();
+            $result = $this->getResult(EngineBase::ERROR_ON_INVALID_LANGS);
+            static::$params['text'] = $result->getText();
+            foreach ($result->getWarnings() as $warning) {
+                $this->addFlash('warning', $warning);
+            }
         }
 
         return $this->render('output.html.twig', static::$params);
@@ -172,9 +178,15 @@ class OcrController extends AbstractController
     public function apiAction(): JsonResponse
     {
         $this->setup();
-        return $this->getApiResponse(array_merge(static::$params, [
-            'text' => $this->getText(),
-        ]));
+        $result = $this->getResult(EngineBase::WARN_ON_INVALID_LANGS);
+        $responseParams = array_merge(static::$params, [
+            'text' => $result->getText(),
+        ]);
+        $warnings = $result->getWarnings();
+        if ($warnings) {
+            $responseParams['warnings'] = $warnings;
+        }
+        return $this->getApiResponse($responseParams);
     }
 
     /**
@@ -218,9 +230,10 @@ class OcrController extends AbstractController
 
     /**
      * Get and cache the transcription based on options set in static::$params.
-     * @return string
+     * @param string $invalidLangsMode EngineBase::WARN_ON_INVALID_LANGS or EngineBase::ERROR_ON_INVALID_LANGS
+     * @return EngineResult
      */
-    private function getText(): string
+    private function getResult(string $invalidLangsMode): EngineResult
     {
         $cacheKey = md5(implode(
             '|',
@@ -229,12 +242,14 @@ class OcrController extends AbstractController
                 static::$params['engine'],
                 implode('|', static::$params['langs']),
                 static::$params['psm'],
+                // Warning messages are localized
+                $this->intuition->getLang(),
             ]
         ));
 
-        return $this->cache->get($cacheKey, function (ItemInterface $item) {
+        return $this->cache->get($cacheKey, function (ItemInterface $item) use ($invalidLangsMode) {
             $item->expiresAfter((int)$this->getParameter('cache_ttl'));
-            return $this->engine->getText($this->imageUrl, static::$params['langs']);
+            return $this->engine->getResult($this->imageUrl, $invalidLangsMode, static::$params['langs']);
         });
     }
 }

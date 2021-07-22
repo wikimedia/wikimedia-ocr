@@ -11,6 +11,9 @@ abstract class EngineBase
 
     public const ALLOWED_FORMATS = ['png', 'jpeg', 'jpg', 'gif', 'tiff', 'tif', 'webp'];
 
+    public const WARN_ON_INVALID_LANGS = 'warn';
+    public const ERROR_ON_INVALID_LANGS = 'error';
+
     /** @var string[] The host names for the images. */
     protected $imageHosts = [];
 
@@ -62,10 +65,11 @@ abstract class EngineBase
     /**
      * Get transcribed text from the given image.
      * @param string $imageUrl
+     * @param string $invalidLangsMode
      * @param string[]|null $langs
-     * @return string
+     * @return EngineResult
      */
-    abstract public function getText(string $imageUrl, ?array $langs = null): string;
+    abstract public function getResult(string $imageUrl, string $invalidLangsMode, ?array $langs = null): EngineResult;
 
     /**
      * Get the language list from langs.json
@@ -165,18 +169,36 @@ abstract class EngineBase
 
     /**
      * @param string[]|null $langs
-     * @throws OcrException
+     * @param string $invalidLangsMode
+     * @return string[][] [ valid languages in $langs, invalid languages in $langs ]
+     * @throws OcrException If there are invalid languages and $invalidLangsMode is self::ERROR_ON_INVALID_LANGS
      */
-    public function validateLangs(?array $langs): void
+    public function filterValidLangs(?array $langs, string $invalidLangsMode): array
     {
-        $invalidLangs = array_diff($langs, $this->getValidLangs());
-
-        if (count($invalidLangs)) {
-            $invalidLangs = array_values($invalidLangs);
-            throw new OcrException('langs-param-error', [
-                count($invalidLangs),
-                $this->intuition->listToText($invalidLangs),
-            ]);
+        $invalidLangs = array_values(array_diff($langs, $this->getValidLangs()));
+        if (!$invalidLangs) {
+            return [ $langs, [] ];
         }
+
+        if (self::WARN_ON_INVALID_LANGS === $invalidLangsMode) {
+            return [ array_values(array_diff($langs, $invalidLangs)), $invalidLangs ];
+        }
+
+        throw new OcrException('langs-param-error', [
+            count($invalidLangs),
+            $this->intuition->listToText($invalidLangs),
+        ]);
+    }
+
+    /**
+     * @param string[] $invalidLangs
+     * @return string
+     */
+    protected function getInvalidLangsWarning(array $invalidLangs): string
+    {
+        return $this->intuition->msg(
+            'engine-invalid-langs-warning',
+            [ 'variables' => [ $this->intuition->listToText($invalidLangs) ] ]
+        );
     }
 }

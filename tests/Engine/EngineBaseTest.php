@@ -3,10 +3,12 @@ declare(strict_types = 1);
 
 namespace App\Tests\Engine;
 
+use App\Engine\EngineBase;
 use App\Engine\GoogleCloudVisionEngine;
 use App\Engine\TesseractEngine;
 use App\Exception\OcrException;
 use App\Tests\OcrTestCase;
+use Generator;
 use Krinkle\Intuition\Intuition;
 use Symfony\Component\HttpClient\MockHttpClient;
 use thiagoalessio\TesseractOCR\TesseractOCR;
@@ -71,44 +73,61 @@ class EngineBaseTest extends OcrTestCase
     }
 
     /**
-     * @covers EngineBase::validateLangs for Google Engine
+     * @covers EngineBase::filterValidLangs for Google Engine
      */
-    public function testValidateLangsGoogleEngine(): void
+    public function testFilterValidLangsGoogleEngine(): void
     {
-        // Should not throw an exception.
-        $this->googleEngine->validateLangs(['en', 'es']);
+        $allValid = ['en', 'es'];
+        $allValidPlusInvalid = array_merge($allValid, ['this-is-invalid']);
+        $this->assertSame(
+            $allValid,
+            $this->googleEngine->filterValidLangs($allValid, EngineBase::WARN_ON_INVALID_LANGS)[0]
+        );
+        $this->assertSame(
+            $allValid,
+            $this->googleEngine->filterValidLangs($allValidPlusInvalid, EngineBase::WARN_ON_INVALID_LANGS)[0]
+        );
 
-        // Should throw an exception. 'sp` is not a valid lang
-        static::expectException(OcrException::class);
-        $this->googleEngine->validateLangs(['en', 'sp']);
+        $this->expectException(OcrException::class);
+        $this->googleEngine->filterValidLangs($allValidPlusInvalid, EngineBase::ERROR_ON_INVALID_LANGS);
     }
 
     /**
      * @param string[] $langs Language codes
-     * @param bool $valid
-     * @covers EngineBase::validateLangs for Tesseract Engine
+     * @param string[] $validLangs
+     * @param string $invalidLangsMode
+     * @covers EngineBase::filterValidLangs for Tesseract Engine
      * @dataProvider provideTesseractLangs
      */
-    public function testValidateLangsTesseractEngine(array $langs, bool $valid): void
+    public function testFilterValidLangsTesseractEngine(array $langs, array $validLangs, string $invalidLangsMode): void
     {
-        if (!$valid) {
-            $this->expectException(OcrException::class);
+        if (EngineBase::WARN_ON_INVALID_LANGS === $invalidLangsMode) {
+            $this->assertSame($validLangs, $this->tesseractEngine->filterValidLangs($langs, $invalidLangsMode)[0]);
+        } else {
+            if ($langs !== $validLangs) {
+                $this->expectException(OcrException::class);
+            }
+            $this->tesseractEngine->filterValidLangs($langs, $invalidLangsMode);
+            $this->addToAssertionCount(1);
         }
-        $this->tesseractEngine->validateLangs($langs);
-        $this->addToAssertionCount(1);
     }
 
     /**
-     * @return array<array<string[]|bool>>
+     * @return Generator
      */
-    public function provideTesseractLangs(): array
+    public function provideTesseractLangs(): Generator
     {
-        return [
-            'valid' => [ [ 'en', 'fr' ], true ],
-            'invalid' => [ [ 'foo', 'fr' ], false ],
+        // Format is [ [ langs to test ], [ subset of valid languages ] ]
+        $baseCases = [
+            'all valid' => [ [ 'en', 'fr' ], [ 'en', 'fr' ] ],
+            'one invalid' => [ [ 'foo', 'fr' ], [ 'fr' ] ],
             // 'equ' is excluded on purpose: T284827
-            'intentionally excluded' => [ [ 'equ' ], false ],
+            'intentionally excluded' => [ [ 'equ' ], [] ],
         ];
+        foreach ($baseCases as $name => $params) {
+            yield $name.', no exception' => array_merge($params, [ EngineBase::WARN_ON_INVALID_LANGS ]);
+            yield $name.', throw exception' => array_merge($params, [ EngineBase::ERROR_ON_INVALID_LANGS ]);
+        }
     }
 
     /**

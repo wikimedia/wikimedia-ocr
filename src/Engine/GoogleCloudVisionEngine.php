@@ -41,16 +41,15 @@ class GoogleCloudVisionEngine extends EngineBase
      * @inheritDoc
      * @throws OcrException
      */
-    public function getText(string $imageUrl, ?array $langs = null): string
+    public function getResult(string $imageUrl, string $invalidLangsMode, ?array $langs = null): EngineResult
     {
         $this->checkImageUrl($imageUrl);
 
-        // Validate the languages
-        $this->validateLangs($langs);
+        [ $validLangs, $invalidLangs ] = $this->filterValidLangs($langs, $invalidLangsMode);
 
         $imageContext = new ImageContext();
-        if (null !== $langs) {
-            $imageContext->setLanguageHints($this->getLangCodes($langs));
+        if ($validLangs) {
+            $imageContext->setLanguageHints($this->getLangCodes($validLangs));
         }
 
         $response = $this->imageAnnotator->textDetection($imageUrl, ['imageContext' => $imageContext]);
@@ -60,6 +59,8 @@ class GoogleCloudVisionEngine extends EngineBase
         }
 
         $annotation = $response->getFullTextAnnotation();
-        return $annotation instanceof TextAnnotation ? $annotation->getText() : '';
+        $resText = $annotation instanceof TextAnnotation ? $annotation->getText() : '';
+        $warnings = $invalidLangs ? [ $this->getInvalidLangsWarning($invalidLangs) ] : [];
+        return new EngineResult($resText, $warnings);
     }
 }
