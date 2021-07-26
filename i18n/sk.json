@@ -14,6 +14,7 @@
 	"language-code": "Jazyky (voliteľné)",
 	"engine": "OCR motor",
 	"engine-not-found-warning": "Požadovaný prostriedok „ $1 “ sa nenašiel. Namiesto toho sa používa predvolený modul „ $2",
+	"engine-invalid-langs-warning": "Nasledujúce jazyky sú neplatné alebo nepodporované a boli ignorované: $1",
 	"submit": "Prepísať",
 	"copy-to-clipboard": "Skopírovať do schránky",
 	"copied-to-clipboard": "Skopírované!",

@@ -17,6 +17,7 @@
 	"language-code": "Langues (facultatif)",
 	"engine": "Moteur OCR",
 	"engine-not-found-warning": "Le moteur '$1' demandé n’a pas été trouvé. Utilisation du moteur par défaut '$2' à la place.",
+	"engine-invalid-langs-warning": "Les langues suivantes ne sont pas valides ou non supportées par le moteur, et ont été ignorées : $1",
 	"submit": "Transcrire",
 	"copy-to-clipboard": "Copier dans le presse-papier",
 	"copied-to-clipboard": "Copié !",

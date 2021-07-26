@@ -14,6 +14,7 @@
 	"language-code": "Diller (isteğe bağlı)",
 	"engine": "OCR motoru",
 	"engine-not-found-warning": "İstenen motor ' $1 ' bulunamadı. Bunun yerine varsayılan motor ' $2 ' kullanılıyor.",
+	"engine-invalid-langs-warning": "Aşağıdaki diller geçersizdir veya altyapı tarafından desteklenmez ve yok sayılır: $1",
 	"submit": "Transkript et",
 	"copy-to-clipboard": "Panoya kopyala",
 	"copied-to-clipboard": "Kopyalandı!",

@@ -2,11 +2,13 @@
 	"@metadata": {
 		"authors": [
 			")8",
+			"Crowley666",
 			"GuoPC",
 			"Zhang8569"
 		]
 	},
 	"title": "维基媒体OCR",
+	"subtitle": "从图片提取文本",
 	"image-url": "图像URL",
 	"image-url-help": "插入托管在维基媒体服务器上的图像URL，例如：$1",
 	"image-url-error": "图片URL必须以{{PLURAL:$1|以下域名|以下域名之一}}开头并以有效的文件扩展名结尾：$2",
@@ -14,7 +16,8 @@
 	"language-code": "语言（可选）",
 	"engine": "OCR引擎",
 	"engine-not-found-warning": "请求的引擎“$1”未找到。改用默认引擎“$2”。",
-	"submit": "提交",
+	"engine-invalid-langs-warning": "以下语言无效或不受引擎支持而被忽略：$1",
+	"submit": "转录",
 	"copy-to-clipboard": "复制到剪贴板",
 	"copied-to-clipboard": "已复制！",
 	"google-error": "Google服务返回错误：$1",
@@ -22,6 +25,7 @@
 	"documentation": "文档",
 	"version": "版本$1",
 	"report-issue": "报告问题",
+	"langs-placeholder": "留空以进行自动语言检测。",
 	"langs-param-error": "以下{{PLURAL:$1|语言}}不受OCR引擎支持：$2",
 	"tesseract-options": "Tesseract选项",
 	"tesseract-psm-label": "页面拆分方式",

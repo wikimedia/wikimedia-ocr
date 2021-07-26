@@ -12,6 +12,7 @@
 	"language-code": "Sprachen (optional)",
 	"engine": "OCR-Modul",
 	"engine-not-found-warning": "Die angeforderte Engine „$1“ wurde nicht gefunden. Verwende stattdessen die Standard-Engine „$2“.",
+	"engine-invalid-langs-warning": "Die folgenden Sprachen sind ungültig oder werden von der Engine nicht unterstützt und wurden ignoriert: $1",
 	"submit": "Transkribieren",
 	"copy-to-clipboard": "In die Zwischenablage kopieren",
 	"copied-to-clipboard": "Kopiert!",
