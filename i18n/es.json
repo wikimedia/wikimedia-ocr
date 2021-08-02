@@ -5,7 +5,8 @@
 			"Dmaza",
 			"Jackiezelaya",
 			"Mpayansilva",
-			"Ninovolador"
+			"Ninovolador",
+			"Superzerocool"
 		]
 	},
 	"title": "WikimediaOCR",
@@ -18,6 +19,7 @@
 	"language-code": "Código de idioma de dos letras (opcional):",
 	"engine": "Motor de OCR:",
 	"engine-not-found-warning": "No se encontró el motor solicitado '$1'. Usando el motor predeterminado '$2' en su lugar.",
+	"engine-invalid-langs-warning": "Los siguientes idiomas son no válidos o no están soportados por el motor y se han ignorado: $1",
 	"submit": "Transcribir",
 	"copy-to-clipboard": "Copiar en el portapapeles",
 	"copied-to-clipboard": "¡Copiado!",
