@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Kareyac",
+			"Okras",
 			"Pplex.vhs",
 			"Thothsum"
 		]
@@ -15,12 +16,18 @@
 	"image-alt-text": "Исходное изображение",
 	"language-code": "Языки (необязательно)",
 	"engine": "Движок OCR",
+	"engine-not-found-warning": "Запрошенный движок '$1' не найден. Вместо этого используется движок по умолчанию — '$2'.",
+	"engine-invalid-langs-warning": "Следующие языки недействительны или не поддерживаются движком и были проигнорированы: $1",
 	"submit": "Расшифровать",
 	"copy-to-clipboard": "Скопировать в буфер обмена",
 	"copied-to-clipboard": "Скопировано!",
+	"google-error": "Служба Google вернула ошибку: $1",
+	"image-retrieval-failed": "Не удалось получить изображение: $1",
 	"documentation": "Документация",
 	"version": "Версия $1",
 	"report-issue": "Сообщить об ошибке",
 	"langs-placeholder": "Оставьте поле пустым для автоматического определения языка.",
-	"langs-param-error": "Следующие {{PLURAL:$1|языки}} не поддерживаются движком ОРТ: $2"
+	"langs-param-error": "Следующие {{PLURAL:$1|языки}} не поддерживаются движком ОРТ: $2",
+	"tesseract-options": "Настройки Tesseract",
+	"tesseract-psm-label": "Метод сегментации страницы"
 }
