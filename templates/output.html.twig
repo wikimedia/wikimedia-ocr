@@ -39,19 +39,27 @@
         {% include '_tesseract_options.html.twig' with {engine: engine} %}
 
         <div class="form-group submit-btn">
+            <input type="hidden" name="crop[x]" value="{% if crop.x is defined %}{{ crop.x }}{% endif %}" />
+            <input type="hidden" name="crop[y]" value="{% if crop.y is defined %}{{ crop.y }}{% endif %}" />
+            <input type="hidden" name="crop[width]" value="{% if crop.width is defined %}{{ crop.width }}{% endif %}" />
+            <input type="hidden" name="crop[height]" value="{% if crop.height is defined %}{{ crop.height }}{% endif %}" />
             <input type="submit" value="{{ msg( 'submit' ) }}" class="btn btn-info" />
         </div>
     </form>
 
     {% if text is defined %}
-        <hr/>
-        <div class="row">
-            <div class="col-md-6">
-                <img id="source-image" class="img-responsive" src="{{ app.request.get('image') }}" alt="{{ msg('img-alt-text') }}" />
-            </div>
-            <div class="col-md-6">
-                <button class="btn btn-info copy-button" data-copied-text="{{ msg('copied-to-clipboard') }}">{{ msg( 'copy-to-clipboard' ) }}</button>
-                <textarea class="form-control" rows="{{ text|textarea_rows }}" id="text">{{ text }}</textarea>
+        <div class="ocr-output">
+            <hr/>
+            <div class="row">
+                <div class="col-md-6">
+                    <div><!-- This div is required for Cropper.js -->
+                        <img id="source-image" class="img-responsive" src="{{ app.request.get('image') }}" alt="{{ msg('img-alt-text') }}" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-info copy-button" data-copied-text="{{ msg('copied-to-clipboard') }}">{{ msg( 'copy-to-clipboard' ) }}</button>
+                    <textarea class="form-control" rows="{{ text|textarea_rows }}" id="text">{{ text }}</textarea>
+                </div>
             </div>
         </div>
     {% endif %}

@@ -4,7 +4,10 @@ declare(strict_types = 1);
 namespace App\Engine;
 
 use App\Exception\OcrException;
+use Imagine\Gd\Imagine;
 use Krinkle\Intuition\Intuition;
+use Symfony\Component\HttpClient\Exception\ClientException;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 abstract class EngineBase
 {
@@ -14,6 +17,9 @@ abstract class EngineBase
     public const WARN_ON_INVALID_LANGS = 'warn';
     public const ERROR_ON_INVALID_LANGS = 'error';
 
+    /** @const Download the image data to the web server. */
+    public const DO_DOWNLOAD_IMAGE = true;
+
     /** @var string[] The host names for the images. */
     protected $imageHosts = [];
 
@@ -22,6 +28,9 @@ abstract class EngineBase
 
     /** @var string */
     protected $projectDir;
+
+    /** @var HttpClientInterface */
+    private $httpClient;
 
     /** @var string[][] Local PHP array copy of langs.json */
     protected $langList;
@@ -50,10 +59,11 @@ abstract class EngineBase
      * @param Intuition $intuition
      * @param string $projectDir
      */
-    public function __construct(Intuition $intuition, string $projectDir)
+    public function __construct(Intuition $intuition, string $projectDir, HttpClientInterface $httpClient)
     {
         $this->intuition = $intuition;
         $this->projectDir = $projectDir;
+        $this->httpClient = $httpClient;
     }
 
     /**
@@ -66,10 +76,16 @@ abstract class EngineBase
      * Get transcribed text from the given image.
      * @param string $imageUrl
      * @param string $invalidLangsMode
+     * @param int[] $crop
      * @param string[]|null $langs
      * @return EngineResult
      */
-    abstract public function getResult(string $imageUrl, string $invalidLangsMode, ?array $langs = null): EngineResult;
+    abstract public function getResult(
+        string $imageUrl,
+        string $invalidLangsMode,
+        array $crop,
+        ?array $langs = null
+    ): EngineResult;
 
     /**
      * Get the language list from langs.json
@@ -200,5 +216,42 @@ abstract class EngineBase
             'engine-invalid-langs-warning',
             [ 'variables' => [ $this->intuition->listToText($invalidLangs) ] ]
         );
+    }
+
+    /**
+     * @param string $imageUrl The original image URL.
+     * @param int[] $crop Array with keys `x, `y`, `width` and `height`.
+     * @param ?bool $downloadMode Whether to download the image or not.
+     * @return Image
+     * @throws OcrException If the image couldn't be fetched.
+     */
+    public function getImage(string $imageUrl, array $crop, ?bool $downloadMode = false): Image
+    {
+        $image = new Image($imageUrl, $crop);
+
+        if (self::DO_DOWNLOAD_IMAGE !== $downloadMode && !$image->needsCropping()) {
+            return $image;
+        }
+
+        $imageResponse = $this->httpClient->request('GET', $image->getUrl());
+        try {
+            $data = $imageResponse->getContent();
+        } catch (ClientException $exception) {
+            throw new OcrException('image-retrieval-failed', [$exception->getMessage()]);
+        }
+
+        if (!$image->needsCropping()) {
+            // If it doesn't need cropping, use the full image's data.
+            $image->setData($data);
+            $image->setSize((int) $imageResponse->getHeaders()['content-length'][0]);
+        } else {
+            // Otherwise, crop it.
+            $imagine = new Imagine();
+            $loadedImage = $imagine->load($data);
+            $croppedImage = $image->getCrop()->apply($loadedImage);
+            $image->setData($croppedImage->get('jpg'));
+        }
+
+        return $image;
     }
 }

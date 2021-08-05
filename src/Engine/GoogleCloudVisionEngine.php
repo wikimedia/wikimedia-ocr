@@ -8,6 +8,7 @@ use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use Google\Cloud\Vision\V1\ImageContext;
 use Google\Cloud\Vision\V1\TextAnnotation;
 use Krinkle\Intuition\Intuition;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class GoogleCloudVisionEngine extends EngineBase
 {
@@ -23,9 +24,13 @@ class GoogleCloudVisionEngine extends EngineBase
      * @param Intuition $intuition
      * @param string $projectDir
      */
-    public function __construct(string $keyFile, Intuition $intuition, string $projectDir)
-    {
-        parent::__construct($intuition, $projectDir);
+    public function __construct(
+        string $keyFile,
+        Intuition $intuition,
+        string $projectDir,
+        HttpClientInterface $httpClient
+    ) {
+        parent::__construct($intuition, $projectDir, $httpClient);
         $this->imageAnnotator = new ImageAnnotatorClient(['credentials' => $keyFile]);
     }
 
@@ -41,8 +46,12 @@ class GoogleCloudVisionEngine extends EngineBase
      * @inheritDoc
      * @throws OcrException
      */
-    public function getResult(string $imageUrl, string $invalidLangsMode, ?array $langs = null): EngineResult
-    {
+    public function getResult(
+        string $imageUrl,
+        string $invalidLangsMode,
+        array $crop,
+        ?array $langs = null
+    ): EngineResult {
         $this->checkImageUrl($imageUrl);
 
         [ $validLangs, $invalidLangs ] = $this->filterValidLangs($langs, $invalidLangsMode);
@@ -52,7 +61,9 @@ class GoogleCloudVisionEngine extends EngineBase
             $imageContext->setLanguageHints($this->getLangCodes($validLangs));
         }
 
-        $response = $this->imageAnnotator->textDetection($imageUrl, ['imageContext' => $imageContext]);
+        $image = $this->getImage($imageUrl, $crop);
+        $imageUrlOrData = $image->hasData() ? $image->getData() : $image->getUrl();
+        $response = $this->imageAnnotator->textDetection($imageUrlOrData, ['imageContext' => $imageContext]);
 
         if ($response->getError()) {
             throw new OcrException('google-error', [$response->getError()->getMessage()]);
