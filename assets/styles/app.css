@@ -69,8 +69,29 @@ fieldset,
 	margin-top: 40px;
 }
 
+.image-row-outer {
+	position: relative;
+}
+
 .copy-button {
 	position: absolute;
+	/* Relative to .image-row-outer above. */
 	right: 30px;
 	top: 15px;
+}
+
+.image-row {
+	display: flex;
+}
+
+.image-row .image {
+	flex: 1;
+	margin-right: 0.5em;
+}
+
+.image-row .text {
+	flex: 1;
+	/* Flexbox here to stretch textarea (the only child of .text) to full height. */
+	display: flex;
+	margin-left: 0.5em;
 }

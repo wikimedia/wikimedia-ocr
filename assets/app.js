@@ -64,9 +64,4 @@ $(function () {
             $copyButton.text($copyButton.data('copied-text'));
         });
     }
-
-    // Make textarea match height of image.
-    $('#text').css({
-        height: $('#source-image').outerHeight(),
-    });
 });

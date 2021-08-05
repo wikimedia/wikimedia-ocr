@@ -45,14 +45,16 @@
 
     {% if text is defined %}
         <hr/>
-        <div class="row">
-            <div class="col-md-6">
-                <img id="source-image" class="img-responsive" src="{{ app.request.get('image') }}" alt="{{ msg('img-alt-text') }}" />
+        <div class="image-row-outer">
+            <div class="image-row">
+                <div class="image">
+                    <img id="source-image" class="img-responsive" src="{{ app.request.get('image') }}" alt="{{ msg('img-alt-text') }}" />
+                </div>
+                <div class="text">
+                    <textarea class="form-control" rows="{{ text|textarea_rows }}" id="text">{{ text }}</textarea>
+                </div>
             </div>
-            <div class="col-md-6">
-                <button class="btn btn-info copy-button" data-copied-text="{{ msg('copied-to-clipboard') }}">{{ msg( 'copy-to-clipboard' ) }}</button>
-                <textarea class="form-control" rows="{{ text|textarea_rows }}" id="text">{{ text }}</textarea>
-            </div>
+            <button class="btn btn-info copy-button" data-copied-text="{{ msg('copied-to-clipboard') }}">{{ msg( 'copy-to-clipboard' ) }}</button>
         </div>
     {% endif %}
 {% endblock %}
