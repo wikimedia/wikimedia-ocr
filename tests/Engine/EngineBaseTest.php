@@ -28,7 +28,8 @@ class EngineBaseTest extends OcrTestCase
         $this->googleEngine = new GoogleCloudVisionEngine(
             dirname(__DIR__).'/fixtures/google-account-keyfile.json',
             $intuition,
-            $this->projectDir
+            $this->projectDir,
+            new MockHttpClient()
         );
 
         $tesseractOCR = $this->getMockBuilder(TesseractOCR::class)->disableOriginalConstructor()->getMock();

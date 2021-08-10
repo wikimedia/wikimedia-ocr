@@ -54,6 +54,7 @@ class OcrController extends AbstractController
         'engine' => self::DEFAULT_ENGINE,
         'langs' => [],
         'psm' => TesseractEngine::DEFAULT_PSM,
+        'crop' => [],
     ];
 
     /** @var string */
@@ -104,6 +105,11 @@ class OcrController extends AbstractController
         $this->imageUrl = (string)$this->request->query->get('image');
         static::$params['langs'] = $this->getLangs($this->request);
         static::$params['image_hosts'] = $this->engine->getImageHosts();
+        $crop = $this->request->query->get('crop');
+        if (!is_array($crop)) {
+            $crop = [];
+        }
+        static::$params['crop'] = array_map('intval', $crop);
     }
 
     /**
@@ -235,12 +241,14 @@ class OcrController extends AbstractController
      */
     private function getResult(string $invalidLangsMode): EngineResult
     {
+        ksort(static::$params['crop']);
         $cacheKey = md5(implode(
             '|',
             [
                 $this->imageUrl,
                 static::$params['engine'],
                 implode('|', static::$params['langs']),
+                implode('|', array_map('strval', static::$params['crop'])),
                 static::$params['psm'],
                 // Warning messages are localized
                 $this->intuition->getLang(),
@@ -249,7 +257,12 @@ class OcrController extends AbstractController
 
         return $this->cache->get($cacheKey, function (ItemInterface $item) use ($invalidLangsMode) {
             $item->expiresAfter((int)$this->getParameter('cache_ttl'));
-            return $this->engine->getResult($this->imageUrl, $invalidLangsMode, static::$params['langs']);
+            return $this->engine->getResult(
+                $this->imageUrl,
+                $invalidLangsMode,
+                static::$params['crop'],
+                static::$params['langs']
+            );
         });
     }
 }

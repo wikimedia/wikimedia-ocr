@@ -5,6 +5,9 @@ import 'select2';
 const $ = require('jquery');
 const $select2 = $('#lang');
 
+const Cropper = require('cropperjs');
+import 'cropperjs/dist/cropper.css';
+
 /**
  * Populate and re-initialize the Select2 input with languages supported by the given engine.
  * @param {String} engine Supported engine ID such as 'google' or 'tesseract'.
@@ -65,8 +68,43 @@ $(function () {
         });
     }
 
-    // Make textarea match height of image.
-    $('#text').css({
-        height: $('#source-image').outerHeight(),
+    // Cropper.
+    const img = document.getElementById('source-image'),
+        x = document.querySelector('[name="crop[x]"]'),
+        y = document.querySelector('[name="crop[y]"]'),
+        width  = document.querySelector('[name="crop[width]"]'),
+        height = document.querySelector('[name="crop[height]"]');
+    new Cropper(img, {
+        viewMode: 2,
+        // Only show a crop area if it is defined.
+        autoCrop: width.value > 0 && height.value > 0,
+        responsive: true,
+        ready () {
+            // Make textarea match height of image.
+            $('#text').css({
+                height: this.cropper.getContainerData().height,
+            });
+        },
+        data: {
+            x: Number.parseFloat(x.value),
+            y: Number.parseFloat(y.value),
+            width: Number.parseFloat(width.value),
+            height: Number.parseFloat(height.value),
+        },
+        crop(event) {
+            x.value = Math.round(event.detail.x);
+            y.value = Math.round(event.detail.y);
+            width.value = Math.round(event.detail.width);
+            height.value = Math.round(event.detail.height);
+        }
+    });
+
+    // When setting a new image URL, remove the preview and the crop dimensions.
+    $('[name=image]').on('change',  e => {
+        $('.ocr-output').remove();
+        x.value = null;
+        y.value = null;
+        width.value = null;
+        height.value = null;
     });
 });

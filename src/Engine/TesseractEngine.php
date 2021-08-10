@@ -5,14 +5,11 @@ namespace App\Engine;
 
 use App\Exception\OcrException;
 use Krinkle\Intuition\Intuition;
-use Symfony\Component\HttpClient\Exception\ClientException;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use thiagoalessio\TesseractOCR\TesseractOCR;
 
 class TesseractEngine extends EngineBase
 {
-    /** @var HttpClientInterface */
-    private $httpClient;
 
     /** @var TesseractOCR */
     private $ocr;
@@ -36,8 +33,7 @@ class TesseractEngine extends EngineBase
         string $projectDir,
         TesseractOCR $tesseractOcr
     ) {
-        parent::__construct($intuition, $projectDir);
-        $this->httpClient = $httpClient;
+        parent::__construct($intuition, $projectDir, $httpClient);
         $this->ocr = $tesseractOcr;
     }
 
@@ -51,23 +47,21 @@ class TesseractEngine extends EngineBase
 
     /**
      * @inheritDoc
-     * @throws OcrException
      */
-    public function getResult(string $imageUrl, string $invalidLangsMode, ?array $langs = null): EngineResult
-    {
+    public function getResult(
+        string $imageUrl,
+        string $invalidLangsMode,
+        array $crop,
+        ?array $langs = null
+    ): EngineResult {
         // Check the URL and fetch the image data.
         $this->checkImageUrl($imageUrl);
 
         [ $validLangs, $invalidLangs ] = $this->filterValidLangs($langs, $invalidLangsMode);
 
-        $imageResponse = $this->httpClient->request('GET', $imageUrl);
-        try {
-            $imageContent = $imageResponse->getContent();
-        } catch (ClientException $exception) {
-            throw new OcrException('image-retrieval-failed', [$exception->getMessage()]);
-        }
+        $image = $this->getImage($imageUrl, $crop, self::DO_DOWNLOAD_IMAGE);
+        $this->ocr->imageData($image->getData(), $image->getSize());
 
-        $this->ocr->imageData($imageContent, $imageResponse->getHeaders()['content-length'][0]);
         if ($validLangs) {
             $this->ocr->lang(...$this->getLangCodes($validLangs));
         }
