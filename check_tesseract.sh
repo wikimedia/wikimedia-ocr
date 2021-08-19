@@ -23,7 +23,7 @@ fi
 CUR_TESSERACT_VERSION=$(tesseract --version | head -n1 | sed "s/tesseract v/tesseract /")
 CUR_MIN_VERSION=$( echo -e "$MIN_TESSERACT_VERSION\n$CUR_TESSERACT_VERSION" | sort -V | head -n1 )
 if [ "$CUR_MIN_VERSION" != "$MIN_TESSERACT_VERSION" ]; then
-  echo "Tesseract version mismatch: current is ${CUR_TESSERACT_VERSION}, minumum required is ${MIN_TESSERACT_VERSION}"
+  echo "Tesseract version mismatch: current is ${CUR_TESSERACT_VERSION}, minimum required is ${MIN_TESSERACT_VERSION}"
   exit 1
 else
   echo "Tesseract version OK"
