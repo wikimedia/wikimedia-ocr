@@ -12,3 +12,9 @@ Documentation:
 * For contributors: [CONTRIBUTING.md](https://github.com/wikimedia/wikimedia-ocr/blob/main/CONTRIBUTING.md)
 
 ![CI](https://github.com/wikimedia/wikimedia-ocr/workflows/CI/badge.svg)
+
+## Licenses
+
+* Wikimedia OCR is GPL 3.0 or later (see the LICENSE file)
+* [Crop_-_The_Noun_Project.svg](https://commons.wikimedia.org/wiki/File:Crop_-_The_Noun_Project.svg) is CC0
+* [OOjs_UI_icon_move.svg](https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_move.svg) is CC-BY-SA-4.0 

@@ -69,8 +69,11 @@ fieldset,
 	margin-top: 40px;
 }
 
-.copy-button {
-	position: absolute;
-	right: 30px;
-	top: 15px;
+.output-buttons {
+	text-align: right;
+	margin-bottom: 10px;
+}
+
+.nojs .nojs-hide {
+	display: none;
 }
