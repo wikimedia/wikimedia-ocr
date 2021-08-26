@@ -10,6 +10,7 @@ use App\Engine\GoogleCloudVisionEngine;
 use App\Engine\TesseractEngine;
 use App\Exception\EngineNotFoundException;
 use Krinkle\Intuition\Intuition;
+use OpenApi\Annotations as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -177,8 +178,42 @@ class OcrController extends AbstractController
     }
 
     /**
-     * @Route("/api", name="api")
-     * @Route("/api.php", name="apiPhp")
+     * @Route("/api", name="api", methods={"GET"})
+     * @Route("/api.php", name="apiPhp", methods={"GET"})
+     * @OA\Parameter(
+     *     name="engine",
+     *     in="query",
+     *     description="The engine to use, either `tesseract` or `google`.",
+     *     example="tesseract",
+     *     @OA\Schema(type="string")
+     * )
+     * @OA\Parameter(
+     *     name="image",
+     *     in="query",
+     *     description="The image URL.",
+     *     @OA\Schema(type="string")
+     * )
+     * @OA\Parameter(
+     *     name="langs",
+     *     in="query",
+     *     description="List of language codes.
+                        Can be left empty, in which case the engine will do its best
+                        (useful for unsupported languages).",
+     *     @OA\JsonContent(type="array", @OA\Items(type="string"))
+     * )
+     * @OA\Parameter(
+     *     name="psm",
+     *     in="query",
+     *     description="The Page Segmentation Mode for Tesseract.",
+     *     @OA\Schema(type="int")
+     * )
+     * @OA\Parameter(
+     *     name="crop",
+     *     in="query",
+     *     description="Crop parameters: an array with `x`, `y`, `width`, and `height` integer keys.",
+     *     @OA\Schema(type="array", @OA\Items(type="int"))
+     * )
+     * @OA\Response(response=200, description="The OCR text, and other data.")
      * @return JsonResponse
      */
     public function apiAction(): JsonResponse
@@ -196,7 +231,15 @@ class OcrController extends AbstractController
     }
 
     /**
-     * @Route("/api/available_langs", name="apiLangs")
+     * @Route("/api/available_langs", name="apiLangs", methods={"GET"})
+     * @OA\Parameter(
+     *     name="engine",
+     *     in="query",
+     *     description="The engine to use, either `tesseract` or `google`.",
+     *     example="tesseract",
+     *     @OA\Schema(type="string")
+     * )
+     * @OA\Response(response=200, description="List of available language codes and names, in JSON format.")
      * @return JsonResponse
      */
     public function apiAvailableLangsAction(): JsonResponse
