@@ -17,6 +17,8 @@
 	"google-error": "La servado Google montris eroro: $1",
 	"image-retrieval-failed": "Faliis la rekupero dil imajo: $1",
 	"documentation": "Dokumentigo",
+	"api": "API",
+	"api-tooltip": "Videz la dokumentigo dil API",
 	"version": "Versiono $1",
 	"report-issue": "Informez problemo",
 	"langs-param-error": "La sequanta {{PLURAL:$1|linguo|lingui}} ne agnoskesas dal OCR-softwaro*: $2",

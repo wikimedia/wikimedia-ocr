@@ -21,6 +21,8 @@
 	"google-error": "Google hizmeti bir hata verdi: $1",
 	"image-retrieval-failed": "Resim alınamadı: $1",
 	"documentation": "Belgelendirme",
+	"api": "API",
+	"api-tooltip": "API belgelerini görüntüleyin",
 	"version": "Sürüm $1",
 	"report-issue": "Sorun bildirin",
 	"langs-placeholder": "Otomatik dil algılama için boş bırakın.",

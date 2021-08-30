@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Minh Nguyen",
+			"Nguyễn Mạnh An",
 			"Vinhtantran"
 		]
 	},
@@ -17,11 +18,15 @@
 	"engine-not-found-warning": "Không tìm thấy bộ máy ‘$1’ được yêu cầu. Hãy dùng bộ máy mặc định ‘$2’.",
 	"engine-invalid-langs-warning": "Các ngôn ngữ sau không hợp lệ hoặc bị bỏ qua vì bộ máy không hỗ trợ: $1",
 	"submit": "Tách văn bản",
+	"drag-mode-move-alt": "Biểu tượng biểu thị cho hành động 'di chuyển'.",
+	"drag-mode-crop-alt": "Biểu tượng biểu thị cho hành động 'cắt xén'.",
 	"copy-to-clipboard": "Chép vào bảng tạm",
 	"copied-to-clipboard": "Đã sao chép!",
 	"google-error": "Dịch vụ Google trả về lỗi: $1",
 	"image-retrieval-failed": "Truy xuất ảnh thất bại: $1",
 	"documentation": "Tài liệu hướng dẫn",
+	"api": "API",
+	"api-tooltip": "Xem tài liệu API",
 	"version": "Phiên bản $1",
 	"report-issue": "Báo cáo lỗi",
 	"langs-placeholder": "Để trống để tự động phát hiện ngôn ngữ.",
