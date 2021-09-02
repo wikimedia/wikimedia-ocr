@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"DraconicDark",
-			"Sabelöga"
+			"Sabelöga",
+			"WikiPhoenix"
 		]
 	},
 	"title": "Wikimedia OCR",
@@ -13,7 +14,8 @@
 	"language-code": "Språkkod på två bokstäver (valfri):",
 	"engine": "OCR-motor:",
 	"engine-not-found-warning": "Den begärda motorn '$1' hittades inte. Använd standardmotorn '$2' i stället.",
-	"submit": "Kör",
+	"submit": "Transkribera hela sidan",
+	"submit-crop": "Transkribera område",
 	"copy-to-clipboard": "Kopiera till urklipp",
 	"copied-to-clipboard": "Kopierades!",
 	"google-error": "Google-tjänsten returnerade ett fel: $1",
