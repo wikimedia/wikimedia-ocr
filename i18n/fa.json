@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Darafsh",
 			"Jeeputer"
 		]
 	},
+	"title": "WikimediaOCR",
 	"subtitle": "رونویسی متن از تصاویر",
 	"form-heading": "رونویسی یک تصویر",
 	"image-url": "نشانی تصویر",

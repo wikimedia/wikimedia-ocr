@@ -15,6 +15,7 @@
 	"copy-to-clipboard": "클립보드에 복사",
 	"copied-to-clipboard": "복사 완료!",
 	"documentation": "문서",
+	"api-tooltip": "API 문서 보기",
 	"version": "버전 $1",
 	"report-issue": "문제점 보고",
 	"langs-placeholder": "자동 언어 감지를 위해 공란으로 남깁니다."
