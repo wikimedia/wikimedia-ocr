@@ -14,7 +14,7 @@
 	"language-code": "Lènghe (facoltative)",
 	"engine": "Motore OCR",
 	"engine-not-found-warning": "'U motore cercate '$1' non g'ha state acchiate. Ause 'u motore predefinite '$2'.",
-	"submit": "Trascrive",
+	"submit": "Trascrive totte 'a pàgene",
 	"copy-to-clipboard": "Copie jndr'à l'appunde",
 	"copied-to-clipboard": "Copiate!",
 	"image-retrieval-failed": "Recupere de l'immaggine fallite: $1",
@@ -22,5 +22,6 @@
 	"version": "Versione $1",
 	"report-issue": "Segnale 'nu probbleme",
 	"tesseract-options": "Opziune de tesseract",
-	"tesseract-psm-label": "Metode d'a segmentazione d'a pàgene"
+	"tesseract-psm-label": "Metode d'a segmentazione d'a pàgene",
+	"tesseract-psm-12": "Teste sparse cu OSD."
 }
