@@ -23,5 +23,9 @@
 	"report-issue": "Segnale 'nu probbleme",
 	"tesseract-options": "Opziune de tesseract",
 	"tesseract-psm-label": "Metode d'a segmentazione d'a pàgene",
+	"tesseract-psm-7": "Tratte l'immaggine cumme 'na linèe de test singole.",
+	"tesseract-psm-8": "Tratte l'immaggine cumme 'na parole singole.",
+	"tesseract-psm-9": "Tratte l'immaggine cumme 'na parole singole jndr'à 'nu cerchie.",
+	"tesseract-psm-10": "Tratte l'immaggine cumme 'nu carattere singole.",
 	"tesseract-psm-12": "Teste sparse cu OSD."
 }
