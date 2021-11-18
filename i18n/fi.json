@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"MITO",
+			"Veikk0.ma"
+		]
+	},
+	"title": "WikimediaOCR",
+	"form-heading": "Muunna kuvassa oleva kirjoitus tekstiksi",
+	"image-url": "Kuvan verkko-osoite",
+	"image-url-help": "Lisää Wikimedian palvelimella sijaitsevan kuvan verkko-osoite, esim.: $1",
+	"image-url-error": "Kuvan verkko-osoitteen tulee alkaa {{PLURAL:$1|seuraavalla verkkotunnuksella|yhdellä seuraavista verkkotunnuksista}} ja loppua hyväksytyllä tiedostopäätteellä: $2",
+	"image-alt-text": "Alkuperäinen kuva",
+	"language-code": "Kielet (valinnainen)",
+	"engine": "Tekstintunnistusmoottori",
+	"engine-not-found-warning": "Pyydettyä moottoria '$1' ei löytynyt. Käytetään sen sijasta oletusmoottoria '$2'.",
+	"engine-invalid-langs-warning": "Seuraavat kielet ovat virheellisiä tai moottori ei tue niitä ja ne ohitettiin: $1",
+	"submit": "Muunna koko sivu tekstiksi",
+	"submit-crop": "Muunna alue tekstiksi",
+	"drag-help": "Valitse rajaustyökalu ja piirrä alla olevaan kuvaan suorakulmio muuntaaksesi vain yhden alueen sivulta tekstiksi.",
+	"drag-mode-move": "Raahaaminen siirtää kuvaa",
+	"drag-mode-move-alt": "Siirtämistoimintoa esittävä kuvake.",
+	"drag-mode-crop": "Raahaaminen luo uuden rajausalueen",
+	"drag-mode-crop-alt": "Rajaustoimintoa esittävä kuvake.",
+	"copy-to-clipboard": "Kopioi leikepöydälle",
+	"copied-to-clipboard": "Kopioitu!",
+	"google-error": "Googlen palvelu vastasi virheilmoituksella: $1",
+	"image-retrieval-failed": "Kuvan noutaminen epäonnistui: $1",
+	"documentation": "Käyttöohjeet",
+	"api-tooltip": "Katso rajapinnan dokumentaatio",
+	"version": "Versio $1",
+	"report-issue": "Tee vikailmoitus"
+}
