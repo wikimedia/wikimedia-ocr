@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ankry",
+			"Chrumps"
+		]
+	},
+	"subtitle": "Wyodrębnij tekst z obrazków",
+	"form-heading": "Wyodrębnij tekst",
+	"image-url": "URL obrazu",
+	"image-url-help": "Poda1 adres URL obrazka na serwerze Wikimedia, takim jak $1",
+	"image-alt-text": "Obrazek źródłowy",
+	"language-code": "Języki (opcjonalnie)",
+	"engine": "Silnik OCR",
+	"engine-not-found-warning": "Żądany silnik '$1' jest niedostępny. Będzie użyty silnik '$2'.",
+	"engine-invalid-langs-warning": "Następujące języki są nieprawidłowe lub niewspierane i zostaną zignorowane: $1",
+	"submit": "Wyodrębnij tekst z całej strony",
+	"submit-crop": "Wyodrębnij z obszaru",
+	"drag-help": "Aktywuj narzędzie przycinania i zaznacz na poniższym obrazku obszar, z którego będzie wyodrębniony tekst.",
+	"copy-to-clipboard": "Kopiuj do schowka",
+	"copied-to-clipboard": "Skopiowano!",
+	"google-error": "Usługa Google zgłosiła błąd: $1",
+	"image-retrieval-failed": "Nie udało się pobrać obrazka: $1",
+	"documentation": "Dokumentacja",
+	"api-tooltip": "Dokumentacja API",
+	"version": "Wersja $1",
+	"report-issue": "Zgłoś problem",
+	"langs-placeholder": "Pozostaw puste aby automatycznie rozpoznać język.",
+	"tesseract-options": "Opcje tesseract",
+	"tesseract-internal-error": "Silnik tesseract zgłosił błąd wewnętrzny."
+}
