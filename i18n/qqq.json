@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajeje Brazorf",
 			"Daimona Eaytoy",
 			"Robby"
 		]
@@ -30,7 +31,7 @@
 	"google-error": "Error message prefix for the Google engine.\n\nParameter:\n* $1 – the error message.",
 	"image-retrieval-failed": "Error message displayed when the image could not be found.\n\nParameter:\n* $1 – the error message.",
 	"documentation": "Link text in the footer for the documentation link\n{{identical|Documentation}}",
-	"api": "Link text for the API link in the footer.",
+	"api": "Link text for the API link in the footer.\n\n{{Optional}}",
 	"api-tooltip": "Tooltip for the API link in the footer.",
 	"version": "Link text in the footer for the source code link.\n\nParameter:\n* $1 – the current application version number.\n\n{{identical|Version}}",
 	"report-issue": "Link text in the footer for the issue-reporting link.",
