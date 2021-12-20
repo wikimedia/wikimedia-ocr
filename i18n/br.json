@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fulup",
+			"Iriep"
+		]
+	},
+	"title": "WikimediaOCR",
+	"subtitle": "Treuzskrivañ an destenn adalek skeudennoù",
+	"form-heading": "Treuzskrivañ ur skeudenn",
+	"image-url": "URL ar skeudenn",
+	"image-url-help": "Ensoc'hañ URL ur skeudenn herberc'hiet war ur servijer Wikimedia evel da skouer: $1",
+	"image-url-error": "URL ar skeudenn a rank kregiñ gant {{PLURAL:$1|an anv domani da-heul|unan eus an anvioù domani da-heul}} hag a rank echuiñ gant un astenn restr reizh: $2",
+	"image-alt-text": "Ar skeudenn orin",
+	"language-code": "Yezhoù (diret)",
+	"engine": "Lusker OCR",
+	"engine-not-found-warning": "Neket bet kavet al lusker azgoulennet '$1'. Implijout al lusker '$2' e-plas.",
+	"engine-invalid-langs-warning": "Direizh eo ar yezhoù da heul pe n'int ket skoret gant ar c'heflusker ; lezet int bet a-gostez : $1",
+	"submit": "Treuzskrivañ ar bajenn a-bezh",
+	"submit-crop": "Treuzskrivañ an takad",
+	"drag-help": "Diuzañ ar benveg didroc'hañ ha tresañ un hirgarrezenn war ar skeudenn dindan evit treuzskrivañ ul lodenn eus ar bajenn hepken.",
+	"drag-mode-move": "Ruzañ a lakay ar skeudenn da fiñval",
+	"drag-mode-move-alt": "Arlun a arouez an oberiadenn 'fiñval'",
+	"drag-mode-crop": "Ruzañ a grouo un takad didroc'hañ nevez.",
+	"copy-to-clipboard": "Eilañ er golver",
+	"copied-to-clipboard": "Eilet !",
+	"documentation": "Teuliadur",
+	"version": "Stumm $1",
+	"report-issue": "Titourañ un draen",
+	"langs-placeholder": "Lezel goullo evit mat vo detektet ar yezh ent emgefre."
+}
