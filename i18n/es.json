@@ -19,7 +19,6 @@
 	"image-alt-text": "La imagen original",
 	"language-code": "Código de idioma de dos letras (opcional):",
 	"engine": "Motor de OCR:",
-	"engine-not-found-warning": "No se encontró el motor solicitado '$1'. Usando el motor predeterminado '$2' en su lugar.",
 	"engine-invalid-langs-warning": "Los siguientes idiomas son no válidos o no están soportados por el motor y se han ignorado: $1",
 	"submit": "Transcribir toda la página",
 	"submit-crop": "Transcribir área",
