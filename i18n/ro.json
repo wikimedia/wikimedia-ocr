@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dan Mihai Pitea"
+		]
+	},
+	"title": "WikimediaOCR",
+	"subtitle": "Transcriere text din imagini",
+	"form-heading": "Transcriere text dintr-o imagine",
+	"image-url": "URL-ul imaginii",
+	"image-alt-text": "Imaginea originală",
+	"language-code": "Limbi (opțional)",
+	"engine-name-tesseract": "OCR Tesseract",
+	"submit": "Transcrierea întregii pagini",
+	"copy-to-clipboard": "Copiere în clipboard",
+	"copied-to-clipboard": "Copiat cu succes!",
+	"documentation": "Documentație",
+	"api": "API-ul",
+	"api-tooltip": "Afișare documentație API",
+	"version": "Versiunea $1",
+	"report-issue": "Raportează o problemă",
+	"langs-placeholder": "Lăsați câmpul gol pentru detectarea automată a limbii.",
+	"tesseract-options": "Opțiuni Tesseract",
+	"tesseract-psm-8": "Tratează imaginea drept un singur cuvânt.",
+	"tesseract-psm-9": "Tratează imaginea drept un singur cuvânt într-un cerc.",
+	"tesseract-psm-10": "Tratează imaginea drept o singură literă."
+}
