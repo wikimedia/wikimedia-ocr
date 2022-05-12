@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Ankry",
-			"Chrumps"
+			"Chrumps",
+			"Strebski"
 		]
 	},
+	"title": "WikimediaOCR",
 	"subtitle": "Wyodrębnij tekst z obrazków",
 	"form-heading": "Wyodrębnij tekst",
 	"image-url": "URL obrazu",
@@ -17,6 +19,10 @@
 	"submit": "Wyodrębnij tekst z całej strony",
 	"submit-crop": "Wyodrębnij z obszaru",
 	"drag-help": "Aktywuj narzędzie przycinania i zaznacz na poniższym obrazku obszar, z którego będzie wyodrębniony tekst.",
+	"drag-mode-move": "Przeciąganie przesunie obraz",
+	"drag-mode-move-alt": "Ikona reprezentująca działanie „przesuń”.",
+	"drag-mode-crop": "Przeciąganie utworzy nowy obszar przycinania",
+	"drag-mode-crop-alt": "Ikona reprezentująca działanie „przytnij”.",
 	"copy-to-clipboard": "Kopiuj do schowka",
 	"copied-to-clipboard": "Skopiowano!",
 	"google-error": "Usługa Google zgłosiła błąd: $1",
