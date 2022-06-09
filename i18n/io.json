@@ -4,14 +4,20 @@
 			"Joao Xavier"
 		]
 	},
-	"title": "Wikimedio OCR",
-	"image-url": "URL dil imajo:",
-	"image-url-help": "To mustas komencar uzanta un ek la sequanta 'domain names', ed esar kompleta URL ligata ad ula imajo-arkivo: $1",
+	"title": "WikimedioOCR",
+	"subtitle": "Trasskribar texti de imaji",
+	"form-heading": "Transskribar ul imajo",
+	"image-url": "URL dil imajo",
+	"image-url-help": "Adjuntez URL por imajo qua esas che altra servero Wikimedia, exemple: $1",
 	"image-url-error": "La URL di ula imajo mustas komencar kun {{PLURAL:$1|la sequanta domeno-nomo|un ek la sequanta domeno-nomi}}, e finar kun ula valida sufixo: $2",
 	"image-alt-text": "L'originala imajo",
-	"language-code": "Du-litera linguala kodeko (exemple: en, fr, de...) (fakultativa)",
-	"engine": "Mashino OCR:",
-	"submit": "Irez",
+	"language-code": "Idiomi (fakultativa)",
+	"engine": "Mashino OCR",
+	"engine-not-found-warning": "La demandita utensilo '$1' ne uzesis. Vice ol, uzez l'utensilo ''default'', $2.",
+	"engine-invalid-langs-warning": "La sequanta idiomi esas nevalida, o ne suportata dal utensilo. Pro to, li ignoresis: $1",
+	"submit": "Transskriptez tota pagino",
+	"submit-crop": "Transskribo-areo",
+	"drag-mode-move": "Trananta, l'imajo movesos",
 	"copy-to-clipboard": "Kopiez a ''clipboard''",
 	"copied-to-clipboard": "Kopiita!",
 	"google-error": "La servado Google montris eroro: $1",
@@ -28,5 +34,9 @@
 	"tesseract-psm-1": "Automatic page segmentation with OSD.",
 	"tesseract-psm-2": "Automatic page segmentation, but no OSD, or OCR. (not implemented)",
 	"tesseract-psm-3": "Fully automatic page segmentation, but no OSD. (Default)",
-	"tesseract-psm-4": "Supozar singla kolumno di texto kun varianta grandesi."
+	"tesseract-psm-4": "Supozar singla kolumno di texto kun varianta grandesi.",
+	"tesseract-psm-7": "Traktez l'imajo kom singla lineo di texto.",
+	"tesseract-psm-8": "Traktez l'imajo kom singla vorto.",
+	"tesseract-psm-9": "Traktez l'imajo kom singla vorto en cirklo.",
+	"tesseract-psm-10": "Traktez l'imajo kom singla karaktero."
 }
