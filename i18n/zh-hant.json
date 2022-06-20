@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kly"
+			"Kly",
+			"Winston Sung"
 		]
 	},
 	"title": "維基媒體 OCR",
@@ -23,7 +24,7 @@
 	"drag-mode-crop": "拖曳將會產生新的裁剪區域",
 	"drag-mode-crop-alt": "代表「裁剪」操作的圖示。",
 	"copy-to-clipboard": "複製到剪貼簿",
-	"copied-to-clipboard": "已複製!",
+	"copied-to-clipboard": "已複製！",
 	"google-error": "Google 服務回傳一個錯誤：$1",
 	"image-retrieval-failed": "圖片取回失敗：$1",
 	"documentation": "文件",
