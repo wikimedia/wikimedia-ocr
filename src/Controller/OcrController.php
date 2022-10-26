@@ -288,7 +288,7 @@ class OcrController extends AbstractController
         $cacheKey = md5(implode(
             '|',
             [
-                $this->imageUrl,
+                self::transformImageURLForCacheKey($this->imageUrl),
                 static::$params['engine'],
                 implode('|', static::$params['langs']),
                 implode('|', array_map('strval', static::$params['crop'])),
@@ -307,5 +307,22 @@ class OcrController extends AbstractController
                 static::$params['langs']
             );
         });
+    }
+
+    /**
+     * Make an image URL suitable to be used as a cache key (e.g. strip protocol)
+     * @param string $url
+     * @return string
+     */
+    private static function transformImageURLForCacheKey(string $url): string
+    {
+        return preg_replace_callback(
+            '/(page\d+-)(\d+)px/',
+            static function (array $matches) {
+                // Tolerate ±50px, see T286356.
+                return $matches[1].( round($matches[2] / 100) * 100 ).'px';
+            },
+            preg_replace('/^https?:/i', '', $url)
+        );
     }
 }
