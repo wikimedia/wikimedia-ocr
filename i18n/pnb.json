@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bgo eiu"
+		]
+	},
+	"title": "وِکیمیڈیا درشٹی سمبندی اکھر پچھاݨ",
+	"subtitle": "تصویراں توں لکھت لے جاؤ",
+	"form-heading": "تصویر توں لکھت لے جاؤ",
+	"image-url": "کڑی دا پتہ",
+	"image-url-help": "وِکیمیڈیا سروَر توں کڑی دا پتہ پایو، مثلاً: $1",
+	"image-url-error": "{{PLURAL:$1|فائل دی قسم $2 نال اِتھوں پتہ ضروری اے}}",
+	"image-alt-text": "پہلی تصویر",
+	"language-code": "بولیاں",
+	"engine": "لکھت پچھاݨ والا",
+	"engine-invalid-langs-warning": "ایہہ بولیاں سمجھی نہیں لگی: $1",
+	"drag-mode-crop": "نواں کروپ کھیتر بݨاوݨ لئی چلیو",
+	"drag-mode-crop-alt": "کروپ کرن دا بٹن",
+	"copy-to-clipboard": "کاپی کرو",
+	"copied-to-clipboard": "لکھت کاپی کیتی گئی اے!",
+	"google-error": "گوگل توں غلطی آئی اے: $1",
+	"image-retrieval-failed": "تصویر لبھ نہیں سکدی اے: $1",
+	"documentation": "دستاویز",
+	"api-tooltip": "اےپی‌آئی دستاویز ویکھو",
+	"version": "ورژن $1",
+	"report-issue": "مسئلہ ریپورٹ کرو",
+	"langs-param-error": "{{PLURAL:$1|بولی سمجھی نہیں لگی|بولیاں سمجھی نہیں لگی}}: $2",
+	"tesseract-options": "ٹیسرکٹ دیاں سیٹنگاں"
+}
