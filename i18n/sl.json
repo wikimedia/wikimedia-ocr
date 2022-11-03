@@ -10,7 +10,7 @@
 	"image-url": "URL slike",
 	"image-url-help": "Vstavite URL slike, ki gostuje v strežniku Wikimedie, npr.: $1",
 	"image-url-error": "URL slike se mora začeti z {{PLURAL:$1|naslednjim domenskim imenom|enim od naslednjih domenskih imen}} in se končati z veljavno datotečno pripono: $2",
-	"image-alt-text": "Izvirna slika",
+	"image-alt-text": "Izvorna slika",
 	"language-code": "Jeziki (neobvezno)",
 	"engine": "Motor OCR",
 	"engine-name-google": "OCR Google Cloud Vision",
