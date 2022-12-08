@@ -6,7 +6,7 @@
             <legend>{{ msg('form-heading') }}</legend>
             <div class="form-group">
                 <label for="image">{{ msg('image-url') }}</label>
-                <input name="image" id="image" class="form-control" type="url" value="{{ app.request.get('image') }}" required />
+                <input name="image" id="image" class="form-control" type="url" value="{{ image }}" required />
                 <p class="help-block">{{ msg( 'image-url-help', [image_hosts] ) }}</p>
             </div>
             <div class="form-group">
