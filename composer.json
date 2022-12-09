@@ -13,12 +13,10 @@
         "google/cloud-vision": "^1.3",
         "imagine/imagine": "^1.2",
         "nelmio/api-doc-bundle": "^4.4",
-        "sensio/framework-extra-bundle": "^6.1",
         "symfony/cache": "5.2.*",
         "symfony/console": "5.2.*",
         "symfony/dotenv": "5.2.*",
-        "symfony/flex": "^1.3.1",
-        "symfony/framework-bundle": "5.2.*",
+        "symfony/framework-bundle": "^5.4",
         "symfony/mailer": "^5.2",
         "symfony/monolog-bundle": "^3.7",
         "symfony/property-info": "5.2.*",
@@ -33,8 +31,7 @@
     "require-dev": {
         "drenso/phan-extensions": "^3.3",
         "mediawiki/minus-x": "^1.1",
-        "mediawiki/phan-taint-check-plugin": "3.2.1",
-        "phan/phan": "3.2.6",
+        "mediawiki/phan-taint-check-plugin": "^4.0",
         "slevomat/coding-standard": "^4.8",
         "symfony/phpunit-bridge": "^5.2",
         "symfony/stopwatch": "^5.2",
@@ -42,7 +39,7 @@
     },
     "config": {
         "platform": {
-            "php": "7.2.31"
+            "php": "7.4"
         },
         "optimize-autoloader": true,
         "preferred-install": {
@@ -66,10 +63,10 @@
         "symfony/polyfill-php72": "*"
     },
     "scripts": {
-        "auto-scripts": {
-            "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
-        },
+        "auto-scripts": [
+            "./bin/console cache:clear",
+            "./bin/console assets:install"
+        ],
         "check-tesseract": "./check_tesseract.sh",
         "post-install-cmd": [
             "@auto-scripts",

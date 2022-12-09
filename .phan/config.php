@@ -30,6 +30,8 @@ return [
 
     'redundant_condition_detection' => true,
 
+    'quick_mode' => false,
+
     'plugins' => [
         'UnreachableCodePlugin',
         'PregRegexCheckerPlugin',

@@ -45,7 +45,6 @@ services:
     App\EventListener\ExceptionListener:
         arguments:
             - '@request_stack'
-            - '@session'
             - '@twig'
             - '@Krinkle\Intuition\Intuition'
             - '@monolog.logger.tesseract'

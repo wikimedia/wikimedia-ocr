@@ -36,13 +36,12 @@ class ExceptionListener
 
     public function __construct(
         RequestStack $requestStack,
-        SessionInterface $session,
         Environment $twig,
         Intuition $intuition,
         LoggerInterface $tesseractLogger
     ) {
         $this->request = $requestStack->getCurrentRequest();
-        $this->session = $session;
+        $this->session = $requestStack->getSession();
         $this->twig = $twig;
         $this->intuition = $intuition;
         $this->tesseractLogger = $tesseractLogger;
@@ -54,7 +53,7 @@ class ExceptionListener
 
         // We only care about OcrExceptions, and UnsuccessfulCommandException thrown by the library (T282141).
         if (!( $exception instanceof OcrException || $exception instanceof UnsuccessfulCommandException )
-            || !$event->isMasterRequest()
+            || !$event->isMainRequest()
         ) {
             return;
         }

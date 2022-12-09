@@ -64,20 +64,18 @@ class OcrController extends AbstractController
     /**
      * OcrController constructor.
      * @param RequestStack $requestStack
-     * @param SessionInterface $session
      * @param Intuition $intuition
      * @param EngineFactory $engineFactory
      * @param CacheInterface $cache
      */
     public function __construct(
         RequestStack $requestStack,
-        SessionInterface $session,
         Intuition $intuition,
         EngineFactory $engineFactory,
         CacheInterface $cache
     ) {
         $this->request = $requestStack->getCurrentRequest();
-        $this->session = $session;
+        $this->session = $requestStack->getSession();
         $this->intuition = $intuition;
         $this->engineFactory = $engineFactory;
         $this->cache = $cache;
@@ -88,7 +86,7 @@ class OcrController extends AbstractController
      */
     private function setup(): void
     {
-        $requestedEngine = $this->request->get('engine', static::$params['engine']);
+        $requestedEngine = $this->request->query->get('engine', static::$params['engine']);
         try {
             $this->engine = $this->engineFactory->get($requestedEngine);
         } catch (EngineNotFoundException $e) {
