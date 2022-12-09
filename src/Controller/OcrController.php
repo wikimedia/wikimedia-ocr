@@ -52,14 +52,12 @@ class OcrController extends AbstractController
      * @var mixed[]
      */
     public static $params = [
+        'image' => '',
         'engine' => self::DEFAULT_ENGINE,
         'langs' => [],
         'psm' => TesseractEngine::DEFAULT_PSM,
         'crop' => [],
     ];
-
-    /** @var string */
-    protected $imageUrl;
 
     /**
      * OcrController constructor.
@@ -83,6 +81,7 @@ class OcrController extends AbstractController
 
     /**
      * Setup the engine and parameters needed for the view. This must be called before every action.
+     * @suppress PhanSuspiciousValueComparison
      */
     private function setup(): void
     {
@@ -101,7 +100,11 @@ class OcrController extends AbstractController
         $this->setEngineOptions();
 
         // Parameters.
-        $this->imageUrl = (string)$this->request->query->get('image');
+        static::$params['image'] = (string)$this->request->query->get('image');
+        // Change protocol-relative URLs to https to avoid issues with Curl.
+        if ('//' === substr(static::$params['image'], 0, 2)) {
+            static::$params['image'] = "https:".static::$params['image'];
+        }
         static::$params['langs'] = $this->getLangs($this->request);
         static::$params['image_hosts'] = $this->engine->getImageHosts();
         $crop = $this->request->query->get('crop');
@@ -164,7 +167,7 @@ class OcrController extends AbstractController
         // Intution::listToText() isn't available via Twig, and we only want to do this for the view and not the API.
         static::$params['image_hosts'] = $this->intuition->listToText(static::$params['image_hosts']);
 
-        if ($this->imageUrl) {
+        if (static::$params['image']) {
             $result = $this->getResult(EngineBase::ERROR_ON_INVALID_LANGS);
             static::$params['text'] = $result->getText();
             foreach ($result->getWarnings() as $warning) {
@@ -286,7 +289,7 @@ class OcrController extends AbstractController
         $cacheKey = md5(implode(
             '|',
             [
-                $this->imageUrl,
+                static::$params['image'],
                 static::$params['engine'],
                 implode('|', static::$params['langs']),
                 implode('|', array_map('strval', static::$params['crop'])),
@@ -299,7 +302,7 @@ class OcrController extends AbstractController
         return $this->cache->get($cacheKey, function (ItemInterface $item) use ($invalidLangsMode) {
             $item->expiresAfter((int)$this->getParameter('cache_ttl'));
             return $this->engine->getResult(
-                $this->imageUrl,
+                static::$params['image'],
                 $invalidLangsMode,
                 static::$params['crop'],
                 static::$params['langs']
