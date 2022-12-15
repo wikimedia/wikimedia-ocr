@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Kly",
-			"Winston Sung"
+			"Winston Sung",
+			"捍粵者"
 		]
 	},
 	"title": "維基媒體 OCR",
@@ -31,7 +32,7 @@
 	"api-tooltip": "檢視 API 文件",
 	"version": "版本 $1",
 	"report-issue": "問題回報",
-	"langs-placeholder": "留下空白來進行自動語言偵測。",
+	"langs-placeholder": "留空以自動偵測語言",
 	"langs-param-error": "以下{{PLURAL:$1|語言}}不被 OCR 引擎支援：$2",
 	"tesseract-options": "Tesseract 選項",
 	"tesseract-psm-label": "頁面拆分方式",
