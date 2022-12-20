@@ -66,7 +66,6 @@ class EngineBaseTest extends OcrTestCase
             // Pass:
             ['https://upload.wikimedia.org/wikipedia/commons/a/a9/Example.jpg', false],
             ['https://upload.wikimedia.org/wikipedia/commons/file.jpg', false],
-            ['//upload.wikimedia.org/wikipedia/commons/file.jpg', false],
             // Fail:
             ['https://foo.example.com/wikipedia/commons/a/a9/Example.jpg', true],
             ['https://en.wikisource.org/file.mov', true],
