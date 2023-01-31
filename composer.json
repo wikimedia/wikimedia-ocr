@@ -17,6 +17,7 @@
         "symfony/console": "5.2.*",
         "symfony/dotenv": "5.2.*",
         "symfony/framework-bundle": "^5.4",
+        "symfony/http-client": "^5.4",
         "symfony/mailer": "^5.2",
         "symfony/monolog-bundle": "^3.7",
         "symfony/property-info": "5.2.*",

@@ -51,6 +51,10 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
 
+    App\Command\TranskribusAuthCommand:
+        tags:
+            - { name: 'console.command', command: 'app:transkribus' }
+
     # Vendor services for autowiring
     thiagoalessio\TesseractOCR\TesseractOCR:
 
