@@ -52,8 +52,8 @@ services:
             - { name: kernel.event_listener, event: kernel.exception }
 
     App\Command\TranskribusAuthCommand:
-        tags:
-            - { name: 'console.command', command: 'app:transkribus' }
+        arguments:
+            $clientId: '%env(APP_TRANSKRIBUS_CLIENT_ID)%'
 
     # Vendor services for autowiring
     thiagoalessio\TesseractOCR\TesseractOCR:

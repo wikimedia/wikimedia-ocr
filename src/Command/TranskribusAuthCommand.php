@@ -1,33 +1,35 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace App\Command;
 
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class TranskribusAuthCommand extends Command
 {
 
+    /** @var HttpClientInterface The interface to make http requests */
     private $client;
 
-    public function __construct(HttpClientInterface $client)
+    /** @var string The client ID passed to the transkribus API */
+    private $clientId;
+
+    public function __construct(HttpClientInterface $client, string $clientId)
     {
         parent::__construct();
         $this->client = $client;
+        $this->clientId = $clientId;
     }
 
     protected function configure(): void
     {
         $this
-            ->setHelp('This command allows you to retrieve and store an access token for testing the Trankribus engine');
-        ;
+            ->setName('app:transkribus')
+            ->setDescription('This command allows you to retrieve and store an access token for the Trankribus API');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -41,8 +43,6 @@ class TranskribusAuthCommand extends Command
         $passwordQuestion = new Question('Enter password: ');
         $password = $helper->ask($input, $output, $passwordQuestion);
 
-        $clientId = $_ENV['CLIENT_ID'];
-        
         $token_response = $this->client
                     ->request(
                         'POST',
@@ -55,22 +55,27 @@ class TranskribusAuthCommand extends Command
                                 'grant_type' => 'password',
                                 'username' => $userName,
                                 'password' => $password,
-                                'client_id' => $clientId,
-                                'scope' => 'offline_access'
-                            ]
+                                'client_id' => $this->clientId,
+                                'scope' => 'offline_access',
+                            ],
                         ]
-                    );    
+                    );
         $statusCode = $token_response->getStatusCode();
-        if ( $statusCode == 200 ) {
+        if (200 === $statusCode) {
             $content = json_decode($token_response->getContent());
-            $access_token = $content->{'access_token'};
-            $output->writeln([
-                'Your access token is: '.$access_token,
-                $io->newline(),
-                '--- Please copy and store the access token for future use ---'
-            ]);
-            return Command::SUCCESS;
-        } else if ($statusCode == 401) {
+            if (is_null($content)) {
+                $output->writeln('Transkribus API returned null');
+                return Command::FAILURE;
+            } else {
+                $access_token = $content->{'access_token'};
+                $output->writeln([
+                    'Your access token is: '.$access_token,
+                    $io->newline(),
+                    '--- Please copy and add it to your .env.local as APP_TRANSKRIBUS_ACCESS_TOKEN ---',
+                ]);
+                return Command::SUCCESS;
+            }
+        } elseif (401 === $statusCode) {
             $output->writeln('Error Code '.$statusCode.' :: Credentials are incorrect!');
             return Command::FAILURE;
         } else {
