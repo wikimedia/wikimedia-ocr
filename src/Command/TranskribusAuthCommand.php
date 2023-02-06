@@ -15,9 +15,6 @@ class TranskribusAuthCommand extends Command
     /** @var HttpClientInterface The interface to make http requests */
     private $client;
 
-    /** @var string The client ID passed to the transkribus API */
-    private $clientId;
-
     public function __construct(HttpClientInterface $client)
     {
         parent::__construct();
