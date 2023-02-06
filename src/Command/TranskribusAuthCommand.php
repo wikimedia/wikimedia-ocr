@@ -18,11 +18,10 @@ class TranskribusAuthCommand extends Command
     /** @var string The client ID passed to the transkribus API */
     private $clientId;
 
-    public function __construct(HttpClientInterface $client, string $clientId)
+    public function __construct(HttpClientInterface $client)
     {
         parent::__construct();
         $this->client = $client;
-        $this->clientId = $clientId;
     }
 
     protected function configure(): void
@@ -41,9 +40,10 @@ class TranskribusAuthCommand extends Command
         $userName = $helper->ask($input, $output, $userNameQuestion);
 
         $passwordQuestion = new Question('Enter password: ');
+        $passwordQuestion->setHidden(true);
         $password = $helper->ask($input, $output, $passwordQuestion);
 
-        $token_response = $this->client
+        $tokenResponse = $this->client
                     ->request(
                         'POST',
                         'https://account.readcoop.eu/auth/realms/readcoop/protocol/openid-connect/token',
@@ -55,31 +55,63 @@ class TranskribusAuthCommand extends Command
                                 'grant_type' => 'password',
                                 'username' => $userName,
                                 'password' => $password,
-                                'client_id' => $this->clientId,
+                                'client_id' => 'processing-api-client',
                                 'scope' => 'offline_access',
                             ],
                         ]
                     );
-        $statusCode = $token_response->getStatusCode();
+        $statusCode = $tokenResponse->getStatusCode();
         if (200 === $statusCode) {
-            $content = json_decode($token_response->getContent());
+            $content = json_decode($tokenResponse->getContent());
             if (is_null($content)) {
-                $output->writeln('Transkribus API returned null');
+                $io->error('Response from Transkribus API could not be parsed');
                 return Command::FAILURE;
             } else {
-                $access_token = $content->{'access_token'};
-                $output->writeln([
-                    'Your access token is: '.$access_token,
-                    $io->newline(),
-                    '--- Please copy and add it to your .env.local as APP_TRANSKRIBUS_ACCESS_TOKEN ---',
-                ]);
-                return Command::SUCCESS;
+                $refreshToken = $content->{'refresh_token'};
+                $tokenResponse = $this->client
+                    ->request(
+                        'POST',
+                        'https://account.readcoop.eu/auth/realms/readcoop/protocol/openid-connect/token',
+                        [
+                            'headers' => [
+                                'Content-Type' => 'application/x-www-form-urlencoded',
+                            ],
+                            'body' => [
+                                'grant_type' => 'refresh_token',
+                                'client_id' => 'processing-api-client',
+                                'refresh_token' => $refreshToken,
+                            ],
+                        ]
+                    );
+                $statusCode = $tokenResponse->getStatusCode();
+                if (200 === $statusCode) {
+                    $content = json_decode($tokenResponse->getContent());
+                    if (is_null($content)) {
+                        $io->error('Response from Transkribus API could not be parsed');
+                        return Command::FAILURE;
+                    } else {
+                        $accessToken = $content->{'access_token'};
+                        $io->writeln('');
+                        $io->writeln('Your access token is: '.$accessToken);
+                        $io->writeln('');
+                        $io->writeln('--- Please copy and add it to your .env.local'.
+                                                'as APP_TRANSKRIBUS_ACCESS_TOKEN ---');
+                        return Command::SUCCESS;
+                    }
+                } elseif (400 === $statusCode) {
+                    $io->error('Error Code '.$statusCode.' :: Refresh token is incorrect');
+                    return Command::FAILURE;
+                } else {
+                    $io->error('Error Code '.$statusCode.' :: Error generating access'.
+                                                'token from refresh token, try again!');
+                    return Command::FAILURE;
+                }
             }
         } elseif (401 === $statusCode) {
-            $output->writeln('Error Code '.$statusCode.' :: Credentials are incorrect!');
+            $io->error('Error Code '.$statusCode.' :: Credentials are incorrect!');
             return Command::FAILURE;
         } else {
-            $output->writeln('Error Code '.$statusCode.' :: Error generating access_token, try again!');
+            $io->error('Error Code '.$statusCode.' :: Error generating refresh token, try again!');
             return Command::FAILURE;
         }
     }
