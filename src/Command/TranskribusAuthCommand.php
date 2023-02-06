@@ -10,7 +10,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class TranskribusAuthCommand extends Command
-{   
+{
 
     /** @var HttpClientInterface The interface to make http requests */
     private $client;
