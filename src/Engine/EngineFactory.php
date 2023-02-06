@@ -11,11 +11,12 @@ class EngineFactory
     /** @var array<string, EngineBase> */
     private $engines;
 
-    public function __construct(GoogleCloudVisionEngine $cloudVisionEngine, TesseractEngine $tesseractEngine)
+    public function __construct(GoogleCloudVisionEngine $cloudVisionEngine, TesseractEngine $tesseractEngine, TranskribusEngine $transkribusEngine)
     {
         $this->engines = [
             'google' => $cloudVisionEngine,
             'tesseract' => $tesseractEngine,
+            'transkribus' => $transkribusEngine
         ];
     }
 

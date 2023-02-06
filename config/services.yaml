@@ -41,6 +41,12 @@ services:
         parent: App\Engine\EngineBase
         arguments:
             $keyFile: '%env(APP_GOOGLE_KEYFILE)%'
+    
+    App\Engine\TranskribusEngine:
+        parent: App\Engine\EngineBase
+        arguments:
+            $username: '%env(USERNAME)%'
+            $password: '%env(PASSWORD)%'
 
     App\EventListener\ExceptionListener:
         arguments:
