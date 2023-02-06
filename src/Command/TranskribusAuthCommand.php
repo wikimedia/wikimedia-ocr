@@ -10,7 +10,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class TranskribusAuthCommand extends Command
-{
+{   
 
     /** @var HttpClientInterface The interface to make http requests */
     private $client;
@@ -95,7 +95,7 @@ class TranskribusAuthCommand extends Command
                         $io->writeln('Your access token is: '.$accessToken);
                         $io->writeln('');
                         $io->writeln('--- Please copy and add it to your .env.local'.
-                                                'as APP_TRANSKRIBUS_ACCESS_TOKEN ---');
+                                                ' as APP_TRANSKRIBUS_ACCESS_TOKEN ---');
                         return Command::SUCCESS;
                     }
                 } elseif (400 === $statusCode) {
@@ -103,7 +103,7 @@ class TranskribusAuthCommand extends Command
                     return Command::FAILURE;
                 } else {
                     $io->error('Error Code '.$statusCode.' :: Error generating access'.
-                                                'token from refresh token, try again!');
+                                                ' token from refresh token, try again!');
                     return Command::FAILURE;
                 }
             }
