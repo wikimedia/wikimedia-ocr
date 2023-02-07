@@ -26,7 +26,6 @@ jobs:
         extensions: ast
 
     - name: Install tesseract
-      # Note: libopenjp2-7 is already installed, but it's apparently corrupted
       run: |
         sudo apt-get update
         sudo apt-get install -y tesseract-ocr-all
