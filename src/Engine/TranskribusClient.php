@@ -142,7 +142,7 @@ class TranskribusClient
      /**
      * @param string $method
      * @param string $url
-     * @param array<string,array> $jsonBody
+     * @param array<string,mixed> $jsonBody
      * @return object
      */
     public function request(
