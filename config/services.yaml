@@ -44,9 +44,10 @@ services:
     
     App\Engine\TranskribusEngine:
         parent: App\Engine\EngineBase
+            
+    App\Engine\TranskribusClient:
         arguments:
-            $username: '%env(USERNAME)%'
-            $password: '%env(PASSWORD)%'
+            $accessToken: '%env(APP_TRANSKRIBUS_ACCESS_TOKEN)%'
 
     App\EventListener\ExceptionListener:
         arguments:

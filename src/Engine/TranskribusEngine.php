@@ -16,25 +16,20 @@ class TranskribusEngine extends EngineBase
 
     /**
      * TranskribusEngine constructor.
-     * @param string $username of transkribus account.
-     * @param string $password of transkribus account.
+     * @param TranskribusClient $transkribusClient.
      * @param Intuition $intuition
      * @param string $projectDir
      * @param HttpClientInterface $httpClient
      */
     public function __construct(
-        string $username,
-        string $password,
+        TranskribusClient $transkribusClient,
         Intuition $intuition,
         string $projectDir,
         HttpClientInterface $httpClient
     ) {
         parent::__construct($intuition, $projectDir, $httpClient);
-        $credentials = [
-            'username' => $username,
-            'password' => $password
-        ];
-        $this->transkribusClient = new TranskribusClient($httpClient, $credentials);
+        
+        $this->transkribusClient = $transkribusClient;
     }
 
     /**
@@ -63,19 +58,18 @@ class TranskribusEngine extends EngineBase
         $imageUrl = $image->getUrl();
         $response = $this->transkribusClient->initProcess($imageUrl, []);
 
-        if ($response->getHasError()) {
-            file_put_contents('initp.json', "init process failed");
+        if ($response->hasError()) {
             throw new OcrException('transkribus-error', [$response->getErrorMessage()]);
         }
 
         $counter = 0;
-        while(!$response->getHasError() && $response->getTextResult() === '' && $counter < 11){
+        while(!$response->hasError() && $response->getTextResult() === '' && $counter < 11){
             $response->retrieveProcessStatus();
             $counter++;
             sleep(5);
         }
 
-        if ($response->getHasError()) {
+        if ($response->hasError()) {
             throw new OcrException('transkribus-error', [$response->getErrorMessage()]);
         }
 
