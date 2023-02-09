@@ -47,7 +47,7 @@ class OcrControllerTest extends OcrTestCase
                 $gcv,
                 new TesseractEngine(new MockHttpClient(), $intuition, $this->projectDir, new TesseractOCR()),
                 new TranskribusEngine(
-                    new TranskribusClient(new MockHttpClient(), $this->accessToken), 
+                    new TranskribusClient(new MockHttpClient(), $this->accessToken),
                     $intuition,
                     $this->projectDir,
                     new MockHttpClient()

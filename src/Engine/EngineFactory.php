@@ -12,10 +12,10 @@ class EngineFactory
     private $engines;
 
     public function __construct(
-        GoogleCloudVisionEngine $cloudVisionEngine, 
-        TesseractEngine $tesseractEngine, 
+        GoogleCloudVisionEngine $cloudVisionEngine,
+        TesseractEngine $tesseractEngine,
         TranskribusEngine $transkribusEngine
-    ){
+    ) {
         $this->engines = [
             'google' => $cloudVisionEngine,
             'tesseract' => $tesseractEngine,

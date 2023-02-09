@@ -26,6 +26,9 @@ class TranskribusClient
     /** @var string Transcribed result. */
     private $textResult = '';
 
+    /** @var $langs valid languages. */
+    private $langs = '';
+
     /** @var string Transcribed result. */
     private const PROCESSES_URL = "https://transkribus.eu/processing/v1/processes";
     
@@ -43,11 +46,18 @@ class TranskribusClient
     }
 
     /**
-     * @param string $accessToken
+     * @param string $imageURL
      * @param array $config
      */
-    public function initProcess($imageURL, $config = []): self
+    public function initProcess($imageURL, $config): self
     {
+        if ([] === $config) {
+            $config = [
+                'textRecognition' => [
+                    'htrId' => 38230,
+                ]
+            ];
+        }
         $response = $this->httpClient
         ->request(
             'POST',
@@ -58,11 +68,7 @@ class TranskribusClient
                     'Authorization' => 'Bearer '.$this->accessToken,
                 ],
                 'json' => [
-                    'config' => [
-                        'textRecognition' => [
-                            'htrId' => 38230,
-                        ],
-                    ],
+                    'config' => $config,
                     'image' => [
                         'imageUrl' => $imageURL,
                     ],
@@ -75,14 +81,11 @@ class TranskribusClient
             $content = json_decode($response->getContent());
             
             if (is_null($content)) {
-
                 $this->setErrorMessage(0);
                 return $this;
-
             }
             
-            if ($content->{'status'} === 'CREATED')
-            {
+            if ($content->{'status'} === 'CREATED') {
                 $this->processId = $content->{'processId'};
                 $this->reponseHasError = false;
             }
@@ -111,14 +114,12 @@ class TranskribusClient
         $statusCode = $response->getStatusCode();
         if (200 === $statusCode) {
             $content = json_decode($response->getContent());
-            if (is_null($content)) 
-            {
+            if (is_null($content)) {
                 $this->setErrorMessage(0);
                 return $this;
             }
 
-            if ($content->{'status'} === 'FINISHED')
-            {
+            if ($content->{'status'} === 'FINISHED') {
                 $textContent = $content->{'content'};
                 $this->textResult = $textContent->{'text'};
                 $this->reponseHasError = false;
@@ -131,9 +132,9 @@ class TranskribusClient
         return $this;
     }
     
-    private function setErrorMessage(int $statusCode)
+    private function setErrorMessage(int $statusCode): void
     {
-        switch($statusCode){
+        switch ($statusCode) {
             case 0:
                 $this->errorMessage = 'Transkribus API returned null';
                 $this->reponseHasError = true;
@@ -164,6 +165,8 @@ class TranskribusClient
         return $this->reponseHasError;
     }
 
-    
-    
+    public function setLanguages(array $langs): void
+    {
+        $this->langs = $langs;
+    }
 }

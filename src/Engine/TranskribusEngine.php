@@ -59,8 +59,9 @@ class TranskribusEngine extends EngineBase
         $imageUrl = $image->getUrl();
         $response = $this->transkribusClient->initProcess($imageUrl, []);
 
-        if ($validLangs) {
-           
+        if ($validLangs) 
+        {
+            $response->setLanguages($this->getLangCodes($validLangs));
         }
 
         if ($response->hasError()) {
@@ -68,12 +69,10 @@ class TranskribusEngine extends EngineBase
         }
 
         $counter = 0;
-        while(!$response->hasError() && '' === $response->getTextResult() && 11 >$counter){
-            
+        while (!$response->hasError() && '' === $response->getTextResult() && 11 >$counter) {
             $response->retrieveProcessStatus();
             $counter++;
             sleep(5);
-
         }
 
         if ($response->hasError()) {
