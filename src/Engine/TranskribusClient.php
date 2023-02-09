@@ -84,7 +84,7 @@ class TranskribusClient
     {
         $url = self::PROCESSES_URL.'/'.$this->processId;
 
-        $content = $this->request('GET', $url);
+        $content = $this->request('GET', $url, []);
         $parsedContent = (array) $content;
 
         if (!empty($parsedContent)) {
@@ -142,11 +142,12 @@ class TranskribusClient
      /**
      * @param string $method
      * @param string $url
-     * @param array[] $jsonBody
+     * @param array<string,array> $jsonBody
+     * @return object
      */
     public function request(
-        string $method, 
-        string $url, 
+        string $method,
+        string $url,
         array $jsonBody = []
     ): object {
         $body = [
