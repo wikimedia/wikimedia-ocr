@@ -31,7 +31,7 @@ If you need to make asset changes:
 ./bin/console app:transkribus
 ```
 It will ask for the *username* and *password* of your Transkribus account. You can create a free account [here](https://readcoop.eu/transkribus/?sc=Transkribus).
-* Store the access token in your `.env` file as `APP_TRANSKRIBUS_ACCESS_TOKEN` from where it will be used by the Transkribus engine. 
+* Store the access token in your `.env.local` file as `APP_TRANSKRIBUS_ACCESS_TOKEN` from where it will be used by the Transkribus engine. 
 > **Note**: You will require sufficient credits in your account to use the Transkribus API.
 
 ## Run the application ##
