@@ -11,6 +11,7 @@
     "engine": "OCR engine",
     "engine-name-google": "Google Cloud Vision OCR",
     "engine-name-tesseract": "Tesseract OCR",
+    "engine-name-transkribus": "Transkribus OCR",
     "engine-not-found-warning": "The requested engine '$1' was not found. Using the default engine '$2' instead.",
     "engine-invalid-langs-warning": "The following languages are invalid or not supported by the engine and were ignored: $1",
     "submit": "Transcribe whole page",
