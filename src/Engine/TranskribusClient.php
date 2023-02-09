@@ -25,6 +25,9 @@ class TranskribusClient
     
     /** @var string Transcribed result. */
     private $textResult = '';
+    
+    /** @var $config. */
+    private $config = [];
 
     /** @var $langs valid languages. */
     private $langs = '';
@@ -47,15 +50,14 @@ class TranskribusClient
 
     /**
      * @param string $imageURL
-     * @param array $config
      */
-    public function initProcess($imageURL, $config): self
+    public function initProcess(string $imageURL): self
     {
-        if ([] === $config) {
-            $config = [
+        if ([] === $this->config) {
+            $this->config = [
                 'textRecognition' => [
                     'htrId' => 38230,
-                ]
+                ],
             ];
         }
         $response = $this->httpClient
@@ -68,7 +70,7 @@ class TranskribusClient
                     'Authorization' => 'Bearer '.$this->accessToken,
                 ],
                 'json' => [
-                    'config' => $config,
+                    'config' => $this->config,
                     'image' => [
                         'imageUrl' => $imageURL,
                     ],
@@ -124,7 +126,6 @@ class TranskribusClient
                 $this->textResult = $textContent->{'text'};
                 $this->reponseHasError = false;
             }
-
         } else {
             $this->setErrorMessage($statusCode);
         }
@@ -165,6 +166,9 @@ class TranskribusClient
         return $this->reponseHasError;
     }
 
+     /**
+     * @param string[] $langs
+     */
     public function setLanguages(array $langs): void
     {
         $this->langs = $langs;

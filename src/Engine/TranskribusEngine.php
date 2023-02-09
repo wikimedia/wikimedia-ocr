@@ -57,10 +57,9 @@ class TranskribusEngine extends EngineBase
 
         $image = $this->getImage($imageUrl, $crop);
         $imageUrl = $image->getUrl();
-        $response = $this->transkribusClient->initProcess($imageUrl, []);
+        $response = $this->transkribusClient->initProcess($imageUrl);
 
-        if ($validLangs) 
-        {
+        if ($validLangs) {
             $response->setLanguages($this->getLangCodes($validLangs));
         }
 
