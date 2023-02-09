@@ -139,7 +139,7 @@ class TranskribusClient
         $this->langs = $langs;
     }
 
-    private function request(
+    public function request(
         string $method, 
         string $url, 
         array $jsonBody = []
