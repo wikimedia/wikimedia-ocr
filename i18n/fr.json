@@ -26,7 +26,7 @@
 	"drag-mode-move-alt": "Icône représentant l’action « déplacer ».",
 	"drag-mode-crop": "Trainer créera une nouvelle zone de découpe",
 	"drag-mode-crop-alt": "Icône représentant l’action « découper ».",
-	"copy-to-clipboard": "Copier dans le presse-papier",
+	"copy-to-clipboard": "Copier dans le presse-papiers",
 	"copied-to-clipboard": "Copié !",
 	"google-error": "Le service Google a renvoyé une erreur : $1",
 	"image-retrieval-failed": "Échec de récupération de l’image : $1",
