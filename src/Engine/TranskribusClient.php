@@ -75,7 +75,7 @@ class TranskribusClient
                 $this->processId = $content->{'processId'};
                 $this->reponseHasError = false;
             }
-        }      
+        }
 
         return $this;
     }
@@ -139,6 +139,11 @@ class TranskribusClient
         $this->langs = $langs;
     }
 
+     /**
+     * @param string $method
+     * @param string $url
+     * @param array[] $jsonBody
+     */
     public function request(
         string $method, 
         string $url, 
