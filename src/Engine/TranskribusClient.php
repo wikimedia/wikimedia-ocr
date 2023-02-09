@@ -60,40 +60,22 @@ class TranskribusClient
                 ],
             ];
         }
-        $response = $this->httpClient
-        ->request(
-            'POST',
-            self::PROCESSES_URL,
-            [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer '.$this->accessToken,
-                ],
-                'json' => [
-                    'config' => $this->config,
-                    'image' => [
-                        'imageUrl' => $imageURL,
-                    ],
-                ],
-            ]
-        );
 
-        $statusCode = $response->getStatusCode();
-        if (200 === $statusCode) {
-            $content = json_decode($response->getContent());
-            
-            if (is_null($content)) {
-                $this->setErrorMessage(0);
-                return $this;
-            }
-            
+        $jsonBody = [
+            'config' => $this->config,
+            'image' => [
+                'imageUrl' => $imageURL,
+            ],
+        ];
+
+        $content = $this->request('POST', self::PROCESSES_URL, $jsonBody);
+        $parsedContent = (array) $content;
+        if (!empty($parsedContent)) {
             if ($content->{'status'} === 'CREATED') {
                 $this->processId = $content->{'processId'};
                 $this->reponseHasError = false;
             }
-        } else {
-            $this->setErrorMessage($statusCode);
-        }
+        }      
 
         return $this;
     }
@@ -101,35 +83,18 @@ class TranskribusClient
     public function retrieveProcessStatus(): self
     {
         $url = self::PROCESSES_URL.'/'.$this->processId;
-        $response = $this->httpClient
-        ->request(
-            'GET',
-            $url,
-            [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer '.$this->accessToken,
-                ],
-            ]
-        );
-        
-        $statusCode = $response->getStatusCode();
-        if (200 === $statusCode) {
-            $content = json_decode($response->getContent());
-            if (is_null($content)) {
-                $this->setErrorMessage(0);
-                return $this;
-            }
 
+        $content = $this->request('GET', $url);
+        $parsedContent = (array) $content;
+
+        if (!empty($parsedContent)) {
             if ($content->{'status'} === 'FINISHED') {
                 $textContent = $content->{'content'};
                 $this->textResult = $textContent->{'text'};
                 $this->reponseHasError = false;
             }
-        } else {
-            $this->setErrorMessage($statusCode);
         }
-
+        
         return $this;
     }
     
@@ -172,5 +137,37 @@ class TranskribusClient
     public function setLanguages(array $langs): void
     {
         $this->langs = $langs;
+    }
+
+    private function request(
+        string $method, 
+        string $url, 
+        array $jsonBody = []
+    ): object {
+        $body = [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer '.$this->accessToken,
+            ],
+        ];
+        if ([] != $jsonBody) {
+            $body['json'] = $jsonBody;
+        }
+
+        $response = $this->httpClient->request($method, $url, $body);
+        $statusCode = $response->getStatusCode();
+        if (200 === $statusCode) {
+            $content = json_decode($response->getContent());
+            
+            if (is_null($content)) {
+                $this->setErrorMessage(0);
+                return (object)[];
+            }
+
+            return $content;
+        } else {
+            $this->setErrorMessage($statusCode);
+            return (object)[];
+        }
     }
 }
