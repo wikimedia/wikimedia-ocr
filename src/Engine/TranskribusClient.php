@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 
 namespace App\Engine;
+
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class TranskribusClient
@@ -41,7 +42,12 @@ class TranskribusClient
         $this->accessToken = $accessToken;
     }
 
-    public function initProcess($imageURL, $config = []){
+    /**
+     * @param string $accessToken
+     * @param array $config
+     */
+    public function initProcess($imageURL, $config = []): self
+    {
         $response = $this->httpClient
         ->request(
             'POST',
@@ -49,17 +55,17 @@ class TranskribusClient
             [
                 'headers' => [
                     'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer '.$this->accessToken
+                    'Authorization' => 'Bearer '.$this->accessToken,
                 ],
                 'json' => [
                     'config' => [
                         'textRecognition' => [
-                            'htrId' => 38230
-                        ]
+                            'htrId' => 38230,
+                        ],
                     ],
                     'image' => [
-                        'imageUrl' => $imageURL
-                    ]
+                        'imageUrl' => $imageURL,
+                    ],
                 ],
             ]
         );
@@ -69,15 +75,17 @@ class TranskribusClient
             $content = json_decode($response->getContent());
             
             if (is_null($content)) {
-                $this->setErrorMessage('00');
+
+                $this->setErrorMessage(0);
                 return $this;
-            } 
+
+            }
             
-            if($content->{'status'} === 'CREATED'){
+            if ($content->{'status'} === 'CREATED')
+            {
                 $this->processId = $content->{'processId'};
                 $this->reponseHasError = false;
-            } 
-
+            }
         } else {
             $this->setErrorMessage($statusCode);
         }
@@ -85,8 +93,9 @@ class TranskribusClient
         return $this;
     }
 
-    public function retrieveProcessStatus(){
-        $url = self::PROCESSES_URL . '/'. $this->processId;
+    public function retrieveProcessStatus(): self
+    {
+        $url = self::PROCESSES_URL.'/'.$this->processId;
         $response = $this->httpClient
         ->request(
             'GET',
@@ -94,7 +103,7 @@ class TranskribusClient
             [
                 'headers' => [
                     'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer '.$this->accessToken
+                    'Authorization' => 'Bearer '.$this->accessToken,
                 ],
             ]
         );
@@ -102,16 +111,18 @@ class TranskribusClient
         $statusCode = $response->getStatusCode();
         if (200 === $statusCode) {
             $content = json_decode($response->getContent());
-            if (is_null($content)) {
-                $this->setErrorMessage('00');
+            if (is_null($content)) 
+            {
+                $this->setErrorMessage(0);
                 return $this;
-            } 
+            }
 
-            if($content->{'status'} === 'FINISHED'){
+            if ($content->{'status'} === 'FINISHED')
+            {
                 $textContent = $content->{'content'};
                 $this->textResult = $textContent->{'text'};
                 $this->reponseHasError = false;
-            } 
+            }
 
         } else {
             $this->setErrorMessage($statusCode);
@@ -120,9 +131,10 @@ class TranskribusClient
         return $this;
     }
     
-    private function setErrorMessage($statusCode){
+    private function setErrorMessage(int $statusCode)
+    {
         switch($statusCode){
-            case '00':
+            case 0:
                 $this->errorMessage = 'Transkribus API returned null';
                 $this->reponseHasError = true;
                 break;
@@ -137,15 +149,18 @@ class TranskribusClient
         }
     }
 
-    public function getErrorMessage(){
+    public function getErrorMessage(): string
+    {
         return $this->errorMessage;
     }
 
-    public function getTextResult(){
+    public function getTextResult(): string
+    {
         return $this->textResult;
     }
 
-    public function hasError(){
+    public function hasError(): bool
+    {
         return $this->reponseHasError;
     }
 

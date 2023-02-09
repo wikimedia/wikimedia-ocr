@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 
 namespace App\Engine;
+
 use App\Exception\OcrException;
 use Krinkle\Intuition\Intuition;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -58,15 +59,21 @@ class TranskribusEngine extends EngineBase
         $imageUrl = $image->getUrl();
         $response = $this->transkribusClient->initProcess($imageUrl, []);
 
+        if ($validLangs) {
+           
+        }
+
         if ($response->hasError()) {
             throw new OcrException('transkribus-error', [$response->getErrorMessage()]);
         }
 
         $counter = 0;
-        while(!$response->hasError() && $response->getTextResult() === '' && $counter < 11){
+        while(!$response->hasError() && '' === $response->getTextResult() && 11 >$counter){
+            
             $response->retrieveProcessStatus();
             $counter++;
             sleep(5);
+
         }
 
         if ($response->hasError()) {

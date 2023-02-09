@@ -7,8 +7,8 @@ use App\Controller\OcrController;
 use App\Engine\EngineFactory;
 use App\Engine\GoogleCloudVisionEngine;
 use App\Engine\TesseractEngine;
-use App\Engine\TranskribusEngine;
 use App\Engine\TranskribusClient;
+use App\Engine\TranskribusEngine;
 use App\Tests\OcrTestCase;
 use Krinkle\Intuition\Intuition;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
@@ -46,7 +46,12 @@ class OcrControllerTest extends OcrTestCase
             new EngineFactory(
                 $gcv,
                 new TesseractEngine(new MockHttpClient(), $intuition, $this->projectDir, new TesseractOCR()),
-                new TranskribusEngine(new TranskribusClient(new MockHttpClient(), $this->accessToken),$intuition,$this->projectDir,new MockHttpClient())
+                new TranskribusEngine(
+                    new TranskribusClient(new MockHttpClient(), $this->accessToken), 
+                    $intuition,
+                    $this->projectDir,
+                    new MockHttpClient()
+                ),
             ),
             new FilesystemAdapter()
         );
