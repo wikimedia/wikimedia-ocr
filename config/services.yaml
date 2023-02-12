@@ -41,10 +41,10 @@ services:
         parent: App\Engine\EngineBase
         arguments:
             $keyFile: '%env(APP_GOOGLE_KEYFILE)%'
-    
+
     App\Engine\TranskribusEngine:
         parent: App\Engine\EngineBase
-            
+
     App\Engine\TranskribusClient:
         arguments:
             $accessToken: '%env(APP_TRANSKRIBUS_ACCESS_TOKEN)%'

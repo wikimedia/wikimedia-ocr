@@ -9,8 +9,6 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class TranskribusEngine extends EngineBase
 {
-    /** @var string The API key. */
-    protected $key;
 
     /** @var TranskribusClient */
     protected $transkribusClient;
@@ -29,7 +27,7 @@ class TranskribusEngine extends EngineBase
         HttpClientInterface $httpClient
     ) {
         parent::__construct($intuition, $projectDir, $httpClient);
-        
+
         $this->transkribusClient = $transkribusClient;
     }
 
@@ -53,33 +51,19 @@ class TranskribusEngine extends EngineBase
     ): EngineResult {
         $this->checkImageUrl($imageUrl);
 
-        [ $validLangs, $invalidLangs ] = $this->filterValidLangs($langs, $invalidLangsMode);
-
         $image = $this->getImage($imageUrl, $crop);
         $imageUrl = $image->getUrl();
-        $response = $this->transkribusClient->initProcess($imageUrl);
+        $processId = $this->transkribusClient->initProcess($imageUrl);
 
-        if ($validLangs) {
-            $response->setLanguages($this->getLangCodes($validLangs));
+        if (0 === $processId) {
+            $message = "Unable to Init Process";
+            throw new OcrException('transkribus-error', [$message]);
         }
 
-        if ($response->hasError()) {
-            throw new OcrException('transkribus-error', [$response->getErrorMessage()]);
-        }
+        sleep(50);
+        $resText = $this->transkribusClient->retrieveProcessResult($processId);
 
-        $counter = 0;
-        while (!$response->hasError() && '' === $response->getTextResult() && 11 >$counter) {
-            $response->retrieveProcessStatus();
-            $counter++;
-            sleep(5);
-        }
-
-        if ($response->hasError()) {
-            throw new OcrException('transkribus-error', [$response->getErrorMessage()]);
-        }
-
-        $resText = $response->getTextResult();
-        $warnings = $invalidLangs ? [ $this->getInvalidLangsWarning($invalidLangs) ] : [];
+        $warnings = [];
         return new EngineResult($resText, $warnings);
     }
 }
