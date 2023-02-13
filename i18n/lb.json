@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robby",
+			"Volvox"
+		]
+	},
+	"title": "WikimediaOCR",
+	"subtitle": "Text vu Biller transkribéieren",
+	"form-heading": "E Bild transkribéieren",
+	"image-url": "URL vum Bild",
+	"image-url-help": "Setzt d'URL vun engem Bild an, dat op engem Wikimedia-Server gehost gëtt, wéi z. B.: $1",
+	"image-url-error": "D'URL vum Bild muss mat {{PLURAL:$1|dem follgenden Domainnumm|engem vun de follgenden Domainnimm}} ufänken a mat enger gülteger Dateiendung ophalen: $2",
+	"image-alt-text": "D'Originalbild",
+	"language-code": "Sproochen (optional)",
+	"submit": "Ganz Säit transkribéieren",
+	"copied-to-clipboard": "Kopéiert!",
+	"documentation": "Dokumentatioun",
+	"version": "Versioun $1",
+	"report-issue": "E Probleem mellen"
+}
