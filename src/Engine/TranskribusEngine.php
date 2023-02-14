@@ -53,15 +53,13 @@ class TranskribusEngine extends EngineBase
 
         $image = $this->getImage($imageUrl, $crop);
         $imageUrl = $image->getUrl();
-        $processId = $this->transkribusClient->initProcess($imageUrl);
+        $processId = $this->transkribusClient->initProcess($imageUrl, 38230);
 
-        if (0 === $processId) {
-            $message = "Unable to Init Process";
-            throw new OcrException('transkribus-error', [$message]);
+        $resText = '';
+        while($this->transkribusClient->processStatus !== 'FINISHED') {
+            $resText = $this->transkribusClient->retrieveProcessResult($processId);
+            sleep(2);
         }
-
-        sleep(50);
-        $resText = $this->transkribusClient->retrieveProcessResult($processId);
 
         $warnings = [];
         return new EngineResult($resText, $warnings);

@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace App\Engine;
 
 use App\Exception\OcrException;
+use Krinkle\Intuition\Intuition;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class TranskribusClient
@@ -13,12 +14,12 @@ class TranskribusClient
     private $httpClient;
 
     /** @var string transkribus access token. */
-    private $accessToken = '';
+    private $accessToken;
 
-    /** @var $config. */
-    private $config = [];
+    /** @var string transkribus request status. */
+    public $processStatus;
 
-    /** @var string Transcribed result. */
+    /** @var string Transkribus process URL. */
     private const PROCESSES_URL = "https://transkribus.eu/processing/v1/processes";
 
     /**
@@ -36,36 +37,31 @@ class TranskribusClient
 
     /**
      * @param string $imageURL
-     * @param mixed[] $config
+     * @param int $htrId
      * @return int
      */
-    public function initProcess(string $imageURL, array $config = []): int
+    public function initProcess(string $imageURL, int $htrId): int
     {
-        if ([] === $config) {
-            $config = [
-                'textRecognition' => [
-                    'htrId' => 38230,
-                ],
-            ];
-        }
-
         $jsonBody = [
-            'config' => $config,
+            'config' => [
+                'textRecognition' => [
+                    'htrId' => $htrId,
+                ],
+            ],
             'image' => [
                 'imageUrl' => $imageURL,
             ],
         ];
 
-        $processId = 0;
         $content = $this->request('POST', self::PROCESSES_URL, $jsonBody);
-        $parsedContent = (array) $content;
-        if (!empty($parsedContent)) {
-            if ($content->{'status'} === 'CREATED') {
-                $processId = $content->{'processId'};
-            }
+
+        if ($content->status !== 'FAILED') {
+            $processId = $content->processId;
+            return $processId;
         }
 
-        return $processId;
+        throw new OcrException('transkribus-error-init-process-failed');
+
     }
 
     /**
@@ -76,15 +72,16 @@ class TranskribusClient
     {
         $url = self::PROCESSES_URL.'/'.$processId;
 
-        $content = $this->request('GET', $url, []);
-        $parsedContent = (array) $content;
+        $content = $this->request('GET', $url);
         $textResult = '';
 
-        if (!empty($parsedContent)) {
-            if ($content->{'status'} === 'FINISHED') {
-                $textContent = $content->{'content'};
-                $textResult = $textContent->{'text'};
-            }
+        if ($content->status === 'FAILED') {
+            throw new OcrException('transkribus-error-failed-process-status');
+        }
+
+        if ($content->status === 'FINISHED') {
+            $this->processStatus = $content->status;
+            $textResult = $content->content->text ?? '';
         }
 
         return $textResult;
@@ -92,30 +89,31 @@ class TranskribusClient
 
     /**
      * @param int $statusCode
-     * @return string
      */
-    private function getErrorMessage(int $statusCode): string
+    private function throwException(int $statusCode): void
     {
-        $errorMessage = '';
         switch ($statusCode) {
             case 0:
-                $errorMessage = 'Transkribus API returned null';
-                break;
+                throw new OcrException(
+                    'transkribus-error-empty-response'
+                );
             case 401:
-                $errorMessage = 'Error Code '.$statusCode.' :: Credentials are incorrect!';
-                break;
+                throw new OcrException(
+                    'transkribus-error-401',
+                    [$statusCode]
+                );
             default:
-                $errorMessage = 'Error Code '.$statusCode.' :: Error initiating upload process, try again!';
-                break;
+                throw new OcrException(
+                    'transkribus-error-default',
+                    [$statusCode]
+                );
         }
-        return $errorMessage;
     }
 
     /**
      * @param string $method
      * @param string $url
      * @param mixed[] $jsonBody
-     * @return object
      */
     private function request(
         string $method,
@@ -137,14 +135,13 @@ class TranskribusClient
         if (200 === $statusCode) {
             $content = json_decode($response->getContent());
 
-            if (is_null($content)) {
-                $message = $this->getErrorMessage(0);
-                throw new OcrException('transkribus-error', [$message]);
+            if (!empty($content)) {
+                return $content;
             }
-            return $content;
+            $this->throwException(0);
+
         } else {
-            $message = $this->getErrorMessage($statusCode);
-            throw new OcrException('transkribus-error', [$message]);
+            $this->throwException($statusCode);
         }
     }
 }

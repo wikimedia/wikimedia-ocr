@@ -57,5 +57,10 @@
 	"tesseract-psm-12": "Form option for Tesseract page segmentation mode.",
 	"tesseract-psm-13": "Form option for Tesseract page segmentation mode.",
 	"tesseract-param-error": "Error message displayed when invalid values for Tesseract options are submitted.\n\nParameters:\n* $1 – the form label for the option. Currently, the only possible value here is {{msg-wm|wikimedia-ocr-tesseract-psm-label}}.\n* $2 – The value that was given.\n* $3 – the maximum value for the option (this will be an integer).",
-	"tesseract-internal-error": "Generic error message displayed when the tesseract command fails."
+	"tesseract-internal-error": "Generic error message displayed when the tesseract command fails.",
+	"transkribus-error-401": "Error Code '$1' :: The request is not authorized",
+    "transkribus-error-default": "Error Code '$1' ::  Error initiating upload process, try again!",
+    "transkribus-error-empty-response": "Could not parse result from Transkribus API",
+	"transkribus-error-init-process-failed": "Failed to init Transkribus process",
+	"transkribus-error-failed-process-status": "Failed to retrieve Transkribus process status"
 }
