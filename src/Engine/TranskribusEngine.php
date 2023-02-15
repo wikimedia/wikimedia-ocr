@@ -56,7 +56,7 @@ class TranskribusEngine extends EngineBase
         $processId = $this->transkribusClient->initProcess($imageUrl, 38230);
 
         $resText = '';
-        while($this->transkribusClient->processStatus !== 'FINISHED') {
+        while ('FINISHED' !== $this->transkribusClient->processStatus) {
             $resText = $this->transkribusClient->retrieveProcessResult($processId);
             sleep(2);
         }

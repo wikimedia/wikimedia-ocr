@@ -4,7 +4,6 @@ declare(strict_types = 1);
 namespace App\Engine;
 
 use App\Exception\OcrException;
-use Krinkle\Intuition\Intuition;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class TranskribusClient
@@ -55,13 +54,12 @@ class TranskribusClient
 
         $content = $this->request('POST', self::PROCESSES_URL, $jsonBody);
 
-        if ($content->status !== 'FAILED') {
+        if ('FAILED' !== $content->status) {
             $processId = $content->processId;
             return $processId;
         }
 
         throw new OcrException('transkribus-error-init-process-failed');
-
     }
 
     /**
@@ -75,11 +73,11 @@ class TranskribusClient
         $content = $this->request('GET', $url);
         $textResult = '';
 
-        if ($content->status === 'FAILED') {
+        if ('FAILED' === $content->status) {
             throw new OcrException('transkribus-error-failed-process-status');
         }
 
-        if ($content->status === 'FINISHED') {
+        if ('FINISHED' === $content->status) {
             $this->processStatus = $content->status;
             $textResult = $content->content->text ?? '';
         }
@@ -139,7 +137,6 @@ class TranskribusClient
                 return $content;
             }
             $this->throwException(0);
-
         } else {
             $this->throwException($statusCode);
         }
