@@ -185,7 +185,7 @@ class OcrController extends AbstractController
      * @OA\Parameter(
      *     name="engine",
      *     in="query",
-     *     description="The engine to use, either `tesseract` or `google`.",
+     *     description="The engine to use, either `tesseract` or `google` or transkribus.",
      *     example="tesseract",
      *     @OA\Schema(type="string")
      * )
@@ -237,7 +237,7 @@ class OcrController extends AbstractController
      * @OA\Parameter(
      *     name="engine",
      *     in="query",
-     *     description="The engine to use, either `tesseract` or `google`.",
+     *     description="The engine to use, either `tesseract` or `google` or transkribus.",
      *     example="tesseract",
      *     @OA\Schema(type="string")
      * )
