@@ -59,7 +59,7 @@ class TranskribusClient
             return $processId;
         }
 
-        throw new OcrException('transkribus-error-init-process-failed');
+        throw new OcrException('transkribus-init-process-error');
     }
 
     /**
@@ -74,7 +74,7 @@ class TranskribusClient
         $textResult = '';
 
         if ('FAILED' === $content->status) {
-            throw new OcrException('transkribus-error-failed-process-status');
+            throw new OcrException('transkribus-failed-process-error');
         }
 
         if ('FINISHED' === $content->status) {
@@ -93,16 +93,16 @@ class TranskribusClient
         switch ($statusCode) {
             case 0:
                 throw new OcrException(
-                    'transkribus-error-empty-response'
+                    'transkribus-empty-response-error'
                 );
             case 401:
                 throw new OcrException(
-                    'transkribus-error-401',
+                    'transkribus-unauthorized-error',
                     [$statusCode]
                 );
             default:
                 throw new OcrException(
-                    'transkribus-error-default',
+                    'transkribus-default-error',
                     [$statusCode]
                 );
         }

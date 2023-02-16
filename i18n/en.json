@@ -51,9 +51,9 @@
     "tesseract-psm-13": "Raw line. Treat the image as a single text line, bypassing hacks that are Tesseract-specific.",
     "tesseract-param-error": "The '$1' option with a value of $2 is not supported by Tesseract. Maximum value: $3",
     "tesseract-internal-error": "The tesseract engine returned an internal error.",
-    "transkribus-error-401": "Error Code '$1' :: The request is not authorized",
-    "transkribus-error-default": "Error Code '$1' ::  Error initiating upload process, try again!",
-    "transkribus-error-empty-response": "Could not parse result from Transkribus API",
-	"transkribus-error-init-process-failed": "Failed to init Transkribus process",
-	"transkribus-error-failed-process-status": "Failed to retrieve Transkribus process status"
+    "transkribus-unauthorized-error": "Error Code '$1' :: The request is not authorized",
+    "transkribus-default-error": "Error Code '$1' ::  Unable to complete request, try again!",
+    "transkribus-empty-response-error": "Could not parse result from Transkribus API",
+	"transkribus-init-process-error": "Failed to initialize Transkribus process",
+	"transkribus-failed-process-error": "Transkribus process failed"
 }
