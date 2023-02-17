@@ -2,7 +2,7 @@ nelmio_api_doc:
     documentation:
         info:
             title: Wikimedia OCR
-            description: A web service for Tesseract and Google OCR engines.
+            description: A web service for Tesseract, Google and Transkribus OCR engines.
     areas:
         path_patterns:
             - ^/api$

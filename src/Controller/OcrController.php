@@ -8,6 +8,7 @@ use App\Engine\EngineFactory;
 use App\Engine\EngineResult;
 use App\Engine\GoogleCloudVisionEngine;
 use App\Engine\TesseractEngine;
+use App\Engine\TranskribusEngine;
 use App\Exception\EngineNotFoundException;
 use Krinkle\Intuition\Intuition;
 use OpenApi\Annotations as OA;
@@ -27,7 +28,7 @@ class OcrController extends AbstractController
     /** @var Intuition */
     protected $intuition;
 
-    /** @var TesseractEngine|GoogleCloudVisionEngine */
+    /** @var TesseractEngine|GoogleCloudVisionEngine|TranskribusEngine */
     protected $engine;
 
     /** @var string The default OCR engine. */
@@ -184,7 +185,7 @@ class OcrController extends AbstractController
      * @OA\Parameter(
      *     name="engine",
      *     in="query",
-     *     description="The engine to use, either `tesseract` or `google`.",
+     *     description="The engine to use, either `tesseract` or `google` or `transkribus`.",
      *     example="tesseract",
      *     @OA\Schema(type="string")
      * )
@@ -236,7 +237,7 @@ class OcrController extends AbstractController
      * @OA\Parameter(
      *     name="engine",
      *     in="query",
-     *     description="The engine to use, either `tesseract` or `google`.",
+     *     description="The engine to use, either `tesseract` or `google` or `transkribus`.",
      *     example="tesseract",
      *     @OA\Schema(type="string")
      * )

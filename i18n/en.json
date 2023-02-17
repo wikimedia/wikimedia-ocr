@@ -11,6 +11,7 @@
     "engine": "OCR engine",
     "engine-name-google": "Google Cloud Vision OCR",
     "engine-name-tesseract": "Tesseract OCR",
+    "engine-name-transkribus": "Transkribus OCR",
     "engine-not-found-warning": "The requested engine '$1' was not found. Using the default engine '$2' instead.",
     "engine-invalid-langs-warning": "The following languages are invalid or not supported by the engine and were ignored: $1",
     "submit": "Transcribe whole page",
@@ -49,5 +50,10 @@
     "tesseract-psm-12": "Sparse text with OSD.",
     "tesseract-psm-13": "Raw line. Treat the image as a single text line, bypassing hacks that are Tesseract-specific.",
     "tesseract-param-error": "The '$1' option with a value of $2 is not supported by Tesseract. Maximum value: $3",
-    "tesseract-internal-error": "The tesseract engine returned an internal error."
+    "tesseract-internal-error": "The tesseract engine returned an internal error.",
+    "transkribus-unauthorized-error": "Error Code '$1' :: The request is not authorized",
+    "transkribus-default-error": "Error Code '$1' ::  Unable to complete request, try again!",
+    "transkribus-empty-response-error": "Could not parse result from Transkribus API",
+	"transkribus-init-process-error": "Failed to initialize Transkribus process",
+	"transkribus-failed-process-error": "Transkribus process failed"
 }

@@ -18,6 +18,7 @@
 	"engine": "Form label for the 'engine' field.",
 	"engine-name-google": "Option text for the 'google' engine.",
 	"engine-name-tesseract": "Option text for the 'tesseract' engine.",
+	"engine-name-transkribus": "Option text for the 'transkribus' engine.",
 	"engine-not-found-warning": "Error message displayed when an invalid engine is requested.\n\nParameter:\n* $1 – the requested engine.\n* $2 – the default engine that is being used instead.",
 	"engine-invalid-langs-warning": "Warning message displayed when invalid or unsupported languages are requested.\n\nParameter:\n* $1 – a comma-separated list of invalid languages.",
 	"submit": "Submit button text for when the whole image is being submitted.",
@@ -56,5 +57,10 @@
 	"tesseract-psm-12": "Form option for Tesseract page segmentation mode.",
 	"tesseract-psm-13": "Form option for Tesseract page segmentation mode.",
 	"tesseract-param-error": "Error message displayed when invalid values for Tesseract options are submitted.\n\nParameters:\n* $1 – the form label for the option. Currently, the only possible value here is {{msg-wm|wikimedia-ocr-tesseract-psm-label}}.\n* $2 – The value that was given.\n* $3 – the maximum value for the option (this will be an integer).",
-	"tesseract-internal-error": "Generic error message displayed when the tesseract command fails."
+	"tesseract-internal-error": "Generic error message displayed when the tesseract command fails.",
+	"transkribus-unauthorized-error": "Error message displayed when Transkribus access token has expired or login credentials are invalid.",
+    "transkribus-default-error": "Generic error message displayed when Transkribus API returns error status different from 401.",
+    "transkribus-empty-response-error": "Error message displayed when Transkribus API returns an empty response body.",
+	"transkribus-init-process-error": "Error message displayed when Transkribus API fails to initialize upload process.",
+	"transkribus-failed-process-error": "Error message displayed when Transkribus API process status returns FAILED."
 }
