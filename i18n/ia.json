@@ -13,6 +13,7 @@
 	"image-alt-text": "Le imagine original",
 	"language-code": "Linguas (optional)",
 	"engine": "Motor OCR",
+	"engine-name-transkribus": "OCR de Transkribus",
 	"engine-not-found-warning": "Le motor '$1' requestate non ha essite trovate. Le motor predefinite '$2' es usate in su loco.",
 	"engine-invalid-langs-warning": "Le sequente linguas non es valide o non es supportate per le motor e ha essite ignorate: $1",
 	"submit": "Transcriber tote le pagina",
@@ -50,5 +51,10 @@
 	"tesseract-psm-12": "Texto sparse con OSD.",
 	"tesseract-psm-13": "Linea brute. Tractar le imagine como un sol linea de texto, contornante le trucos que es specific a Tesseract.",
 	"tesseract-param-error": "Le option '$1' con un valor de $2 non es supportate per Tesseract. Valor maxime: $3",
-	"tesseract-internal-error": "Le motor tesseract indicava un error interne."
+	"tesseract-internal-error": "Le motor tesseract indicava un error interne.",
+	"transkribus-unauthorized-error": "Codice de error '$1' :: Le requesta non es autorisate",
+	"transkribus-default-error": "Codice de error '$1' :: Non pote terminar le requesta, tenta lo de novo!",
+	"transkribus-empty-response-error": "Non poteva interpretar le resultato del API de Transkribus",
+	"transkribus-init-process-error": "Non poteva initialisar le processo Transkribus",
+	"transkribus-failed-process-error": "Processo Transkribus fallite"
 }

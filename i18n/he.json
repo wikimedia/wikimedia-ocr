@@ -3,7 +3,8 @@
 		"authors": [
 			"Amire80",
 			"Ghsuvr",
-			"Leononon"
+			"Leononon",
+			"YaronSh"
 		]
 	},
 	"title": "WikimediaOCR",
@@ -17,6 +18,7 @@
 	"engine": "מנוע זיהוי התווים OCR",
 	"engine-name-google": "Google Cloud Vision OCR",
 	"engine-name-tesseract": "Tesseract OCR",
+	"engine-name-transkribus": "Transkribus OCR",
 	"engine-not-found-warning": "המנוע המבוקש $1 לא נמצא. נא לנסות את $2 במקום זה.",
 	"engine-invalid-langs-warning": "השפות הבאות לא תקניות או שלא נתמכות על ידי המנוע ולכל נדחו: $1",
 	"submit": "לתמלל את כל הדף",
@@ -55,5 +57,10 @@
 	"tesseract-psm-12": "דילול הטקסט בעזרת OSD.",
 	"tesseract-psm-13": "שורה גולמית. להתייחס לתמונה כשורת טקסט אחת, ולעקוף אפשרויות מיוחדות לטסרקט.",
 	"tesseract-param-error": "האפשרות $1 עם הערך $2 לא נתמכת על־ידי טסרקט. הערך המרבי הוא $3",
-	"tesseract-internal-error": "מנוע טסרקט החזיר שגיאה פנימית."
+	"tesseract-internal-error": "מנוע טסרקט החזיר שגיאה פנימית.",
+	"transkribus-unauthorized-error": "קוד שגיאה ‚$1’ :: הבקשה לא מאומתת",
+	"transkribus-default-error": "קוד שגיאה ‚$1’ :: לא ניתן להשלים את הבקשה, נא לנסות שוב!",
+	"transkribus-empty-response-error": "לא ניתן לפענח את התוצאות מ־Transkribus API",
+	"transkribus-init-process-error": "הפעלת תהליך ה־Transkribus נכשל",
+	"transkribus-failed-process-error": "תהליך Transkribus נכשל"
 }

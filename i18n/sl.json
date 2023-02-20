@@ -14,6 +14,7 @@
 	"language-code": "Jeziki (neobvezno)",
 	"engine": "Motor OCR",
 	"engine-name-google": "OCR Google Cloud Vision",
+	"engine-name-transkribus": "Transkribus OCR",
 	"engine-not-found-warning": "Zahtevanega motorja »$1« ni bilo mogoče najti. Namesto tega uporabite privzeti motor »$2«.",
 	"engine-invalid-langs-warning": "Naslednji jeziki so neveljavni ali jih motor ne podpira in so bili prezrti: $1",
 	"submit": "Prepiši celotno stran",
@@ -51,5 +52,10 @@
 	"tesseract-psm-12": "Pičlo besedilo z OSD.",
 	"tesseract-psm-13": "Neobdelana vrstica. Obravnavaj sliko kot eno samo vrstico besedila, da se preprečijo artefakti, specifični za Tesseract.",
 	"tesseract-param-error": "Možnosti »$1« z vrednostjo $2 Tesseract ne podpira. Najvišja vrednost: $3",
-	"tesseract-internal-error": "Motor Tesseract je vrnil notranjo napako."
+	"tesseract-internal-error": "Motor Tesseract je vrnil notranjo napako.",
+	"transkribus-unauthorized-error": "Koda napake »$1« :: Zahtevek ni avtoriziran",
+	"transkribus-default-error": "Koda napake »$1« :: Zahtevka ni mogoče dokončati, poskusite znova!",
+	"transkribus-empty-response-error": "Rezultata API-ja Transkribus ni bilo mogoče razčleniti",
+	"transkribus-init-process-error": "Inicializacija postopka Transkribus ni uspela",
+	"transkribus-failed-process-error": "Postopek Transkribus ni uspel"
 }

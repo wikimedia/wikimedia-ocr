@@ -13,6 +13,7 @@
 	"image-alt-text": "Изворната слика.",
 	"language-code": "Јазици (незадолж.)",
 	"engine": "ОПЗ-погон",
+	"engine-name-transkribus": "Transkribus OCR",
 	"engine-not-found-warning": "Не го најдов побараниот погон „$1“. Ќе го користам основно зададениот погон „$2“.",
 	"engine-invalid-langs-warning": "Следниве јазици се неважечки или не се поддржани од погонот, па затоа се занемаруваат: $1",
 	"submit": "Препиши ја целата страница",
@@ -51,5 +52,10 @@
 	"tesseract-psm-12": "Разреден текст со ПНП.",
 	"tesseract-psm-13": "Сиров рд. Сметај ја сликата за еден ред текст, заобиколувајќи ги можностите особени за Tesseract.",
 	"tesseract-param-error": "Можноста „$1“ со вредност $2 не е поддржана од Tesseract. Најголема допуштена вредност: $3",
-	"tesseract-internal-error": "Погонот Tesseract даде внатрешна грешка."
+	"tesseract-internal-error": "Погонот Tesseract даде внатрешна грешка.",
+	"transkribus-unauthorized-error": "Грешка „$1“ :: Барањето не е овластено",
+	"transkribus-default-error": "Грешка „$1“ ::  Не можам да го исполнам барањето. Пробајте повторно!",
+	"transkribus-empty-response-error": "Не можев да го расчленам исходот од приложникот на Transkribus",
+	"transkribus-init-process-error": "Не можев да ја покренам постапката на Transkribus",
+	"transkribus-failed-process-error": "Постапката на Transkribus не успеа"
 }

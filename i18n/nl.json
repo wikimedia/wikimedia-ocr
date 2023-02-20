@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"McDutchie",
 			"Romaine"
 		]
 	},
@@ -15,6 +16,7 @@
 	"engine": "OCR-engine",
 	"engine-name-google": "Google Cloud Vision OCR",
 	"engine-name-tesseract": "Tesseract OCR",
+	"engine-name-transkribus": "Transkribus-OCR",
 	"engine-not-found-warning": "De gevraagde engine '$1' werd niet gevonden. Gebruik in plaats daarvan de standaardengine '$2'.",
 	"engine-invalid-langs-warning": "De volgende talen zijn ongeldig of worden niet ondersteund door de engine en werden genegeerd: $1",
 	"submit": "Transcribeer de hele pagina",
@@ -52,5 +54,10 @@
 	"tesseract-psm-12": "Spaarzame tekst met OSD.",
 	"tesseract-psm-13": "Ruwe lijn. Behandel de afbeelding als een enkele tekstregel en omzeil hacks die Tesseract-specifiek zijn.",
 	"tesseract-param-error": "De optie '$1' met een waarde $2 wordt niet ondersteund door Tesseract. Maximale waarde: $3",
-	"tesseract-internal-error": "De tesseract-engine heeft een interne fout geretourneerd."
+	"tesseract-internal-error": "De tesseract-engine heeft een interne fout geretourneerd.",
+	"transkribus-unauthorized-error": "Foutcode '$1' :: Het verzoek is niet geautoriseerd",
+	"transkribus-default-error": "Foutcode '$1' :: Kan het verzoek niet voltooien, probeer het opnieuw!",
+	"transkribus-empty-response-error": "Kon het resultaat van de API van Transkribus niet interpreteren",
+	"transkribus-init-process-error": "Kon het Transkribus-proces niet initialiseren",
+	"transkribus-failed-process-error": "Transkribus-proces mislukt"
 }
