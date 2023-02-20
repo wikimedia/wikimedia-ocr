@@ -37,6 +37,7 @@ class TranskribusClient
     /**
      * @param string $imageURL
      * @param int $htrId
+     * @param string $points 
      * @return int
      */
     public function initProcess(string $imageURL, int $htrId, string $points): int
