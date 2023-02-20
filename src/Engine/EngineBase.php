@@ -39,6 +39,10 @@ abstract class EngineBase
     public const LANG_NAMES = [
         'az-cyrl' => 'Azərbaycan (qədim yazı)',
         'de-frk' => 'Deutsch (Fraktur)',
+        'en-18-handwritten' => 'English Handwritten (18-19th Century)',
+        'en-print-m1' => 'English Typewritten/Print',
+        'en-print-03' => 'English Typewritten/Print',
+        'en-typewriter' => 'English Typewritten',
         'enm' => 'Middle English (1100-1500)',
         'es-old' => 'español (viejo)',
         'frm' => 'moyen français (1400-1600)',

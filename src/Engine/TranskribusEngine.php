@@ -53,7 +53,30 @@ class TranskribusEngine extends EngineBase
 
         $image = $this->getImage($imageUrl, $crop);
         $imageUrl = $image->getUrl();
-        $processId = $this->transkribusClient->initProcess($imageUrl, 38230);
+
+        $points = '';
+        if ($crop) {
+            $x = $crop['x'];
+            $y = $crop['y'];
+            $yPlusH = $crop['y'] + $crop['height'];
+            $xPlusW = $crop['x'] + $crop['width'];
+            $points = $x.','.$y.' '.$xPlusW.','.$y.' '.$xPlusW.','.$yPlusH.' '.$x.','.$yPlusH;
+        }
+
+        $modelId = 0;
+        [ $validLangs, $invalidLangs ] = $this->filterValidLangs($langs, $invalidLangsMode);
+        if ($validLangs) {
+            $langCodes = $this->getLangCodes($validLangs);
+            if (1 < count($langCodes)) {
+                throw new OcrException('transkribus-multiple-lang-error');
+            } else {
+                $modelId = (int) $langCodes[0];
+            }
+        } else {
+            throw new OcrException('transkribus-no-lang-error');
+        }
+
+        $processId = $this->transkribusClient->initProcess($imageUrl, $modelId, $points);
 
         $resText = '';
         while ('FINISHED' !== $this->transkribusClient->processStatus) {
@@ -61,7 +84,7 @@ class TranskribusEngine extends EngineBase
             sleep(2);
         }
 
-        $warnings = [];
+        $warnings = $invalidLangs ? [ $this->getInvalidLangsWarning($invalidLangs) ] : [];
         return new EngineResult($resText, $warnings);
     }
 }

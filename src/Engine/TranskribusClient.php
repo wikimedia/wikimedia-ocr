@@ -39,7 +39,7 @@ class TranskribusClient
      * @param int $htrId
      * @return int
      */
-    public function initProcess(string $imageURL, int $htrId): int
+    public function initProcess(string $imageURL, int $htrId, string $points): int
     {
         $jsonBody = [
             'config' => [
@@ -51,6 +51,18 @@ class TranskribusClient
                 'imageUrl' => $imageURL,
             ],
         ];
+
+        if (!empty($points)) {
+            $cropContent = [
+                'regions' => array([
+                    'id' => 'region_1',
+                    'coords' => [
+                        'points' => $points,
+                    ],
+                ]),
+            ];
+            $jsonBody['content'] = $cropContent;
+        }
 
         $content = $this->request('POST', self::PROCESSES_URL, $jsonBody);
 

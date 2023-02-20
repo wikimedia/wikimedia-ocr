@@ -96,6 +96,18 @@
         "tesseract": "eng",
         "google": "en"
     },
+    "en-18-handwritten": {
+        "transkribus": 19809
+    },
+    "en-print-m1": {
+        "transkribus": 36202
+    },
+    "en-print-03": {
+        "transkribus": 39995
+    },
+    "en-typewriter": {
+        "transkribus": 37545
+    },
     "enm": {
         "tesseract": "enm",
         "google": "enm"
