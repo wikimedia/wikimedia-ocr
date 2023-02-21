@@ -24,8 +24,8 @@ class TranskribusClient
     /** @var string Transkribus process URL. */
     private const PROCESSES_URL = "https://transkribus.eu/processing/v1/processes";
 
-     /** @var string Transkribus authentication URL. */
-     private const AUTH_URL = "https://account.readcoop.eu/auth/realms/readcoop/protocol/openid-connect/token";
+    /** @var string Transkribus authentication URL. */
+    private const AUTH_URL = "https://account.readcoop.eu/auth/realms/readcoop/protocol/openid-connect/token";
 
     /**
      * TranskribusClient constructor.
@@ -188,7 +188,7 @@ class TranskribusClient
             $content = json_decode($response->getContent());
 
             if (!empty($content)) {
-                $this->accessToken = $content->access_token;
+                $this->accessToken = $content->{'access_token'};
             }
             $this->throwException(0);
         }
