@@ -12,26 +12,35 @@ class TranskribusClient
     /** @var HttpClientInterface */
     private $httpClient;
 
-    /** @var string transkribus access token. */
+    /** @var string Transkribus access token. */
     private $accessToken;
 
-    /** @var string transkribus request status. */
+    /** @var string Transkribus request status. */
     public $processStatus;
+
+    /** @var string Transkribus refresh token. */
+    private $refreshToken;
 
     /** @var string Transkribus process URL. */
     private const PROCESSES_URL = "https://transkribus.eu/processing/v1/processes";
+
+     /** @var string Transkribus authentication URL. */
+     private const AUTH_URL = "https://account.readcoop.eu/auth/realms/readcoop/protocol/openid-connect/token";
 
     /**
      * TranskribusClient constructor.
      * @param HttpClientInterface $httpClient
      * @param string $accessToken
+     * @param string $refreshToken
      */
     public function __construct(
         HttpClientInterface $httpClient,
-        string $accessToken
+        string $accessToken,
+        string $refreshToken
     ) {
         $this->httpClient = $httpClient;
         $this->accessToken = $accessToken;
+        $this->refreshToken = $refreshToken;
     }
 
     /**
@@ -137,8 +146,52 @@ class TranskribusClient
                 return $content;
             }
             $this->throwException(0);
-        } else {
-            $this->throwException($statusCode);
         }
+
+        if (401 === $statusCode) {
+            $this->refreshAccessToken();
+
+            $body['headers']['Authorization'] = 'Bearer '.$this->accessToken;
+            $response = $this->httpClient->request($method, $url, $body);
+            $statusCode = $response->getStatusCode();
+
+            if (200 === $statusCode) {
+                $content = json_decode($response->getContent());
+
+                if (!empty($content)) {
+                    return $content;
+                }
+                $this->throwException(0);
+            }
+        }
+        $this->throwException($statusCode);
+    }
+
+    private function refreshAccessToken(): void
+    {
+        $response = $this->httpClient->request(
+            'POST',
+            self::AUTH_URL,
+            [
+                'headers' => [
+                    'Content-Type' => 'application/x-www-form-urlencoded',
+                ],
+                'body' => [
+                    'grant_type' => 'refresh_token',
+                    'client_id' => 'processing-api-client',
+                    'refresh_token' => $this->refreshToken,
+                ],
+            ]
+        );
+        $statusCode = $response->getStatusCode();
+        if (200 === $statusCode) {
+            $content = json_decode($response->getContent());
+
+            if (!empty($content)) {
+                $this->accessToken = $content->access_token;
+            }
+            $this->throwException(0);
+        }
+        $this->throwException($statusCode);
     }
 }
