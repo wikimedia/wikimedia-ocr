@@ -65,16 +65,14 @@ class TranskribusEngine extends EngineBase
 
         $modelId = 0;
         [ $validLangs, $invalidLangs ] = $this->filterValidLangs($langs, $invalidLangsMode);
-        if ($validLangs) {
-            $langCodes = $this->getLangCodes($validLangs);
-            if (1 < count($langCodes)) {
-                throw new OcrException('transkribus-multiple-lang-error');
-            } else {
-                $modelId = (int) $langCodes[0];
-            }
-        } else {
+        if (!$validLangs) {
             throw new OcrException('transkribus-no-lang-error');
         }
+        $langCodes = $this->getLangCodes($validLangs);
+        if (1 < count($langCodes)) {
+            throw new OcrException('transkribus-multiple-lang-error');
+        }
+        $modelId = (int) $langCodes[0];
 
         $processId = $this->transkribusClient->initProcess($imageUrl, $modelId, $points);
 
