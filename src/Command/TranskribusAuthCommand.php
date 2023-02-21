@@ -90,16 +90,11 @@ class TranskribusAuthCommand extends Command
                         $accessToken = $content->{'access_token'};
                         $refreshToken = $content->{'refresh_token'};
                         $io->writeln('');
-                        $io->writeln('Your access token is: '.$accessToken);
+                        $io->writeln('--- Please copy the following lines and add it to your .env.local ---');
                         $io->writeln('');
-                        $io->writeln('--- Please copy and add it to your .env.local'.
-                                                ' as APP_TRANSKRIBUS_ACCESS_TOKEN ---');
-
+                        $io->writeln('APP_TRANSKRIBUS_ACCESS_TOKEN='.$accessToken);
                         $io->writeln('');
-                        $io->writeln('Your refresh token is: '.$refreshToken);
-                        $io->writeln('');
-                        $io->writeln('--- Please copy and add it to your .env.local'.
-                                                ' as APP_TRANSKRIBUS_REFRESH_TOKEN ---');
+                        $io->writeln('APP_TRANSKRIBUS_REFRESH_TOKEN='.$refreshToken);
                         return Command::SUCCESS;
                     }
                 } elseif (400 === $statusCode) {
