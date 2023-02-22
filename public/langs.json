@@ -96,6 +96,12 @@
         "tesseract": "eng",
         "google": "en"
     },
+    "en-b2022": {
+        "transkribus": 48327
+    },
+    "en-handwritten-m3": {
+        "transkribus": 37646
+    },
     "enm": {
         "tesseract": "enm",
         "google": "enm"

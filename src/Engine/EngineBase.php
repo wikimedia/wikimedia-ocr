@@ -39,6 +39,8 @@ abstract class EngineBase
     public const LANG_NAMES = [
         'az-cyrl' => 'Azərbaycan (qədim yazı)',
         'de-frk' => 'Deutsch (Fraktur)',
+        'en-b2022' => 'Transkribus B2022 English Model M4',
+        'en-handwritten-m3' => 'Transkribus English Handwriting M3',
         'enm' => 'Middle English (1100-1500)',
         'es-old' => 'español (viejo)',
         'frm' => 'moyen français (1400-1600)',
