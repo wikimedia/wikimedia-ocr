@@ -149,7 +149,7 @@ class TranskribusClient
         }
 
         if (401 === $statusCode) {
-            $this->refreshAccessToken();
+            $this->setAccessToken();
 
             $body['headers']['Authorization'] = 'Bearer '.$this->accessToken;
             $response = $this->httpClient->request($method, $url, $body);
@@ -167,22 +167,9 @@ class TranskribusClient
         $this->throwException($statusCode);
     }
 
-    private function refreshAccessToken(): void
+    private function setAccessToken(): void
     {
-        $response = $this->httpClient->request(
-            'POST',
-            self::AUTH_URL,
-            [
-                'headers' => [
-                    'Content-Type' => 'application/x-www-form-urlencoded',
-                ],
-                'body' => [
-                    'grant_type' => 'refresh_token',
-                    'client_id' => 'processing-api-client',
-                    'refresh_token' => $this->refreshToken,
-                ],
-            ]
-        );
+        $response = self::getRefreshTokenResponse($this->refreshToken, $this->httpClient);
         $statusCode = $response->getStatusCode();
         if (200 === $statusCode) {
             $content = json_decode($response->getContent());
@@ -193,5 +180,64 @@ class TranskribusClient
             $this->throwException(0);
         }
         $this->throwException($statusCode);
+    }
+
+    /**
+     * @param string $token
+     * @param HttpClientInterface $client
+     */
+    public static function getRefreshTokenResponse(string $token, HttpClientInterface $client): object
+    {
+        $body = [
+            'grant_type' => 'refresh_token',
+            'client_id' => 'processing-api-client',
+            'refresh_token' => $token,
+        ];
+
+        $response = self::authRequest($body, $client);
+        return $response;
+    }
+
+    /**
+     * @param string $userName
+     * @param string $password
+     * @param HttpClientInterface $client
+     */
+    public static function getAccessTokenResponse(
+        string $userName,
+        string $password,
+        HttpClientInterface $client
+    ): object {
+        $body = [
+            'grant_type' => 'password',
+            'username' => $userName,
+            'password' => $password,
+            'client_id' => 'processing-api-client',
+            'scope' => 'offline_access',
+        ];
+
+        $response = self::authRequest($body, $client);
+
+        return $response;
+
+    }
+
+    /**
+     * @param mixed[] $body
+     * @param HttpClientInterface $client
+     */
+    private static function authRequest(array $body, HttpClientInterface $client): object {
+        $response = $client->request(
+            'POST',
+            self::AUTH_URL,
+            [
+                'headers' => [
+                    'Content-Type' => 'application/x-www-form-urlencoded',
+                ],
+                'body' => $body,
+            ]
+        );
+
+        return $response;
     }
 }
