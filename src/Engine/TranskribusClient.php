@@ -226,7 +226,8 @@ class TranskribusClient
      * @param mixed[] $body
      * @param HttpClientInterface $client
      */
-    private static function authRequest(array $body, HttpClientInterface $client): object {
+    private static function authRequest(array $body, HttpClientInterface $client): object
+    {
         $response = $client->request(
             'POST',
             self::AUTH_URL,
@@ -237,7 +238,6 @@ class TranskribusClient
                 'body' => $body,
             ]
         );
-
         return $response;
     }
 }
