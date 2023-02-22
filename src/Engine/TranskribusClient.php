@@ -219,7 +219,6 @@ class TranskribusClient
         $response = self::authRequest($body, $client);
 
         return $response;
-
     }
 
     /**
