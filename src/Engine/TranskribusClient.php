@@ -174,15 +174,14 @@ class TranskribusClient
     {
         $response = $this->getRefreshTokenResponse($this->refreshToken);
         $statusCode = $response->getStatusCode();
-        if (200 === $statusCode) {
-            $content = json_decode($response->getContent());
-
-            if (!empty($content)) {
-                $this->accessToken = $content->{'access_token'};
-            }
+        if (200 !== $statusCode) {
+            $this->throwException($statusCode);
+        }
+        $content = json_decode($response->getContent());
+        if (empty($content)) {
             $this->throwException(0);
         }
-        $this->throwException($statusCode);
+        $this->accessToken = $content->{'access_token'};
     }
 
     /**
