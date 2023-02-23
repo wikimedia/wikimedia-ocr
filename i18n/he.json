@@ -60,7 +60,7 @@
 	"tesseract-internal-error": "מנוע טסרקט החזיר שגיאה פנימית.",
 	"transkribus-unauthorized-error": "קוד שגיאה ‚$1’ :: הבקשה לא מאומתת",
 	"transkribus-default-error": "קוד שגיאה ‚$1’ :: לא ניתן להשלים את הבקשה, נא לנסות שוב!",
-	"transkribus-empty-response-error": "לא ניתן לפענח את התוצאות מ־Transkribus API",
-	"transkribus-init-process-error": "הפעלת תהליך ה־Transkribus נכשל",
+	"transkribus-empty-response-error": "לא היה אפשר לפענח את התוצאות מ־Transkribus API",
+	"transkribus-init-process-error": "הפעלת תהליך ה־Transkribus נכשלה",
 	"transkribus-failed-process-error": "תהליך Transkribus נכשל"
 }

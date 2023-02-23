@@ -56,5 +56,7 @@
 	"transkribus-default-error": "Codice de error '$1' :: Non pote terminar le requesta, tenta lo de novo!",
 	"transkribus-empty-response-error": "Non poteva interpretar le resultato del API de Transkribus",
 	"transkribus-init-process-error": "Non poteva initialisar le processo Transkribus",
-	"transkribus-failed-process-error": "Processo Transkribus fallite"
+	"transkribus-failed-process-error": "Processo Transkribus fallite",
+	"transkribus-no-lang-error": "Necun lingua ha essite seligite",
+	"transkribus-multiple-lang-error": "Plure linguas non es permittite; specifica solo un lingua"
 }

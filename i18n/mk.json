@@ -57,5 +57,7 @@
 	"transkribus-default-error": "Грешка „$1“ ::  Не можам да го исполнам барањето. Пробајте повторно!",
 	"transkribus-empty-response-error": "Не можев да го расчленам исходот од приложникот на Transkribus",
 	"transkribus-init-process-error": "Не можев да ја покренам постапката на Transkribus",
-	"transkribus-failed-process-error": "Постапката на Transkribus не успеа"
+	"transkribus-failed-process-error": "Постапката на Transkribus не успеа",
+	"transkribus-no-lang-error": "Немате избрано јазик",
+	"transkribus-multiple-lang-error": "Не се дозволени повеќе јазици. Укажете еден"
 }

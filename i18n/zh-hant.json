@@ -58,5 +58,7 @@
 	"transkribus-default-error": "錯誤代碼 '$1' :: 無法完成請求，請重試！",
 	"transkribus-empty-response-error": "無法解析來自 Transkribus API 的結果",
 	"transkribus-init-process-error": "無法初始化 Transkribus 程序",
-	"transkribus-failed-process-error": "Transkribus 程序失敗"
+	"transkribus-failed-process-error": "Transkribus 程序失敗",
+	"transkribus-no-lang-error": "未選擇語言",
+	"transkribus-multiple-lang-error": "不允許多個語言，請指定一種語言"
 }

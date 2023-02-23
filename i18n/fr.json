@@ -63,5 +63,7 @@
 	"transkribus-default-error": "Code d’erreur « $1 » : impossible d’effectuer la requête, veuillez réessayer !",
 	"transkribus-empty-response-error": "Impossible d’analyser le résultat de l’API Transkribus",
 	"transkribus-init-process-error": "Échec d’initialisation du processus Transkribus",
-	"transkribus-failed-process-error": "Le processus Transkribus a échoué"
+	"transkribus-failed-process-error": "Le processus Transkribus a échoué",
+	"transkribus-no-lang-error": "Aucune langue n’a été sélectionnée",
+	"transkribus-multiple-lang-error": "Plusieurs langues ne sont pas autorisées, spécifiez une seule langue."
 }

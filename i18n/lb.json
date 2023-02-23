@@ -13,9 +13,12 @@
 	"image-url-error": "D'URL vum Bild muss mat {{PLURAL:$1|dem follgenden Domainnumm|engem vun de follgenden Domainnimm}} ufänken a mat enger gülteger Dateiendung ophalen: $2",
 	"image-alt-text": "D'Originalbild",
 	"language-code": "Sproochen (optional)",
+	"engine-name-transkribus": "Transkribus-OCR",
 	"submit": "Ganz Säit transkribéieren",
 	"copied-to-clipboard": "Kopéiert!",
 	"documentation": "Dokumentatioun",
 	"version": "Versioun $1",
-	"report-issue": "E Probleem mellen"
+	"report-issue": "E Probleem mellen",
+	"transkribus-default-error": "Feelercode '$1' :: D'Ufro konnt net ofgeschloss ginn, probéiert nach eng Kéier!",
+	"transkribus-no-lang-error": "Et gouf keng Sprooch ausgewielt"
 }
