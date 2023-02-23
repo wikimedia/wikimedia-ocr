@@ -22,6 +22,8 @@ class TranskribusEngine extends EngineBase
      */
     public function __construct(
         TranskribusClient $transkribusClient,
+        string $accessToken,
+        string $refreshToken,
         Intuition $intuition,
         string $projectDir,
         HttpClientInterface $httpClient
@@ -29,6 +31,7 @@ class TranskribusEngine extends EngineBase
         parent::__construct($intuition, $projectDir, $httpClient);
 
         $this->transkribusClient = $transkribusClient;
+        $this->transkribusClient->setTokens($accessToken, $refreshToken);
     }
 
     /**

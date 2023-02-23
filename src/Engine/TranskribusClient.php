@@ -30,15 +30,18 @@ class TranskribusClient
     /**
      * TranskribusClient constructor.
      * @param HttpClientInterface $httpClient
+     */
+    public function __construct(HttpClientInterface $httpClient)
+    {
+        $this->httpClient = $httpClient;
+    }
+
+    /**
      * @param string $accessToken
      * @param string $refreshToken
      */
-    public function __construct(
-        HttpClientInterface $httpClient,
-        string $accessToken,
-        string $refreshToken
-    ) {
-        $this->httpClient = $httpClient;
+    public function setTokens(string $accessToken, string $refreshToken): void
+    {
         $this->accessToken = $accessToken;
         $this->refreshToken = $refreshToken;
     }
@@ -169,7 +172,7 @@ class TranskribusClient
 
     private function setAccessToken(): void
     {
-        $response = self::getRefreshTokenResponse($this->refreshToken, $this->httpClient);
+        $response = $this->getRefreshTokenResponse($this->refreshToken);
         $statusCode = $response->getStatusCode();
         if (200 === $statusCode) {
             $content = json_decode($response->getContent());
@@ -184,9 +187,8 @@ class TranskribusClient
 
     /**
      * @param string $token
-     * @param HttpClientInterface $client
      */
-    public static function getRefreshTokenResponse(string $token, HttpClientInterface $client): object
+    public function getRefreshTokenResponse(string $token): object
     {
         $body = [
             'grant_type' => 'refresh_token',
@@ -194,20 +196,16 @@ class TranskribusClient
             'refresh_token' => $token,
         ];
 
-        $response = self::authRequest($body, $client);
+        $response = $this->authRequest($body);
         return $response;
     }
 
     /**
      * @param string $userName
      * @param string $password
-     * @param HttpClientInterface $client
      */
-    public static function getAccessTokenResponse(
-        string $userName,
-        string $password,
-        HttpClientInterface $client
-    ): object {
+    public function getAccessTokenResponse(string $userName, string $password): object
+    {
         $body = [
             'grant_type' => 'password',
             'username' => $userName,
@@ -216,18 +214,16 @@ class TranskribusClient
             'scope' => 'offline_access',
         ];
 
-        $response = self::authRequest($body, $client);
-
+        $response = $this->authRequest($body);
         return $response;
     }
 
     /**
      * @param mixed[] $body
-     * @param HttpClientInterface $client
      */
-    private static function authRequest(array $body, HttpClientInterface $client): object
+    private function authRequest(array $body): object
     {
-        $response = $client->request(
+        $response = $this->httpClient->request(
             'POST',
             self::AUTH_URL,
             [

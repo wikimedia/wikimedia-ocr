@@ -20,7 +20,5 @@ class OcrTestCase extends KernelTestCase
     {
         self::bootKernel();
         $this->projectDir = self::$kernel->getProjectDir();
-        $this->accessToken = "eyThisIsATestAccessToken";
-        $this->refreshToken = "OdeyThisIsATestRefreshToken";
     }
 }
