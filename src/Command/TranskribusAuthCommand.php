@@ -13,24 +13,18 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class TranskribusAuthCommand extends Command
 {
 
-    /** @var HttpClientInterface The interface to make http requests */
-    private $client;
-
     /** @var TranskribusClient The TranskribusClient used to make authorization calls */
     private $transkribusClient;
 
     /**
      * TranskribusAuthCommand constructor.
-     * @param HttpClientInterface $client
      * @param TranskribusClient $transkribusClient
      */
     public function __construct(
-        HttpClientInterface $client,
         TranskribusClient $transkribusClient
     ) {
         parent::__construct();
 
-        $this->client = $client;
         $this->transkribusClient = $transkribusClient;
     }
 
