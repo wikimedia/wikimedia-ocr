@@ -48,8 +48,6 @@ services:
             $accessToken: '%env(APP_TRANSKRIBUS_ACCESS_TOKEN)%'
             $refreshToken: '%env(APP_TRANSKRIBUS_REFRESH_TOKEN)%'
 
-    App\Engine\TranskribusClient:
-
     App\EventListener\ExceptionListener:
         arguments:
             - '@request_stack'

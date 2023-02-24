@@ -21,6 +21,9 @@ class TranskribusClient
     /** @var string Transkribus refresh token. */
     private $refreshToken;
 
+    /** @var int Transkribus no content status code. */
+    private const ERROR_NO_CONTENT = 0;
+
     /** @var string Transkribus process URL. */
     private const PROCESSES_URL = "https://transkribus.eu/processing/v1/processes";
 
@@ -103,7 +106,7 @@ class TranskribusClient
     private function throwException(int $statusCode): void
     {
         switch ($statusCode) {
-            case 0:
+            case self::ERROR_NO_CONTENT:
                 throw new OcrException(
                     'transkribus-empty-response-error'
                 );
@@ -148,7 +151,7 @@ class TranskribusClient
             if (!empty($content)) {
                 return $content;
             }
-            $this->throwException(0);
+            $this->throwException(self::ERROR_NO_CONTENT);
         }
 
         if (401 === $statusCode) {
@@ -164,7 +167,7 @@ class TranskribusClient
                 if (!empty($content)) {
                     return $content;
                 }
-                $this->throwException(0);
+                $this->throwException(self::ERROR_NO_CONTENT);
             }
         }
         $this->throwException($statusCode);
@@ -179,7 +182,7 @@ class TranskribusClient
         }
         $content = json_decode($response->getContent());
         if (empty($content)) {
-            $this->throwException(0);
+            $this->throwException(self::ERROR_NO_CONTENT);
         }
         $this->accessToken = $content->{'access_token'};
     }
