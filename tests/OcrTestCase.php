@@ -10,12 +10,6 @@ class OcrTestCase extends KernelTestCase
     /** @var string */
     protected $projectDir;
 
-    /** @var string */
-    protected $accessToken;
-
-    /** @var string */
-    protected $refreshToken;
-
     protected function setUp(): void
     {
         self::bootKernel();
