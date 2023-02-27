@@ -32,21 +32,15 @@ class TranskribusClient
 
     /**
      * TranskribusClient constructor.
-     * @param HttpClientInterface $httpClient
-     */
-    public function __construct(HttpClientInterface $httpClient)
-    {
-        $this->httpClient = $httpClient;
-    }
-
-    /**
      * @param string $accessToken
      * @param string $refreshToken
+     * @param HttpClientInterface $httpClient
      */
-    public function setTokens(string $accessToken, string $refreshToken): void
+    public function __construct(string $accessToken, string $refreshToken, HttpClientInterface $httpClient)
     {
         $this->accessToken = $accessToken;
         $this->refreshToken = $refreshToken;
+        $this->httpClient = $httpClient;
     }
 
     /**

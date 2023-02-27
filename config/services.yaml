@@ -44,6 +44,8 @@ services:
 
     App\Engine\TranskribusEngine:
         parent: App\Engine\EngineBase
+
+    App\Engine\TranskribusClient:
         arguments:
             $accessToken: '%env(APP_TRANSKRIBUS_ACCESS_TOKEN)%'
             $refreshToken: '%env(APP_TRANSKRIBUS_REFRESH_TOKEN)%'
