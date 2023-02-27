@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bicolino34",
 			"DDPAT",
 			"Ice bulldog",
 			"Movses"
@@ -15,6 +16,7 @@
 	"image-alt-text": "Вихідне зображення",
 	"language-code": "Мови (необов’язково)",
 	"engine": "OCR двигун",
+	"engine-name-transkribus": "Transkribus OCR",
 	"engine-not-found-warning": "Запитаний двигун «$1» не знайдено. Замість цього використовується двигун за замовчуванням «$2».",
 	"engine-invalid-langs-warning": "Такі мови є недійсними або не підтримуються двигуном і були проігноровані: $1",
 	"submit": "Переписати всю сторінку",
@@ -53,5 +55,7 @@
 	"tesseract-psm-12": "Розріджений текст за допомогою екранного меню.",
 	"tesseract-psm-13": "Сира лінія. Розглядайте зображення як єдиний текстовий рядок, оминаючи хаки, що стосуються Tesseract.",
 	"tesseract-param-error": "Опція «$1» зі значенням $2 не підтримується Tesseract. Максимальне значення: $3",
-	"tesseract-internal-error": "Двигун tesseract повернув внутрішню помилку."
+	"tesseract-internal-error": "Двигун tesseract повернув внутрішню помилку.",
+	"transkribus-no-lang-error": "Мова не була вибрана",
+	"transkribus-multiple-lang-error": "Не можна обирати кілька мов, укажіть тільки одну"
 }

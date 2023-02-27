@@ -62,5 +62,7 @@
 	"transkribus-default-error": "קוד שגיאה ‚$1’ :: לא ניתן להשלים את הבקשה, נא לנסות שוב!",
 	"transkribus-empty-response-error": "לא היה אפשר לפענח את התוצאות מ־Transkribus API",
 	"transkribus-init-process-error": "הפעלת תהליך ה־Transkribus נכשלה",
-	"transkribus-failed-process-error": "תהליך Transkribus נכשל"
+	"transkribus-failed-process-error": "תהליך Transkribus נכשל",
+	"transkribus-no-lang-error": "לא נבחרה שפה",
+	"transkribus-multiple-lang-error": "אסור להשתמש בכמה שפות, יש לציין שפה אחת"
 }

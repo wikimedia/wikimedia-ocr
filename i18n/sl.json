@@ -57,5 +57,7 @@
 	"transkribus-default-error": "Koda napake »$1« :: Zahtevka ni mogoče dokončati, poskusite znova!",
 	"transkribus-empty-response-error": "Rezultata API-ja Transkribus ni bilo mogoče razčleniti",
 	"transkribus-init-process-error": "Inicializacija postopka Transkribus ni uspela",
-	"transkribus-failed-process-error": "Postopek Transkribus ni uspel"
+	"transkribus-failed-process-error": "Postopek Transkribus ni uspel",
+	"transkribus-no-lang-error": "Izbran ni bil noben jezik",
+	"transkribus-multiple-lang-error": "Več jezikov ni dovoljenih, določite en jezik"
 }

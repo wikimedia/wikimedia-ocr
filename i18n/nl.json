@@ -59,5 +59,7 @@
 	"transkribus-default-error": "Foutcode '$1' :: Kan het verzoek niet voltooien, probeer het opnieuw!",
 	"transkribus-empty-response-error": "Kon het resultaat van de API van Transkribus niet interpreteren",
 	"transkribus-init-process-error": "Kon het Transkribus-proces niet initialiseren",
-	"transkribus-failed-process-error": "Transkribus-proces mislukt"
+	"transkribus-failed-process-error": "Transkribus-proces mislukt",
+	"transkribus-no-lang-error": "Er is geen taal geselecteerd",
+	"transkribus-multiple-lang-error": "Meerdere talen zijn niet toegestaan, geef één taal op"
 }
