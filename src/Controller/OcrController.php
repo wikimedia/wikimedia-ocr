@@ -232,9 +232,9 @@ class OcrController extends AbstractController
                 $responseParams['warnings'] = $warnings;
             }
             return $this->getApiResponse($responseParams);
-        } catch(Exception $exception) {
+        } catch (Exception $exception) {
             return $this->getApiResponse([
-                "message" => $exception->getMessage()
+                "message" => $exception->getMessage(),
             ]);
         }
     }
