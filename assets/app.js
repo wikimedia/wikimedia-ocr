@@ -36,10 +36,10 @@ function updateSelect2Options(engine)
             const option = new Option(datum.text, datum.id, false, false);
             $select2.append(option);
         });
-        $select2.trigger({
-            type: 'select2:select',
-            params: { data }
-        });
+
+        // Update language with engine cached values.
+        let selectedLangs = JSON.parse(localStorage.getItem('selected-langs'));
+        $select2.val(selectedLangs).trigger('change');
     });
 }
 
@@ -51,6 +51,34 @@ $(function () {
     $select2.select2({
         theme: 'bootstrap',
         placeholder: $select2.data('placeholder'),
+    });
+
+    // Clear previously cached languages
+    localStorage.removeItem('selected-langs');
+
+    // Listen for language select event and update cache
+    $select2.on('select2:select', e => {
+        let selectedValue = e.params.data.id;
+        let storedLangs = [];
+        if (localStorage.getItem("selected-langs") === null) {
+            storedLangs.push(selectedValue);
+        }else{
+            storedLangs = JSON.parse(localStorage.getItem('selected-langs'));
+            if(!storedLangs.includes(selectedValue)){
+                storedLangs.push(selectedValue);
+            }
+        }
+        localStorage.setItem('selected-langs', JSON.stringify(storedLangs));
+    });
+
+    // Listen for language unselect event and update cache
+    $select2.on('select2:unselect', e => {
+        let selectedValue = e.params.data.id;
+        let storedLangs = JSON.parse(localStorage.getItem('selected-langs'));
+        storedLangs = storedLangs.filter( value => {
+            return selectedValue !== value;
+        });
+        localStorage.setItem('selected-langs', JSON.stringify(storedLangs));
     });
 
     // Show engine-specific options.
