@@ -58,6 +58,14 @@ $(function () {
         updateSelect2Options(e.target.value);
         $('.engine-options').addClass('hidden');
         $(`#${e.target.value}-options`).removeClass('hidden');
+        let engine = e.target.value;
+        if(engine === 'tesseract' || engine === 'google') {
+            $('#lang').removeAttr('required');
+            $(`#optional-lang-label`).removeClass('hidden');
+        } else {
+            $('#lang').attr('required', '');
+            $(`#transkribus-lang-label`).removeClass('hidden');
+        }
     });
 
     // For the result page. Makes the 'Copy' button copy the transcription to the clipboard.
