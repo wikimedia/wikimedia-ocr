@@ -223,20 +223,21 @@ class OcrController extends AbstractController
     {
         try {
             $this->setup();
-            $result = $this->getResult(EngineBase::WARN_ON_INVALID_LANGS);
-            $responseParams = array_merge(static::$params, [
-                'text' => $result->getText(),
-            ]);
-            $warnings = $result->getWarnings();
-            if ($warnings) {
-                $responseParams['warnings'] = $warnings;
-            }
-            return $this->getApiResponse($responseParams);
         } catch (Exception $exception) {
             return $this->getApiResponse([
-                "message" => $exception->getMessage(),
+                "error" => $exception->getMessage(),
             ]);
         }
+
+        $result = $this->getResult(EngineBase::WARN_ON_INVALID_LANGS);
+        $responseParams = array_merge(static::$params, [
+            'text' => $result->getText(),
+        ]);
+        $warnings = $result->getWarnings();
+        if ($warnings) {
+            $responseParams['warnings'] = $warnings;
+        }
+        return $this->getApiResponse($responseParams);
     }
 
     /**
