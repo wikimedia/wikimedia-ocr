@@ -59,5 +59,7 @@
 	"transkribus-init-process-error": "Inicializacija postopka Transkribus ni uspela",
 	"transkribus-failed-process-error": "Postopek Transkribus ni uspel",
 	"transkribus-no-lang-error": "Izbran ni bil noben jezik",
-	"transkribus-multiple-lang-error": "Več jezikov ni dovoljenih, določite en jezik"
+	"transkribus-multiple-lang-error": "Več jezikov ni dovoljenih, določite en jezik",
+	"transkribus-browse-public-models": "Prebrskajte vse javne jezikovne modele za Transkribus",
+	"transkribus-request-for-model": "Ustvarite prošnjo za dodajanje modela iz Transkribusa v orodje OCR"
 }

@@ -59,5 +59,7 @@
 	"transkribus-init-process-error": "Не можев да ја покренам постапката на Transkribus",
 	"transkribus-failed-process-error": "Постапката на Transkribus не успеа",
 	"transkribus-no-lang-error": "Немате избрано јазик",
-	"transkribus-multiple-lang-error": "Не се дозволени повеќе јазици. Укажете еден"
+	"transkribus-multiple-lang-error": "Не се дозволени повеќе јазици. Укажете еден",
+	"transkribus-browse-public-models": "Прелистајте ги сите јавни јазични модели за Transkribus",
+	"transkribus-request-for-model": "Поднесете барање за додавање на модел од Transkribus кон алатката за оптичко препознавање"
 }

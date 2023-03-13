@@ -66,5 +66,5 @@
 	"transkribus-no-lang-error": "Error message displayed when no language is selected from the Languages drop down menu",
 	"transkribus-multiple-lang-error": "Error message displayed when multiple languages are chosen from the Languages drop down menu",
 	"transkribus-browse-public-models": "Link text for the list of all public models for Transkribus",
-    "transkribus-request-for-model": "Link text for the form to make a request for a model to be added to the OCR tool"
+	"transkribus-request-for-model": "Link text for the form to make a request for a model to be added to the OCR tool"
 }
