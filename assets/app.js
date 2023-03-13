@@ -4,6 +4,7 @@ import 'select2';
 
 const $ = require('jquery');
 const $select2 = $('#lang');
+var selectedLanguages = [];
 
 const Cropper = require('cropperjs');
 import 'cropperjs/dist/cropper.css';
@@ -37,9 +38,8 @@ function updateSelect2Options(engine)
             $select2.append(option);
         });
 
-        // Update language with engine cached values.
-        let selectedLangs = JSON.parse(localStorage.getItem('selected-langs'));
-        $select2.val(selectedLangs).trigger('change');
+        // Update selected languages.
+        $select2.val(selectedLanguages).trigger('change');
     });
 }
 
@@ -53,32 +53,20 @@ $(function () {
         placeholder: $select2.data('placeholder'),
     });
 
-    // Clear previously cached languages
-    localStorage.removeItem('selected-langs');
-
-    // Listen for language select event and update cache
+    // Listen for language select event and update selectedLanguages
     $select2.on('select2:select', e => {
         let selectedValue = e.params.data.id;
-        let storedLangs = [];
-        if (localStorage.getItem("selected-langs") === null) {
-            storedLangs.push(selectedValue);
-        }else{
-            storedLangs = JSON.parse(localStorage.getItem('selected-langs'));
-            if(!storedLangs.includes(selectedValue)){
-                storedLangs.push(selectedValue);
-            }
+        if(!selectedLanguages.includes(selectedValue)){
+            selectedLanguages.push(selectedValue);
         }
-        localStorage.setItem('selected-langs', JSON.stringify(storedLangs));
     });
 
-    // Listen for language unselect event and update cache
+    // Listen for language unselect event and update selectedLanguages
     $select2.on('select2:unselect', e => {
         let selectedValue = e.params.data.id;
-        let storedLangs = JSON.parse(localStorage.getItem('selected-langs'));
-        storedLangs = storedLangs.filter( value => {
+        selectedLanguages = selectedLanguages.filter( value => {
             return selectedValue !== value;
         });
-        localStorage.setItem('selected-langs', JSON.stringify(storedLangs));
     });
 
     // Show engine-specific options.
