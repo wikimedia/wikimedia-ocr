@@ -61,10 +61,12 @@ $(function () {
         let engine = e.target.value;
         if(engine === 'tesseract' || engine === 'google') {
             $('#lang').removeAttr('required');
-            $(`#optional-lang-label`).removeClass('hidden');
+            $('#transkribus-lang-label').addClass('hidden');
+            $('#optional-lang-label').removeClass('hidden');
         } else {
-            $('#lang').attr('required', '');
-            $(`#transkribus-lang-label`).removeClass('hidden');
+            $('#lang').prop('required', true);
+            $('#optional-lang-label').addClass('hidden');
+            $('#transkribus-lang-label').removeClass('hidden');
         }
     });
 
