@@ -1,0 +1,20 @@
+<div id="transkribus-options" class="engine-options engine-help {% if engine != 'transkribus' %}hidden{% endif %}">
+	<a href="https://readcoop.eu/transkribus/public-models">{{ msg('transkribus-browse-public-models') }}</a>
+	<br />
+	<a
+		href="https://phabricator.wikimedia.org/maniphest/task/edit/form/1/?{{ 
+		{ 
+			'title': 'Request new model to be added for Transkribus', 
+			'description': 'Please include the following details about the model
+**Model ID: **
+**Name of Model: **
+**Language required: **
+
+//(additional comments, if any)//', 
+			'projects': 'wikimedia_ocr'
+		}|url_encode }}" 
+		target="_blank"
+	>
+		{{ msg('transkribus-request-for-model') }}
+	</a>
+</div>

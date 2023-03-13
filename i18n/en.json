@@ -57,5 +57,7 @@
 	"transkribus-init-process-error": "Failed to initialize Transkribus process",
 	"transkribus-failed-process-error": "Transkribus process failed",
     "transkribus-no-lang-error": "No language was selected",
-    "transkribus-multiple-lang-error": "Multiple languages are not allowed, specify one language"
+    "transkribus-multiple-lang-error": "Multiple languages are not allowed, specify one language",
+    "transkribus-browse-public-models": "Browse all public language models for Transkribus",
+    "transkribus-request-for-model": "Make a request to add a model from Transkribus to the OCR tool"
 }
