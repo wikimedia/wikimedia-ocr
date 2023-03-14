@@ -60,7 +60,7 @@ $(function () {
         $(`#${e.target.value}-options`).removeClass('hidden');
         let engine = e.target.value;
         if(engine === 'tesseract' || engine === 'google') {
-            $('#lang').removeAttr('required');
+            $('#lang').prop('required', false);
             $('#transkribus-lang-label').addClass('hidden');
             $('#optional-lang-label').removeClass('hidden');
         } else {
