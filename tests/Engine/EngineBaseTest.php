@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare( strict_types = 1 );
 
 namespace App\Tests\Engine;
 
@@ -13,151 +13,142 @@ use Krinkle\Intuition\Intuition;
 use Symfony\Component\HttpClient\MockHttpClient;
 use thiagoalessio\TesseractOCR\TesseractOCR;
 
-class EngineBaseTest extends OcrTestCase
-{
-    /** @var GoogleCloudVisionEngine */
-    private $googleEngine;
+class EngineBaseTest extends OcrTestCase {
+	/** @var GoogleCloudVisionEngine */
+	private $googleEngine;
 
-    /** @var TesseractEngine */
-    private $tesseractEngine;
+	/** @var TesseractEngine */
+	private $tesseractEngine;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-        $intuition = new Intuition();
-        $this->googleEngine = new GoogleCloudVisionEngine(
-            dirname(__DIR__).'/fixtures/google-account-keyfile.json',
-            $intuition,
-            $this->projectDir,
-            new MockHttpClient()
-        );
+	public function setUp(): void {
+		parent::setUp();
+		$intuition = new Intuition();
+		$this->googleEngine = new GoogleCloudVisionEngine(
+			dirname( __DIR__ ) . '/fixtures/google-account-keyfile.json',
+			$intuition,
+			$this->projectDir,
+			new MockHttpClient()
+		);
 
-        $tesseractOCR = $this->getMockBuilder(TesseractOCR::class)->disableOriginalConstructor()->getMock();
-        $tesseractOCR->method('availableLanguages')
-            ->will($this->returnValue(['eng', 'spa', 'tha', 'tir']));
-        $this->tesseractEngine = new TesseractEngine(
-            new MockHttpClient(),
-            $intuition,
-            $this->projectDir,
-            $tesseractOCR
-        );
-    }
+		$tesseractOCR = $this->getMockBuilder( TesseractOCR::class )->disableOriginalConstructor()->getMock();
+		$tesseractOCR->method( 'availableLanguages' )
+			->will( $this->returnValue( [ 'eng', 'spa', 'tha', 'tir' ] ) );
+		$this->tesseractEngine = new TesseractEngine(
+			new MockHttpClient(),
+			$intuition,
+			$this->projectDir,
+			$tesseractOCR
+		);
+	}
 
-    /**
-     * @covers EngineBase::checkImageUrl
-     * @dataProvider provideCheckImageUrl()
-     */
-    public function testCheckImageUrl(string $url, bool $exceptionExpected): void
-    {
-        $this->tesseractEngine->setImageHosts('upload.wikimedia.org,localhost');
-        if ($exceptionExpected) {
-            static::expectException(OcrException::class);
-        }
-        $this->tesseractEngine->checkImageUrl($url);
-        static::assertTrue(true);
-    }
+	/**
+	 * @covers EngineBase::checkImageUrl
+	 * @dataProvider provideCheckImageUrl()
+	 */
+	public function testCheckImageUrl( string $url, bool $exceptionExpected ): void {
+		$this->tesseractEngine->setImageHosts( 'upload.wikimedia.org,localhost' );
+		if ( $exceptionExpected ) {
+			static::expectException( OcrException::class );
+		}
+		$this->tesseractEngine->checkImageUrl( $url );
+		static::assertTrue( true );
+	}
 
-    /**
-     * @return mixed[][]
-     */
-    public function provideCheckImageUrl(): array
-    {
-        return [
-            // Pass:
-            ['https://upload.wikimedia.org/wikipedia/commons/a/a9/Example.jpg', false],
-            ['https://upload.wikimedia.org/wikipedia/commons/file.jpg', false],
-            // Fail:
-            ['https://foo.example.com/wikipedia/commons/a/a9/Example.jpg', true],
-            ['https://en.wikisource.org/file.mov', true],
-            ['https://localhosts/file.jpg', true],
-        ];
-    }
+	/**
+	 * @return mixed[][]
+	 */
+	public function provideCheckImageUrl(): array {
+		return [
+			// Pass:
+			[ 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Example.jpg', false ],
+			[ 'https://upload.wikimedia.org/wikipedia/commons/file.jpg', false ],
+			// Fail:
+			[ 'https://foo.example.com/wikipedia/commons/a/a9/Example.jpg', true ],
+			[ 'https://en.wikisource.org/file.mov', true ],
+			[ 'https://localhosts/file.jpg', true ],
+		];
+	}
 
-    /**
-     * @covers EngineBase::filterValidLangs for Google Engine
-     */
-    public function testFilterValidLangsGoogleEngine(): void
-    {
-        $allValid = ['en', 'es'];
-        $allValidPlusInvalid = array_merge($allValid, ['this-is-invalid']);
-        $this->assertSame(
-            $allValid,
-            $this->googleEngine->filterValidLangs($allValid, EngineBase::WARN_ON_INVALID_LANGS)[0]
-        );
-        $this->assertSame(
-            $allValid,
-            $this->googleEngine->filterValidLangs($allValidPlusInvalid, EngineBase::WARN_ON_INVALID_LANGS)[0]
-        );
+	/**
+	 * @covers EngineBase::filterValidLangs for Google Engine
+	 */
+	public function testFilterValidLangsGoogleEngine(): void {
+		$allValid = [ 'en', 'es' ];
+		$allValidPlusInvalid = array_merge( $allValid, [ 'this-is-invalid' ] );
+		$this->assertSame(
+			$allValid,
+			$this->googleEngine->filterValidLangs( $allValid, EngineBase::WARN_ON_INVALID_LANGS )[0]
+		);
+		$this->assertSame(
+			$allValid,
+			$this->googleEngine->filterValidLangs( $allValidPlusInvalid, EngineBase::WARN_ON_INVALID_LANGS )[0]
+		);
 
-        $this->expectException(OcrException::class);
-        $this->googleEngine->filterValidLangs($allValidPlusInvalid, EngineBase::ERROR_ON_INVALID_LANGS);
-    }
+		$this->expectException( OcrException::class );
+		$this->googleEngine->filterValidLangs( $allValidPlusInvalid, EngineBase::ERROR_ON_INVALID_LANGS );
+	}
 
-    /**
-     * @param string[] $langs Language codes
-     * @param string[] $validLangs
-     * @param string $invalidLangsMode
-     * @covers EngineBase::filterValidLangs for Tesseract Engine
-     * @dataProvider provideTesseractLangs
-     */
-    public function testFilterValidLangsTesseractEngine(array $langs, array $validLangs, string $invalidLangsMode): void
-    {
-        if (EngineBase::WARN_ON_INVALID_LANGS === $invalidLangsMode) {
-            $this->assertSame($validLangs, $this->tesseractEngine->filterValidLangs($langs, $invalidLangsMode)[0]);
-        } else {
-            if ($langs !== $validLangs) {
-                $this->expectException(OcrException::class);
-            }
-            $this->tesseractEngine->filterValidLangs($langs, $invalidLangsMode);
-            $this->addToAssertionCount(1);
-        }
-    }
+	/**
+	 * @param string[] $langs Language codes
+	 * @param string[] $validLangs
+	 * @param string $invalidLangsMode
+	 * @covers EngineBase::filterValidLangs for Tesseract Engine
+	 * @dataProvider provideTesseractLangs
+	 */
+	public function testFilterValidLangsTesseractEngine( array $langs, array $validLangs, string $invalidLangsMode ): void {
+		if ( EngineBase::WARN_ON_INVALID_LANGS === $invalidLangsMode ) {
+			$this->assertSame( $validLangs, $this->tesseractEngine->filterValidLangs( $langs, $invalidLangsMode )[0] );
+		} else {
+			if ( $langs !== $validLangs ) {
+				$this->expectException( OcrException::class );
+			}
+			$this->tesseractEngine->filterValidLangs( $langs, $invalidLangsMode );
+			$this->addToAssertionCount( 1 );
+		}
+	}
 
-    /**
-     * @return Generator
-     */
-    public function provideTesseractLangs(): Generator
-    {
-        // Format is [ [ langs to test ], [ subset of valid languages ] ]
-        $baseCases = [
-            'all valid' => [ [ 'en', 'fr' ], [ 'en', 'fr' ] ],
-            'one invalid' => [ [ 'foo', 'fr' ], [ 'fr' ] ],
-            // 'equ' is excluded on purpose: T284827
-            'intentionally excluded' => [ [ 'equ' ], [] ],
-        ];
-        foreach ($baseCases as $name => $params) {
-            yield $name.', no exception' => array_merge($params, [ EngineBase::WARN_ON_INVALID_LANGS ]);
-            yield $name.', throw exception' => array_merge($params, [ EngineBase::ERROR_ON_INVALID_LANGS ]);
-        }
-    }
+	/**
+	 * @return Generator
+	 */
+	public function provideTesseractLangs(): Generator {
+		// Format is [ [ langs to test ], [ subset of valid languages ] ]
+		$baseCases = [
+			'all valid' => [ [ 'en', 'fr' ], [ 'en', 'fr' ] ],
+			'one invalid' => [ [ 'foo', 'fr' ], [ 'fr' ] ],
+			// 'equ' is excluded on purpose: T284827
+			'intentionally excluded' => [ [ 'equ' ], [] ],
+		];
+		foreach ( $baseCases as $name => $params ) {
+			yield $name . ', no exception' => array_merge( $params, [ EngineBase::WARN_ON_INVALID_LANGS ] );
+			yield $name . ', throw exception' => array_merge( $params, [ EngineBase::ERROR_ON_INVALID_LANGS ] );
+		}
+	}
 
-    /**
-     * @covers EngineBase::getLangCodes
-     */
-    public function testLangCodes(): void
-    {
-        static::assertSame(['eng', 'fra'], $this->tesseractEngine->getLangCodes(['en', 'fr']));
-        static::assertSame(['en', 'iw'], $this->googleEngine->getLangCodes(['en', 'he']));
-    }
+	/**
+	 * @covers EngineBase::getLangCodes
+	 */
+	public function testLangCodes(): void {
+		static::assertSame( [ 'eng', 'fra' ], $this->tesseractEngine->getLangCodes( [ 'en', 'fr' ] ) );
+		static::assertSame( [ 'en', 'iw' ], $this->googleEngine->getLangCodes( [ 'en', 'he' ] ) );
+	}
 
-    /**
-     * @covers EngineBase::getLangName
-     * @covers EngineBase::getValidLangs
-     */
-    public function testLangNames(): void
-    {
-        // From Intuition.
-        static::assertSame('français', $this->tesseractEngine->getLangName('fr'));
+	/**
+	 * @covers EngineBase::getLangName
+	 * @covers EngineBase::getValidLangs
+	 */
+	public function testLangNames(): void {
+		// From Intuition.
+		static::assertSame( 'français', $this->tesseractEngine->getLangName( 'fr' ) );
 
-        // From EngineBase::LANG_NAMES
-        static::assertSame('moyen français (1400-1600)', $this->tesseractEngine->getLangName('frm'));
+		// From EngineBase::LANG_NAMES
+		static::assertSame( 'moyen français (1400-1600)', $this->tesseractEngine->getLangName( 'frm' ) );
 
-        // Make sure every language has a name.
-        foreach ($this->tesseractEngine->getValidLangs(true) as $lang => $name) {
-            static::assertNotEmpty($name, "Missing lang name for '$lang'");
-        }
-        foreach ($this->googleEngine->getValidLangs(true) as $lang => $name) {
-            static::assertNotEmpty($name, "Missing lang name for '$lang'");
-        }
-    }
+		// Make sure every language has a name.
+		foreach ( $this->tesseractEngine->getValidLangs( true ) as $lang => $name ) {
+			static::assertNotEmpty( $name, "Missing lang name for '$lang'" );
+		}
+		foreach ( $this->googleEngine->getValidLangs( true ) as $lang => $name ) {
+			static::assertNotEmpty( $name, "Missing lang name for '$lang'" );
+		}
+	}
 }

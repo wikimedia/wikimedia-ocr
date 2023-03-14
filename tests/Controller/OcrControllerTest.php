@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare( strict_types = 1 );
 
 namespace App\Tests\Controller;
 
@@ -19,71 +19,68 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use thiagoalessio\TesseractOCR\TesseractOCR;
 
-class OcrControllerTest extends OcrTestCase
-{
+class OcrControllerTest extends OcrTestCase {
 
-    /**
-     * @dataProvider provideGetLang
-     * @param string[] $getParams
-     * @param string[] $expectedLangs
-     */
-    public function testGetLang(array $getParams, array $expectedLangs): void
-    {
-        $request = new Request($getParams);
-        $requestStack = new RequestStack();
-        $requestStack->push($request);
-        $request->setSession(new Session(new MockArraySessionStorage()));
-        $intuition = new Intuition([]);
-        $gcv = new GoogleCloudVisionEngine(
-            dirname(__DIR__).'/fixtures/google-account-keyfile.json',
-            $intuition,
-            $this->projectDir,
-            new MockHttpClient()
-        );
-        $controller = new OcrController(
-            $requestStack,
-            $intuition,
-            new EngineFactory(
-                $gcv,
-                new TesseractEngine(new MockHttpClient(), $intuition, $this->projectDir, new TesseractOCR()),
-                new TranskribusEngine(
-                    new TranskribusClient(
-                        getenv('APP_TRANSKRIBUS_ACCESS_TOKEN'),
-                        getenv('APP_TRANSKRIBUS_REFRESH_TOKEN'),
-                        new MockHttpClient()
-                    ),
-                    $intuition,
-                    $this->projectDir,
-                    new MockHttpClient()
-                ),
-            ),
-            new FilesystemAdapter()
-        );
-        $this->assertSame($expectedLangs, $controller->getLangs($request));
-    }
+	/**
+	 * @dataProvider provideGetLang
+	 * @param string[] $getParams
+	 * @param string[] $expectedLangs
+	 */
+	public function testGetLang( array $getParams, array $expectedLangs ): void {
+		$request = new Request( $getParams );
+		$requestStack = new RequestStack();
+		$requestStack->push( $request );
+		$request->setSession( new Session( new MockArraySessionStorage() ) );
+		$intuition = new Intuition( [] );
+		$gcv = new GoogleCloudVisionEngine(
+			dirname( __DIR__ ) . '/fixtures/google-account-keyfile.json',
+			$intuition,
+			$this->projectDir,
+			new MockHttpClient()
+		);
+		$controller = new OcrController(
+			$requestStack,
+			$intuition,
+			new EngineFactory(
+				$gcv,
+				new TesseractEngine( new MockHttpClient(), $intuition, $this->projectDir, new TesseractOCR() ),
+				new TranskribusEngine(
+					new TranskribusClient(
+						getenv( 'APP_TRANSKRIBUS_ACCESS_TOKEN' ),
+						getenv( 'APP_TRANSKRIBUS_REFRESH_TOKEN' ),
+						new MockHttpClient()
+					),
+					$intuition,
+					$this->projectDir,
+					new MockHttpClient()
+				),
+			),
+			new FilesystemAdapter()
+		);
+		$this->assertSame( $expectedLangs, $controller->getLangs( $request ) );
+	}
 
-    /**
-     * @return mixed[]
-     */
-    public function provideGetLang(): array
-    {
-        return [
-            [
-                ['lang' => 'ar'],
-                ['ar'],
-            ],
-            [
-                ['langs' => ['a|b', 'c!', 'ab']],
-                ['ab', 'c'],
-            ],
-            'special characters' => [
-                ['langs' => ['sr-Latn', 'Canadian_Aboriginal']],
-                ['sr-Latn', 'Canadian_Aboriginal'],
-            ],
-            'numbers' => [
-                ['langs' => ['ru-petr1708']],
-                ['ru-petr1708'],
-            ],
-        ];
-    }
+	/**
+	 * @return mixed[]
+	 */
+	public function provideGetLang(): array {
+		return [
+			[
+				[ 'lang' => 'ar' ],
+				[ 'ar' ],
+			],
+			[
+				[ 'langs' => [ 'a|b', 'c!', 'ab' ] ],
+				[ 'ab', 'c' ],
+			],
+			'special characters' => [
+				[ 'langs' => [ 'sr-Latn', 'Canadian_Aboriginal' ] ],
+				[ 'sr-Latn', 'Canadian_Aboriginal' ],
+			],
+			'numbers' => [
+				[ 'langs' => [ 'ru-petr1708' ] ],
+				[ 'ru-petr1708' ],
+			],
+		];
+	}
 }

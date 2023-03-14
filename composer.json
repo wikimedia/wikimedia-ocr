@@ -30,9 +30,9 @@
     },
     "require-dev": {
         "drenso/phan-extensions": "^3.3",
+        "mediawiki/mediawiki-codesniffer": "^39.0",
         "mediawiki/minus-x": "^1.1",
         "mediawiki/phan-taint-check-plugin": "^4.0",
-        "slevomat/coding-standard": "^4.8",
         "symfony/phpunit-bridge": "^5.2",
         "symfony/stopwatch": "^5.2",
         "symfony/web-profiler-bundle": "^5.2"
@@ -85,7 +85,8 @@
             "phan --allow-polyfill-parser --long-progress-bar",
             "@check-tesseract",
             "./bin/phpunit"
-        ]
+        ],
+        "fix": "phpcbf"
     },
     "conflict": {
         "symfony/symfony": "*"
