@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Duke of Wikipädia",
-			"Eduardoaddad"
+			"Eduardoaddad",
+			"Re demz"
 		]
 	},
 	"title": "WikimediaOCR",
@@ -52,5 +53,7 @@
 	"tesseract-psm-12": "Texto esparso com OSD.",
 	"tesseract-psm-13": "Linha bruta. Tratar a imagem como uma linha única de texto, ignorando atalhos específicos de Tesseract.",
 	"tesseract-param-error": "A opção $1 com o valor $2 não é suportada por Tesseract. Valor máximo: $3",
-	"tesseract-internal-error": "O motor tesseract devolveu um erro interno."
+	"tesseract-internal-error": "O motor tesseract devolveu um erro interno.",
+	"transkribus-browse-public-models": "Navegue por todos os modelos de linguas públicos para Transkribus",
+	"transkribus-request-for-model": "Faça um pedidio para adicionar um modelo de Transkribus à ferramenta OCR"
 }

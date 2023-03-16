@@ -60,5 +60,7 @@
 	"transkribus-init-process-error": "無法初始化 Transkribus 程序",
 	"transkribus-failed-process-error": "Transkribus 程序失敗",
 	"transkribus-no-lang-error": "未選擇語言",
-	"transkribus-multiple-lang-error": "不允許多個語言，請指定一種語言"
+	"transkribus-multiple-lang-error": "不允許多個語言，請指定一種語言",
+	"transkribus-browse-public-models": "瀏覽 Transkribus 的所有公開語言模型",
+	"transkribus-request-for-model": "請求從 Transkribus 添加一個模型到 OCR 工具"
 }
