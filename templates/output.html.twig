@@ -37,7 +37,14 @@
                 <label id="transkribus-lang-label" for="lang" class="lang-label {% if engine != 'transkribus' %}hidden{% endif %}">
                     {{ msg('transkribus-language-code') }}
                 </label>
-                <select id="lang" class="form-control" name="langs[]" multiple data-placeholder="{{ msg('langs-placeholder') }}" {% if engine == 'transkribus' %}required{% endif %}>
+                <select 
+                    id="lang" 
+                    class="form-control" 
+                    name="langs[]" 
+                    multiple 
+                    data-placeholder="{% if engine != 'transkribus' %} {{ msg('langs-placeholder') }} {% endif %}"
+                    {% if engine == 'transkribus' %}required{% endif %}
+                >
                     {% for lang in available_langs %}
                         <option value="{{ lang }}" {% if lang in langs %}selected{% endif %}>
                             {{- lang }}{% if ocr_lang_name(lang) is not empty %} &ndash; {{ ocr_lang_name(lang) }}{% endif -%}

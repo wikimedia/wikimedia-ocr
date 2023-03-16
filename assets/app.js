@@ -53,6 +53,9 @@ $(function () {
         placeholder: $select2.data('placeholder'),
     });
 
+    let selectLangField = $('#lang');
+    let previousDataPlaceholder = selectLangField.attr('data-placeholder');
+
     // Show engine-specific options.
     $('[name=engine]').on('change',  e => {
         updateSelect2Options(e.target.value);
@@ -60,11 +63,13 @@ $(function () {
         $(`#${e.target.value}-options`).removeClass('hidden');
         let engine = e.target.value;
         if(engine === 'tesseract' || engine === 'google') {
-            $('#lang').prop('required', false);
+            selectLangField.prop('required', false);
+            selectLangField.attr('data-placeholder', previousDataPlaceholder);
             $('#transkribus-lang-label').addClass('hidden');
             $('#optional-lang-label').removeClass('hidden');
         } else {
-            $('#lang').prop('required', true);
+            selectLangField.prop('required', true);
+            selectLangField.attr('data-placeholder', '');
             $('#optional-lang-label').addClass('hidden');
             $('#transkribus-lang-label').removeClass('hidden');
         }
