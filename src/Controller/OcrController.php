@@ -10,6 +10,7 @@ use App\Engine\GoogleCloudVisionEngine;
 use App\Engine\TesseractEngine;
 use App\Engine\TranskribusEngine;
 use App\Exception\EngineNotFoundException;
+use Exception;
 use Krinkle\Intuition\Intuition;
 use OpenApi\Annotations as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -220,7 +221,14 @@ class OcrController extends AbstractController
      */
     public function apiAction(): JsonResponse
     {
-        $this->setup();
+        try {
+            $this->setup();
+        } catch (Exception $exception) {
+            return $this->getApiResponse([
+                "error" => $exception->getMessage(),
+            ]);
+        }
+
         $result = $this->getResult(EngineBase::WARN_ON_INVALID_LANGS);
         $responseParams = array_merge(static::$params, [
             'text' => $result->getText(),

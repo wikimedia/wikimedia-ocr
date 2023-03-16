@@ -4,6 +4,7 @@ import 'select2';
 
 const $ = require('jquery');
 const $select2 = $('#lang');
+var selectedLanguages = [];
 
 const Cropper = require('cropperjs');
 import 'cropperjs/dist/cropper.css';
@@ -36,10 +37,9 @@ function updateSelect2Options(engine)
             const option = new Option(datum.text, datum.id, false, false);
             $select2.append(option);
         });
-        $select2.trigger({
-            type: 'select2:select',
-            params: { data }
-        });
+
+        // Update selected languages.
+        $select2.val(selectedLanguages).trigger('change');
     });
 }
 
@@ -51,6 +51,22 @@ $(function () {
     $select2.select2({
         theme: 'bootstrap',
         placeholder: $select2.data('placeholder'),
+    });
+
+    // Listen for language select event and update selectedLanguages
+    $select2.on('select2:select', e => {
+        let selectedValue = e.params.data.id;
+        if(!selectedLanguages.includes(selectedValue)){
+            selectedLanguages.push(selectedValue);
+        }
+    });
+
+    // Listen for language unselect event and update selectedLanguages
+    $select2.on('select2:unselect', e => {
+        let selectedValue = e.params.data.id;
+        selectedLanguages = selectedLanguages.filter( value => {
+            return selectedValue !== value;
+        });
     });
 
     let selectLangField = $('#lang');
