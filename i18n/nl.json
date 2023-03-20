@@ -63,6 +63,6 @@
 	"transkribus-failed-process-error": "Transkribus-proces mislukt",
 	"transkribus-no-lang-error": "Er is geen taal geselecteerd",
 	"transkribus-multiple-lang-error": "Meerdere talen zijn niet toegestaan, geef één taal op",
-	"transkribus-browse-public-models": "Blader door alle openbare taalmodellen voor Transkribus",
-	"transkribus-request-for-model": "Doe een verzoek om een model uit Transkribus toe te voegen aan het hulpmiddel OCR"
+	"transkribus-browse-public-models": "Door alle openbare taalmodellen voor Transkribus bladeren",
+	"transkribus-request-for-model": "Verzoeken om een model uit Transkribus toe te voegen aan het OCR-programma"
 }
