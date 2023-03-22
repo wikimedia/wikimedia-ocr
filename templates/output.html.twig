@@ -42,7 +42,7 @@
                     class="form-control" 
                     name="langs[]" 
                     multiple 
-                    data-placeholder="{% if engine != 'transkribus' %} {{ msg('langs-placeholder') }} {% endif %}"
+                    data-placeholder="{{ msg('langs-placeholder') }}"
                     {% if engine == 'transkribus' %}required{% endif %}
                 >
                     {% for lang in available_langs %}

@@ -91,6 +91,14 @@ $(function () {
         }
     });
 
+    // modify selected engine after loading the page with preselected engine 
+    let engineRadioFields = $('[name=engine]:checked');
+    if(engineRadioFields.val() === 'transkribus') {
+        selectLangField.attr('data-placeholder', '')
+    } else {
+        selectLangField.attr('data-placeholder', previousDataPlaceholder);
+    }
+
     // For the result page. Makes the 'Copy' button copy the transcription to the clipboard.
     const $copyButton = $('.copy-button');
     if ($copyButton.length) {
