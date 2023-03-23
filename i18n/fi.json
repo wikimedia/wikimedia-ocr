@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"MITO",
+			"Pyscowicz",
 			"Veikk0.ma"
 		]
 	},
@@ -51,5 +52,7 @@
 	"tesseract-psm-12": "Harva teksti ja tekstin suunnan ja kirjoitusjärjestelmän tunnistus.",
 	"tesseract-psm-13": "Tekstirivi. Käsittele kuvaa yhtenä tekstirivinä (kiertää Tesseractia varten tehdyt niksit).",
 	"tesseract-param-error": "\"$1\"-asetus ei tue arvoa $2. Enimmäisarvo on $3",
-	"tesseract-internal-error": "Tesseract-moottori kohtasi sisäisen virheen."
+	"tesseract-internal-error": "Tesseract-moottori kohtasi sisäisen virheen.",
+	"transkribus-no-lang-error": "Kieltä ei valittu",
+	"transkribus-multiple-lang-error": "Useita kieliä ei sallita, määritä yksi kieli"
 }

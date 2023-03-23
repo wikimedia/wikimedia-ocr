@@ -64,5 +64,7 @@
 	"transkribus-init-process-error": "הפעלת תהליך ה־Transkribus נכשלה",
 	"transkribus-failed-process-error": "תהליך Transkribus נכשל",
 	"transkribus-no-lang-error": "לא נבחרה שפה",
-	"transkribus-multiple-lang-error": "אסור להשתמש בכמה שפות, יש לציין שפה אחת"
+	"transkribus-multiple-lang-error": "אסור להשתמש בכמה שפות, יש לציין שפה אחת",
+	"transkribus-browse-public-models": "עיין בכל דגמי השפה הציבוריים עבור Transkribus",
+	"transkribus-request-for-model": "הגשת בקשה להוספת דגם מ־Transkribus לכלי OCR"
 }
