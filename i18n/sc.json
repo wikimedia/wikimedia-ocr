@@ -13,6 +13,7 @@
 	"image-alt-text": "S'immàgine originale",
 	"language-code": "Limbas (optzionale):",
 	"engine": "Motore OCR",
+	"engine-name-transkribus": "OCR de Transkribus",
 	"engine-not-found-warning": "Su motore '$1' chi as pedidu non s'est agatadu. In logu suo s'at a impreare su motore predefinidu '$2'.",
 	"engine-invalid-langs-warning": "Sas limbas chi sighint sunt invàlidas o non suportadas dae su motore e sunt istadas ignoradas: $1",
 	"submit": "Trascrie totu sa pàgina",
@@ -50,5 +51,14 @@
 	"tesseract-psm-12": "Pagu testu cun OSD.",
 	"tesseract-psm-13": "Lìnia greza. Trata s'immàgine che a una lìnia de testu sìngula, ignorende sos trucos ispetzìficos de Tesseract.",
 	"tesseract-param-error": "S'optzione'$1' cun unu valore de '$2' no est suportada dae Tesseract. Valore màssimu: $3",
-	"tesseract-internal-error": "Su motore de tesseract at torradu un'errore internu."
+	"tesseract-internal-error": "Su motore de tesseract at torradu un'errore internu.",
+	"transkribus-unauthorized-error": "Còdighe de errore '$1' :: Sa rechesta non est autorizada",
+	"transkribus-default-error": "Còdighe de errore '$1' :: Non faghet a cumprire sa dimanda, torra a proare!",
+	"transkribus-empty-response-error": "No at fatu a analizare sos resurtados dae s'API de Transkribus",
+	"transkribus-init-process-error": "Inizializatzione de su protzessu de Transkribus\n fallida",
+	"transkribus-failed-process-error": "Protzessu de Transkribus fallidu",
+	"transkribus-no-lang-error": "No est istada seletzionada peruna limba",
+	"transkribus-multiple-lang-error": "Limbas mùltiplas non sunt permìtidas, ispetzìfica una limba",
+	"transkribus-browse-public-models": "Esplora totu sos modellos de limba pùblicos pro Transkribus",
+	"transkribus-request-for-model": "Pedi de annànghere unu modellu de Transkribus a s'aina OCR"
 }

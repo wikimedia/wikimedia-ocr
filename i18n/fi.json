@@ -15,6 +15,7 @@
 	"image-alt-text": "Alkuperäinen kuva",
 	"language-code": "Kielet (valinnainen)",
 	"engine": "Tekstintunnistusmoottori",
+	"engine-name-transkribus": "Transkribus OCR",
 	"engine-not-found-warning": "Pyydettyä moottoria '$1' ei löytynyt. Käytetään sen sijasta oletusmoottoria '$2'.",
 	"engine-invalid-langs-warning": "Seuraavat kielet ovat virheellisiä tai moottori ei tue niitä ja ne ohitettiin: $1",
 	"submit": "Muunna koko sivu tekstiksi",
