@@ -73,10 +73,10 @@ $(function () {
 
     // Show engine-specific options.
     $('[name=engine]').on('change',  e => {
-        updateSelect2Options(e.target.value);
-        $('.engine-options').addClass('hidden');
-        $(`#${e.target.value}-options`).removeClass('hidden');
         let engine = e.target.value;
+        updateSelect2Options(engine);
+        $('.engine-options').addClass('hidden');
+        $(`#${engine}-options`).removeClass('hidden');
         if(engine === 'tesseract' || engine === 'google') {
             $select2.prop('required', false);
             $select2.attr('data-placeholder', previousDataPlaceholder);
@@ -93,8 +93,8 @@ $(function () {
     });
 
     // modify selected engine after loading the page with preselected engine 
-    let engineRadioFields = $('[name=engine]:checked');
-    if(engineRadioFields.val() === 'transkribus') {
+    let $engineRadioFields = $('[name=engine]:checked');
+    if($engineRadioFields.val() === 'transkribus') {
         $select2.attr('data-placeholder', '')
     } else {
         $select2.attr('data-placeholder', previousDataPlaceholder);
