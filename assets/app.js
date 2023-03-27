@@ -69,8 +69,7 @@ $(function () {
         });
     });
 
-    let selectLangField = $('#lang');
-    let previousDataPlaceholder = selectLangField.attr('data-placeholder');
+    let previousDataPlaceholder = $select2.attr('data-placeholder');
 
     // Show engine-specific options.
     $('[name=engine]').on('change',  e => {
@@ -79,13 +78,15 @@ $(function () {
         $(`#${e.target.value}-options`).removeClass('hidden');
         let engine = e.target.value;
         if(engine === 'tesseract' || engine === 'google') {
-            selectLangField.prop('required', false);
-            selectLangField.attr('data-placeholder', previousDataPlaceholder);
+            $select2.prop('required', false);
+            $select2.attr('data-placeholder', previousDataPlaceholder);
+            $select2.data('select2').selection.placeholder.text = previousDataPlaceholder;
             $('#transkribus-lang-label').addClass('hidden');
             $('#optional-lang-label').removeClass('hidden');
         } else {
-            selectLangField.prop('required', true);
-            selectLangField.attr('data-placeholder', '');
+            $select2.prop('required', true);
+            $select2.attr('data-placeholder', '');
+            $select2.data('select2').selection.placeholder.text = '';
             $('#optional-lang-label').addClass('hidden');
             $('#transkribus-lang-label').removeClass('hidden');
         }
@@ -94,9 +95,9 @@ $(function () {
     // modify selected engine after loading the page with preselected engine 
     let engineRadioFields = $('[name=engine]:checked');
     if(engineRadioFields.val() === 'transkribus') {
-        selectLangField.attr('data-placeholder', '')
+        $select2.attr('data-placeholder', '')
     } else {
-        selectLangField.attr('data-placeholder', previousDataPlaceholder);
+        $select2.attr('data-placeholder', previousDataPlaceholder);
     }
 
     // For the result page. Makes the 'Copy' button copy the transcription to the clipboard.
