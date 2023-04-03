@@ -58,6 +58,7 @@
 	"tesseract-psm-13": "שורה גולמית. להתייחס לתמונה כשורת טקסט אחת, ולעקוף אפשרויות מיוחדות לטסרקט.",
 	"tesseract-param-error": "האפשרות $1 עם הערך $2 לא נתמכת על־ידי טסרקט. הערך המרבי הוא $3",
 	"tesseract-internal-error": "מנוע טסרקט החזיר שגיאה פנימית.",
+	"transkribus-language-code": "מודל שפה",
 	"transkribus-unauthorized-error": "קוד שגיאה ‚$1’ :: הבקשה לא מאומתת",
 	"transkribus-default-error": "קוד שגיאה ‚$1’ :: לא ניתן להשלים את הבקשה, נא לנסות שוב!",
 	"transkribus-empty-response-error": "לא היה אפשר לפענח את התוצאות מ־Transkribus API",

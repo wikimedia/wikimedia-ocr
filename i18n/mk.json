@@ -53,6 +53,7 @@
 	"tesseract-psm-13": "Сиров рд. Сметај ја сликата за еден ред текст, заобиколувајќи ги можностите особени за Tesseract.",
 	"tesseract-param-error": "Можноста „$1“ со вредност $2 не е поддржана од Tesseract. Најголема допуштена вредност: $3",
 	"tesseract-internal-error": "Погонот Tesseract даде внатрешна грешка.",
+	"transkribus-language-code": "Јазичен модел",
 	"transkribus-unauthorized-error": "Грешка „$1“ :: Барањето не е овластено",
 	"transkribus-default-error": "Грешка „$1“ ::  Не можам да го исполнам барањето. Пробајте повторно!",
 	"transkribus-empty-response-error": "Не можев да го расчленам исходот од приложникот на Transkribus",

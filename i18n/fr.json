@@ -59,6 +59,7 @@
 	"tesseract-psm-13": "Ligne brute. Traiter l’image comme une ligne de texte unique, en sautant les raccourcis spécifiques à Tesseract.",
 	"tesseract-param-error": "L’option « $1 » avec une valeur de $2 n’est pas prise en charge par Tesseract. Valeur maximale : $3",
 	"tesseract-internal-error": "Le moteur Tesseract a renvoyé une erreur interne.",
+	"transkribus-language-code": "Modèle de langue",
 	"transkribus-unauthorized-error": "Code d’erreur « $1 » : la requête n’est pas autorisée",
 	"transkribus-default-error": "Code d’erreur « $1 » : impossible d’effectuer la requête, veuillez réessayer !",
 	"transkribus-empty-response-error": "Impossible d’analyser le résultat de l’API Transkribus",
