@@ -1,14 +1,28 @@
 <?xml version="1.0" ?>
 <ruleset name="wikimedia-ocr">
-    <rule ref="./vendor/wikimedia/toolforge-bundle/Resources/phpcs/ruleset.xml" />
-    <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
+    <rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
         <properties>
             <property name="rootNamespaces" type="array">
                 <element key="src" value="App" />
                 <element key="tests" value="App\Tests" />
             </property>
         </properties>
+        <!-- remove the below exclude rules after making the linting changes manually in a separate PR -->
+        <exclude name="Generic.Files.LineLength.TooLong" />
+        <exclude name="MediaWiki.Classes.UnusedUseStatement.UnusedUse" />
+        <exclude name="MediaWiki.Commenting.MissingCovers.MissingCovers" />
+        <exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
+        <exclude name="MediaWiki.Commenting.FunctionComment.MissingParamTag" />
+        <exclude name="MediaWiki.Commenting.FunctionComment.ParamNameNoMatch" />
+        <exclude name="Generic.ControlStructures.DisallowYodaConditions.Found" /> 
+        <exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic" />
+        <exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
+        <exclude name="MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation" />
     </rule>
+	<file>.</file>
+	<arg name="bootstrap" value="./vendor/mediawiki/mediawiki-codesniffer/utils/bootstrap-ci.php"/>
+	<arg name="extensions" value="php"/>
+	<arg name="encoding" value="UTF-8"/>
 
     <file>.</file>
     <exclude-pattern>./vendor/</exclude-pattern>
