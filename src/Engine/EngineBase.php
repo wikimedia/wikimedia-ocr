@@ -37,6 +37,7 @@ abstract class EngineBase {
 	/** @var string[] Additional localized names for non-standard language codes. */
 	public const LANG_NAMES = [
 		'az-cyrl' => 'Azərbaycan (qədim yazı)',
+		'bali' => 'Balinese palm-leaf manuscripts 16th century',
 		'ben-print' => 'Bengali Printed Books +150 New',
 		'de-frk' => 'Deutsch (Fraktur)',
 		'de-17' => 'Dutch_XVII_Century',

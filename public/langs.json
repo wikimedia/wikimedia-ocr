@@ -23,6 +23,9 @@
         "tesseract": "aze_cyrl",
         "google": "az-Cyrl"
     },
+    "bali": {
+        "transkribus": 48252
+    },
     "be": {
         "tesseract": "bel",
         "google": "be"
