@@ -18,5 +18,6 @@
 	"api-tooltip": "API 문서 보기",
 	"version": "버전 $1",
 	"report-issue": "문제점 보고",
-	"langs-placeholder": "자동 언어 감지를 위해 공란으로 남깁니다."
+	"langs-placeholder": "자동 언어 감지를 위해 공란으로 남깁니다.",
+	"transkribus-language-code": "언어 모델"
 }
