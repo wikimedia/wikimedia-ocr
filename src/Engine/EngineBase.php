@@ -50,6 +50,7 @@ abstract class EngineBase {
 		'enm' => 'Middle English (1100-1500)',
 		'es-md' => 'Diario de Madrid 1788-1825',
 		'es-old' => 'español (viejo)',
+		'es-redonda-extended-v1_2' => 'SpanishRedonda_sXVI-XVII_extended_v1.2',
 		'fin' => 'NLF_Newseye_GT_FI_M2+',
 		'fr-m1' => 'Transkribus French Model 1',
 		'frm' => 'moyen français (1400-1600)',

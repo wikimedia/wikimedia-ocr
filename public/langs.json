@@ -141,6 +141,9 @@
     "es-old": {
         "tesseract": "spa_old"
     },
+    "es-redonda-extended-v1_2": {
+        "transkribus": 48394
+    },
     "et": {
         "tesseract": "est",
         "google": "et"
