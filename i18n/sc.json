@@ -52,6 +52,7 @@
 	"tesseract-psm-13": "Lìnia greza. Trata s'immàgine che a una lìnia de testu sìngula, ignorende sos trucos ispetzìficos de Tesseract.",
 	"tesseract-param-error": "S'optzione'$1' cun unu valore de '$2' no est suportada dae Tesseract. Valore màssimu: $3",
 	"tesseract-internal-error": "Su motore de tesseract at torradu un'errore internu.",
+	"transkribus-language-code": "Modellu de limba",
 	"transkribus-unauthorized-error": "Còdighe de errore '$1' :: Sa rechesta non est autorizada",
 	"transkribus-default-error": "Còdighe de errore '$1' :: Non faghet a cumprire sa dimanda, torra a proare!",
 	"transkribus-empty-response-error": "No at fatu a analizare sos resurtados dae s'API de Transkribus",
