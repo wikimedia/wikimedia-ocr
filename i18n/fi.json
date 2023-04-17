@@ -54,6 +54,7 @@
 	"tesseract-psm-13": "Tekstirivi. Käsittele kuvaa yhtenä tekstirivinä (kiertää Tesseractia varten tehdyt niksit).",
 	"tesseract-param-error": "\"$1\"-asetus ei tue arvoa $2. Enimmäisarvo on $3",
 	"tesseract-internal-error": "Tesseract-moottori kohtasi sisäisen virheen.",
+	"transkribus-empty-response-error": "Tulosta ei voitu jäsentää Transribus API:sta",
 	"transkribus-no-lang-error": "Kieltä ei valittu",
 	"transkribus-multiple-lang-error": "Useita kieliä ei sallita, määritä yksi kieli"
 }
