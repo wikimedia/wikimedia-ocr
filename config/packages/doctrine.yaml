@@ -2,3 +2,4 @@ doctrine:
     dbal:
         connections:
             default:
+                dbname: null
