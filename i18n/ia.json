@@ -52,6 +52,7 @@
 	"tesseract-psm-13": "Linea brute. Tractar le imagine como un sol linea de texto, contornante le trucos que es specific a Tesseract.",
 	"tesseract-param-error": "Le option '$1' con un valor de $2 non es supportate per Tesseract. Valor maxime: $3",
 	"tesseract-internal-error": "Le motor tesseract indicava un error interne.",
+	"transkribus-language-code": "Modello de lingua",
 	"transkribus-unauthorized-error": "Codice de error '$1' :: Le requesta non es autorisate",
 	"transkribus-default-error": "Codice de error '$1' :: Non pote terminar le requesta, tenta lo de novo!",
 	"transkribus-empty-response-error": "Non poteva interpretar le resultato del API de Transkribus",

@@ -56,6 +56,7 @@
 	"tesseract-psm-13": "Ruwe lijn. Behandel de afbeelding als een enkele tekstregel en omzeil hacks die Tesseract-specifiek zijn.",
 	"tesseract-param-error": "De optie '$1' met een waarde $2 wordt niet ondersteund door Tesseract. Maximale waarde: $3",
 	"tesseract-internal-error": "De tesseract-engine heeft een interne fout geretourneerd.",
+	"transkribus-language-code": "Taalmodel",
 	"transkribus-unauthorized-error": "Foutcode '$1' :: Het verzoek is niet geautoriseerd",
 	"transkribus-default-error": "Foutcode '$1' :: Kan het verzoek niet voltooien, probeer het opnieuw!",
 	"transkribus-empty-response-error": "Kon het resultaat van de API van Transkribus niet interpreteren",
