@@ -12,6 +12,7 @@ use App\Engine\TranskribusEngine;
 use App\Exception\EngineNotFoundException;
 use Exception;
 use Krinkle\Intuition\Intuition;
+// phpcs:ignore MediaWiki.Classes.UnusedUseStatement.UnusedUse
 use OpenApi\Annotations as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,6 +21,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+// phpcs:ignore MediaWiki.Classes.UnusedUseStatement.UnusedUse
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
@@ -102,7 +104,7 @@ class OcrController extends AbstractController {
 		// Parameters.
 		static::$params['image'] = (string)$this->request->query->get( 'image' );
 		// Change protocol-relative URLs to https to avoid issues with Curl.
-		if ( '//' === substr( static::$params['image'], 0, 2 ) ) {
+		if ( substr( static::$params['image'], 0, 2 ) === '//' ) {
 			static::$params['image'] = "https:" . static::$params['image'];
 		}
 		static::$params['langs'] = $this->getLangs( $this->request );
@@ -151,7 +153,9 @@ class OcrController extends AbstractController {
 
 	/**
 	 * The main form and result page.
+	 * phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
 	 * @Route("/", name="home")
+	 * phpcs:enable
 	 * @return Response
 	 */
 	public function homeAction(): Response {
@@ -176,6 +180,7 @@ class OcrController extends AbstractController {
 	}
 
 	/**
+	 * phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
 	 * @Route("/api", name="api", methods={"GET"})
 	 * @Route("/api.php", name="apiPhp", methods={"GET"})
 	 * @OA\Parameter(
@@ -212,6 +217,7 @@ class OcrController extends AbstractController {
 	 * @OA\Schema(type="array", @OA\Items(type="int"))
 	 * )
 	 * @OA\Response(response=200, description="The OCR text, and other data.")
+	 * phpcs:enable
 	 * @return JsonResponse
 	 */
 	public function apiAction(): JsonResponse {
@@ -235,6 +241,7 @@ class OcrController extends AbstractController {
 	}
 
 	/**
+	 * phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
 	 * @Route("/api/available_langs", name="apiLangs", methods={"GET"})
 	 * @OA\Parameter(
 	 *     name="engine",
@@ -244,6 +251,7 @@ class OcrController extends AbstractController {
 	 * @OA\Schema(type="string")
 	 * )
 	 * @OA\Response(response=200, description="List of available language codes and names, in JSON format.")
+	 * phpcs:enable
 	 * @return JsonResponse
 	 */
 	public function apiAvailableLangsAction(): JsonResponse {

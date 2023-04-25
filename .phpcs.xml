@@ -7,17 +7,6 @@
                 <element key="tests" value="App\Tests" />
             </property>
         </properties>
-        <!-- remove the below exclude rules after making the linting changes manually in a separate PR -->
-        <exclude name="Generic.Files.LineLength.TooLong" />
-        <exclude name="MediaWiki.Classes.UnusedUseStatement.UnusedUse" />
-        <exclude name="MediaWiki.Commenting.MissingCovers.MissingCovers" />
-        <exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
-        <exclude name="MediaWiki.Commenting.FunctionComment.MissingParamTag" />
-        <exclude name="MediaWiki.Commenting.FunctionComment.ParamNameNoMatch" />
-        <exclude name="Generic.ControlStructures.DisallowYodaConditions.Found" /> 
-        <exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic" />
-        <exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
-        <exclude name="MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation" />
     </rule>
 	<file>.</file>
 	<arg name="bootstrap" value="./vendor/mediawiki/mediawiki-codesniffer/utils/bootstrap-ci.php"/>

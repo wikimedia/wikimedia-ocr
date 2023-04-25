@@ -23,6 +23,7 @@ class Image {
 	private $size;
 
 	/**
+	 * @param string $imageUrl
 	 * @param int[] $crop
 	 */
 	public function __construct( string $imageUrl, array $crop = [] ) {
@@ -30,6 +31,9 @@ class Image {
 		$this->crop = $crop;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getUrl(): string {
 		return $this->imageUrl;
 	}
@@ -39,6 +43,9 @@ class Image {
 			&& isset( $this->crop['height'] ) && $this->crop['height'] > 0;
 	}
 
+	/**
+	 * @return Crop
+	 */
 	public function getCrop(): Crop {
 		return new Crop(
 			new Point( $this->crop['x'], $this->crop['y'] ),
@@ -47,16 +54,22 @@ class Image {
 	}
 
 	public function hasData(): bool {
-		return null !== $this->data;
+		return $this->data !== null;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getData(): string {
-		if ( null === $this->data ) {
+		if ( $this->data === null ) {
 			throw new LogicException( 'Image::setData() must be called before getData()' );
 		}
 		return $this->data;
 	}
 
+	/**
+	 * @param string $data
+	 */
 	public function setData( string $data ): void {
 		$this->data = $data;
 	}
@@ -66,12 +79,15 @@ class Image {
 	 * @return int
 	 */
 	public function getSize(): int {
-		if ( null === $this->data ) {
+		if ( $this->data === null ) {
 			throw new LogicException( 'Image::setData() must be called before getSize()' );
 		}
 		return $this->size ?? strlen( $this->data );
 	}
 
+	/**
+	 * @param int $size
+	 */
 	public function setSize( int $size ): void {
 		$this->size = $size;
 	}

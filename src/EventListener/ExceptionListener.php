@@ -33,6 +33,12 @@ class ExceptionListener {
 	/** @var LoggerInterface */
 	private $tesseractLogger;
 
+	/**
+	 * @param RequestStack $requestStack
+	 * @param Environment $twig
+	 * @param Intuition $intuition
+	 * @param LoggerInterface $tesseractLogger
+	 */
 	public function __construct(
 		RequestStack $requestStack,
 		Environment $twig,
@@ -46,6 +52,9 @@ class ExceptionListener {
 		$this->tesseractLogger = $tesseractLogger;
 	}
 
+	/**
+	 * @param ExceptionEvent $event
+	 */
 	public function onKernelException( ExceptionEvent $event ): void {
 		$exception = $event->getThrowable();
 

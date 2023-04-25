@@ -37,6 +37,7 @@ class TranskribusAuthCommand extends Command {
 	 * Method that runs the CLI command.
 	 * @param InputInterface $input
 	 * @param OutputInterface $output
+	 * @return int
 	 */
 	protected function execute( InputInterface $input, OutputInterface $output ): int {
 		$helper = $this->getHelper( 'question' );
@@ -52,7 +53,7 @@ class TranskribusAuthCommand extends Command {
 		$tokenResponse = $this->transkribusClient->getAccessTokenResponse( $userName, $password );
 
 		$statusCode = $tokenResponse->getStatusCode();
-		if ( 200 === $statusCode ) {
+		if ( $statusCode === 200 ) {
 			$content = json_decode( $tokenResponse->getContent() );
 			if ( $content === null ) {
 				$io->error( 'Response from Transkribus API could not be parsed' );
@@ -68,7 +69,7 @@ class TranskribusAuthCommand extends Command {
 				$io->writeln( 'APP_TRANSKRIBUS_REFRESH_TOKEN=' . $refreshToken );
 				return Command::SUCCESS;
 			}
-		} elseif ( 401 === $statusCode ) {
+		} elseif ( $statusCode === 401 ) {
 			$io->error( 'Error Code ' . $statusCode . ' :: Credentials are incorrect!' );
 			return Command::FAILURE;
 		} else {

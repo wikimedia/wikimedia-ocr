@@ -58,7 +58,8 @@ class TranskribusEngine extends EngineBase {
 			$y = $crop['y'];
 			$yPlusH = $crop['y'] + $crop['height'];
 			$xPlusW = $crop['x'] + $crop['width'];
-			$points = $x . ',' . $y . ' ' . $xPlusW . ',' . $y . ' ' . $xPlusW . ',' . $yPlusH . ' ' . $x . ',' . $yPlusH;
+			$points = $x . ',' . $y . ' ' . $xPlusW . ',' .
+					$y . ' ' . $xPlusW . ',' . $yPlusH . ' ' . $x . ',' . $yPlusH;
 		}
 
 		$modelId = 0;
@@ -67,7 +68,7 @@ class TranskribusEngine extends EngineBase {
 			throw new OcrException( 'transkribus-no-lang-error' );
 		}
 		$langCodes = $this->getLangCodes( $validLangs );
-		if ( 1 < count( $langCodes ) ) {
+		if ( count( $langCodes ) > 1 ) {
 			throw new OcrException( 'transkribus-multiple-lang-error' );
 		}
 		$modelId = (int)$langCodes[0];
@@ -75,7 +76,7 @@ class TranskribusEngine extends EngineBase {
 		$processId = $this->transkribusClient->initProcess( $imageUrl, $modelId, $points );
 
 		$resText = '';
-		while ( 'FINISHED' !== $this->transkribusClient->processStatus ) {
+		while ( $this->transkribusClient->processStatus !== 'FINISHED' ) {
 			$resText = $this->transkribusClient->retrieveProcessResult( $processId );
 			sleep( 2 );
 		}

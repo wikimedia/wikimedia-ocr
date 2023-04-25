@@ -95,7 +95,9 @@ class EngineBaseTest extends OcrTestCase {
 	 * @covers EngineBase::filterValidLangs for Tesseract Engine
 	 * @dataProvider provideTesseractLangs
 	 */
-	public function testFilterValidLangsTesseractEngine( array $langs, array $validLangs, string $invalidLangsMode ): void {
+	public function testFilterValidLangsTesseractEngine(
+		array $langs, array $validLangs, string $invalidLangsMode
+	): void {
 		if ( EngineBase::WARN_ON_INVALID_LANGS === $invalidLangsMode ) {
 			$this->assertSame( $validLangs, $this->tesseractEngine->filterValidLangs( $langs, $invalidLangsMode )[0] );
 		} else {
