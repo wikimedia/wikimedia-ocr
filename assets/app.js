@@ -112,6 +112,11 @@ $(function () {
         });
     }
 
+    // Disable submit button during form submit
+    $('form').on('submit', e => {
+        $('.submit-btn .btn').attr("disabled", true);
+    });
+
     var $ocrOutputDiv = $('.ocr-output');
     if ($ocrOutputDiv.length) {
         // Cropper.
