@@ -52,9 +52,14 @@
 	"tesseract-psm-13": "Rohzeile. Behandelt das Bild wie eine einzelne Textzeile und umgeht damit Tesseract-spezifische Hacks.",
 	"tesseract-param-error": "Die Option „$1“ mit einem Wert von $2 wird von Tesseract nicht unterstützt. Maximaler Wert: $3",
 	"tesseract-internal-error": "Die Tesseract-Engine hat einen internen Fehler zurückgegeben.",
+	"transkribus-language-code": "Sprachmodell",
 	"transkribus-unauthorized-error": "Fehlercode '$1' :: Die Anfrage ist nicht autorisiert",
 	"transkribus-default-error": "Fehlercode '$1' ::  Anfrage kann nicht abgeschlossen werden, versuche es erneut!",
 	"transkribus-empty-response-error": "Konnte das Ergebnis von Transkribus API nicht parsen",
 	"transkribus-init-process-error": "Transkribus-Prozess konnte nicht initialisiert werden",
-	"transkribus-failed-process-error": "Transkribus-Prozess gescheitert"
+	"transkribus-failed-process-error": "Transkribus-Prozess gescheitert",
+	"transkribus-no-lang-error": "Es wurde keine Sprache ausgewählt",
+	"transkribus-multiple-lang-error": "Mehrere Sprachen sind nicht erlaubt, gib eine Sprache an",
+	"transkribus-browse-public-models": "Alle öffentlichen Sprachmodelle für Transkribus durchsuchen",
+	"transkribus-request-for-model": "Erstelle eine Anfrage, um ein Modell aus Transkribus zum OCR-Tool hinzuzufügen"
 }
