@@ -112,9 +112,9 @@ $(function () {
         });
     }
 
-    // Disable submit button during form submit
+    // Disable submit buttons during form submit
     $('form').on('submit', e => {
-        $('.submit-btn .btn').attr("disabled", true);
+        $('.submit-btn .btn, .submit-crop').attr("disabled", true);
     });
 
     var $ocrOutputDiv = $('.ocr-output');
