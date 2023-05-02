@@ -113,9 +113,14 @@ $(function () {
     }
 
     // Disable submit buttons during form submit
+    var submitBtns = $('.submit-btn .btn, .submit-crop')
     $('form').on('submit', e => {
-        $('.submit-btn .btn, .submit-crop').attr("disabled", true);
+        submitBtns.attr("disabled", true);
     });
+    // Re-enable submit buttons on pagehide, so that they are re-enabled if returned to via browser history
+    $(window).on('pagehide', e => {
+        submitBtns.attr("disabled", false);
+    })
 
     var $ocrOutputDiv = $('.ocr-output');
     if ($ocrOutputDiv.length) {
