@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nokeoo"
+		]
+	},
+	"subtitle": "Transkribuoti tekstą iš paveikslėlių",
+	"form-heading": "Transkribuoti paveikslėlį",
+	"image-url": "Paveikslėlio URL",
+	"image-url-help": "Įterpkite paveikslėlio URL, kuris talpinamas Vikimedija serveryje, pvz.: $1",
+	"image-url-error": "Paveikslėlio URL turi prasidėti su {{PLURAL:$1|šiuo domeno pavadinimu|su vienu iš šių domeno pavadinimų}} ir baigtis su galimu failo plėtiniu: $2",
+	"image-alt-text": "Originalus paveikslėlis",
+	"language-code": "Kalbos (nebūtina)",
+	"engine": "OCR variklis",
+	"engine-not-found-warning": "Prašomas variklis '$1' nerastas. Vietoj to, naudojamas numatytasis variklis '$2'.",
+	"engine-invalid-langs-warning": "Šios kalbos negalimos arba nepalaikomos variklio ir todėl buvo ignoruojamos: $1",
+	"submit": "Transkribuoti visą puslapį",
+	"submit-crop": "Transkribuoti plotą",
+	"drag-help": "Pasirinkite apkarpymo įrankį ir nupieškite stačiakampį paveikslėlyje žemiau, kad transkribuotumėte tik puslapio plotą.",
+	"drag-mode-move": "Tempimas perkels paveikslėlį",
+	"drag-mode-move-alt": "Ikona, nurodanti perkėlimo veiksmą.",
+	"drag-mode-crop": "Tempimas sukurs nauja iškarpos plotą",
+	"drag-mode-crop-alt": "Ikona, nurodanti kirpimo veiksmą.",
+	"copy-to-clipboard": "Kopijuoti į iškarpinę",
+	"copied-to-clipboard": "Nukopijuota!",
+	"google-error": "Google paslauga grąžino klaidą: $1",
+	"image-retrieval-failed": "Paveikslėlio gavimas nepavyko: $1",
+	"documentation": "Dokumentacija",
+	"api-tooltip": "Žiūrėti API dokumentaciją",
+	"version": "Versija $1",
+	"report-issue": "Pranešti apie problemą",
+	"langs-placeholder": "Palikite tuščia, kad kalba būtų nustatyta automatiškai.",
+	"langs-param-error": "{{PLURAL:$1|Ši kalba nepalaikoma|Šios kalbos nepalaikomos}} OCR variklio: $2",
+	"tesseract-psm-7": "Laikyti paveikslėlį vienos eilutės tekstu.",
+	"tesseract-psm-8": "Laikyti paveikslėlį vienu žodžiu.",
+	"tesseract-psm-9": "Laikyti paveikslėlį vienu žodžiu apskritime.",
+	"tesseract-psm-10": "Laikyti paveikslėlį vienu simboliu.",
+	"transkribus-language-code": "Kalbos modelis",
+	"transkribus-unauthorized-error": "Klaidos kodas '$1' :: prašymas neleistinas",
+	"transkribus-default-error": "Klaidos kodas '$1' :: nepavyko užbaigti prašymo, bandykite dar kartą!",
+	"transkribus-no-lang-error": "Nepasirinkta jokia kalba",
+	"transkribus-multiple-lang-error": "Kelios kalbos neleidžiamos, nurodykite vieną kalbą"
+}
