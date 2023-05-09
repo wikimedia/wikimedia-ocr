@@ -17,7 +17,8 @@ return [
 	],
 
 	'suppress_issue_types' => [
-		'PhanUnreferencedUseNormal', // PHPCS does this already and without false positives.
+		// PHPCS does this already and without false positives.
+		'PhanUnreferencedUseNormal',
 		'SecurityCheck-LikelyFalsePositive',
 	],
 

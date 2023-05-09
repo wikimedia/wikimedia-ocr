@@ -4,7 +4,9 @@ declare( strict_types = 1 );
 namespace App\Engine;
 
 use App\Exception\OcrException;
+use stdclass;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class TranskribusClient {
 
@@ -73,7 +75,7 @@ class TranskribusClient {
 
 		$content = $this->request( 'POST', self::PROCESSES_URL, $jsonBody );
 
-		if ( 'FAILED' !== $content->status ) {
+		if ( $content->status !== 'FAILED' ) {
 			$processId = $content->processId;
 			return $processId;
 		}
@@ -91,11 +93,11 @@ class TranskribusClient {
 		$content = $this->request( 'GET', $url );
 		$textResult = '';
 
-		if ( 'FAILED' === $content->status ) {
+		if ( $content->status === 'FAILED' ) {
 			throw new OcrException( 'transkribus-failed-process-error' );
 		}
 
-		if ( 'FINISHED' === $content->status ) {
+		if ( $content->status === 'FINISHED' ) {
 			$this->processStatus = $content->status;
 			$textResult = $content->content->text ?? '';
 		}
@@ -129,6 +131,7 @@ class TranskribusClient {
 	 * @param string $method
 	 * @param string $url
 	 * @param mixed[] $jsonBody
+	 * @return stdClass
 	 */
 	private function request(
 		string $method,
@@ -141,13 +144,13 @@ class TranskribusClient {
 				'Authorization' => 'Bearer ' . $this->accessToken,
 			],
 		];
-		if ( [] != $jsonBody ) {
+		if ( $jsonBody != [] ) {
 			$body['json'] = $jsonBody;
 		}
 
 		$response = $this->httpClient->request( $method, $url, $body );
 		$statusCode = $response->getStatusCode();
-		if ( 200 === $statusCode ) {
+		if ( $statusCode === 200 ) {
 			$content = json_decode( $response->getContent() );
 
 			if ( !empty( $content ) ) {
@@ -156,14 +159,14 @@ class TranskribusClient {
 			$this->throwException( self::ERROR_NO_CONTENT );
 		}
 
-		if ( 401 === $statusCode ) {
+		if ( $statusCode === 401 ) {
 			$this->setAccessToken();
 
 			$body['headers']['Authorization'] = 'Bearer ' . $this->accessToken;
 			$response = $this->httpClient->request( $method, $url, $body );
 			$statusCode = $response->getStatusCode();
 
-			if ( 200 === $statusCode ) {
+			if ( $statusCode === 200 ) {
 				$content = json_decode( $response->getContent() );
 
 				if ( !empty( $content ) ) {
@@ -178,7 +181,7 @@ class TranskribusClient {
 	private function setAccessToken(): void {
 		$response = $this->getRefreshTokenResponse( $this->refreshToken );
 		$statusCode = $response->getStatusCode();
-		if ( 200 !== $statusCode ) {
+		if ( $statusCode !== 200 ) {
 			$this->throwException( $statusCode );
 		}
 		$content = json_decode( $response->getContent() );
@@ -190,8 +193,9 @@ class TranskribusClient {
 
 	/**
 	 * @param string $token
+	 * @return ResponseInterface
 	 */
-	public function getRefreshTokenResponse( string $token ): object {
+	public function getRefreshTokenResponse( string $token ): ResponseInterface {
 		$body = [
 			'grant_type' => 'refresh_token',
 			'client_id' => 'processing-api-client',
@@ -205,8 +209,9 @@ class TranskribusClient {
 	/**
 	 * @param string $userName
 	 * @param string $password
+	 * @return ResponseInterface
 	 */
-	public function getAccessTokenResponse( string $userName, string $password ): object {
+	public function getAccessTokenResponse( string $userName, string $password ): ResponseInterface {
 		$body = [
 			'grant_type' => 'password',
 			'username' => $userName,
@@ -221,8 +226,9 @@ class TranskribusClient {
 
 	/**
 	 * @param mixed[] $body
+	 * @return ResponseInterface
 	 */
-	private function authRequest( array $body ): object {
+	private function authRequest( array $body ): ResponseInterface {
 		$response = $this->httpClient->request(
 			'POST',
 			self::AUTH_URL,

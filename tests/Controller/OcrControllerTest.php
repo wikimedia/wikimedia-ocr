@@ -23,6 +23,7 @@ class OcrControllerTest extends OcrTestCase {
 
 	/**
 	 * @dataProvider provideGetLang
+	 * @covers OcrController::getLangs
 	 * @param string[] $getParams
 	 * @param string[] $expectedLangs
 	 */

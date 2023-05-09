@@ -22,6 +22,7 @@ class GoogleCloudVisionEngine extends EngineBase {
 	 * @param string $keyFile Filesystem path to the credentials JSON file.
 	 * @param Intuition $intuition
 	 * @param string $projectDir
+	 * @param HttpClientInterface $httpClient
 	 */
 	public function __construct(
 		string $keyFile,

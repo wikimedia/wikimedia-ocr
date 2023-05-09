@@ -10,6 +10,11 @@ class EngineFactory {
 	/** @var array<string, EngineBase> */
 	private $engines;
 
+	/**
+	 * @param GoogleCloudVisionEngine $cloudVisionEngine
+	 * @param TesseractEngine $tesseractEngine
+	 * @param TranskribusEngine $transkribusEngine
+	 */
 	public function __construct(
 		GoogleCloudVisionEngine $cloudVisionEngine,
 		TesseractEngine $tesseractEngine,
@@ -22,6 +27,10 @@ class EngineFactory {
 		];
 	}
 
+	/**
+	 * @param string $name
+	 * @return EngineBase
+	 */
 	public function get( string $name ): EngineBase {
 		if ( !isset( $this->engines[$name] ) ) {
 			throw new EngineNotFoundException();

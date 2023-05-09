@@ -79,6 +79,7 @@ abstract class EngineBase {
 	 * EngineBase constructor.
 	 * @param Intuition $intuition
 	 * @param string $projectDir
+	 * @param HttpClientInterface $httpClient
 	 */
 	public function __construct( Intuition $intuition, string $projectDir, HttpClientInterface $httpClient ) {
 		$this->intuition = $intuition;
@@ -148,7 +149,7 @@ abstract class EngineBase {
 	 * @return string
 	 */
 	public function getLangName( ?string $lang = null ): string {
-		return '' === $this->intuition->getLangName( $lang )
+		return $this->intuition->getLangName( $lang ) === ''
 			? ( self::LANG_NAMES[$lang] ?? '' )
 			: $this->intuition->getLangName( $lang );
 	}
@@ -190,7 +191,7 @@ abstract class EngineBase {
 		$formatRegex = implode( '|', self::ALLOWED_FORMATS );
 		$regex = "/^https?:\/\/($hostRegex)\/.+($formatRegex)$/";
 		$matches = preg_match( $regex, strtolower( $imageUrl ) );
-		if ( 1 !== $matches ) {
+		if ( $matches !== 1 ) {
 			$params = [ count( $this->getImageHosts() ), $this->intuition->listToText( $this->getImageHosts() ) ];
 			throw new OcrException( 'image-url-error', $params );
 		}
