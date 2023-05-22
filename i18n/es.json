@@ -29,7 +29,7 @@
 	"drag-mode-crop-alt": "Icono que representa la acción 'recortar'.",
 	"copy-to-clipboard": "Copiar en el portapapeles",
 	"copied-to-clipboard": "¡Copiado!",
-	"google-error": "El servicio de Google regresó un error: $<span translate=\"no\" class=\"notranslate\">$1</span>",
+	"google-error": "El servicio de Google regresó un error: $1",
 	"image-retrieval-failed": "Error al recuperar la imagen: $1",
 	"documentation": "Documentación",
 	"api-tooltip": "Ver la documentación de la API",
