@@ -33,7 +33,7 @@
 	"langs-param-error": "{{PLURAL:$1|Ngôn ngữ|Các ngôn ngữ}} sau không được bộ máy OCR hỗ trợ: $2",
 	"tesseract-options": "Tùy chọn cho Tesseract",
 	"tesseract-psm-label": "Phương pháp phân đoạn trang",
-	"tesseract-psm-help": "Hãy thử “Văn bản lẻ tẻ” để hợ trợ bố trí nhiều cột một cách chính xác hơn.",
+	"tesseract-psm-help": "Hãy thử “Văn bản lẻ tẻ” để được hỗ trợ bố trí nhiều cột chính xác hơn.",
 	"tesseract-psm-0": "Chỉ Phát hiện hướng viết và kiểu chữ (Orientation and script detection - OSD).",
 	"tesseract-psm-1": "Phân đoạn trang tự động bằng OSD.",
 	"tesseract-psm-2": "Phân đoạn trang tự động, nhưng không dùng OSD lẫn OCR. (chưa hiện thực)",
