@@ -244,7 +244,7 @@ abstract class EngineBase {
 			return $image;
 		}
 
-		$imageResponse = $this->httpClient->request( 'GET', $image->getUrl() );
+		$imageResponse = $this->httpClient->request( 'GET', $image->getUrl(), [ 'timeout' => 120 ] );
 		try {
 			$data = $imageResponse->getContent();
 		} catch ( ClientException $exception ) {
