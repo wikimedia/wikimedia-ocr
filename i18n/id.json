@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mnam23"
+			"Mnam23",
+			"Veracious"
 		]
 	},
 	"title": "WikimediaOCR",
@@ -13,6 +14,7 @@
 	"image-alt-text": "Gambar asli",
 	"language-code": "Bahasa (opsional)",
 	"engine": "Mesin OCR",
+	"engine-name-transkribus": "Transkribus OCR",
 	"engine-not-found-warning": "Mesin '$1' yang diminta tidak ditemukan. Menggunakan mesin bawaan '$2' sebagai gantinya.",
 	"engine-invalid-langs-warning": "Bahasa berikut tidak valid atau tidak didukung mesin dan diabaikan: $1",
 	"submit": "Transkripsikan seluruh halaman",
@@ -50,5 +52,6 @@
 	"tesseract-psm-12": "Teks jarang dengan OSD.",
 	"tesseract-psm-13": "Garis mentah. Perlakukan gambar sebagai satu baris teks, melewati peretasan yang spesifik Tesseract.",
 	"tesseract-param-error": "Pilihan '$1' dengan nilai $2 tidak didukung oleh Tesseract. Nilai maksimum: $3",
-	"tesseract-internal-error": "Mesin tesseract mengembalikan galat internal."
+	"tesseract-internal-error": "Mesin tesseract mengembalikan galat internal.",
+	"transkribus-no-lang-error": "Tak ada bahasa yang dipilih"
 }

@@ -6,6 +6,7 @@
 			"Kareyac",
 			"Okras",
 			"Pplex.vhs",
+			"Smigles",
 			"Thothsum"
 		]
 	},
@@ -38,5 +39,8 @@
 	"tesseract-psm-8": "Рассматривать изображение как одно слово.",
 	"tesseract-psm-10": "Рассматривать изображение как один символ.",
 	"tesseract-psm-12": "Разрезанный текст с экранным меню.",
-	"tesseract-internal-error": "Механизм тессеракта возвратил внутреннюю ошибку."
+	"tesseract-internal-error": "Механизм тессеракта возвратил внутреннюю ошибку.",
+	"transkribus-language-code": "Языковая модель",
+	"transkribus-no-lang-error": "Язык не выбран",
+	"transkribus-multiple-lang-error": "Нельзя использовать несколько языков, выберите один язык"
 }
