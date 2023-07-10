@@ -53,5 +53,8 @@
 	"tesseract-psm-13": "Garis mentah. Perlakukan gambar sebagai satu baris teks, melewati peretasan yang spesifik Tesseract.",
 	"tesseract-param-error": "Pilihan '$1' dengan nilai $2 tidak didukung oleh Tesseract. Nilai maksimum: $3",
 	"tesseract-internal-error": "Mesin tesseract mengembalikan galat internal.",
+	"transkribus-language-code": "Model bahasa",
+	"transkribus-unauthorized-error": "Kode Galat '$1' :: Permintaan tidak diotorisasi",
+	"transkribus-default-error": "Kode Galat '$1' :: Tak dapat menyelesaikan permintaan, coba lagi!",
 	"transkribus-no-lang-error": "Tak ada bahasa yang dipilih"
 }
