@@ -15,3 +15,23 @@ framework:
     #fragments: true
     php_errors:
         log: true
+
+    http_client:
+        default_options:
+            retry_failed:
+                max_retries: 3
+                delay: 1000
+                multiplier: 3
+                max_delay: 5000
+                jitter: 0.3
+                http_codes:
+                    0: ['GET', 'HEAD']
+                    423: true
+                    425: true
+                    429: true
+                    502: true
+                    503: true
+                    500: [ 'GET', 'HEAD' ]
+                    504: [ 'GET', 'HEAD' ]
+                    507: [ 'GET', 'HEAD' ]
+                    510: [ 'GET', 'HEAD' ]
