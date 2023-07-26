@@ -1,4 +1,6 @@
 <?php
+// phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
+
 declare( strict_types = 1 );
 
 namespace App\Controller;
@@ -153,9 +155,7 @@ class OcrController extends AbstractController {
 
 	/**
 	 * The main form and result page.
-	 * phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
 	 * @Route("/", name="home")
-	 * phpcs:enable
 	 * @return Response
 	 */
 	public function homeAction(): Response {
@@ -180,7 +180,8 @@ class OcrController extends AbstractController {
 	}
 
 	/**
-	 * phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
+	 * Run OCR on a single image.
+	 *
 	 * @Route("/api", name="api", methods={"GET"})
 	 * @Route("/api.php", name="apiPhp", methods={"GET"})
 	 * @OA\Parameter(
@@ -217,7 +218,6 @@ class OcrController extends AbstractController {
 	 * @OA\Schema(type="array", @OA\Items(type="int"))
 	 * )
 	 * @OA\Response(response=200, description="The OCR text, and other data.")
-	 * phpcs:enable
 	 * @return JsonResponse
 	 */
 	public function apiAction(): JsonResponse {
@@ -241,7 +241,8 @@ class OcrController extends AbstractController {
 	}
 
 	/**
-	 * phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
+	 * Get a list of languages available for use with a specific OCR engine.
+	 *
 	 * @Route("/api/available_langs", name="apiLangs", methods={"GET"})
 	 * @OA\Parameter(
 	 *     name="engine",
@@ -251,7 +252,6 @@ class OcrController extends AbstractController {
 	 * @OA\Schema(type="string")
 	 * )
 	 * @OA\Response(response=200, description="List of available language codes and names, in JSON format.")
-	 * phpcs:enable
 	 * @return JsonResponse
 	 */
 	public function apiAvailableLangsAction(): JsonResponse {
