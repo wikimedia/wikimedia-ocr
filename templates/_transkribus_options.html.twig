@@ -1,0 +1,23 @@
+<fieldset id="transkribus-line-ids" class="engine-options {% if engine != 'transkribus' %}hidden{% endif %}">
+    <legend>{{ msg('transkribus-options') }}</legend>
+    <div class="form-group">
+        <label for="lineId">{{ msg('transkribus-line-label') }}</label>
+        <select
+            name="lineId"
+            id="line-id"
+            class="form-control"
+            data-placeholder="Choose a line detection model"
+        >
+            <option value="0" {% if lineId == 0 %}selected{% endif %}>None</option>
+            <option value="49272" {% if lineId == 49272 %}selected{% endif %}>Default line detection model</option>
+            {% for index, line_id in available_line_ids %}
+                <option value="{{ line_id }}" {% if lineId == line_id %}selected{% endif %}>
+                    {{ line_id_name(available_line_id_langs[index]) }}
+                </option>
+            {% endfor %}
+        </select>
+        <p class="help-block">
+            {{ msg('transkribus-line-help') }}
+        </p>
+    </div>
+</fieldset>

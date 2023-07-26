@@ -27,6 +27,7 @@ class AppExtension extends AbstractExtension {
 	public function getFunctions(): array {
 		return [
 			new TwigFunction( 'ocr_lang_name', [ $this, 'getOcrLangName' ] ),
+			new TwigFunction( 'line_id_name', [ $this, 'getLineIdName' ] ),
 		];
 	}
 
@@ -56,5 +57,14 @@ class AppExtension extends AbstractExtension {
 	 */
 	public function getOcrLangName( ?string $lang = null ): string {
 		return $this->engine->getLangName( $lang );
+	}
+
+	/**
+	 * Get the name of the given line detection model ID.
+	 * @param string|null $lineIdLang
+	 * @return string
+	 */
+	public function getLineIdName( ?string $lineIdLang = null ): string {
+		return $this->engine->getLineIdModelName( $lineIdLang );
 	}
 }
