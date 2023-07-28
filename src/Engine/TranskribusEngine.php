@@ -18,6 +18,11 @@ class TranskribusEngine extends EngineBase {
 	/** @var int Default value for line detection model ID to be used by Transkribus */
 	public const DEFAULT_LINEID = 0;
 
+	/** @var string[] Model names for corresponding line detection model lang codes */
+	public const LINE_ID_MODEL_NAMES = [
+		'bali' => 'Balinese Line Detection Model',
+	];
+
 	/**
 	 * TranskribusEngine constructor.
 	 * @param TranskribusClient $transkribusClient
@@ -41,6 +46,55 @@ class TranskribusEngine extends EngineBase {
 	 */
 	public static function getId(): string {
 		return 'transkribus';
+	}
+
+	/**
+	 * Get line detection models accepted by the engine
+	 * @param bool $onlyLineIds Whether to return only the line detection model IDs
+	 * @param bool $onlyLineIdLangs Whether to return only the line detection model IDs lang codes
+	 * @return string[] Line detection model lang codes or model IDs or model ID names
+	 */
+	public function getValidLineIds( bool $onlyLineIds = false, bool $onlyLineIdLangs = false ): array {
+		$filteredLangList = array_filter(
+			$this->getLangList(), function ( $values ) {
+				return isset( $values[static::getId()]['line'] );
+			}
+		);
+
+		$lineIdLangs = array_keys( $filteredLangList );
+
+		// return only the lang names as written in the langs.json file
+		if ( $onlyLineIdLangs ) {
+			return $lineIdLangs;
+		}
+
+		// create a list that maps from lang name to line detection model name
+		$lineIDList = [];
+		foreach ( $lineIdLangs as $lineIdLang ) {
+			$lineIDList[$lineIdLang] = $this->getLineIdModelName( $lineIdLang );
+		}
+
+		// create a list that maps from line detection model ID to line detection model name
+		$list = [];
+		foreach ( $lineIdLangs as $lineIDKey ) {
+			$list[$filteredLangList[$lineIDKey][static::getId()]['line']] = $lineIDList[$lineIDKey];
+		}
+
+		// return only the line detection model IDs
+		if ( $onlyLineIds ) {
+			return array_keys( $list );
+		}
+
+		return $list;
+	}
+
+	/**
+	 * Get name of the given line detection model from the language code
+	 * @param string|null $lineIdLang
+	 * @return string
+	 */
+	public function getLineIdModelName( ?string $lineIdLang = null ): string {
+		return self::LINE_ID_MODEL_NAMES[$lineIdLang];
 	}
 
 	/**

@@ -69,6 +69,8 @@
 	"transkribus-browse-public-models": "Link text for the list of all public models for Transkribus",
 	"transkribus-request-for-model": "Link text for the form to make a request for a model to be added to the OCR tool",
 	"transkribus-options": "Heading for Transkribus-specific options",
+	"transkribus-line-id-none-option": "Form option for Transkribus line detection model",
+	"transkribus-mixed-line-option": "Form option for Transkribus line detection model",
     "transkribus-line-label": "Form label for the Transkribus line detection model selection.",
     "transkribus-line-help": "Help text for the Transkribus line detection model selection."
 }

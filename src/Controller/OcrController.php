@@ -175,12 +175,14 @@ class OcrController extends AbstractController {
 		static::$params['available_langs'] = $this->engine->getValidLangs();
 		sort( static::$params['available_langs'] );
 
-		// Pre-supply the available line ids for autocompletion in the form.
-		static::$params['available_line_ids'] = $this->engine->getValidLineIds( true, false );
-		sort( static::$params['available_line_ids'] );
+		if ( static::$params['engine'] === 'transkribus' ) {
+			// Pre-supply the available line ids for autocompletion in the form.
+			static::$params['available_line_ids'] = $this->engine->getValidLineIds( true, false );
+			sort( static::$params['available_line_ids'] );
 
-		static::$params['available_line_id_langs'] = $this->engine->getValidLineIds( false, true );
-		sort( static::$params['available_line_id_langs'] );
+			static::$params['available_line_id_langs'] = $this->engine->getValidLineIds( false, true );
+			sort( static::$params['available_line_id_langs'] );
+		}
 
 		// Intution::listToText() isn't available via Twig, and we only want to do this for the view and not the API.
 		static::$params['image_hosts'] = $this->intuition->listToText( static::$params['image_hosts'] );
@@ -225,6 +227,12 @@ class OcrController extends AbstractController {
 	 *     name="psm",
 	 *     in="query",
 	 *     description="The Page Segmentation Mode for Tesseract.",
+	 * @OA\Schema(type="int")
+	 * )
+	 * @OA\Parameter(
+	 *     name="lineId",
+	 *     in="query",
+	 *     description="The line detection model ID to be used for Transkribus.",
 	 * @OA\Schema(type="int")
 	 * )
 	 * @OA\Parameter(
@@ -281,23 +289,16 @@ class OcrController extends AbstractController {
 
 	/**
 	 * phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
-	 * @Route("/api/available_line_ids", name="apiLineIds", methods={"GET"})
-	 * @OA\Parameter(
-	 * 	   name="engine",
-	 * 	   in="query",
-	 *     description="The engine to use",
-	 *     example="transkribus",
-	 * @OA\Schema(type="string")
-	 * )
+	 * @Route("/api/transkribus/available_line_ids", name="apiLineIds", methods={"GET"})
 	 * OA\Response(response=200, description="List of available line detection model IDs, in JSON format")
 	 * phpcs:enable
 	 * @return JsonResponse
 	 */
 	public function apiAvailableLineDetectionModelIds(): JsonResponse {
+		$this->request->query->set( 'engine', 'transkribus' );
 		$this->setup();
-		// set value of public variable in TranskribusEngine class
 		return $this->getApiResponse( [
-			'engine' => static::$params['engine'],
+			'engine' => 'transkribus',
 			'available_line_ids' => $this->engine->getValidLineIds( false, false ),
 		] );
 	}

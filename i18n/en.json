@@ -63,5 +63,7 @@
     "transkribus-request-for-model": "Make a request to add a model from Transkribus to the OCR tool",
     "transkribus-options": "Transkribus Options",
     "transkribus-line-label": "Line Detection Model",
+    "transkribus-line-id-none-option": "None",
+    "transkribus-mixed-line-option": "Mixed Line Orientation",
     "transkribus-line-help": "Leave empty if you are not sure of which line detection model to use"
 }

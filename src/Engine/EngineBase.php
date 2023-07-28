@@ -75,11 +75,6 @@ abstract class EngineBase {
 		'yi-hd' => 'The Dybbuk for Yiddish Handwriting'
 	];
 
-	/** @var string[] Model names for corresponding line detection model lang codes */
-	public const LINE_ID_MODEL_NAMES = [
-		'bali' => 'Balinese Line Detection Model',
-	];
-
 	/**
 	 * EngineBase constructor.
 	 * @param Intuition $intuition
@@ -117,7 +112,7 @@ abstract class EngineBase {
 	 * Get the language list from langs.json
 	 * @return mixed[][]
 	 */
-	private function getLangList(): array {
+	public function getLangList(): array {
 		if ( !$this->langList ) {
 			$this->langList = json_decode( file_get_contents( $this->projectDir . '/public/langs.json' ), true );
 		}
@@ -149,46 +144,6 @@ abstract class EngineBase {
 	}
 
 	/**
-	 * Get line detection models accepted by the engine
-	 * @param bool $onlyLineIds Whether to return only the line detection model IDs
-	 * @param bool $onlyLineIdLangs Whether to return only the line detection model IDs lang codes
-	 * @return string[] Line detection model lang codes or model IDs or model ID names
-	 */
-	public function getValidLineIds( bool $onlyLineIds = false, bool $onlyLineIdLangs = false ): array {
-		$filteredLangList = array_filter(
-			$this->getLangList(), function ( $values ) {
-				return isset( $values[static::getId()]['line'] );
-			}
-		);
-
-		$lineIdLangs = array_keys( $filteredLangList );
-
-		// return only the lang names as written in the langs.json file
-		if ( $onlyLineIdLangs ) {
-			return $lineIdLangs;
-		}
-
-		// create a list that maps from lang name to line detection model name
-		$lineIDList = [];
-		foreach ( $lineIdLangs as $lineIdLang ) {
-			$lineIDList[$lineIdLang] = $this->getLineIdModelName( $lineIdLang );
-		}
-
-		// create a list that maps from line detection model ID to line detection model name
-		$list = [];
-		foreach ( $lineIdLangs as $lineIDKey ) {
-			$list[$filteredLangList[$lineIDKey][static::getId()]['line']] = $lineIDList[$lineIDKey];
-		}
-
-		// return only the line detection model IDs
-		if ( $onlyLineIds ) {
-			return array_keys( $list );
-		}
-
-		return $list;
-	}
-
-	/**
 	 * Get the name of the given language. This adds a few translations that don't exist in Intuition.
 	 * @param string|null $lang
 	 * @return string
@@ -197,15 +152,6 @@ abstract class EngineBase {
 		return $this->intuition->getLangName( $lang ) === ''
 			? ( self::LANG_NAMES[$lang] ?? '' )
 			: $this->intuition->getLangName( $lang );
-	}
-
-	/**
-	 * Get name of the given line detection model
-	 * @param string|null $lineIdLang
-	 * @return string
-	 */
-	public function getLineIdModelName( ?string $lineIdLang = null ): string {
-		return self::LINE_ID_MODEL_NAMES[$lineIdLang];
 	}
 
 	/**

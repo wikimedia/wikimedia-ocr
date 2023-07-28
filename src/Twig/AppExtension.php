@@ -4,20 +4,26 @@ declare( strict_types = 1 );
 namespace App\Twig;
 
 use App\Engine\TesseractEngine;
+use App\Engine\TranskribusEngine;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension {
 	/** @var TesseractEngine */
-	protected $engine;
+	protected $tesseractEngine;
+
+	/** @var TranskribusEngine */
+	protected $transkribusEngine;
 
 	/**
 	 * AppExtension constructor.
-	 * @param TesseractEngine $engine
+	 * @param TesseractEngine $tesseractEngine
+	 * @param TranskribusEngine $transkribusEngine
 	 */
-	public function __construct( TesseractEngine $engine ) {
-		$this->engine = $engine;
+	public function __construct( TesseractEngine $tesseractEngine, TranskribusEngine $transkribusEngine ) {
+		$this->tesseractEngine = $tesseractEngine;
+		$this->transkribusEngine = $transkribusEngine;
 	}
 
 	/**
@@ -56,7 +62,7 @@ class AppExtension extends AbstractExtension {
 	 * @return string
 	 */
 	public function getOcrLangName( ?string $lang = null ): string {
-		return $this->engine->getLangName( $lang );
+		return $this->tesseractEngine->getLangName( $lang );
 	}
 
 	/**
@@ -65,6 +71,6 @@ class AppExtension extends AbstractExtension {
 	 * @return string
 	 */
 	public function getLineIdName( ?string $lineIdLang = null ): string {
-		return $this->engine->getLineIdModelName( $lineIdLang );
+		return $this->transkribusEngine->getLineIdModelName( $lineIdLang );
 	}
 }

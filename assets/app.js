@@ -6,6 +6,7 @@ const $ = require('jquery');
 const $select2 = $('#lang');
 var selectedLanguages = [];
 const $lineDetectionSelect = $('#line-id');
+var lineModels = null;
 
 const Cropper = require('cropperjs');
 import 'cropperjs/dist/cropper.css';
@@ -44,31 +45,46 @@ function updateSelect2Options(engine)
     });
 }
 
+function fetchLineModelsJSON () {
+    $.getJSON('/api/transkribus/available_line_ids').then(response => {
+        lineModels = response.available_line_ids;
+    });
+}
+
 /**
  * Populate the select input field for line detection model IDs with
  * the line detection model IDs available for the Transkribus engine
  */
 function updateLineModelOptions () {
-    $.getJSON('/api/available_line_ids?engine=transkribus').then(response => {
-        const lineModels = response.available_line_ids;
-        
-        // clear existing selections and options
-        $lineDetectionSelect.val(null).empty().trigger('change');
-
-        // append the None option
-        $lineDetectionSelect.append(new Option("None", "0", true, false));
-        // append the default line detection model as a new option
-        $lineDetectionSelect.append(new Option("Default line detection model", "49272", false, false));
-        
-        // append all other line detection models as options
-        Object.keys(lineModels).forEach(model => {
-            const option = new Option(lineModels[model], model, false, false);
-            $lineDetectionSelect.append(option);
+    const staticOptions = $lineDetectionSelect[0].options;
+    let staticOptionData = []; 
+    staticOptions.forEach(option => {
+        staticOptionData.push({
+            text: option.text,
+            value: option.value
         });
+    });
+
+    // clear existing selections and options
+    $lineDetectionSelect.val(null).empty().trigger('change');
+
+    // append static options
+    staticOptionData.slice(0, 2).forEach(staticOption => {
+        $lineDetectionSelect.append(new Option(staticOption.text, staticOption.value, staticOption.value === null, false));    
+    });
+
+    // append all other line detection models as options
+    Object.keys(lineModels).forEach(model => {
+        const option = new Option(lineModels[model], model, false, false);
+        $lineDetectionSelect.append(option);
     });
 }
 
 $(function () {
+
+    // fetch line detection model data
+    fetchLineModelsJSON();
+
     // Remove nojs class, for styling non-Javascript users.
     $('html').removeClass('nojs');
 
@@ -100,7 +116,6 @@ $(function () {
     $('[name=engine]').on('change',  e => {
         let engine = e.target.value;
         updateSelect2Options(engine);
-        updateLineModelOptions();
         $('.engine-options').addClass('hidden');
         $(`#${engine}-options`).removeClass('hidden');
         if(engine === 'tesseract' || engine === 'google') {
@@ -110,7 +125,8 @@ $(function () {
             $('#transkribus-lang-label').addClass('hidden');
             $('#optional-lang-label').removeClass('hidden');
         } else {
-            $('#transkribus-line-ids').removeClass('hidden');
+            updateLineModelOptions();
+            $('#transkribus-help').removeClass('hidden');
             $select2.prop('required', true);
             $select2.attr('data-placeholder', '');
             $select2.data('select2').selection.placeholder.text = '';
