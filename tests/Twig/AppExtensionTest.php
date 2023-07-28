@@ -34,7 +34,7 @@ class AppExtensionTest extends OcrTestCase {
 								$this->projectDir,
 								new MockHttpClient()
 							);
-		$this->ext = new AppExtension( $engine );
+		$this->ext = new AppExtension( $tesseractEngine, $transkribusEngine );
 	}
 
 	/**
