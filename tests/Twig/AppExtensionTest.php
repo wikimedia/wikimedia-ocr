@@ -30,7 +30,7 @@ class AppExtensionTest extends OcrTestCase {
 									getenv( 'APP_TRANSKRIBUS_REFRESH_TOKEN' ),
 									new MockHttpClient()
 								),
-								$intuition,
+								new Intuition(),
 								$this->projectDir,
 								new MockHttpClient()
 							);
