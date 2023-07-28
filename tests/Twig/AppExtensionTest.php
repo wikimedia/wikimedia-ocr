@@ -4,6 +4,8 @@ declare( strict_types = 1 );
 namespace App\Tests\Twig;
 
 use App\Engine\TesseractEngine;
+use App\Engine\TranskribusClient;
+use App\Engine\TranskribusEngine;
 use App\Tests\OcrTestCase;
 use App\Twig\AppExtension;
 use Krinkle\Intuition\Intuition;
