@@ -16,7 +16,22 @@ class AppExtensionTest extends OcrTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$engine = new TesseractEngine( new MockHttpClient(), new Intuition(), $this->projectDir, new TesseractOCR() );
+		$tesseractEngine = new TesseractEngine(
+							new MockHttpClient(),
+							new Intuition(),
+							$this->projectDir,
+							new TesseractOCR()
+						);
+		$transkribusEngine = new TranskribusEngine(
+								new TranskribusClient(
+									getenv( 'APP_TRANSKRIBUS_ACCESS_TOKEN' ),
+									getenv( 'APP_TRANSKRIBUS_REFRESH_TOKEN' ),
+									new MockHttpClient()
+								),
+								$intuition,
+								$this->projectDir,
+								new MockHttpClient()
+							);
 		$this->ext = new AppExtension( $engine );
 	}
 
