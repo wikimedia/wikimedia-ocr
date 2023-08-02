@@ -60,7 +60,7 @@ class OcrController extends AbstractController {
 		'langs' => [],
 		'psm' => TesseractEngine::DEFAULT_PSM,
 		'crop' => [],
-		'lineId' => TranskribusEngine::DEFAULT_LINEID
+		'line_id' => TranskribusEngine::DEFAULT_LINEID,
 	];
 
 	/**
@@ -127,7 +127,7 @@ class OcrController extends AbstractController {
 
 		// This is always set, even if Transkribus isn't initially chosen as the engine
 		// because we want the default set if the user changes the engine to Transkribus.
-		static::$params['lineId'] = (int)$this->request->query->get( 'lineId', (string)static::$params['lineId'] );
+		static::$params['line_id'] = (int)$this->request->query->get( 'line_id', (string)static::$params['line_id'] );
 
 		// Apply the tesseract-specific settings
 		// NOTE: Intentionally excluding `oem`, see T285262
@@ -137,7 +137,7 @@ class OcrController extends AbstractController {
 
 		// Apply Transkribus specific settings
 		if ( TranskribusEngine::getId() === static::$params['engine'] ) {
-			$this->engine->setLineId( static::$params['lineId'] );
+			$this->engine->setLineId( static::$params['line_id'] );
 		}
 	}
 
@@ -174,6 +174,9 @@ class OcrController extends AbstractController {
 		// Pre-supply available langs for autocompletion in the form.
 		static::$params['available_langs'] = $this->engine->getValidLangs();
 		sort( static::$params['available_langs'] );
+
+		// set empty array to avoid errors while rendering template on non-transkribus engines
+		static::$params['available_line_ids'] = [];
 
 		if ( static::$params['engine'] === 'transkribus' ) {
 			// Pre-supply the available line ids for autocompletion in the form.
@@ -230,7 +233,7 @@ class OcrController extends AbstractController {
 	 * @OA\Schema(type="int")
 	 * )
 	 * @OA\Parameter(
-	 *     name="lineId",
+	 *     name="line_id",
 	 *     in="query",
 	 *     description="The line detection model ID to be used for Transkribus.",
 	 * @OA\Schema(type="int")
@@ -296,9 +299,9 @@ class OcrController extends AbstractController {
 	 */
 	public function apiAvailableLineDetectionModelIds(): JsonResponse {
 		$this->request->query->set( 'engine', 'transkribus' );
+		static::$params['engine'] = 'transkribus';
 		$this->setup();
 		return $this->getApiResponse( [
-			'engine' => 'transkribus',
 			'available_line_ids' => $this->engine->getValidLineIds( false, false ),
 		] );
 	}
@@ -343,7 +346,7 @@ class OcrController extends AbstractController {
 				implode( '|', static::$params['langs'] ),
 				implode( '|', array_map( 'strval', static::$params['crop'] ) ),
 				static::$params['psm'],
-				static::$params['lineId'],
+				static::$params['line_id'],
 				// Warning messages are localized
 				$this->intuition->getLang(),
 			]
