@@ -46,10 +46,11 @@ class TranskribusClient {
 	/**
 	 * @param string $imageURL
 	 * @param int $htrId
+	 * @param int $lineId
 	 * @param string $points
 	 * @return int
 	 */
-	public function initProcess( string $imageURL, int $htrId, string $points ): int {
+	public function initProcess( string $imageURL, int $htrId, int $lineId, string $points ): int {
 		$jsonBody = [
 			'config' => [
 				'textRecognition' => [
@@ -60,6 +61,12 @@ class TranskribusClient {
 				'imageUrl' => $imageURL,
 			],
 		];
+
+		// add line detection model to the config, if available
+		if ( $lineId !== 0 ) {
+			$lineDetection = [ 'modelId' => $lineId ];
+			$jsonBody['config']['lineDetection'] = $lineDetection;
+		}
 
 		if ( !empty( $points ) ) {
 			$cropContent = [

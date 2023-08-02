@@ -57,6 +57,8 @@
 
         {% include '_tesseract_options.html.twig' with {engine: engine} %}
 
+        {% include '_transkribus_options.html.twig' with {engine: engine} %}
+
         <div class="form-group submit-btn">
             <input type="submit" value="{{ msg( 'submit' ) }}" class="btn btn-info" />
         </div>

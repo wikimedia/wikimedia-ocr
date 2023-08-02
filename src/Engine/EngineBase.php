@@ -110,9 +110,9 @@ abstract class EngineBase {
 
 	/**
 	 * Get the language list from langs.json
-	 * @return string[][]
+	 * @return mixed[][]
 	 */
-	private function getLangList(): array {
+	public function getLangList(): array {
 		if ( !$this->langList ) {
 			$this->langList = json_decode( file_get_contents( $this->projectDir . '/public/langs.json' ), true );
 		}
@@ -157,7 +157,7 @@ abstract class EngineBase {
 	/**
 	 * Transform the given ISO 639-1 codes into the language codes needed by this type of Engine.
 	 * @param string[] $langs
-	 * @return string[]
+	 * @return mixed[]
 	 */
 	public function getLangCodes( array $langs ): array {
 		return array_map( function ( $lang ) {

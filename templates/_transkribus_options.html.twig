@@ -1,0 +1,22 @@
+<fieldset id="transkribus-options" class="engine-options {% if engine != 'transkribus' %}hidden{% endif %}">
+    <legend>{{ msg('transkribus-options') }}</legend>
+    <div class="form-group">
+        <label for="lineId">{{ msg('transkribus-line-label') }}</label>
+        <select
+            name="line_id"
+            id="line-id"
+            class="form-control"
+        >
+            <option value=null {% if line_id == 0 %}selected{% endif %}>{{ msg('transkribus-line-id-none-option') }}</option>
+            <option value="49272" {% if line_id == 49272 %}selected{% endif %}>{{ msg('transkribus-mixed-line-option') }}</option>
+            {% for index, line_model_id in available_line_ids %}
+                <option value="{{ line_model_id }}" {% if line_id == line_model_id %}selected{% endif %}>
+                    {{ line_id_name(available_line_id_langs[index]) }}
+                </option>
+            {% endfor %}
+        </select>
+        <p class="help-block">
+            {{ msg('transkribus-line-help') }}
+        </p>
+    </div>
+</fieldset>

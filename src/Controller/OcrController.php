@@ -62,6 +62,7 @@ class OcrController extends AbstractController {
 		'langs' => [],
 		'psm' => TesseractEngine::DEFAULT_PSM,
 		'crop' => [],
+		'line_id' => TranskribusEngine::DEFAULT_LINEID,
 	];
 
 	/**
@@ -126,10 +127,19 @@ class OcrController extends AbstractController {
 		// because we want the default set if the user changes the engine to Tesseract.
 		static::$params['psm'] = (int)$this->request->query->get( 'psm', (string)static::$params['psm'] );
 
+		// This is always set, even if Transkribus isn't initially chosen as the engine
+		// because we want the default set if the user changes the engine to Transkribus.
+		static::$params['line_id'] = (int)$this->request->query->get( 'line_id', (string)static::$params['line_id'] );
+
 		// Apply the tesseract-specific settings
 		// NOTE: Intentionally excluding `oem`, see T285262
 		if ( TesseractEngine::getId() === static::$params['engine'] ) {
 			$this->engine->setPsm( static::$params['psm'] );
+		}
+
+		// Apply Transkribus specific settings
+		if ( TranskribusEngine::getId() === static::$params['engine'] ) {
+			$this->engine->setLineId( static::$params['line_id'] );
 		}
 	}
 
@@ -164,6 +174,18 @@ class OcrController extends AbstractController {
 		// Pre-supply available langs for autocompletion in the form.
 		static::$params['available_langs'] = $this->engine->getValidLangs();
 		sort( static::$params['available_langs'] );
+
+		// set empty array to avoid errors while rendering template on non-transkribus engines
+		static::$params['available_line_ids'] = [];
+
+		if ( static::$params['engine'] === 'transkribus' ) {
+			// Pre-supply the available line ids for autocompletion in the form.
+			static::$params['available_line_ids'] = $this->engine->getValidLineIds( true, false );
+			sort( static::$params['available_line_ids'] );
+
+			static::$params['available_line_id_langs'] = $this->engine->getValidLineIds( false, true );
+			sort( static::$params['available_line_id_langs'] );
+		}
 
 		// Intution::listToText() isn't available via Twig, and we only want to do this for the view and not the API.
 		static::$params['image_hosts'] = $this->intuition->listToText( static::$params['image_hosts'] );
@@ -209,6 +231,12 @@ class OcrController extends AbstractController {
 	 *     name="psm",
 	 *     in="query",
 	 *     description="The Page Segmentation Mode for Tesseract.",
+	 * @OA\Schema(type="int")
+	 * )
+	 * @OA\Parameter(
+	 *     name="line_id",
+	 *     in="query",
+	 *     description="The line detection model ID to be used for Transkribus.",
 	 * @OA\Schema(type="int")
 	 * )
 	 * @OA\Parameter(
@@ -263,6 +291,22 @@ class OcrController extends AbstractController {
 	}
 
 	/**
+	 * phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
+	 * @Route("/api/transkribus/available_line_ids", name="apiLineIds", methods={"GET"})
+	 * OA\Response(response=200, description="List of available line detection model IDs, in JSON format")
+	 * phpcs:enable
+	 * @return JsonResponse
+	 */
+	public function apiAvailableLineDetectionModelIds(): JsonResponse {
+		$this->request->query->set( 'engine', 'transkribus' );
+		static::$params['engine'] = 'transkribus';
+		$this->setup();
+		return $this->getApiResponse( [
+			'available_line_ids' => $this->engine->getValidLineIds( false, false ),
+		] );
+	}
+
+	/**
 	 * Return a new JsonResponse with the given $params merged into static::$params.
 	 * @param mixed[] $params
 	 * @return JsonResponse
@@ -302,6 +346,7 @@ class OcrController extends AbstractController {
 				implode( '|', static::$params['langs'] ),
 				implode( '|', array_map( 'strval', static::$params['crop'] ) ),
 				static::$params['psm'],
+				static::$params['line_id'],
 				// Warning messages are localized
 				$this->intuition->getLang(),
 			]

@@ -4,6 +4,8 @@ declare( strict_types = 1 );
 namespace App\Tests\Twig;
 
 use App\Engine\TesseractEngine;
+use App\Engine\TranskribusClient;
+use App\Engine\TranskribusEngine;
 use App\Tests\OcrTestCase;
 use App\Twig\AppExtension;
 use Krinkle\Intuition\Intuition;
@@ -16,8 +18,23 @@ class AppExtensionTest extends OcrTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$engine = new TesseractEngine( new MockHttpClient(), new Intuition(), $this->projectDir, new TesseractOCR() );
-		$this->ext = new AppExtension( $engine );
+		$tesseractEngine = new TesseractEngine(
+							new MockHttpClient(),
+							new Intuition(),
+							$this->projectDir,
+							new TesseractOCR()
+						);
+		$transkribusEngine = new TranskribusEngine(
+								new TranskribusClient(
+									getenv( 'APP_TRANSKRIBUS_ACCESS_TOKEN' ),
+									getenv( 'APP_TRANSKRIBUS_REFRESH_TOKEN' ),
+									new MockHttpClient()
+								),
+								new Intuition(),
+								$this->projectDir,
+								new MockHttpClient()
+							);
+		$this->ext = new AppExtension( $tesseractEngine, $transkribusEngine );
 	}
 
 	/**

@@ -24,14 +24,19 @@
         "google": "az-Cyrl"
     },
     "bali": {
-        "transkribus": 48252
+        "transkribus": {
+            "htr": 48252,
+            "line": 45612
+        }
     },
     "be": {
         "tesseract": "bel",
         "google": "be"
     },
     "ben-print": {
-        "transkribus": 46239
+        "transkribus": {
+            "htr": 46239
+        }
     },
     "bg": {
         "tesseract": "bul",
@@ -85,13 +90,19 @@
         "google": "de"
     },
     "de-17": {
-        "transkribus": 38871
+        "transkribus": {
+            "htr": 38871
+        }
     },
     "de-hd-m1": {
-        "transkribus": 38291
+        "transkribus": {
+            "htr": 38291
+        }
     },
     "dev": {
-        "transkribus": 45909
+        "transkribus": {
+            "htr": 45909
+        }
     },
     "de-frk": {
         "tesseract": "frk"
@@ -112,16 +123,24 @@
         "google": "en"
     },
     "en-b2022": {
-        "transkribus": 48327
+        "transkribus": {
+            "htr": 48327
+        }
     },
     "en-handwritten-m3": {
-        "transkribus": 37646
+        "transkribus": {
+            "htr": 37646
+        }
     },
     "en-print-m1": {
-        "transkribus": 39995
+        "transkribus": {
+            "htr": 39995
+        }
     },
     "en-typewriter": {
-        "transkribus": 37545
+        "transkribus": {
+            "htr": 37545
+        }
     },
     "enm": {
         "tesseract": "enm",
@@ -136,13 +155,17 @@
         "google": "es"
     },
     "es-md": {
-        "transkribus": 48440
+        "transkribus": {
+            "htr": 48440
+        }
     },
     "es-old": {
         "tesseract": "spa_old"
     },
     "es-redonda-extended-v1_2": {
-        "transkribus": 48394
+        "transkribus": {
+            "htr": 48394
+        }
     },
     "et": {
         "tesseract": "est",
@@ -161,7 +184,9 @@
         "google": "fi"
     },
     "fin": {
-        "transkribus": 37748
+        "transkribus": {
+            "htr": 37748
+        }
     },
     "fo": {
         "tesseract": "fao",
@@ -172,7 +197,9 @@
         "google": "fr"
     },
     "fr-m1": {
-        "transkribus": 37758
+        "transkribus": {
+            "htr": 37758
+        }
     },
     "fro": {
         "google": "fro"
@@ -189,10 +216,14 @@
         "google": "ga"
     },
     "ger-hd-m1": {
-        "transkribus": 35909
+        "transkribus": {
+            "htr": 35909
+        }
     },
     "ger-15": {
-        "transkribus": 45902
+        "transkribus": {
+            "htr": 45902
+        }
     },
     "gd": {
         "tesseract": "gla",
@@ -247,7 +278,9 @@
         "google": "it"
     },
     "it-hd-m1": {
-        "transkribus": 38440
+        "transkribus": {
+            "htr": 38440
+        }
     },
     "it-old": {
         "tesseract": "ita_old"
@@ -382,7 +415,9 @@
         "google": "pl"
     },
     "pl-m2": {
-        "transkribus": 44976
+        "transkribus": {
+            "htr": 44976
+        }
     },
     "ps": {
         "tesseract": "pus",
@@ -412,17 +447,23 @@
         "google": "ru-PETR1708"
     },
     "rus-hd-2": {
-        "transkribus" : 45595
+        "transkribus" : {
+            "htr": 45595
+        }
     },
     "rus-print": {
-        "transkribus" : 44358
+        "transkribus" : {
+            "htr": 44358
+        }
     },
     "sa": {
         "tesseract": "san",
         "google": "sa"
     },
     "san" : {
-        "transkribus" : 45909
+        "transkribus" : {
+            "htr": 45909
+        }
     },
     "sd": {
         "tesseract": "snd"
@@ -464,7 +505,9 @@
         "google": "sw"
     },
     "swe-2.1": {
-        "transkribus": 45736
+        "transkribus": {
+            "htr": 45736
+        }
     },
     "syr": {
         "tesseract": "syr",
@@ -530,7 +573,9 @@
         "google": "yi"
     },
     "yi-hd": {
-        "transkribus": 46159
+        "transkribus": {
+            "htr": 46159
+        }
     },
     "yo": {
         "tesseract": "yor",
