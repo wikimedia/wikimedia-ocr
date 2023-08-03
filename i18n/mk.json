@@ -62,5 +62,10 @@
 	"transkribus-no-lang-error": "Немате избрано јазик",
 	"transkribus-multiple-lang-error": "Не се дозволени повеќе јазици. Укажете еден",
 	"transkribus-browse-public-models": "Прелистајте ги сите јавни јазични модели за Transkribus",
-	"transkribus-request-for-model": "Поднесете барање за додавање на модел од Transkribus кон алатката за оптичко препознавање"
+	"transkribus-request-for-model": "Поднесете барање за додавање на модел од Transkribus кон алатката за оптичко препознавање",
+	"transkribus-options": "Можности за Transkribus",
+	"transkribus-line-label": "Модел за откривање редови",
+	"transkribus-line-id-none-option": "Нема",
+	"transkribus-mixed-line-option": "Мешана насоченост на редовите",
+	"transkribus-line-help": "Оставете го празно ако не сте сигурни кој модел за откривање редови треба да се користи"
 }
