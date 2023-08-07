@@ -63,5 +63,10 @@
 	"transkribus-no-lang-error": "未選擇語言",
 	"transkribus-multiple-lang-error": "不允許多個語言，請指定一種語言",
 	"transkribus-browse-public-models": "瀏覽 Transkribus 的所有公開語言模型",
-	"transkribus-request-for-model": "請求從 Transkribus 添加一個模型到 OCR 工具"
+	"transkribus-request-for-model": "請求從 Transkribus 添加一個模型到 OCR 工具",
+	"transkribus-options": "Transkribus 選項",
+	"transkribus-line-label": "直線檢測模型",
+	"transkribus-line-id-none-option": "無",
+	"transkribus-mixed-line-option": "混合直線方向",
+	"transkribus-line-help": "如果您不確定要使用哪種直線檢測模型，請留空"
 }

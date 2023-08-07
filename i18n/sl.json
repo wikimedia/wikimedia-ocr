@@ -62,5 +62,10 @@
 	"transkribus-no-lang-error": "Izbran ni bil noben jezik",
 	"transkribus-multiple-lang-error": "Več jezikov ni dovoljenih, določite en jezik",
 	"transkribus-browse-public-models": "Prebrskajte vse javne jezikovne modele za Transkribus",
-	"transkribus-request-for-model": "Ustvarite prošnjo za dodajanje modela iz Transkribusa v orodje OCR"
+	"transkribus-request-for-model": "Ustvarite prošnjo za dodajanje modela iz Transkribusa v orodje OCR",
+	"transkribus-options": "Možnosti Transkribus",
+	"transkribus-line-label": "Model zaznavanja linij",
+	"transkribus-line-id-none-option": "Noben",
+	"transkribus-mixed-line-option": "Mešana usmeritev linij",
+	"transkribus-line-help": "Če niste prepričani, kateri model zaznavanja linij uporabiti, pustite prazno."
 }
