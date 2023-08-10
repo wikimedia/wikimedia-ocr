@@ -61,5 +61,10 @@
 	"transkribus-no-lang-error": "Necun lingua ha essite seligite",
 	"transkribus-multiple-lang-error": "Plure linguas non es permittite; specifica solo un lingua",
 	"transkribus-browse-public-models": "Percurrer tote le modellos public de lingua pro Transkribus",
-	"transkribus-request-for-model": "Facer un demanda pro adder un modello de Transkribus al utensile OCR"
+	"transkribus-request-for-model": "Facer un demanda pro adder un modello de Transkribus al utensile OCR",
+	"transkribus-options": "Optiones de Transkribus",
+	"transkribus-line-label": "Modello de detection de linea",
+	"transkribus-line-id-none-option": "Necun",
+	"transkribus-mixed-line-option": "Orientation de linea mixte",
+	"transkribus-line-help": "Lassa vacue si tu non es secur de qual modello de detection de linea utilisar"
 }
