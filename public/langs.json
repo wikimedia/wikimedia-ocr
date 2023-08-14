@@ -1,4 +1,10 @@
 {
+    "Fraktur": {
+        "tesseract": "Fraktur"
+    },
+    "Latin": {
+        "tesseract": "Latin"
+    },
     "af": {
         "tesseract": "afr",
         "google": "af"
