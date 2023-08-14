@@ -1,0 +1,20 @@
+<fieldset id="kraken-options" class="engine-options {% if engine != 'kraken' %}hidden{% endif %}">
+    <legend>{{ msg('kraken-options') }}</legend>
+<!--
+    <div class="form-group">
+        <label for="psm">{{ msg('tesseract-psm-label') }}</label>
+        <select name="psm" id="psm" class="form-control">
+            {# The following messages are used:
+             #   'tesseract-psm-0', 'tesseract-psm-1', 'tesseract-psm-2', 'tesseract-psm-3', 'tesseract-psm-4',
+             #   'tesseract-psm-5', 'tesseract-psm-6', 'tesseract-psm-7', 'tesseract-psm-8', 'tesseract-psm-9',
+             #   'tesseract-psm-10', 'tesseract-psm-11', 'tesseract-psm-12', 'tesseract-psm-13' #}
+            {% for i in 0..13 %}
+                <option value="{{ i }}" {% if i == psm %}selected="selected"{% endif %}>{{ msg('tesseract-psm-' ~ i) }}</option>
+            {% endfor %}
+        </select>
+        <p class="help-block">
+            {{ msg('tesseract-psm-help') }}
+        </p>
+    </div>
+-->
+</fieldset>

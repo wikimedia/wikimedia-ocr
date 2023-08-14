@@ -3,6 +3,7 @@ declare( strict_types = 1 );
 
 namespace App\Tests\Twig;
 
+use App\Engine\KrakenEngine;
 use App\Engine\TesseractEngine;
 use App\Engine\TranskribusClient;
 use App\Engine\TranskribusEngine;
@@ -19,6 +20,12 @@ class AppExtensionTest extends OcrTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
+		$krakenEngine = new KrakenEngine(
+							new Intuition(),
+							$this->projectDir,
+							new MockHttpClient()
+						);
+
 		$tesseractEngine = new TesseractEngine(
 							new MockHttpClient(),
 							new Intuition(),
@@ -39,7 +46,7 @@ class AppExtensionTest extends OcrTestCase {
 								$this->projectDir,
 								new MockHttpClient()
 							);
-		$this->ext = new AppExtension( $tesseractEngine, $transkribusEngine );
+		$this->ext = new AppExtension( $krakenEngine, $tesseractEngine, $transkribusEngine );
 	}
 
 	/**

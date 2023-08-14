@@ -5,6 +5,7 @@ namespace App\Tests\Engine;
 
 use App\Engine\EngineBase;
 use App\Engine\GoogleCloudVisionEngine;
+use App\Engine\KrakenEngine;
 use App\Engine\TesseractEngine;
 use App\Engine\TranskribusClient;
 use App\Engine\TranskribusEngine;
@@ -18,6 +19,9 @@ use thiagoalessio\TesseractOCR\TesseractOCR;
 class EngineBaseTest extends OcrTestCase {
 	/** @var GoogleCloudVisionEngine */
 	private $googleEngine;
+
+	/** @var KrakenEngine */
+	private $krakenEngine;
 
 	/** @var TesseractEngine */
 	private $tesseractEngine;
@@ -33,6 +37,8 @@ class EngineBaseTest extends OcrTestCase {
 		$this->tesseractEngine = $this->instantiateEngine( 'tesseract' );
 
 		$this->transkribusEngine = $this->instantiateEngine( 'transkribus' );
+
+		$this->krakenEngine = $this->instantiateEngine( 'kraken' );
 	}
 
 	/**
@@ -172,6 +178,15 @@ class EngineBaseTest extends OcrTestCase {
 		$engine = null;
 
 		switch ( $engineName ) {
+			case 'kraken':
+				$krakenEngine = new KrakenEngine(
+					$intuition,
+					$this->projectDir,
+					new MockHttpClient()
+				);
+				$engine = $krakenEngine;
+				break;
+
 			case 'tesseract':
 				$tesseractOCR = $this->getMockBuilder( TesseractOCR::class )->disableOriginalConstructor()->getMock();
 				$tesseractOCR->method( 'availableLanguages' )

@@ -36,6 +36,8 @@ abstract class EngineBase {
 
 	/** @var string[] Additional localized names for non-standard language codes. */
 	public const LANG_NAMES = [
+		'german_print' => 'Deutsch (Druck)',
+		'german_handwriting' => 'Deutsch (Handschrift)',
 		'Fraktur' => 'Fraktur script',
 		'Latin' => 'Latin script',
 		'az-cyrl' => 'Azərbaycan (qədim yazı)',

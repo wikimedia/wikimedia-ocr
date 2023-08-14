@@ -9,6 +9,7 @@ use App\Engine\EngineBase;
 use App\Engine\EngineFactory;
 use App\Engine\EngineResult;
 use App\Engine\GoogleCloudVisionEngine;
+use App\Engine\KrakenEngine;
 use App\Engine\TesseractEngine;
 use App\Engine\TranskribusEngine;
 use App\Exception\EngineNotFoundException;
@@ -32,7 +33,7 @@ class OcrController extends AbstractController {
 	/** @var Intuition */
 	protected $intuition;
 
-	/** @var TesseractEngine|GoogleCloudVisionEngine|TranskribusEngine */
+	/** @var KrakenEngine|TesseractEngine|GoogleCloudVisionEngine|TranskribusEngine */
 	protected $engine;
 
 	/** @var string The default OCR engine. */
@@ -131,6 +132,8 @@ class OcrController extends AbstractController {
 		// because we want the default set if the user changes the engine to Transkribus.
 		static::$params['line_id'] = (int)$this->request->query->get( 'line_id', (string)static::$params['line_id'] );
 
+		// Apply the kraken-specific settings
+
 		// Apply the tesseract-specific settings
 		// NOTE: Intentionally excluding `oem`, see T285262
 		if ( TesseractEngine::getId() === static::$params['engine'] ) {
@@ -209,7 +212,7 @@ class OcrController extends AbstractController {
 	 * @OA\Parameter(
 	 *     name="engine",
 	 *     in="query",
-	 *     description="The engine to use, either `tesseract` or `google` or `transkribus`.",
+	 *     description="The engine to use, either `kraken` or `tesseract` or `google` or `transkribus`.",
 	 *     example="tesseract",
 	 * @OA\Schema(type="string")
 	 * )
@@ -275,7 +278,7 @@ class OcrController extends AbstractController {
 	 * @OA\Parameter(
 	 *     name="engine",
 	 *     in="query",
-	 *     description="The engine to use, either `tesseract` or `google` or `transkribus`.",
+	 *     description="The engine to use, either `kraken` or `tesseract` or `google` or `transkribus`.",
 	 *     example="tesseract",
 	 * @OA\Schema(type="string")
 	 * )

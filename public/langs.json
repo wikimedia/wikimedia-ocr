@@ -1,4 +1,10 @@
 {
+    "german_print": {
+        "kraken": "german_print"
+    },
+    "german_handwriting": {
+        "kraken": "german_handwriting"
+    },
     "Fraktur": {
         "tesseract": "Fraktur"
     },
