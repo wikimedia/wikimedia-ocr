@@ -504,9 +504,9 @@
         "tesseract": "swa",
         "google": "sw"
     },
-    "swe-2.1": {
+    "swe-3": {
         "transkribus": {
-            "htr": 45736
+            "htr": 53149
         }
     },
     "syr": {

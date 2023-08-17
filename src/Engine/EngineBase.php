@@ -69,7 +69,7 @@ abstract class EngineBase {
 		'ru-petr1708' => 'Русский (старая орфография)',
 		'san' => 'Devanagari Mixed M1A',
 		'sr-latn' => 'Српски (латиница)',
-		'swe-2.1' => 'Stockholm Notaries 1700 2.1',
+		'swe-3' => 'Stockholm Notaries 1700 3.0',
 		'syr' => 'leššānā Suryāyā',
 		'uz-cyrl' => 'oʻzbekcha',
 		'yi-hd' => 'The Dybbuk for Yiddish Handwriting'
