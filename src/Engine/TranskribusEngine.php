@@ -118,9 +118,6 @@ class TranskribusEngine extends EngineBase {
 	): EngineResult {
 		$this->checkImageUrl( $imageUrl );
 
-		$image = $this->getImage( $imageUrl, $crop );
-		$imageUrl = $image->getUrl();
-
 		$points = '';
 		if ( $crop ) {
 			$x = $crop['x'];
