@@ -1,4 +1,6 @@
 <?php
+// phpcs:disable MediaWiki.Usage.ForbiddenFunctions.popen
+
 declare( strict_types = 1 );
 
 namespace App\Engine;
