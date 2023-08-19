@@ -3,7 +3,6 @@ declare( strict_types = 1 );
 
 namespace App\Engine;
 
-use App\Exception\OcrException;
 use Krinkle\Intuition\Intuition;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -39,20 +38,28 @@ class KrakenEngine extends EngineBase {
 		$this->checkImageUrl( $imageUrl );
 
 		[ $validLangs, $invalidLangs ] = $this->filterValidLangs( $langs, $invalidLangsMode );
-
-		$image = $this->getImage( $imageUrl, $crop, self::DO_DOWNLOAD_IMAGE );
-		$this->ocr->imageData( $image->getData(), $image->getSize() );
-
 		if ( $validLangs ) {
-			$this->ocr->lang( ...$this->getLangCodes( $validLangs ) );
+			# var_dump($validLangs);
+			# var_dump($this->getLangCodes($validLangs));
+			# var_dump(...$this->getLangCodes($validLangs));
+			# $model = implode( ',',$this->getLangCodes( $validLangs ) );
+			# kraken does not support more than one model, so use the first one.
+			$model = $this->getLangCodes( $validLangs )[0];
+		} else {
+			$model = 'german_print';
 		}
 
-		// Env vars are passed through to the kraken command,
-		// but when they are loaded from Symfony's .env they aren't actually available (by design),
-		// so we have to load this one manually. We only process one image at a time, so don't benefit from
-		// multiple threads.
-		putenv( 'OMP_THREAD_LIMIT=1' );
-		$text = $this->ocr->run();
+		if ( $crop ) {
+			$box = ' ' . $crop['width'] . 'x' . $crop['height'] . '+' . $crop['x'] . '+' . $crop['y'];
+		} else {
+			$box = '';
+		}
+
+		$command = $this->projectDir . '/bin/kraken_ocr ' . $imageUrl . ' ' . $model . $box;
+
+		$handle = popen( $command, 'rb' );
+		$text = stream_get_contents( $handle );
+		pclose( $handle );
 
 		$warnings = $invalidLangs ? [ $this->getInvalidLangsWarning( $invalidLangs ) ] : [];
 		return new EngineResult( $text, $warnings );
