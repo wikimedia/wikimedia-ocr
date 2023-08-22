@@ -5,6 +5,9 @@
     "german_handwriting": {
         "kraken": "german_handwriting"
     },
+    "austriannewspapers": {
+        "kraken": "austriannewspapers"
+    },
     "Fraktur": {
         "tesseract": "Fraktur"
     },
