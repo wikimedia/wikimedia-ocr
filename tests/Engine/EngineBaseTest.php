@@ -6,6 +6,8 @@ namespace App\Tests\Engine;
 use App\Engine\EngineBase;
 use App\Engine\GoogleCloudVisionEngine;
 use App\Engine\TesseractEngine;
+use App\Engine\TranskribusClient;
+use App\Engine\TranskribusEngine;
 use App\Exception\OcrException;
 use App\Tests\OcrTestCase;
 use Generator;
@@ -19,6 +21,9 @@ class EngineBaseTest extends OcrTestCase {
 
 	/** @var TesseractEngine */
 	private $tesseractEngine;
+
+	/** @var TranskribusEngine */
+	private $transkribusEngine;
 
 	public function setUp(): void {
 		parent::setUp();
@@ -38,6 +43,17 @@ class EngineBaseTest extends OcrTestCase {
 			$intuition,
 			$this->projectDir,
 			$tesseractOCR
+		);
+
+		$this->transkribusEngine = new TranskribusEngine(
+			new TranskribusClient(
+				getenv( 'APP_TRANSKRIBUS_ACCESS_TOKEN' ),
+				getenv( 'APP_TRANSKRIBUS_REFRESH_TOKEN' ),
+				new MockHttpClient()
+			),
+			$intuition,
+			$this->projectDir,
+			new MockHttpClient()
 		);
 	}
 
@@ -110,6 +126,28 @@ class EngineBaseTest extends OcrTestCase {
 	}
 
 	/**
+	 * @param string[] $langs Language codes
+	 * @param string[] $validLangs
+	 * @param string $invalidLangsMode
+	 * @covers EngineBase::filterValidLangs for Transkribus Engine
+	 * @dataProvider provideTranskribusLangs
+	 */
+	public function testFilterValidLangsTranskribusEngine(
+		array $langs, array $validLangs, string $invalidLangsMode
+	): void {
+		if ( EngineBase::WARN_ON_INVALID_LANGS === $invalidLangsMode ) {
+			$this->assertSame( $validLangs, $this->transkribusEngine->filterValidLangs( $langs, $invalidLangsMode )[0] );
+		} else {
+			if ( $langs !== $validLangs ) {
+				$this->expectException( OcrException::class );
+			}
+			$this->transkribusEngine->filterValidLangs( $langs, $invalidLangsMode );
+			$this->addToAssertionCount( 1 );
+		}
+
+	}
+
+	/**
 	 * @return Generator
 	 */
 	public function provideTesseractLangs(): Generator {
@@ -117,6 +155,23 @@ class EngineBaseTest extends OcrTestCase {
 		$baseCases = [
 			'all valid' => [ [ 'en', 'fr' ], [ 'en', 'fr' ] ],
 			'one invalid' => [ [ 'foo', 'fr' ], [ 'fr' ] ],
+			// 'equ' is excluded on purpose: T284827
+			'intentionally excluded' => [ [ 'equ' ], [] ],
+		];
+		foreach ( $baseCases as $name => $params ) {
+			yield $name . ', no exception' => array_merge( $params, [ EngineBase::WARN_ON_INVALID_LANGS ] );
+			yield $name . ', throw exception' => array_merge( $params, [ EngineBase::ERROR_ON_INVALID_LANGS ] );
+		}
+	}
+
+	/**
+	 * @return Generator
+	 */
+	public function provideTranskribusLangs(): Generator {
+		// Format is [ [ langs to test ], [ subset of valid languages ] ]
+		$baseCases = [
+			'all valid' => [ [ 'en-b2022', 'fr-m1' ], [ 'en-b2022', 'fr-m1' ] ],
+			'one invalid' => [ [ 'foo', 'fr-m1' ], [ 'fr-m1' ] ],
 			// 'equ' is excluded on purpose: T284827
 			'intentionally excluded' => [ [ 'equ' ], [] ],
 		];
@@ -152,5 +207,15 @@ class EngineBaseTest extends OcrTestCase {
 		foreach ( $this->googleEngine->getValidLangs( true ) as $lang => $name ) {
 			static::assertNotEmpty( $name, "Missing lang name for '$lang'" );
 		}
+	}
+
+	/**
+	 * @covers EngineBase::getValidLineIds
+	 */
+	public function testValidLineIds(): void {
+
+		static::assertNotEmpty( $this->transkribusEngine->getValidLineIds( false, false ), "Missing line IDs" );
+		static::assertNotEmpty( $this->transkribusEngine->getValidLineIds( false, true ), "Missing line ID langs" );
+		static::assertNotEmpty( $this->transkribusEngine->getValidLineIds( true, false ), "Missing line IDs" );
 	}
 }
