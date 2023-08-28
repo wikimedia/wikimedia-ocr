@@ -23,5 +23,6 @@
         "watch": "encore dev --watch",
         "build": "encore production --progress",
         "test": "grunt test"
-    }
+    },
+    "dependencies": {}
 }
