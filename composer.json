@@ -4,7 +4,7 @@
     "type": "project",
     "license": "GPL-3.0-or-later",
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=7.3",
         "ext-bcmath": "*",
         "ext-ctype": "*",
         "ext-gd": "*",
@@ -77,14 +77,20 @@
             "@check-tesseract"
         ],
         "test": [
+            "@test-common",
+            "@phan"
+        ],
+        "test-common": [
             "composer validate",
             "phpcs -s -p .",
             "./bin/console lint:twig ./templates",
             "./bin/console lint:yaml ./config",
             "minus-x check .",
-            "phan --allow-polyfill-parser --long-progress-bar",
             "@check-tesseract",
             "./bin/phpunit"
+        ],
+        "phan": [
+            "phan --allow-polyfill-parser --long-progress-bar"
         ],
         "fix": "phpcbf"
     },
