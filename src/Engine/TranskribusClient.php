@@ -6,6 +6,7 @@ namespace App\Engine;
 use App\Exception\OcrException;
 use Psr\Cache\CacheItemInterface;
 use stdclass;
+use Symfony\Component\HttpClient\Exception\ClientException;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
@@ -277,7 +278,15 @@ class TranskribusClient {
 		return $this->cache->get( 'transkribus-joblist', function ( CacheItemInterface $item ) {
 			$item->expiresAfter( 120 );
 			$sessionId = $this->getRestLoginSession();
-			return $this->restRequest( 'GET', '/jobs/list', [ 'Cookie' => 'JSESSIONID=' . $sessionId ], [] );
+			try {
+				return $this->restRequest( 'GET', '/jobs/list', [ 'Cookie' => 'JSESSIONID=' . $sessionId ], [] );
+			} catch ( ClientException $exception ) {
+				if ( $exception->getResponse()->getStatusCode() === 401 ) {
+					// If 401 Unauthorized, session has probably expired, so try logging in again.
+					$this->getRestLoginSession( true );
+					return $this->getJobs();
+				}
+			}
 		} );
 	}
 
