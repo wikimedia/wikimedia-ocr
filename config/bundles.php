@@ -11,4 +11,5 @@ return [
 	Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => [ 'all' => true ],
 	Symfony\Bundle\MonologBundle\MonologBundle::class => [ 'all' => true ],
 	Nelmio\ApiDocBundle\NelmioApiDocBundle::class => [ 'all' => true ],
+	Knp\Bundle\TimeBundle\KnpTimeBundle::class => [ 'all' => true ],
 ];

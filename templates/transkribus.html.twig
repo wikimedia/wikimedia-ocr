@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h2>{{msg('transkribus-jobs')}}</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{{ msg('transkribus-job-id') }}</th>
+                <th>{{ msg('transkribus-job-state') }}</th>
+                <th>{{ msg('transkribus-job-description') }}</th>
+                <th>{{ msg('transkribus-job-start') }}</th>
+                <th>{{ msg('transkribus-job-end') }}</th>
+                <th>{{ msg('transkribus-job-waited') }}</th>
+            </tr>
+        </thead>
+        {% for job in jobs %}
+            <tr>
+                <td>{{ job.jobId }}</td>
+                <td>{{ job.state }}</td>
+                <td>{{ job.description }}</td>
+                <td>{{ (job.createTime/1000)|round | format_datetime( 'short', 'short' ) }}</td>
+                <td>
+                    {% if job.endTime %}
+                        {{((job.endTime/1000)|round) | format_datetime( 'none', 'short' ) }}
+                    {% endif %}
+                </td>
+                <td class="text-right">
+                    {% if job.endTime %}
+                        {{ ( ( job.startTime - job.createTime ) / 1000 / 60 ) | round }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

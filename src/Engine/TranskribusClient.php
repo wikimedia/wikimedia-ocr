@@ -4,7 +4,9 @@ declare( strict_types = 1 );
 namespace App\Engine;
 
 use App\Exception\OcrException;
+use Psr\Cache\CacheItemInterface;
 use stdclass;
+use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
@@ -12,6 +14,9 @@ class TranskribusClient {
 
 	/** @var HttpClientInterface */
 	private $httpClient;
+
+	/** @var CacheInterface */
+	private $cache;
 
 	/** @var string Transkribus access token. */
 	private $accessToken;
@@ -21,6 +26,12 @@ class TranskribusClient {
 
 	/** @var string Transkribus refresh token. */
 	private $refreshToken;
+
+	/** @var string */
+	private $username;
+
+	/** @var string */
+	private $password;
 
 	/** @var int Transkribus no content status code. */
 	private const ERROR_NO_CONTENT = 0;
@@ -35,12 +46,21 @@ class TranskribusClient {
 	 * TranskribusClient constructor.
 	 * @param string $accessToken
 	 * @param string $refreshToken
+	 * @param string $username
+	 * @param string $password
 	 * @param HttpClientInterface $httpClient
+	 * @param CacheInterface $cache
 	 */
-	public function __construct( string $accessToken, string $refreshToken, HttpClientInterface $httpClient ) {
+	public function __construct(
+		string $accessToken, string $refreshToken, string $username, string $password,
+		HttpClientInterface $httpClient, CacheInterface $cache
+	) {
 		$this->accessToken = $accessToken;
 		$this->refreshToken = $refreshToken;
+		$this->username = $username;
+		$this->password = $password;
 		$this->httpClient = $httpClient;
+		$this->cache = $cache;
 	}
 
 	/**
@@ -247,5 +267,53 @@ class TranskribusClient {
 			]
 		);
 		return $response;
+	}
+
+	/**
+	 * Get the current Transkribus job queue.
+	 * @return mixed[]
+	 */
+	public function getJobs(): array {
+		return $this->cache->get( 'transkribus-joblist', function ( CacheItemInterface $item ) {
+			$item->expiresAfter( 120 );
+			$sessionId = $this->getRestLoginSession();
+			return $this->restRequest( 'GET', '/jobs/list', [ 'Cookie' => 'JSESSIONID=' . $sessionId ], [] );
+		} );
+	}
+
+	/**
+	 * Get the current session ID, logging in if required.
+	 * @param bool $bypassCache
+	 * @return string
+	 */
+	private function getRestLoginSession( bool $bypassCache = false ): string {
+		return $this->cache->get( 'transkribus-session-id', function () {
+			$params = [ 'user' => $this->username, 'pw' => $this->password ];
+			$response = $this->restRequest( 'POST', '/auth/login', [], $params );
+			return $response['sessionId'];
+		}, $bypassCache ? INF : null );
+	}
+
+	/**
+	 * Make a request to the Transkribus REST API.
+	 * @link https://readcoop.eu/transkribus/docu/rest-api/
+	 * @param string $method
+	 * @param string $url
+	 * @param string[] $headers
+	 * @param mixed[] $body
+	 * @return mixed[]
+	 */
+	private function restRequest( string $method, string $url, array $headers, array $body ) {
+		$headers['Accept'] = 'application/json';
+		$options = [
+			'headers' => $headers,
+			'body' => $body,
+		];
+		$response = $this->httpClient->request(
+			$method,
+			'https://transkribus.eu/TrpServer/rest' . $url,
+			$options
+		);
+		return json_decode( $response->getContent(), true );
 	}
 }
