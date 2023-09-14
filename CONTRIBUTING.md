@@ -53,6 +53,32 @@ APP_TRANSKRIBUS_REFRESH_TOKEN=
 * `symfony serve` to start the application
 * `npm run watch` if you need to make JS/CSS changes. Compiled assets are not committed.
 
+## Using Redis for caching
+
+The application caches some data.
+In development this is done on the filesystem (in the `var/cache/dev/pools/` directory),
+and in production in Redis
+(the [Toolforge installation](https://wikitech.wikimedia.org/wiki/Help:Toolforge/Redis_for_Toolforge)).
+
+To test the Redis configuration locally, open an SSH tunnel to Toolforge's Redis server:
+
+```console
+$ ssh -N -L 6379:redis.svc.tools.eqiad1.wikimedia.cloud:6379 login.toolforge.org
+```
+
+And set the following in `.env.local`:
+
+```dotenv
+APP_ENV=prod
+REDIS_HOST=localhost
+```
+
+Then clear the application cache with
+
+```console
+$ ./bin/console c:c
+```
+
 Docker Developer Environment
 ============================
 
