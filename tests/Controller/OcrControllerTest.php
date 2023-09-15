@@ -53,6 +53,7 @@ class OcrControllerTest extends OcrTestCase {
 						getenv( 'APP_TRANSKRIBUS_USERNAME' ),
 						getenv( 'APP_TRANSKRIBUS_PASSWORD' ),
 						new MockHttpClient(),
+						new NullAdapter(),
 						new NullAdapter()
 					),
 					$intuition,

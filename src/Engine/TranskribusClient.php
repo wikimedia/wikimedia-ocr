@@ -19,6 +19,9 @@ class TranskribusClient {
 	/** @var CacheInterface */
 	private $cache;
 
+	/** @var CacheInterface */
+	private $appKeysCache;
+
 	/** @var string Transkribus access token. */
 	private $accessToken;
 
@@ -28,10 +31,10 @@ class TranskribusClient {
 	/** @var string Transkribus refresh token. */
 	private $refreshToken;
 
-	/** @var string */
+	/** @var string Transkribus account username. */
 	private $username;
 
-	/** @var string */
+	/** @var string Transkribus account password. */
 	private $password;
 
 	/** @var int Transkribus no content status code. */
@@ -43,6 +46,9 @@ class TranskribusClient {
 	/** @var string Transkribus authentication URL. */
 	private const AUTH_URL = "https://account.readcoop.eu/auth/realms/readcoop/protocol/openid-connect/token";
 
+	/** @var string Transkribus REST API base URL. No trailing slash. */
+	private const REST_URL = 'https://transkribus.eu/TrpServer/rest';
+
 	/**
 	 * TranskribusClient constructor.
 	 * @param string $accessToken
@@ -50,11 +56,12 @@ class TranskribusClient {
 	 * @param string $username
 	 * @param string $password
 	 * @param HttpClientInterface $httpClient
-	 * @param CacheInterface $cache
+	 * @param CacheInterface $cache General data cache.
+	 * @param CacheInterface $appKeysCache Cache for storing session ID and other private keys.
 	 */
 	public function __construct(
 		string $accessToken, string $refreshToken, string $username, string $password,
-		HttpClientInterface $httpClient, CacheInterface $cache
+		HttpClientInterface $httpClient, CacheInterface $cache, CacheInterface $appKeysCache
 	) {
 		$this->accessToken = $accessToken;
 		$this->refreshToken = $refreshToken;
@@ -62,6 +69,7 @@ class TranskribusClient {
 		$this->password = $password;
 		$this->httpClient = $httpClient;
 		$this->cache = $cache;
+		$this->appKeysCache = $appKeysCache;
 	}
 
 	/**
@@ -272,19 +280,20 @@ class TranskribusClient {
 
 	/**
 	 * Get the current Transkribus job queue.
+	 * @param bool $doRetry Whether to retry the API request if the first one results in a 401 Unauthorized error.
 	 * @return mixed[]
 	 */
-	public function getJobs(): array {
-		return $this->cache->get( 'transkribus-joblist', function ( CacheItemInterface $item ) {
+	public function getJobs( bool $doRetry = false ): array {
+		return $this->cache->get( 'transkribus-joblist', function ( CacheItemInterface $item ) use ( $doRetry ) {
 			$item->expiresAfter( 120 );
 			$sessionId = $this->getRestLoginSession();
 			try {
 				return $this->restRequest( 'GET', '/jobs/list', [ 'Cookie' => 'JSESSIONID=' . $sessionId ], [] );
 			} catch ( ClientException $exception ) {
-				if ( $exception->getResponse()->getStatusCode() === 401 ) {
+				if ( $exception->getResponse()->getStatusCode() === 401 && !$doRetry ) {
 					// If 401 Unauthorized, session has probably expired, so try logging in again.
 					$this->getRestLoginSession( true );
-					return $this->getJobs();
+					return $this->getJobs( true );
 				}
 			}
 		} );
@@ -296,7 +305,7 @@ class TranskribusClient {
 	 * @return string
 	 */
 	private function getRestLoginSession( bool $bypassCache = false ): string {
-		return $this->cache->get( 'transkribus-session-id', function () {
+		return $this->appKeysCache->get( 'transkribus-session-id', function () {
 			$params = [ 'user' => $this->username, 'pw' => $this->password ];
 			$response = $this->restRequest( 'POST', '/auth/login', [], $params );
 			return $response['sessionId'];
@@ -320,7 +329,7 @@ class TranskribusClient {
 		];
 		$response = $this->httpClient->request(
 			$method,
-			'https://transkribus.eu/TrpServer/rest' . $url,
+			self::REST_URL . $url,
 			$options
 		);
 		return json_decode( $response->getContent(), true );
