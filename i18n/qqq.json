@@ -74,10 +74,10 @@
 	"transkribus-mixed-line-option": "Form option for Transkribus line detection model",
 	"transkribus-line-help": "Help text for the Transkribus line detection model selection.",
 	"transkribus-jobs": "Header text for the Transkribus jobs' page.",
-    "transkribus-job-id": "Table column header text for the job ID.",
-    "transkribus-job-state": "Table column header text (state is 'started', 'completed', etc.).",
-    "transkribus-job-description": "Table column header text for the job description.",
-    "transkribus-job-start": "Table column header text for the job-started date.",
-    "transkribus-job-end": "Table column header text for the job-ended date",
-    "transkribus-job-waited": "Table column header text for the job start-delay, in minutes."
+	"transkribus-job-id": "Table column header text for the job ID.",
+	"transkribus-job-state": "Table column header text (state is 'started', 'completed', etc.).",
+	"transkribus-job-description": "Table column header text for the job description.",
+	"transkribus-job-start": "Table column header text for the job-started date.",
+	"transkribus-job-end": "Table column header text for the job-ended date",
+	"transkribus-job-waited": "Table column header text for the job start-delay, in minutes."
 }
