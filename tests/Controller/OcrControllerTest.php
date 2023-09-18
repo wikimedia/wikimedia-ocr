@@ -12,6 +12,7 @@ use App\Engine\TranskribusEngine;
 use App\Tests\OcrTestCase;
 use Krinkle\Intuition\Intuition;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\Cache\Adapter\NullAdapter;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -49,7 +50,11 @@ class OcrControllerTest extends OcrTestCase {
 					new TranskribusClient(
 						getenv( 'APP_TRANSKRIBUS_ACCESS_TOKEN' ),
 						getenv( 'APP_TRANSKRIBUS_REFRESH_TOKEN' ),
-						new MockHttpClient()
+						getenv( 'APP_TRANSKRIBUS_USERNAME' ),
+						getenv( 'APP_TRANSKRIBUS_PASSWORD' ),
+						new MockHttpClient(),
+						new NullAdapter(),
+						new NullAdapter()
 					),
 					$intuition,
 					$this->projectDir,

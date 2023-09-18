@@ -26,6 +26,7 @@
         "symfony/yaml": "5.2.*",
         "thiagoalessio/tesseract_ocr": "^2.11",
         "twig/extra-bundle": "^2.12|^3.0",
+        "twig/intl-extra": "^3.7",
         "twig/twig": "^2.12|^3.0",
         "wikimedia/toolforge-bundle": "^1.3"
     },
