@@ -41,6 +41,8 @@
 	"langs-placeholder": "Placeholder text for the language input field.",
 	"langs-param-error": "Error message displayed when invalid language(s) are submitted.\n\nParameters:\n* $1 – number of invalid languages\n* $2 - the list of invalid languages\n\nOCR is a common abbreviation in English for \"Optical Characters Recognition\".",
 	"kraken-options": "Heading for kraken-specific options.",
+	"kraken-segmentation-model-help": "Help text for the selection of a kraken segmentation model.",
+	"kraken-segmentation-model-label": "Form label for the selection of a kraken segmentstion model.",
 	"tesseract-options": "Heading for Tesseract-specific options.",
 	"tesseract-psm-label": "Form label for the Tesseract page segmentation mode.",
 	"tesseract-psm-help": "Help text for the Tesseract page segmentation mode option. 'Sparse text' refers to options, see messages:\n* {{msg-wm|Wikimedia-ocr-tesseract-psm-11}} and\n* {{msg-wm|Wikimedia-ocr-tesseract-psm-12}}.",
