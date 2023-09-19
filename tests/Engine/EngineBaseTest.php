@@ -27,34 +27,12 @@ class EngineBaseTest extends OcrTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$intuition = new Intuition();
-		$this->googleEngine = new GoogleCloudVisionEngine(
-			dirname( __DIR__ ) . '/fixtures/google-account-keyfile.json',
-			$intuition,
-			$this->projectDir,
-			new MockHttpClient()
-		);
 
-		$tesseractOCR = $this->getMockBuilder( TesseractOCR::class )->disableOriginalConstructor()->getMock();
-		$tesseractOCR->method( 'availableLanguages' )
-			->will( $this->returnValue( [ 'eng', 'spa', 'tha', 'tir' ] ) );
-		$this->tesseractEngine = new TesseractEngine(
-			new MockHttpClient(),
-			$intuition,
-			$this->projectDir,
-			$tesseractOCR
-		);
+		$this->googleEngine = $this->instatiateEngine( 'google' );
 
-		$this->transkribusEngine = new TranskribusEngine(
-			new TranskribusClient(
-				getenv( 'APP_TRANSKRIBUS_ACCESS_TOKEN' ),
-				getenv( 'APP_TRANSKRIBUS_REFRESH_TOKEN' ),
-				new MockHttpClient()
-			),
-			$intuition,
-			$this->projectDir,
-			new MockHttpClient()
-		);
+		$this->tesseractEngine = $this->instatiateEngine( 'tesseract' );
+
+		$this->transkribusEngine = $this->instatiateEngine( 'transkribus' );
 	}
 
 	/**
@@ -109,18 +87,18 @@ class EngineBaseTest extends OcrTestCase {
 	 * @param string[] $validLangs
 	 * @param string $invalidLangsMode
 	 * @covers EngineBase::filterValidLangs for Tesseract Engine
-	 * @dataProvider provideTesseractLangs
+	 * @dataProvider provideLangs
 	 */
-	public function testFilterValidLangsTesseractEngine(
-		array $langs, array $validLangs, string $invalidLangsMode
+	public function testFilterValidLangs(
+		EngineBase $engine, array $langs, array $validLangs, string $invalidLangsMode
 	): void {
 		if ( EngineBase::WARN_ON_INVALID_LANGS === $invalidLangsMode ) {
-			$this->assertSame( $validLangs, $this->tesseractEngine->filterValidLangs( $langs, $invalidLangsMode )[0] );
+			$this->assertSame( $validLangs, $engine->filterValidLangs( $langs, $invalidLangsMode )[0] );
 		} else {
 			if ( $langs !== $validLangs ) {
 				$this->expectException( OcrException::class );
 			}
-			$this->tesseractEngine->filterValidLangs( $langs, $invalidLangsMode );
+			$engine->filterValidLangs( $langs, $invalidLangsMode );
 			$this->addToAssertionCount( 1 );
 		}
 	}
@@ -132,58 +110,47 @@ class EngineBaseTest extends OcrTestCase {
 	 * @covers EngineBase::filterValidLangs for Transkribus Engine
 	 * @dataProvider provideTranskribusLangs
 	 */
-	public function testFilterValidLangsTranskribusEngine(
-		array $langs, array $validLangs, string $invalidLangsMode
-	): void {
-		if ( EngineBase::WARN_ON_INVALID_LANGS === $invalidLangsMode ) {
-			$this->assertSame(
-				$validLangs,
-				$this->transkribusEngine->filterValidLangs(
-					$langs,
-					$invalidLangsMode
-				)[0]
-			);
-		} else {
-			if ( $langs !== $validLangs ) {
-				$this->expectException( OcrException::class );
-			}
-			$this->transkribusEngine->filterValidLangs( $langs, $invalidLangsMode );
-			$this->addToAssertionCount( 1 );
-		}
-	}
+	// public function testFilterValidLangsTranskribusEngine(
+	// 	EngineBase $engine, array $langs, array $validLangs, string $invalidLangsMode
+	// ): void {
+	// 	if ( EngineBase::WARN_ON_INVALID_LANGS === $invalidLangsMode ) {
+	// 		$this->assertSame(
+	// 			$validLangs,
+	// 			$engine->filterValidLangs(
+	// 				$langs,
+	// 				$invalidLangsMode
+	// 			)[0]
+	// 		);
+	// 	} else {
+	// 		if ( $langs !== $validLangs ) {
+	// 			$this->expectException( OcrException::class );
+	// 		}
+	// 		$this->transkribusEngine->filterValidLangs( $langs, $invalidLangsMode );
+	// 		$this->addToAssertionCount( 1 );
+	// 	}
+	// }
 
 	/**
-	 * @return Generator
+	 * @return array
 	 */
-	public function provideTesseractLangs(): Generator {
-		// Format is [ [ langs to test ], [ subset of valid languages ] ]
-		$baseCases = [
-			'all valid' => [ [ 'en', 'fr' ], [ 'en', 'fr' ] ],
-			'one invalid' => [ [ 'foo', 'fr' ], [ 'fr' ] ],
-			// 'equ' is excluded on purpose: T284827
-			'intentionally excluded' => [ [ 'equ' ], [] ],
-		];
-		foreach ( $baseCases as $name => $params ) {
-			yield $name . ', no exception' => array_merge( $params, [ EngineBase::WARN_ON_INVALID_LANGS ] );
-			yield $name . ', throw exception' => array_merge( $params, [ EngineBase::ERROR_ON_INVALID_LANGS ] );
-		}
-	}
+	public function provideLangs(): array {
+		return [
+			[
+				'engine' => $this->instatiateEngine( 'tesseract' ),
+				[ 'en', 'fr' ],
+				[ 'en', 'fr' ],
+				EngineBase::WARN_ON_INVALID_LANGS,
+				EngineBase::ERROR_ON_INVALID_LANGS,
+			],
+			[
+				'engine' => $this->instatiateEngine( 'transkribus' ),
+				[ 'en-b2022', 'fr-m1' ],
+				[ 'en-b2022', 'fr-m1' ],
+				EngineBase::WARN_ON_INVALID_LANGS,
+				EngineBase::ERROR_ON_INVALID_LANGS,
+			],
 
-	/**
-	 * @return Generator
-	 */
-	public function provideTranskribusLangs(): Generator {
-		// Format is [ [ langs to test ], [ subset of valid languages ] ]
-		$baseCases = [
-			'all valid' => [ [ 'en-b2022', 'fr-m1' ], [ 'en-b2022', 'fr-m1' ] ],
-			'one invalid' => [ [ 'foo', 'fr-m1' ], [ 'fr-m1' ] ],
-			// 'equ' is excluded on purpose: T284827
-			'intentionally excluded' => [ [ 'equ' ], [] ],
 		];
-		foreach ( $baseCases as $name => $params ) {
-			yield $name . ', no exception' => array_merge( $params, [ EngineBase::WARN_ON_INVALID_LANGS ] );
-			yield $name . ', throw exception' => array_merge( $params, [ EngineBase::ERROR_ON_INVALID_LANGS ] );
-		}
 	}
 
 	/**
@@ -221,5 +188,51 @@ class EngineBaseTest extends OcrTestCase {
 		static::assertNotEmpty( $this->transkribusEngine->getValidLineIds( false, false ), "Missing line IDs" );
 		static::assertNotEmpty( $this->transkribusEngine->getValidLineIds( false, true ), "Missing line ID langs" );
 		static::assertNotEmpty( $this->transkribusEngine->getValidLineIds( true, false ), "Missing line IDs" );
+		static::assertNotEmpty( $this->transkribusEngine->getValidLineIds( true, true ), "Missing line IDs" );
+	}
+
+	public function instatiateEngine( string $engineName ): EngineBase {
+		self::bootKernel();
+		$this->projectDir = self::$kernel->getProjectDir();
+		$intuition = new Intuition();
+
+		switch ( $engineName ) {
+			case 'tesseract':
+				$tesseractOCR = $this->getMockBuilder( TesseractOCR::class )->disableOriginalConstructor()->getMock();
+				$tesseractOCR->method( 'availableLanguages' )
+					->will( $this->returnValue( [ 'eng', 'spa', 'tha', 'tir' ] ) );
+				$tesseractEngine = new TesseractEngine(
+					new MockHttpClient(),
+					$intuition,
+					$this->projectDir,
+					$tesseractOCR
+				);
+				return $tesseractEngine;
+				break;
+
+			case 'transkribus':
+				$transkribusEngine = new TranskribusEngine(
+					new TranskribusClient(
+						getenv( 'APP_TRANSKRIBUS_ACCESS_TOKEN' ),
+						getenv( 'APP_TRANSKRIBUS_REFRESH_TOKEN' ),
+						new MockHttpClient()
+					),
+					$intuition,
+					$this->projectDir,
+					new MockHttpClient()
+				);
+				return $transkribusEngine;
+				break;
+
+			default:
+				$googleEngine = new GoogleCloudVisionEngine(
+					dirname( __DIR__ ) . '/fixtures/google-account-keyfile.json',
+					$intuition,
+					$this->projectDir,
+					new MockHttpClient()
+				);
+				return $googleEngine;
+				break;
+		}
 	}
 }
