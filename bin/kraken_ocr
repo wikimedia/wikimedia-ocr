@@ -3,8 +3,13 @@
 BASEDIR=$(cd $(dirname "$0")/.. && pwd)
 
 URL="$1"
-MODEL="$BASEDIR/public/config/kraken/$2.mlmodel"
-BOX="$3"
+OCR_MODEL="-m $BASEDIR/public/config/kraken/$2.mlmodel"
+if test "$3" = "default"; then
+  SEGMENTATION_MODEL="-bl"
+else
+  SEGMENTATION_MODEL="-bl -i $BASEDIR/public/config/kraken/$3.mlmodel"
+fi
+BOX="$4"
 
 . "$BASEDIR/../venv/bin/activate"
 
@@ -22,8 +27,8 @@ if test -f "$IMAGE"; then
   if test -n "$BOX"; then
     gm mogrify -crop "$BOX" "$IMAGE"
   fi
-  echo "kraken -i $IMAGE $TEXT segment -bl ocr -m $MODEL" >> /tmp/log
-  kraken -i "$IMAGE" "$TEXT" segment -bl ocr -m "$MODEL" >/dev/null 2>&1
+  echo "kraken -i $IMAGE $TEXT segment "$SEGMENTATION_MODEL" ocr $OCR_MODEL" >> /tmp/log
+  kraken -i "$IMAGE" "$TEXT" segment "$SEGMENTATION_MODEL" ocr "$OCR_MODEL" >/dev/null 2>&1
   cat "$TEXT"
 else
   echo "Could not download $URL"

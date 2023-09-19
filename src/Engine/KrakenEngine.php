@@ -10,6 +10,9 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class KrakenEngine extends EngineBase {
 
+	/** @var string segmentation model to be used by the kraken engine */
+	protected $segmentationModel;
+
 	/**
 	 * KrakenEngine constructor.
 	 * @param Intuition $intuition
@@ -46,9 +49,9 @@ class KrakenEngine extends EngineBase {
 			# var_dump(...$this->getLangCodes($validLangs));
 			# $model = implode( ',',$this->getLangCodes( $validLangs ) );
 			# kraken does not support more than one model, so use the first one.
-			$model = $this->getLangCodes( $validLangs )[0];
+			$ocrModel = $this->getLangCodes( $validLangs )[0];
 		} else {
-			$model = 'german_print';
+			$ocrModel = 'german_print';
 		}
 
 		if ( $crop ) {
@@ -57,7 +60,8 @@ class KrakenEngine extends EngineBase {
 			$box = '';
 		}
 
-		$command = $this->projectDir . '/bin/kraken_ocr ' . $imageUrl . ' ' . $model . $box;
+		$command = $this->projectDir . '/bin/kraken_ocr ' . $imageUrl . ' ' .
+			$ocrModel . ' ' . $this->segmentationModel . $box;
 
 		$handle = popen( $command, 'rb' );
 		$text = stream_get_contents( $handle );
@@ -65,5 +69,14 @@ class KrakenEngine extends EngineBase {
 
 		$warnings = $invalidLangs ? [ $this->getInvalidLangsWarning( $invalidLangs ) ] : [];
 		return new EngineResult( $text, $warnings );
+	}
+
+	/**
+	 * Set the segmentation model for the kraken engine
+	 * @param string $segmentationModel
+	 * @return void
+	 */
+	public function setSegmentationModel( string $segmentationModel ): void {
+		$this->segmentationModel = $segmentationModel;
 	}
 }

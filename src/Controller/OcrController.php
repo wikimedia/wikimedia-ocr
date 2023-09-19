@@ -64,6 +64,7 @@ class OcrController extends AbstractController {
 		'psm' => TesseractEngine::DEFAULT_PSM,
 		'crop' => [],
 		'line_id' => TranskribusEngine::DEFAULT_LINEID,
+		'segmentation_model' => 'default',
 	];
 
 	/**
@@ -124,6 +125,11 @@ class OcrController extends AbstractController {
 	 * Set Engine-specific options based on user-provided input or the defaults.
 	 */
 	private function setEngineOptions(): void {
+		// This is always set, even if kraken isn't initially chosen as the engine
+		// because we want the default set if the user changes the engine to kraken.
+		static::$params['segmentation_model'] =
+			$this->request->query->get( 'segmentation_model', static::$params['segmentation_model'] );
+
 		// This is always set, even if Tesseract isn't initially chosen as the engine
 		// because we want the default set if the user changes the engine to Tesseract.
 		static::$params['psm'] = (int)$this->request->query->get( 'psm', (string)static::$params['psm'] );
@@ -133,6 +139,9 @@ class OcrController extends AbstractController {
 		static::$params['line_id'] = (int)$this->request->query->get( 'line_id', (string)static::$params['line_id'] );
 
 		// Apply the kraken-specific settings
+		if ( KrakenEngine::getId() === static::$params['engine'] ) {
+			$this->engine->setSegmentationModel( static::$params['segmentation_model'] );
+		}
 
 		// Apply the tesseract-specific settings
 		// NOTE: Intentionally excluding `oem`, see T285262
@@ -229,6 +238,12 @@ class OcrController extends AbstractController {
 	 * Can be left empty, in which case the engine will do its best
 	 * (useful for unsupported languages).",
 	 * @OA\JsonContent(type="array", @OA\Items(type="string"))
+	 * )
+	 * @OA\Parameter(
+	 *     name="segmentation_model",
+	 *     in="query",
+	 *     description="The segmentation model for kraken.",
+	 * @OA\Schema(type="string")
 	 * )
 	 * @OA\Parameter(
 	 *     name="psm",
@@ -351,6 +366,7 @@ class OcrController extends AbstractController {
 				implode( '|', array_map( 'strval', static::$params['crop'] ) ),
 				static::$params['psm'],
 				static::$params['line_id'],
+				static::$params['segmentation_model'],
 				// Warning messages are localized
 				$this->intuition->getLang(),
 			]
