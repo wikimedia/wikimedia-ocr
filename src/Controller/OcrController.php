@@ -309,6 +309,28 @@ class OcrController extends AbstractController {
 	}
 
 	/**
+	 * Get a list of available segmentation models for use with a specific OCR engine.
+	 *
+	 * @Route("/api/available_segmentation_models", name="apiSegmentationModels", methods={"GET"})
+	 * @OA\Parameter(
+	 *     name="engine",
+	 *     in="query",
+	 *     description="The engine to use, either `kraken` or `tesseract` or `google` or `transkribus`.",
+	 *     example="kraken",
+	 * @OA\Schema(type="string")
+	 * )
+	 * @OA\Response(response=200, description="List of available segmentation models, in JSON format.")
+	 * @return JsonResponse
+	 */
+	public function apiAvailableSegmentationModels(): JsonResponse {
+		$this->setup();
+		return $this->getApiResponse( [
+			'engine' => static::$params['engine'],
+			'available_segmentation_models' => $this->engine->getValidSegmentationModels(),
+		] );
+	}
+
+	/**
 	 * Get a list of available line detection IDs.
 	 *
 	 * @Route("/api/transkribus/available_line_ids", name="apiLineIds", methods={"GET"})

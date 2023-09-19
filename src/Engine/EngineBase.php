@@ -172,6 +172,15 @@ abstract class EngineBase {
 	}
 
 	/**
+	 * Get segmentation models accepted by the engine.
+	 * @return string[] Names of segmentation models.
+	 */
+	public function getValidSegmentationModels(): array {
+		$models = [];
+		return $models;
+	}
+
+	/**
 	 * Get the name of the given language. This adds a few translations that don't exist in Intuition.
 	 * @param string|null $lang
 	 * @return string

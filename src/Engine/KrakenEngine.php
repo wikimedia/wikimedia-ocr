@@ -72,6 +72,16 @@ class KrakenEngine extends EngineBase {
 	}
 
 	/**
+	 * Get segmentation models accepted by the engine.
+	 * @return string[] Names of segmentation models.
+	 */
+	public function getValidSegmentationModels(): array {
+		# TODO: get models from filesystem.
+		$models = [ 'default', 'ubma_segmentation' ];
+		return $models;
+	}
+
+	/**
 	 * Set the segmentation model for the kraken engine
 	 * @param string $segmentationModel
 	 * @return void
