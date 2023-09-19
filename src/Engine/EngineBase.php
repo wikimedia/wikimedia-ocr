@@ -39,6 +39,8 @@ abstract class EngineBase {
 		'german_print' => 'Deutsch (Druck)',
 		'german_handwriting' => 'Deutsch (Handschrift)',
 		'austriannewspapers' => 'Newspaper',
+		'frak2021' => 'Fraktur (UB Mannheim)',
+		'Greek' => 'Greek script',
 		'Fraktur' => 'Fraktur script',
 		'Latin' => 'Latin script',
 		'az-cyrl' => 'Azərbaycan (qədim yazı)',

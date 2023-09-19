@@ -48,6 +48,8 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y tesseract-ocr-all
+        sudo mkdir /usr/share/tesseract-ocr/4.00/tessdata/ubma
+        cd /usr/share/tesseract-ocr/4.00/tessdata/ubma && sudo wget https://ub-backup.bib.uni-mannheim.de/~stweil/tesstrain/frak2021/tessdata_fast/frak2021_0.905.traineddata
 
     - name: Install wikimedia-ocr
       run: |

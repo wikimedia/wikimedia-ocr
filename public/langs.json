@@ -8,6 +8,12 @@
     "austriannewspapers": {
         "kraken": "austriannewspapers"
     },
+    "frak2021": {
+        "tesseract": "ubma/frak2021_0.905"
+    },
+    "Greek": {
+        "tesseract": "Greek"
+    },
     "Fraktur": {
         "tesseract": "Fraktur"
     },
