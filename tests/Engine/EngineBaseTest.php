@@ -10,7 +10,6 @@ use App\Engine\TranskribusClient;
 use App\Engine\TranskribusEngine;
 use App\Exception\OcrException;
 use App\Tests\OcrTestCase;
-use Generator;
 use Krinkle\Intuition\Intuition;
 use Symfony\Component\HttpClient\MockHttpClient;
 use thiagoalessio\TesseractOCR\TesseractOCR;
@@ -83,6 +82,7 @@ class EngineBaseTest extends OcrTestCase {
 	}
 
 	/**
+	 * @param EngineBase $engine
 	 * @param string[] $langs Language codes
 	 * @param string[] $validLangs
 	 * @param string $invalidLangsMode
@@ -181,7 +181,6 @@ class EngineBaseTest extends OcrTestCase {
 					$tesseractOCR
 				);
 				return $tesseractEngine;
-				break;
 
 			case 'transkribus':
 				$transkribusEngine = new TranskribusEngine(
@@ -195,7 +194,6 @@ class EngineBaseTest extends OcrTestCase {
 					new MockHttpClient()
 				);
 				return $transkribusEngine;
-				break;
 
 			default:
 				$googleEngine = new GoogleCloudVisionEngine(
@@ -205,7 +203,6 @@ class EngineBaseTest extends OcrTestCase {
 					new MockHttpClient()
 				);
 				return $googleEngine;
-				break;
 		}
 	}
 }
