@@ -13,6 +13,7 @@
         "regenerator-runtime": "^0.13.11",
         "select2": "^4.0.13",
         "select2-bootstrap-theme": "0.1.0-beta.10",
+        "stylelint": "^15.10.3",
         "stylelint-config-wikimedia": "^0.15.0",
         "webpack-notifier": "^1.15.0"
     },
