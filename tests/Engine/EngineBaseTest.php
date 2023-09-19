@@ -168,6 +168,7 @@ class EngineBaseTest extends OcrTestCase {
 		self::bootKernel();
 		$this->projectDir = self::$kernel->getProjectDir();
 		$intuition = new Intuition();
+		$engine = null;
 
 		switch ( $engineName ) {
 			case 'tesseract':
@@ -180,7 +181,8 @@ class EngineBaseTest extends OcrTestCase {
 					$this->projectDir,
 					$tesseractOCR
 				);
-				return $tesseractEngine;
+				$engine = $tesseractEngine;
+				break;
 
 			case 'transkribus':
 				$transkribusEngine = new TranskribusEngine(
@@ -193,7 +195,8 @@ class EngineBaseTest extends OcrTestCase {
 					$this->projectDir,
 					new MockHttpClient()
 				);
-				return $transkribusEngine;
+				$engine = $transkribusEngine;
+				break;
 
 			default:
 				$googleEngine = new GoogleCloudVisionEngine(
@@ -202,7 +205,9 @@ class EngineBaseTest extends OcrTestCase {
 					$this->projectDir,
 					new MockHttpClient()
 				);
-				return $googleEngine;
+				$engine = $googleEngine;
+				break;
 		}
+		return $engine;
 	}
 }
