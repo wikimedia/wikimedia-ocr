@@ -37,12 +37,12 @@ body.rtl .logo {
 }
 
 .page-subtitle {
-	font-size: 14px;
+	font-size: 1em;
 }
 
 .form-heading {
 	border-bottom: 1px solid #e5e5e5;
-	font-size: 22px;
+	font-size: 1.5em;
 	margin: 25px 0;
 }
 

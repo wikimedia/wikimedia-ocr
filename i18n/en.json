@@ -65,5 +65,12 @@
     "transkribus-line-label": "Line Detection Model",
     "transkribus-line-id-none-option": "None",
     "transkribus-mixed-line-option": "Mixed Line Orientation",
-    "transkribus-line-help": "Leave empty if you are not sure of which line detection model to use"
+    "transkribus-line-help": "Leave empty if you are not sure of which line detection model to use",
+    "transkribus-jobs": "Transkribus Jobs",
+    "transkribus-job-id": "Job ID",
+    "transkribus-job-state": "State",
+    "transkribus-job-description": "Description",
+    "transkribus-job-start": "Started",
+    "transkribus-job-end": "Finished",
+    "transkribus-job-waited": "Start delay (minutes)"
 }

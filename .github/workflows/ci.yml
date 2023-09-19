@@ -1,29 +1,48 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '**'
 
 jobs:
   build:
 
     env:
       APP_ENV: test
-    
+
     strategy:
       matrix:
         php: [ '7.3', '7.4', '8.0', '8.1' ]
+        runPhan: [ true ]
+        include:
+          - php: '8.2'
+            runPhan: false
 
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout
       uses: actions/checkout@v1
-    
+
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{matrix.php}}
         coverage: none
         extensions: ast
+
+    - name: Read .nvmrc
+      run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+      id: nvm
+
+    - name: Set up Node ${{ steps.nvm.outputs.NODE_VERSION }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
 
     - name: Install tesseract
       run: |
@@ -34,10 +53,15 @@ jobs:
       run: |
         composer install
         npm ci
-   
+
     - name: Test
       run: |
-        composer test
+        composer test-common
         npm run test
+        npm run build
         git status
         git status | grep "nothing to commit, working tree clean"
+
+    - name: Test (Phan)
+      if: ${{ matrix.runPhan }}
+      run: composer phan

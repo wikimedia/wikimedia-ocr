@@ -26,18 +26,58 @@ If you need to make asset changes:
 * Install [Tesseract](https://tesseract-ocr.github.io) and make sure it's in your `$PATH`
 
 ### For Transkribus OCR Engine ###
-* Run the `app:transkribus` CLI command to receive an access token to use the Transkribus API. 
-```bash 
-./bin/console app:transkribus
+
+You can [create a free account](https://readcoop.eu/transkribus/?sc=Transkribus) for Transkribus, and get a small number of free credits.
+
+To connect the OCR Tool to your account, run the following CLI command to receive an access token for the Transkribus API:
+
+```console
+$ ./bin/console app:transkribus
 ```
-It will ask for the *username* and *password* of your Transkribus account. You can create a free account [here](https://readcoop.eu/transkribus/?sc=Transkribus).
-* Store the access token in your `.env.local` file as `APP_TRANSKRIBUS_ACCESS_TOKEN` from where it will be used by the Transkribus engine.
-* Store the refresh token in your `.env.local` file as `APP_TRANSKRIBUS_REFRESH_TOKEN` from where it will be used by the Transkribus engine.
-> **Note**: You will require sufficient credits in your account to use the Transkribus API.
+
+It will ask for the *username* and *password* of your Transkribus account, and will output an access token and refresh token.
+All of these should be stored in your `.env.local` file:
+
+```dotenv
+APP_TRANSKRIBUS_USERNAME=
+APP_TRANSKRIBUS_PASSWORD=
+APP_TRANSKRIBUS_ACCESS_TOKEN=
+APP_TRANSKRIBUS_REFRESH_TOKEN=
+```
+
+(The latter two will be removed after [T346306](https://phabricator.wikimedia.org/T346306) is resolved, but for now must be set manually.)
+
+**Note**: You will require sufficient credits in your account to use the Transkribus API.
 
 ## Run the application ##
 * `symfony serve` to start the application
 * `npm run watch` if you need to make JS/CSS changes. Compiled assets are not committed.
+
+## Using Redis for caching
+
+The application caches some data.
+In development this is done on the filesystem (in the `var/cache/dev/pools/` directory),
+and in production in Redis
+(the [Toolforge installation](https://wikitech.wikimedia.org/wiki/Help:Toolforge/Redis_for_Toolforge)).
+
+To test the Redis configuration locally, open an SSH tunnel to Toolforge's Redis server:
+
+```console
+$ ssh -N -L 6379:redis.svc.tools.eqiad1.wikimedia.cloud:6379 login.toolforge.org
+```
+
+And set the following in `.env.local`:
+
+```dotenv
+APP_ENV=prod
+REDIS_HOST=localhost
+```
+
+Then clear the application cache with
+
+```console
+$ ./bin/console c:c
+```
 
 Docker Developer Environment
 ============================

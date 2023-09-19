@@ -352,7 +352,7 @@ class OcrController extends AbstractController {
 			]
 		) );
 
-		return $this->cache->get( $cacheKey, function ( ItemInterface $item ) use ( $invalidLangsMode ) {
+		$result = $this->cache->get( $cacheKey, function ( ItemInterface $item ) use ( $invalidLangsMode ) {
 			$item->expiresAfter( (int)$this->getParameter( 'cache_ttl' ) );
 			return $this->engine->getResult(
 				static::$params['image'],
@@ -361,5 +361,9 @@ class OcrController extends AbstractController {
 				static::$params['langs']
 			);
 		} );
+		if ( !$result instanceof EngineResult ) {
+			throw new Exception( 'Incorrect (possibly cached) result: ' . var_export( $result, true ) );
+		}
+		return $result;
 	}
 }

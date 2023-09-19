@@ -39,5 +39,6 @@
 	"transkribus-unauthorized-error": "Klaidos kodas '$1' :: prašymas neleistinas",
 	"transkribus-default-error": "Klaidos kodas '$1' :: nepavyko užbaigti prašymo, bandykite dar kartą!",
 	"transkribus-no-lang-error": "Nepasirinkta jokia kalba",
-	"transkribus-multiple-lang-error": "Kelios kalbos neleidžiamos, nurodykite vieną kalbą"
+	"transkribus-multiple-lang-error": "Kelios kalbos neleidžiamos, nurodykite vieną kalbą",
+	"transkribus-line-id-none-option": "Nėra"
 }

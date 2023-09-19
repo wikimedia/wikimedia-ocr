@@ -49,6 +49,8 @@ services:
         arguments:
             $accessToken: '%env(APP_TRANSKRIBUS_ACCESS_TOKEN)%'
             $refreshToken: '%env(APP_TRANSKRIBUS_REFRESH_TOKEN)%'
+            $username: '%env(APP_TRANSKRIBUS_USERNAME)%'
+            $password: '%env(APP_TRANSKRIBUS_PASSWORD)%'
 
     App\EventListener\ExceptionListener:
         arguments:

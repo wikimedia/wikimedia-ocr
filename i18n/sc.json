@@ -61,5 +61,10 @@
 	"transkribus-no-lang-error": "No est istada seletzionada peruna limba",
 	"transkribus-multiple-lang-error": "Limbas mùltiplas non sunt permìtidas, ispetzìfica una limba",
 	"transkribus-browse-public-models": "Esplora totu sos modellos de limba pùblicos pro Transkribus",
-	"transkribus-request-for-model": "Pedi de annànghere unu modellu de Transkribus a s'aina OCR"
+	"transkribus-request-for-model": "Pedi de annànghere unu modellu de Transkribus a s'aina OCR",
+	"transkribus-options": "Optziones de Transkribus",
+	"transkribus-line-label": "Modellu de rilevamentu de lìnia",
+	"transkribus-line-id-none-option": "Perunu",
+	"transkribus-mixed-line-option": "Orientamentu de lìnia mistu",
+	"transkribus-line-help": "Lassa bòidu si non ses seguru de cale modellu de rilevamentu de lìnia impreare"
 }

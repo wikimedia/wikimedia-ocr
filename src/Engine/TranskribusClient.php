@@ -4,7 +4,10 @@ declare( strict_types = 1 );
 namespace App\Engine;
 
 use App\Exception\OcrException;
+use Psr\Cache\CacheItemInterface;
 use stdclass;
+use Symfony\Component\HttpClient\Exception\ClientException;
+use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
@@ -12,6 +15,12 @@ class TranskribusClient {
 
 	/** @var HttpClientInterface */
 	private $httpClient;
+
+	/** @var CacheInterface */
+	private $cache;
+
+	/** @var CacheInterface */
+	private $appKeysCache;
 
 	/** @var string Transkribus access token. */
 	private $accessToken;
@@ -22,6 +31,12 @@ class TranskribusClient {
 	/** @var string Transkribus refresh token. */
 	private $refreshToken;
 
+	/** @var string Transkribus account username. */
+	private $username;
+
+	/** @var string Transkribus account password. */
+	private $password;
+
 	/** @var int Transkribus no content status code. */
 	private const ERROR_NO_CONTENT = 0;
 
@@ -31,16 +46,30 @@ class TranskribusClient {
 	/** @var string Transkribus authentication URL. */
 	private const AUTH_URL = "https://account.readcoop.eu/auth/realms/readcoop/protocol/openid-connect/token";
 
+	/** @var string Transkribus REST API base URL. No trailing slash. */
+	private const REST_URL = 'https://transkribus.eu/TrpServer/rest';
+
 	/**
 	 * TranskribusClient constructor.
 	 * @param string $accessToken
 	 * @param string $refreshToken
+	 * @param string $username
+	 * @param string $password
 	 * @param HttpClientInterface $httpClient
+	 * @param CacheInterface $cache General data cache.
+	 * @param CacheInterface $appKeysCache Cache for storing session ID and other private keys.
 	 */
-	public function __construct( string $accessToken, string $refreshToken, HttpClientInterface $httpClient ) {
+	public function __construct(
+		string $accessToken, string $refreshToken, string $username, string $password,
+		HttpClientInterface $httpClient, CacheInterface $cache, CacheInterface $appKeysCache
+	) {
 		$this->accessToken = $accessToken;
 		$this->refreshToken = $refreshToken;
+		$this->username = $username;
+		$this->password = $password;
 		$this->httpClient = $httpClient;
+		$this->cache = $cache;
+		$this->appKeysCache = $appKeysCache;
 	}
 
 	/**
@@ -247,5 +276,62 @@ class TranskribusClient {
 			]
 		);
 		return $response;
+	}
+
+	/**
+	 * Get the current Transkribus job queue.
+	 * @param bool $doRetry Whether to retry the API request if the first one results in a 401 Unauthorized error.
+	 * @return mixed[]
+	 */
+	public function getJobs( bool $doRetry = false ): array {
+		return $this->cache->get( 'transkribus-joblist', function ( CacheItemInterface $item ) use ( $doRetry ) {
+			$item->expiresAfter( 120 );
+			$sessionId = $this->getRestLoginSession();
+			try {
+				return $this->restRequest( 'GET', '/jobs/list', [ 'Cookie' => 'JSESSIONID=' . $sessionId ], [] );
+			} catch ( ClientException $exception ) {
+				if ( $exception->getResponse()->getStatusCode() === 401 && !$doRetry ) {
+					// If 401 Unauthorized, session has probably expired, so try logging in again.
+					$this->getRestLoginSession( true );
+					return $this->getJobs( true );
+				}
+			}
+		} );
+	}
+
+	/**
+	 * Get the current session ID, logging in if required.
+	 * @param bool $bypassCache
+	 * @return string
+	 */
+	private function getRestLoginSession( bool $bypassCache = false ): string {
+		return $this->appKeysCache->get( 'transkribus-session-id', function () {
+			$params = [ 'user' => $this->username, 'pw' => $this->password ];
+			$response = $this->restRequest( 'POST', '/auth/login', [], $params );
+			return $response['sessionId'];
+		}, $bypassCache ? INF : null );
+	}
+
+	/**
+	 * Make a request to the Transkribus REST API.
+	 * @link https://readcoop.eu/transkribus/docu/rest-api/
+	 * @param string $method
+	 * @param string $url
+	 * @param string[] $headers
+	 * @param mixed[] $body
+	 * @return mixed[]
+	 */
+	private function restRequest( string $method, string $url, array $headers, array $body ) {
+		$headers['Accept'] = 'application/json';
+		$options = [
+			'headers' => $headers,
+			'body' => $body,
+		];
+		$response = $this->httpClient->request(
+			$method,
+			self::REST_URL . $url,
+			$options
+		);
+		return json_decode( $response->getContent(), true );
 	}
 }

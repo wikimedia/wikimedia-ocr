@@ -67,5 +67,10 @@
 	"transkribus-no-lang-error": "לא נבחרה שפה",
 	"transkribus-multiple-lang-error": "אסור להשתמש בכמה שפות, יש לציין שפה אחת",
 	"transkribus-browse-public-models": "עיין בכל דגמי השפה הציבוריים עבור Transkribus",
-	"transkribus-request-for-model": "הגשת בקשה להוספת דגם מ־Transkribus לכלי OCR"
+	"transkribus-request-for-model": "הגשת בקשה להוספת דגם מ־Transkribus לכלי OCR",
+	"transkribus-options": "אפשרויות Transkribus",
+	"transkribus-line-label": "דגם זיהוי קו",
+	"transkribus-line-id-none-option": "אין",
+	"transkribus-mixed-line-option": "כיוון קו מעורב",
+	"transkribus-line-help": "נא להשאיר את זה ריק אם אינך בטוח באיזה דגם זיהוי קו להשתמש"
 }
