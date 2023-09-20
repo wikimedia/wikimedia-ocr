@@ -58,12 +58,12 @@ function fetchLineModelsJSON () {
 function updateLineModelOptions () {
     const staticOptions = $lineDetectionSelect[0].options;
     let staticOptionData = []; 
-    staticOptions.forEach(option => {
+    for (let option of staticOptions) {
         staticOptionData.push({
             text: option.text,
             value: option.value
         });
-    });
+    }
 
     // clear existing selections and options
     $lineDetectionSelect.val(null).empty().trigger('change');
