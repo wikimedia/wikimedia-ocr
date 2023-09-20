@@ -291,7 +291,8 @@ class OcrController extends AbstractController {
 	}
 
 	/**
-	 * phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
+	 * Get a list of available line detection IDs.
+	 *
 	 * @Route("/api/transkribus/available_line_ids", name="apiLineIds", methods={"GET"})
 	 * OA\Response(response=200, description="List of available line detection model IDs, in JSON format")
 	 * phpcs:enable
