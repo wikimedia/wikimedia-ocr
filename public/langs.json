@@ -286,6 +286,11 @@
             "htr": 45902
         }
     },
+    "german-fraktur-19th-20th-century": {
+        "transkribus": {
+            "htr": 37738
+        }
+    },
     "gd": {
         "tesseract": "gla",
         "google": "gd"

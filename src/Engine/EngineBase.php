@@ -72,6 +72,7 @@ abstract class EngineBase {
 		'fro' => 'Franceis, François, Romanz (1400-1600)',
 		'ger-hd-m1' => 'Transkribus German handwriting M1',
 		'ger-15' => '15th-16th century German',
+		'german-fraktur-19th-20th-century' => 'German Fraktur 19th-20th century',
 		'he-dijest' => 'Hebrew DiJeSt 2.0',
 		'hu-hand-19' => 'Hungarian handwriting 19th–20th cent.',
 		'it-old' => 'italiano antico',
