@@ -67,5 +67,12 @@
 	"transkribus-line-label": "Модел за откривање редови",
 	"transkribus-line-id-none-option": "Нема",
 	"transkribus-mixed-line-option": "Мешана насоченост на редовите",
-	"transkribus-line-help": "Оставете го празно ако не сте сигурни кој модел за откривање редови треба да се користи"
+	"transkribus-line-help": "Оставете го празно ако не сте сигурни кој модел за откривање редови треба да се користи",
+	"transkribus-jobs": "Задачи на Transkribus",
+	"transkribus-job-id": "Назнака на задачата",
+	"transkribus-job-state": "Состојба",
+	"transkribus-job-description": "Опис",
+	"transkribus-job-start": "Започнато",
+	"transkribus-job-end": "Завршено",
+	"transkribus-job-waited": "Одложување на почетокот (минути)"
 }

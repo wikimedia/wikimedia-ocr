@@ -63,5 +63,10 @@
 	"transkribus-no-lang-error": "Non è stata selezionata alcuna lingua",
 	"transkribus-multiple-lang-error": "Non sono consentite più lingue, specificare una lingua",
 	"transkribus-browse-public-models": "Sfoglia tutti i modelli di linguaggio pubblico per Transkribus",
-	"transkribus-request-for-model": "Fai una richiesta per aggiungere un modello da Transkribus allo strumento OCR"
+	"transkribus-request-for-model": "Fai una richiesta per aggiungere un modello da Transkribus allo strumento OCR",
+	"transkribus-job-id": "ID attività",
+	"transkribus-job-state": "Stato",
+	"transkribus-job-description": "Descrizione",
+	"transkribus-job-start": "Iniziato",
+	"transkribus-job-end": "Finito"
 }

@@ -67,5 +67,12 @@
 	"transkribus-line-label": "Model zaznavanja linij",
 	"transkribus-line-id-none-option": "Noben",
 	"transkribus-mixed-line-option": "Mešana usmeritev linij",
-	"transkribus-line-help": "Če niste prepričani, kateri model zaznavanja linij uporabiti, pustite prazno."
+	"transkribus-line-help": "Če niste prepričani, kateri model zaznavanja linij uporabiti, pustite prazno.",
+	"transkribus-jobs": "Opravila Transkribus",
+	"transkribus-job-id": "ID opravila",
+	"transkribus-job-state": "Stanje",
+	"transkribus-job-description": "Opis",
+	"transkribus-job-start": "Začeto",
+	"transkribus-job-end": "Končano",
+	"transkribus-job-waited": "Začetna zakasnitev (minute)"
 }

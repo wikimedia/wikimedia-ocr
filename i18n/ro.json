@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Alesaru",
 			"Dan Mihai Pitea"
 		]
 	},
@@ -23,5 +24,9 @@
 	"tesseract-options": "Opțiuni Tesseract",
 	"tesseract-psm-8": "Tratează imaginea drept un singur cuvânt.",
 	"tesseract-psm-9": "Tratează imaginea drept un singur cuvânt într-un cerc.",
-	"tesseract-psm-10": "Tratează imaginea drept o singură literă."
+	"tesseract-psm-10": "Tratează imaginea drept o singură literă.",
+	"transkribus-jobs": "Transkribus Jobs",
+	"transkribus-job-id": "ID job",
+	"transkribus-job-end": "Terminat",
+	"transkribus-job-waited": "Întârziere de pornire (minute)"
 }

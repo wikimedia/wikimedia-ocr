@@ -66,5 +66,12 @@
 	"transkribus-line-label": "Modello de detection de linea",
 	"transkribus-line-id-none-option": "Necun",
 	"transkribus-mixed-line-option": "Orientation de linea mixte",
-	"transkribus-line-help": "Lassa vacue si tu non es secur de qual modello de detection de linea utilisar"
+	"transkribus-line-help": "Lassa vacue si tu non es secur de qual modello de detection de linea utilisar",
+	"transkribus-jobs": "Travalios de Transkribus",
+	"transkribus-job-id": "ID del travalio",
+	"transkribus-job-state": "Stato",
+	"transkribus-job-description": "Description",
+	"transkribus-job-start": "Initiate",
+	"transkribus-job-end": "Finite",
+	"transkribus-job-waited": "Demora de initio (minutas)"
 }

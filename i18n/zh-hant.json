@@ -68,5 +68,12 @@
 	"transkribus-line-label": "直線檢測模型",
 	"transkribus-line-id-none-option": "無",
 	"transkribus-mixed-line-option": "混合直線方向",
-	"transkribus-line-help": "如果您不確定要使用哪種直線檢測模型，請留空"
+	"transkribus-line-help": "如果您不確定要使用哪種直線檢測模型，請留空",
+	"transkribus-jobs": "Transkribus 任務",
+	"transkribus-job-id": "任務 ID",
+	"transkribus-job-state": "狀態",
+	"transkribus-job-description": "描述",
+	"transkribus-job-start": "已啟動",
+	"transkribus-job-end": "已完成",
+	"transkribus-job-waited": "啟動延遲（分鐘）"
 }

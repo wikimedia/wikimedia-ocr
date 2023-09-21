@@ -20,5 +20,6 @@
 	"version": "Versioun $1",
 	"report-issue": "E Probleem mellen",
 	"transkribus-default-error": "Feelercode '$1' :: D'Ufro konnt net ofgeschloss ginn, probéiert nach eng Kéier!",
-	"transkribus-no-lang-error": "Et gouf keng Sprooch ausgewielt"
+	"transkribus-no-lang-error": "Et gouf keng Sprooch ausgewielt",
+	"transkribus-job-description": "Beschreiwung"
 }

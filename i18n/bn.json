@@ -60,5 +60,10 @@
 	"transkribus-options": "ট্রান্সক্রিবাস বিকল্প",
 	"transkribus-line-label": "রেখা সনাক্তকরণ মডেল",
 	"transkribus-line-id-none-option": "কোনোটিই নয়",
-	"transkribus-mixed-line-option": "মিশ্র রেখা অভিমুখায়ন"
+	"transkribus-mixed-line-option": "মিশ্র রেখা অভিমুখায়ন",
+	"transkribus-job-id": "কাজের আইডি",
+	"transkribus-job-state": "স্থিতি",
+	"transkribus-job-description": "বিবরণ",
+	"transkribus-job-start": "শুরু হয়েছে",
+	"transkribus-job-end": "সম্পন্ন হয়েছে"
 }

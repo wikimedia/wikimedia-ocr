@@ -3,6 +3,7 @@
 		"authors": [
 			"Duke of Wikipädia",
 			"Eduardoaddad",
+			"Felipe L. Ewald",
 			"Re demz"
 		]
 	},
@@ -15,6 +16,9 @@
 	"image-alt-text": "A imagem original",
 	"language-code": "Idiomas (opcional)",
 	"engine": "Motor OCR",
+	"engine-name-google": "OCR do Google Cloud Vision",
+	"engine-name-tesseract": "Tesseract OCR",
+	"engine-name-transkribus": "Transkribus OCR",
 	"engine-not-found-warning": "O motor solicitado '$1' não foi encontrado. Usando o mecanismo padrão '$2'.",
 	"engine-invalid-langs-warning": "As seguintes línguas são inválidas ou não são suportadas pelo motor e foram ignoradas: $1",
 	"submit": "Transcrever a página toda",
@@ -54,6 +58,26 @@
 	"tesseract-psm-13": "Linha bruta. Tratar a imagem como uma linha única de texto, ignorando atalhos específicos de Tesseract.",
 	"tesseract-param-error": "A opção $1 com o valor $2 não é suportada por Tesseract. Valor máximo: $3",
 	"tesseract-internal-error": "O motor tesseract devolveu um erro interno.",
+	"transkribus-language-code": "Modelo de idioma",
+	"transkribus-unauthorized-error": "Código de erro '$1' :: A solicitação não está autorizada",
+	"transkribus-default-error": "Código de erro '$1' ::  Não foi possível concluir a solicitação, tente novamente!",
+	"transkribus-empty-response-error": "Não foi possível analisar o resultado da API do Transkribus",
+	"transkribus-init-process-error": "Falha ao inicializar o processo do Transkribus",
+	"transkribus-failed-process-error": "Falha no processo do Transkribus",
+	"transkribus-no-lang-error": "Nenhum idioma foi selecionado",
+	"transkribus-multiple-lang-error": "Não são permitidos vários idiomas, especifique um idioma",
 	"transkribus-browse-public-models": "Navegue por todos os modelos de linguas públicos para Transkribus",
-	"transkribus-request-for-model": "Faça um pedidio para adicionar um modelo de Transkribus à ferramenta OCR"
+	"transkribus-request-for-model": "Faça um pedidio para adicionar um modelo de Transkribus à ferramenta OCR",
+	"transkribus-options": "Opções do Transkribus",
+	"transkribus-line-label": "Modelo de detecção de linha",
+	"transkribus-line-id-none-option": "Nenhum",
+	"transkribus-mixed-line-option": "Orientação de linha mista",
+	"transkribus-line-help": "Deixe em branco se não tiver certeza de qual modelo de detecção de linha usar",
+	"transkribus-jobs": "Empregos na Transkribus",
+	"transkribus-job-id": "Id do Trabalho",
+	"transkribus-job-state": "Estado",
+	"transkribus-job-description": "Descrição",
+	"transkribus-job-start": "Iniciado",
+	"transkribus-job-end": "Concluído",
+	"transkribus-job-waited": "Atraso de início (minutos)"
 }
