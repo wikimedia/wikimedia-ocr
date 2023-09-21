@@ -30,7 +30,7 @@ class TranskribusAuthCommand extends Command {
 		$this
 			->setName( 'app:transkribus' )
 			->setDescription( 'This command allows you to retrieve and store an 
-                access token and a refresh token for the Trankribus API' );
+                access token and a refresh token for the Transkribus API' );
 	}
 
 	/**
