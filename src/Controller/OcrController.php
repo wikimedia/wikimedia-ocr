@@ -220,12 +220,12 @@ class OcrController extends AbstractController {
 	 * @OA\Schema(type="string")
 	 * )
 	 * @OA\Parameter(
-	 *     name="langs",
+	 *     name="langs[]",
 	 *     in="query",
 	 *     description="List of language codes.
 	 * Can be left empty, in which case the engine will do its best
 	 * (useful for unsupported languages).",
-	 * @OA\JsonContent(type="array", @OA\Items(type="string"))
+	 * @OA\Schema(type="array", @OA\Items(type="string"))
 	 * )
 	 * @OA\Parameter(
 	 *     name="psm",
@@ -240,10 +240,28 @@ class OcrController extends AbstractController {
 	 * @OA\Schema(type="int")
 	 * )
 	 * @OA\Parameter(
-	 *     name="crop",
+	 *     name="crop[x]",
 	 *     in="query",
-	 *     description="Crop parameters: an array with `x`, `y`, `width`, and `height` integer keys.",
-	 * @OA\Schema(type="array", @OA\Items(type="int"))
+	 *     description="Crop parameter `x` value.",
+	 * @OA\Schema(type="int")
+	 * )
+	 * @OA\Parameter(
+	 *     name="crop[y]",
+	 *     in="query",
+	 *     description="Crop parameter `y` value.",
+	 * @OA\Schema(type="int")
+	 * )
+	 * @OA\Parameter(
+	 *     name="crop[width]",
+	 *     in="query",
+	 *     description="Crop parameter `width` value.",
+	 * @OA\Schema(type="int")
+	 * )
+	 * @OA\Parameter(
+	 *     name="crop[height]",
+	 *     in="query",
+	 *     description="Crop parameter `height` value.",
+	 * @OA\Schema(type="int")
 	 * )
 	 * @OA\Response(response=200, description="The OCR text, and other data.")
 	 * @return JsonResponse
