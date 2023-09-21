@@ -42,8 +42,11 @@
                     class="form-control" 
                     name="langs[]" 
                     multiple 
-                    data-placeholder="{{ msg('langs-placeholder') }}"
-                    {% if engine == 'transkribus' %}required{% endif %}
+                    {% if engine == 'transkribus' %}
+                        required
+                    {% else %}
+                        data-placeholder="{{ msg('langs-placeholder') }}"
+                    {% endif %}
                 >
                     {% for lang in available_langs %}
                         <option value="{{ lang }}" {% if lang in langs %}selected{% endif %}>
