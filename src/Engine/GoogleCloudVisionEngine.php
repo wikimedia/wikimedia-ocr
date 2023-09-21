@@ -31,7 +31,9 @@ class GoogleCloudVisionEngine extends EngineBase {
 		HttpClientInterface $httpClient
 	) {
 		parent::__construct( $intuition, $projectDir, $httpClient );
-		$this->imageAnnotator = new ImageAnnotatorClient( [ 'credentials' => $keyFile ] );
+		if ( !empty( $keyFile ) ) {
+			$this->imageAnnotator = new ImageAnnotatorClient( [ 'credentials' => $keyFile ] );
+		}
 	}
 
 	/**
@@ -58,6 +60,10 @@ class GoogleCloudVisionEngine extends EngineBase {
 		$imageContext = new ImageContext();
 		if ( $validLangs ) {
 			$imageContext->setLanguageHints( $this->getLangCodes( $validLangs ) );
+		}
+
+		if ( !$this->imageAnnotator ) {
+			throw new OcrException( 'google-error', [ 'Key for Google OCR engine is missing' ] );
 		}
 
 		$image = $this->getImage( $imageUrl, $crop );
