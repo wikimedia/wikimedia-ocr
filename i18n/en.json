@@ -32,6 +32,7 @@
     "report-issue": "Report an issue",
     "langs-placeholder": "Leave blank for automatic language detection.",
     "langs-param-error": "The following {{PLURAL:$1|language is|languages are}} not supported by the OCR engine: $2",
+    "normalize-ocr-text": "Normalize the text from OCR",
     "tesseract-options": "Tesseract options",
     "tesseract-psm-label": "Page segmentation method",
     "tesseract-psm-help": "Try \"Sparse text\" for better multi-column support.",
