@@ -61,6 +61,7 @@ class OcrController extends AbstractController {
 		'image' => '',
 		'engine' => self::DEFAULT_ENGINE,
 		'langs' => [],
+		'normalize' => false,
 		'psm' => TesseractEngine::DEFAULT_PSM,
 		'crop' => [],
 		'line_id' => TranskribusEngine::DEFAULT_LINEID,
@@ -114,6 +115,7 @@ class OcrController extends AbstractController {
 		}
 		static::$params['langs'] = $this->getLangs( $this->request );
 		static::$params['image_hosts'] = $this->engine->getImageHosts();
+		static::$params['normalize'] = $this->request->query->get( 'normalize' );
 		$crop = $this->request->query->get( 'crop' );
 		if ( !is_array( $crop ) ) {
 			$crop = [];
@@ -238,6 +240,12 @@ class OcrController extends AbstractController {
 	 * Can be left empty, in which case the engine will do its best
 	 * (useful for unsupported languages).",
 	 * @OA\Schema(type="array", @OA\Items(type="string"))
+	 * )
+	 * @OA\Parameter(
+	 *     name="normalize",
+	 *     in="query",
+	 *     description="Normalize OCR text.",
+	 * @OA\Schema(type="boolean")
 	 * )
 	 * @OA\Parameter(
 	 *     name="segmentation_model",
@@ -423,6 +431,9 @@ class OcrController extends AbstractController {
 		} );
 		if ( !$result instanceof EngineResult ) {
 			throw new Exception( 'Incorrect (possibly cached) result: ' . var_export( $result, true ) );
+		}
+		if ( static::$params['normalize'] ) {
+			$result->normalize();
 		}
 		return $result;
 	}

@@ -40,6 +40,7 @@
 	"report-issue": "Link text in the footer for the issue-reporting link.",
 	"langs-placeholder": "Placeholder text for the language input field.",
 	"langs-param-error": "Error message displayed when invalid language(s) are submitted.\n\nParameters:\n* $1 – number of invalid languages\n* $2 - the list of invalid languages\n\nOCR is a common abbreviation in English for \"Optical Characters Recognition\".",
+	"normalize-ocr-text": "Normalize the text from OCR (replaces long s and some other historic characters)",
 	"kraken-options": "Heading for kraken-specific options.",
 	"kraken-segmentation-model-help": "Help text for the selection of a kraken segmentation model.",
 	"kraken-segmentation-model-label": "Form label for the selection of a kraken segmentstion model.",
