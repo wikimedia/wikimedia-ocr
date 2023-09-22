@@ -13,7 +13,7 @@ BOX="$4"
 
 . "$BASEDIR/../venv/bin/activate"
 
-OMP_NUM_THREADS=1
+OMP_NUM_THREADS=4
 export OMP_NUM_THREADS
 
 #TMP=$(mktemp -d tmp.XXXXXXXXXX_kraken_ocr)
@@ -25,10 +25,11 @@ TEXT=$TMP/text
 curl -s -o "$IMAGE" "$URL"
 if test -f "$IMAGE"; then
   if test -n "$BOX"; then
+    echo "gm mogrify -crop $BOX $IMAGE" >> $TMP/kraken.log
     gm mogrify -crop "$BOX" "$IMAGE"
   fi
-  echo "kraken -i $IMAGE $TEXT segment "$SEGMENTATION_MODEL" ocr $OCR_MODEL" >> /tmp/log
-  kraken -i "$IMAGE" "$TEXT" segment "$SEGMENTATION_MODEL" ocr "$OCR_MODEL" >/dev/null 2>&1
+  echo "kraken -i $IMAGE $TEXT segment $SEGMENTATION_MODEL ocr $OCR_MODEL" >> $TMP/kraken.log
+  kraken -i "$IMAGE" "$TEXT" segment $SEGMENTATION_MODEL ocr $OCR_MODEL --threads $OMP_NUM_THREADS >> $TMP/kraken.log 2>&1
   cat "$TEXT"
 else
   echo "Could not download $URL"
