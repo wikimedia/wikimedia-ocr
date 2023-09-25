@@ -73,5 +73,12 @@
 	"transkribus-line-label": "Modèle de détection de ligne",
 	"transkribus-line-id-none-option": "Aucun",
 	"transkribus-mixed-line-option": "Orientation de ligne mixte",
-	"transkribus-line-help": "Laisser vide si vous n’êtes pas sûr de quel modèle de détection de ligne utiliser"
+	"transkribus-line-help": "Laisser vide si vous n’êtes pas sûr de quel modèle de détection de ligne utiliser",
+	"transkribus-jobs": "Tâches de Transkribus",
+	"transkribus-job-id": "Identifiant de la tâche",
+	"transkribus-job-state": "État",
+	"transkribus-job-description": "Description",
+	"transkribus-job-start": "Démarré le",
+	"transkribus-job-end": "Terminé le",
+	"transkribus-job-waited": "Délai de démarrage (en minutes)"
 }

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Hanna Tardos",
 			"Tacsipacsi"
 		]
 	},
@@ -20,5 +21,9 @@
 	"version": "$1 verzió",
 	"report-issue": "Hibabejelentés",
 	"langs-param-error": "Az OCR-motor a következő {{PLURAL:$1|nyelvet|nyelveket}} nem támogatja: $2",
-	"tesseract-options": "Tesseract-beállítások"
+	"tesseract-options": "Tesseract-beállítások",
+	"transkribus-job-id": "Feladatazonosító",
+	"transkribus-job-state": "Állapot",
+	"transkribus-job-description": "Leírás",
+	"transkribus-job-end": "Kész"
 }
