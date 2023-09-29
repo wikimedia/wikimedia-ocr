@@ -52,4 +52,11 @@ class AppExtensionTest extends OcrTestCase {
 		// Standard language code (name provided by Intuition)
 		static::assertSame( 'English', $this->ext->getOcrLangName( 'en' ) );
 	}
+
+	/**
+	 * @covers AppExtension::getLineIdName
+	 */
+	public function testLineIdName(): void {
+		static::assertSame( 'Balinese Line Detection Model', $this->ext->getLineIdName( 'bali' ) );
+	}
 }
