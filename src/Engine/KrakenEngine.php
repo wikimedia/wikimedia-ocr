@@ -60,8 +60,8 @@ class KrakenEngine extends EngineBase {
 			$box = '';
 		}
 
-		$command = $this->projectDir . '/bin/kraken_ocr ' . $imageUrl . ' ' .
-			$ocrModel . ' ' . $this->segmentationModel . $box;
+		$command = $this->projectDir . '/bin/kraken_ocr ' . escapeshellcmd($imageUrl) . ' ' .
+			escapeshellcmd($ocrModel) . ' ' . escapeshellcmd($this->segmentationModel) . escapeshellcmd($box);
 
 		$handle = popen( $command, 'rb' );
 		$text = stream_get_contents( $handle );
