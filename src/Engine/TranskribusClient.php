@@ -60,7 +60,6 @@ class TranskribusClient {
 	public function __construct( string $username, string $password,
 		HttpClientInterface $httpClient, CacheInterface $cache, CacheInterface $appKeysCache
 	) {
-
 		$this->username = $username;
 		$this->password = $password;
 		$this->httpClient = $httpClient;
