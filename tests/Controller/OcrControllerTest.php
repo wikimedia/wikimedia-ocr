@@ -48,8 +48,6 @@ class OcrControllerTest extends OcrTestCase {
 				new TesseractEngine( new MockHttpClient(), $intuition, $this->projectDir, new TesseractOCR() ),
 				new TranskribusEngine(
 					new TranskribusClient(
-						getenv( 'APP_TRANSKRIBUS_ACCESS_TOKEN' ),
-						getenv( 'APP_TRANSKRIBUS_REFRESH_TOKEN' ),
 						getenv( 'APP_TRANSKRIBUS_USERNAME' ),
 						getenv( 'APP_TRANSKRIBUS_PASSWORD' ),
 						new MockHttpClient(),
