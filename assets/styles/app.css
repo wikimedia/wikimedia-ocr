@@ -81,3 +81,24 @@ fieldset,
 .nojs .nojs-hide {
 	display: none;
 }
+
+.loader {
+	background-color: #f5f5f5;
+	padding: 12px;
+}
+
+.loader p {
+	margin: 0;
+	font-weight: bold;
+}
+
+@keyframes loader {
+	to {
+		transform: rotate( 360deg );
+	}
+}
+
+.glyphicon.glyphicon-refresh {
+	margin-right: 5px;
+	animation: loader 1500ms linear infinite;
+}
