@@ -57,8 +57,7 @@ class TranskribusClient {
 	 * @param CacheInterface $cache General data cache.
 	 * @param CacheInterface $appKeysCache Cache for storing session ID and other private keys.
 	 */
-	public function __construct(
-		string $username, string $password,
+	public function __construct( string $username, string $password,
 		HttpClientInterface $httpClient, CacheInterface $cache, CacheInterface $appKeysCache
 	) {
 
@@ -238,7 +237,7 @@ class TranskribusClient {
 	 */
 	public function getRefreshTokenResponse( string $token ): string {
 		$this->appKeysCache->delete( 'transkribus-oauth-tokens' );
-		return $this->appKeysCache->get( 'transkribus-oauth-tokens', function () use($token) {
+		return $this->appKeysCache->get( 'transkribus-oauth-tokens', function () use ( $token ) {
 			$body = [
 				'grant_type' => 'refresh_token',
 				'client_id' => 'processing-api-client',
