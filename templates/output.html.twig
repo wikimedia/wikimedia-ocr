@@ -19,6 +19,12 @@
                 </div>
                 <div class="radio">
                     <label>
+                        <input type="radio" name="engine" value="kraken" {% if engine == 'kraken' %}checked{% endif %} />
+                        {{ msg('engine-name-kraken') }}
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
                         <input type="radio" name="engine" value="tesseract" {% if engine == 'tesseract' %}checked{% endif %} />
                         {{ msg('engine-name-tesseract') }}
                     </label>
@@ -56,7 +62,13 @@
                 </select>
                 {% include '_transkribus_help.html.twig' with {engine: engine} %}
             </div>
+            <div class="form-group">
+                <input type="checkbox" id="normalize" name="normalize" value="1">
+                <label for="normalize">{{ msg('normalize-ocr-text') }}</label>
+            </div>
         </fieldset>
+
+        {% include '_kraken_options.html.twig' with {engine: engine} %}
 
         {% include '_tesseract_options.html.twig' with {engine: engine} %}
 

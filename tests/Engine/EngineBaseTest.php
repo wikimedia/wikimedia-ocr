@@ -5,6 +5,7 @@ namespace App\Tests\Engine;
 
 use App\Engine\EngineBase;
 use App\Engine\GoogleCloudVisionEngine;
+use App\Engine\KrakenEngine;
 use App\Engine\TesseractEngine;
 use App\Engine\TranskribusClient;
 use App\Engine\TranskribusEngine;
@@ -19,6 +20,9 @@ class EngineBaseTest extends OcrTestCase {
 	/** @var GoogleCloudVisionEngine */
 	private $googleEngine;
 
+	/** @var KrakenEngine */
+	private $krakenEngine;
+
 	/** @var TesseractEngine */
 	private $tesseractEngine;
 
@@ -28,11 +32,13 @@ class EngineBaseTest extends OcrTestCase {
 	public function setUp(): void {
 		parent::setUp();
 
-		$this->googleEngine = $this->instatiateEngine( 'google' );
+		$this->googleEngine = $this->instantiateEngine( 'google' );
 
-		$this->tesseractEngine = $this->instatiateEngine( 'tesseract' );
+		$this->tesseractEngine = $this->instantiateEngine( 'tesseract' );
 
-		$this->transkribusEngine = $this->instatiateEngine( 'transkribus' );
+		$this->transkribusEngine = $this->instantiateEngine( 'transkribus' );
+
+		$this->krakenEngine = $this->instantiateEngine( 'kraken' );
 	}
 
 	/**
@@ -110,14 +116,14 @@ class EngineBaseTest extends OcrTestCase {
 	public function provideLangs(): array {
 		return [
 			[
-				'engine' => $this->instatiateEngine( 'tesseract' ),
+				'engine' => $this->instantiateEngine( 'tesseract' ),
 				[ 'en', 'fr' ],
 				[ 'en', 'fr' ],
 				EngineBase::WARN_ON_INVALID_LANGS,
 				EngineBase::ERROR_ON_INVALID_LANGS,
 			],
 			[
-				'engine' => $this->instatiateEngine( 'transkribus' ),
+				'engine' => $this->instantiateEngine( 'transkribus' ),
 				[ 'en-b2022', 'fr-m1' ],
 				[ 'en-b2022', 'fr-m1' ],
 				EngineBase::WARN_ON_INVALID_LANGS,
@@ -165,13 +171,22 @@ class EngineBaseTest extends OcrTestCase {
 		static::assertNotEmpty( $this->transkribusEngine->getValidLineIds( true, true ), "Missing line IDs" );
 	}
 
-	public function instatiateEngine( string $engineName ): EngineBase {
+	public function instantiateEngine( string $engineName ): EngineBase {
 		self::bootKernel();
 		$this->projectDir = self::$kernel->getProjectDir();
 		$intuition = new Intuition();
 		$engine = null;
 
 		switch ( $engineName ) {
+			case 'kraken':
+				$krakenEngine = new KrakenEngine(
+					$intuition,
+					$this->projectDir,
+					new MockHttpClient()
+				);
+				$engine = $krakenEngine;
+				break;
+
 			case 'tesseract':
 				$tesseractOCR = $this->getMockBuilder( TesseractOCR::class )->disableOriginalConstructor()->getMock();
 				$tesseractOCR->method( 'availableLanguages' )

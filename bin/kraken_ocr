@@ -1,0 +1,41 @@
+#!/bin/sh
+
+BASEDIR=$(cd $(dirname "$0")/.. && pwd)
+
+URL="$1"
+OCR_MODEL="-m $BASEDIR/public/config/kraken/$2.mlmodel"
+if test "$3" = "default"; then
+  SEGMENTATION_MODEL="-bl"
+else
+  SEGMENTATION_MODEL="-bl -i $BASEDIR/public/config/kraken/$3.mlmodel"
+fi
+BOX="$4"
+
+. "$BASEDIR/../venv/bin/activate"
+
+OMP_NUM_THREADS=4
+export OMP_NUM_THREADS
+
+#TMP=$(mktemp -d tmp.XXXXXXXXXX_kraken_ocr)
+TMP=$(mktemp -d "$BASEDIR/var/kraken_ocr_XXXXXXXX")
+# echo TMP=$TMP
+IMAGE=$TMP/image
+TEXT=$TMP/text
+
+curl -s -o "$IMAGE" "$URL"
+if test -f "$IMAGE"; then
+  if test -n "$BOX"; then
+    echo "gm mogrify -crop $BOX $IMAGE" >> $TMP/kraken.log
+    gm mogrify -crop "$BOX" "$IMAGE"
+  fi
+  echo "kraken -i $IMAGE $TEXT segment $SEGMENTATION_MODEL ocr $OCR_MODEL" >> $TMP/kraken.log
+  kraken -i "$IMAGE" "$TEXT" segment $SEGMENTATION_MODEL ocr $OCR_MODEL --threads $OMP_NUM_THREADS >> $TMP/kraken.log 2>&1
+  cat "$TEXT"
+else
+  echo "Could not download $URL"
+  echo MODEL="$MODEL", BOX="$BOX"
+fi
+
+# rm $IMAGE
+# rm -r $TMP
+# rmdir $TMP

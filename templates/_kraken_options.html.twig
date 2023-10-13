@@ -1,0 +1,17 @@
+<fieldset id="kraken-options" class="engine-options {% if engine != 'kraken' %}hidden{% endif %}">
+    <legend>{{ msg('kraken-options') }}</legend>
+    <div class="form-group">
+        <label for="lineId">{{ msg('kraken-segmentation-model-label') }}</label>
+        <select
+            name="segmentation_model"
+            id="segmentation-model"
+            class="form-control"
+        >
+            <option>default</option>
+            <option>ubma_segmentation</option>
+        </select>
+        <p class="help-block">
+            {{ msg('kraken-segmentation-model-help') }}
+        </p>
+    </div>
+</fieldset>

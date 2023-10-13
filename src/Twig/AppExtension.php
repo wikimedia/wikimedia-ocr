@@ -3,6 +3,7 @@ declare( strict_types = 1 );
 
 namespace App\Twig;
 
+use App\Engine\KrakenEngine;
 use App\Engine\TesseractEngine;
 use App\Engine\TranskribusEngine;
 use Twig\Extension\AbstractExtension;
@@ -10,6 +11,9 @@ use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension {
+	/** @var KrakenEngine */
+	protected $krakenEngine;
+
 	/** @var TesseractEngine */
 	protected $tesseractEngine;
 
@@ -18,10 +22,16 @@ class AppExtension extends AbstractExtension {
 
 	/**
 	 * AppExtension constructor.
+	 * @param KrakenEngine $krakenEngine
 	 * @param TesseractEngine $tesseractEngine
 	 * @param TranskribusEngine $transkribusEngine
 	 */
-	public function __construct( TesseractEngine $tesseractEngine, TranskribusEngine $transkribusEngine ) {
+	public function __construct(
+		KrakenEngine $krakenEngine,
+		TesseractEngine $tesseractEngine,
+		TranskribusEngine $transkribusEngine
+	) {
+		$this->krakenEngine = $krakenEngine;
 		$this->tesseractEngine = $tesseractEngine;
 		$this->transkribusEngine = $transkribusEngine;
 	}

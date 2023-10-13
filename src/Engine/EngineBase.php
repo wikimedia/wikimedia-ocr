@@ -36,6 +36,13 @@ abstract class EngineBase {
 
 	/** @var string[] Additional localized names for non-standard language codes. */
 	public const LANG_NAMES = [
+		'german_print' => 'Deutsch (Druck)',
+		'german_handwriting' => 'Deutsch (Handschrift)',
+		'austriannewspapers' => 'Newspaper',
+		'frak2021' => 'Fraktur (UB Mannheim)',
+		'Greek' => 'Greek script',
+		'Fraktur' => 'Fraktur script',
+		'Latin' => 'Latin script',
 		'az-cyrl' => 'Azərbaycan (qədim yazı)',
 		'bali' => 'Balinese palm-leaf manuscripts 16th century',
 		'ben-print' => 'Bengali Printed Books +150 New',
@@ -65,6 +72,7 @@ abstract class EngineBase {
 		'fro' => 'Franceis, François, Romanz (1400-1600)',
 		'ger-hd-m1' => 'Transkribus German handwriting M1',
 		'ger-15' => '15th-16th century German',
+		'german-fraktur-19th-20th-century' => 'German Fraktur 19th-20th century',
 		'he-dijest' => 'Hebrew DiJeSt 2.0',
 		'hu-hand-19' => 'Hungarian handwriting 19th–20th cent.',
 		'it-old' => 'italiano antico',
@@ -164,6 +172,15 @@ abstract class EngineBase {
 		}
 
 		return $list;
+	}
+
+	/**
+	 * Get segmentation models accepted by the engine.
+	 * @return string[] Names of segmentation models.
+	 */
+	public function getValidSegmentationModels(): array {
+		$models = [];
+		return $models;
 	}
 
 	/**

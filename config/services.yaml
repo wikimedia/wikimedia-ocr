@@ -34,6 +34,9 @@ services:
         calls:
             - setImageHosts: [ '%env(APP_IMAGE_HOSTS)%' ]
 
+    App\Engine\KrakenEngine:
+        parent: App\Engine\EngineBase
+
     App\Engine\TesseractEngine:
         parent: App\Engine\EngineBase
 

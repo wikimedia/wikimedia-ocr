@@ -1,4 +1,25 @@
 {
+    "german_print": {
+        "kraken": "german_print"
+    },
+    "german_handwriting": {
+        "kraken": "german_handwriting"
+    },
+    "austriannewspapers": {
+        "kraken": "austriannewspapers"
+    },
+    "frak2021": {
+        "tesseract": "ubma/frak2021_0.905"
+    },
+    "Greek": {
+        "tesseract": "Greek"
+    },
+    "Fraktur": {
+        "tesseract": "Fraktur"
+    },
+    "Latin": {
+        "tesseract": "Latin"
+    },
     "af": {
         "tesseract": "afr",
         "google": "af"
@@ -263,6 +284,11 @@
     "ger-15": {
         "transkribus": {
             "htr": 45902
+        }
+    },
+    "german-fraktur-19th-20th-century": {
+        "transkribus": {
+            "htr": 37738
         }
     },
     "gd": {

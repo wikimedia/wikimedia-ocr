@@ -6,6 +6,7 @@ namespace App\Tests\Controller;
 use App\Controller\OcrController;
 use App\Engine\EngineFactory;
 use App\Engine\GoogleCloudVisionEngine;
+use App\Engine\KrakenEngine;
 use App\Engine\TesseractEngine;
 use App\Engine\TranskribusClient;
 use App\Engine\TranskribusEngine;
@@ -45,6 +46,7 @@ class OcrControllerTest extends OcrTestCase {
 			$intuition,
 			new EngineFactory(
 				$gcv,
+				new KrakenEngine( $intuition, $this->projectDir, new MockHttpClient() ),
 				new TesseractEngine( new MockHttpClient(), $intuition, $this->projectDir, new TesseractOCR() ),
 				new TranskribusEngine(
 					new TranskribusClient(

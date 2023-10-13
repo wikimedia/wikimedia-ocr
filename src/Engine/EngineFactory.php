@@ -12,16 +12,19 @@ class EngineFactory {
 
 	/**
 	 * @param GoogleCloudVisionEngine $cloudVisionEngine
+	 * @param KrakenEngine $krakenEngine
 	 * @param TesseractEngine $tesseractEngine
 	 * @param TranskribusEngine $transkribusEngine
 	 */
 	public function __construct(
 		GoogleCloudVisionEngine $cloudVisionEngine,
+		KrakenEngine $krakenEngine,
 		TesseractEngine $tesseractEngine,
 		TranskribusEngine $transkribusEngine
 	) {
 		$this->engines = [
 			'google' => $cloudVisionEngine,
+			'kraken' => $krakenEngine,
 			'tesseract' => $tesseractEngine,
 			'transkribus' => $transkribusEngine,
 		];

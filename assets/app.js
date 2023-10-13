@@ -58,12 +58,12 @@ function fetchLineModelsJSON () {
 function updateLineModelOptions () {
     const staticOptions = $lineDetectionSelect[0].options;
     let staticOptionData = []; 
-    staticOptions.forEach(option => {
+    for (let option of staticOptions) {
         staticOptionData.push({
             text: option.text,
             value: option.value
         });
-    });
+    }
 
     // clear existing selections and options
     $lineDetectionSelect.val(null).empty().trigger('change');
@@ -118,7 +118,7 @@ $(function () {
         updateSelect2Options(engine);
         $('.engine-options').addClass('hidden');
         $(`#${engine}-options`).removeClass('hidden');
-        if(engine === 'tesseract' || engine === 'google') {
+        if(engine === 'kraken' || engine === 'tesseract' || engine === 'google') {
             $select2.prop('required', false);
             $select2.attr('data-placeholder', previousDataPlaceholder);
             $select2.data('select2').selection.placeholder.text = previousDataPlaceholder;

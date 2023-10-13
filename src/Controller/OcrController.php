@@ -9,6 +9,7 @@ use App\Engine\EngineBase;
 use App\Engine\EngineFactory;
 use App\Engine\EngineResult;
 use App\Engine\GoogleCloudVisionEngine;
+use App\Engine\KrakenEngine;
 use App\Engine\TesseractEngine;
 use App\Engine\TranskribusEngine;
 use App\Exception\EngineNotFoundException;
@@ -32,7 +33,7 @@ class OcrController extends AbstractController {
 	/** @var Intuition */
 	protected $intuition;
 
-	/** @var TesseractEngine|GoogleCloudVisionEngine|TranskribusEngine */
+	/** @var KrakenEngine|TesseractEngine|GoogleCloudVisionEngine|TranskribusEngine */
 	protected $engine;
 
 	/** @var string The default OCR engine. */
@@ -60,9 +61,11 @@ class OcrController extends AbstractController {
 		'image' => '',
 		'engine' => self::DEFAULT_ENGINE,
 		'langs' => [],
+		'normalize' => false,
 		'psm' => TesseractEngine::DEFAULT_PSM,
 		'crop' => [],
 		'line_id' => TranskribusEngine::DEFAULT_LINEID,
+		'segmentation_model' => 'default',
 	];
 
 	/**
@@ -112,6 +115,7 @@ class OcrController extends AbstractController {
 		}
 		static::$params['langs'] = $this->getLangs( $this->request );
 		static::$params['image_hosts'] = $this->engine->getImageHosts();
+		static::$params['normalize'] = $this->request->query->get( 'normalize' );
 		$crop = $this->request->query->get( 'crop' );
 		if ( !is_array( $crop ) ) {
 			$crop = [];
@@ -123,6 +127,11 @@ class OcrController extends AbstractController {
 	 * Set Engine-specific options based on user-provided input or the defaults.
 	 */
 	private function setEngineOptions(): void {
+		// This is always set, even if kraken isn't initially chosen as the engine
+		// because we want the default set if the user changes the engine to kraken.
+		static::$params['segmentation_model'] =
+			$this->request->query->get( 'segmentation_model', static::$params['segmentation_model'] );
+
 		// This is always set, even if Tesseract isn't initially chosen as the engine
 		// because we want the default set if the user changes the engine to Tesseract.
 		static::$params['psm'] = (int)$this->request->query->get( 'psm', (string)static::$params['psm'] );
@@ -130,6 +139,11 @@ class OcrController extends AbstractController {
 		// This is always set, even if Transkribus isn't initially chosen as the engine
 		// because we want the default set if the user changes the engine to Transkribus.
 		static::$params['line_id'] = (int)$this->request->query->get( 'line_id', (string)static::$params['line_id'] );
+
+		// Apply the kraken-specific settings
+		if ( KrakenEngine::getId() === static::$params['engine'] ) {
+			$this->engine->setSegmentationModel( static::$params['segmentation_model'] );
+		}
 
 		// Apply the tesseract-specific settings
 		// NOTE: Intentionally excluding `oem`, see T285262
@@ -209,7 +223,7 @@ class OcrController extends AbstractController {
 	 * @OA\Parameter(
 	 *     name="engine",
 	 *     in="query",
-	 *     description="The engine to use, either `tesseract` or `google` or `transkribus`.",
+	 *     description="The engine to use, either `kraken` or `tesseract` or `google` or `transkribus`.",
 	 *     example="tesseract",
 	 * @OA\Schema(type="string")
 	 * )
@@ -220,12 +234,24 @@ class OcrController extends AbstractController {
 	 * @OA\Schema(type="string")
 	 * )
 	 * @OA\Parameter(
-	 *     name="langs",
+	 *     name="langs[]",
 	 *     in="query",
 	 *     description="List of language codes.
 	 * Can be left empty, in which case the engine will do its best
 	 * (useful for unsupported languages).",
-	 * @OA\JsonContent(type="array", @OA\Items(type="string"))
+	 * @OA\Schema(type="array", @OA\Items(type="string"))
+	 * )
+	 * @OA\Parameter(
+	 *     name="normalize",
+	 *     in="query",
+	 *     description="Normalize OCR text.",
+	 * @OA\Schema(type="boolean")
+	 * )
+	 * @OA\Parameter(
+	 *     name="segmentation_model",
+	 *     in="query",
+	 *     description="The segmentation model for kraken.",
+	 * @OA\Schema(type="string")
 	 * )
 	 * @OA\Parameter(
 	 *     name="psm",
@@ -240,10 +266,28 @@ class OcrController extends AbstractController {
 	 * @OA\Schema(type="int")
 	 * )
 	 * @OA\Parameter(
-	 *     name="crop",
+	 *     name="crop[x]",
 	 *     in="query",
-	 *     description="Crop parameters: an array with `x`, `y`, `width`, and `height` integer keys.",
-	 * @OA\Schema(type="array", @OA\Items(type="int"))
+	 *     description="Crop parameter `x` value.",
+	 * @OA\Schema(type="int")
+	 * )
+	 * @OA\Parameter(
+	 *     name="crop[y]",
+	 *     in="query",
+	 *     description="Crop parameter `y` value.",
+	 * @OA\Schema(type="int")
+	 * )
+	 * @OA\Parameter(
+	 *     name="crop[width]",
+	 *     in="query",
+	 *     description="Crop parameter `width` value.",
+	 * @OA\Schema(type="int")
+	 * )
+	 * @OA\Parameter(
+	 *     name="crop[height]",
+	 *     in="query",
+	 *     description="Crop parameter `height` value.",
+	 * @OA\Schema(type="int")
 	 * )
 	 * @OA\Response(response=200, description="The OCR text, and other data.")
 	 * @return JsonResponse
@@ -275,7 +319,7 @@ class OcrController extends AbstractController {
 	 * @OA\Parameter(
 	 *     name="engine",
 	 *     in="query",
-	 *     description="The engine to use, either `tesseract` or `google` or `transkribus`.",
+	 *     description="The engine to use, either `kraken` or `tesseract` or `google` or `transkribus`.",
 	 *     example="tesseract",
 	 * @OA\Schema(type="string")
 	 * )
@@ -287,6 +331,28 @@ class OcrController extends AbstractController {
 		return $this->getApiResponse( [
 			'engine' => static::$params['engine'],
 			'available_langs' => $this->engine->getValidLangs( true ),
+		] );
+	}
+
+	/**
+	 * Get a list of available segmentation models for use with a specific OCR engine.
+	 *
+	 * @Route("/api/available_segmentation_models", name="apiSegmentationModels", methods={"GET"})
+	 * @OA\Parameter(
+	 *     name="engine",
+	 *     in="query",
+	 *     description="The engine to use, either `kraken` or `tesseract` or `google` or `transkribus`.",
+	 *     example="kraken",
+	 * @OA\Schema(type="string")
+	 * )
+	 * @OA\Response(response=200, description="List of available segmentation models, in JSON format.")
+	 * @return JsonResponse
+	 */
+	public function apiAvailableSegmentationModels(): JsonResponse {
+		$this->setup();
+		return $this->getApiResponse( [
+			'engine' => static::$params['engine'],
+			'available_segmentation_models' => $this->engine->getValidSegmentationModels(),
 		] );
 	}
 
@@ -348,6 +414,7 @@ class OcrController extends AbstractController {
 				implode( '|', array_map( 'strval', static::$params['crop'] ) ),
 				static::$params['psm'],
 				static::$params['line_id'],
+				static::$params['segmentation_model'],
 				// Warning messages are localized
 				$this->intuition->getLang(),
 			]
@@ -364,6 +431,9 @@ class OcrController extends AbstractController {
 		} );
 		if ( !$result instanceof EngineResult ) {
 			throw new Exception( 'Incorrect (possibly cached) result: ' . var_export( $result, true ) );
+		}
+		if ( static::$params['normalize'] ) {
+			$result->normalize();
 		}
 		return $result;
 	}
