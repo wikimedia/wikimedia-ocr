@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable MediaWiki.Usage.ForbiddenFunctions.escapeshellarg
 // phpcs:disable MediaWiki.Usage.ForbiddenFunctions.popen
 
 declare( strict_types = 1 );
@@ -54,14 +55,13 @@ class KrakenEngine extends EngineBase {
 			$ocrModel = 'german_print';
 		}
 
+		$box = '';
 		if ( $crop ) {
-			$box = ' ' . $crop['width'] . 'x' . $crop['height'] . '+' . $crop['x'] . '+' . $crop['y'];
-		} else {
-			$box = '';
+			$box = ' ' . escapeshellarg( $crop['width'] . 'x' . $crop['height'] . '+' . $crop['x'] . '+' . $crop['y'] );
 		}
 
-		$command = $this->projectDir . '/bin/kraken_ocr ' . escapeshellcmd($imageUrl) . ' ' .
-			escapeshellcmd($ocrModel) . ' ' . escapeshellcmd($this->segmentationModel) . escapeshellcmd($box);
+		$command = $this->projectDir . '/bin/kraken_ocr ' . escapeshellarg( $imageUrl ) . ' ' .
+			$ocrModel . ' ' . $this->segmentationModel . $box;
 
 		$handle = popen( $command, 'rb' );
 		$text = stream_get_contents( $handle );
@@ -87,6 +87,6 @@ class KrakenEngine extends EngineBase {
 	 * @return void
 	 */
 	public function setSegmentationModel( string $segmentationModel ): void {
-		$this->segmentationModel = $segmentationModel;
+		$this->segmentationModel = escapeshellarg( $segmentationModel );
 	}
 }
