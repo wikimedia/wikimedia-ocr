@@ -3,7 +3,7 @@
 * PHP 7.2+
 * [Composer](http://getcomposer.org/)
 * [Symfony CLI](https://symfony.com/download)
-  
+
 If you need to make asset changes:
 
 * [Node](https://nodejs.org) with the version specified by the `.nvmrc` [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) file.
@@ -29,23 +29,10 @@ If you need to make asset changes:
 
 You can [create a free account](https://readcoop.eu/transkribus/?sc=Transkribus) for Transkribus, and get a small number of free credits.
 
-To connect the OCR Tool to your account, run the following CLI command to receive an access token for the Transkribus API:
-
-```console
-$ ./bin/console app:transkribus
-```
-
-It will ask for the *username* and *password* of your Transkribus account, and will output an access token and refresh token.
-All of these should be stored in your `.env.local` file:
-
 ```dotenv
 APP_TRANSKRIBUS_USERNAME=
 APP_TRANSKRIBUS_PASSWORD=
-APP_TRANSKRIBUS_ACCESS_TOKEN=
-APP_TRANSKRIBUS_REFRESH_TOKEN=
 ```
-
-(The latter two will be removed after [T346306](https://phabricator.wikimedia.org/T346306) is resolved, but for now must be set manually.)
 
 **Note**: You will require sufficient credits in your account to use the Transkribus API.
 
