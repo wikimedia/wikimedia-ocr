@@ -96,6 +96,7 @@ abstract class EngineBase {
 		'syr' => 'leššānā Suryāyā',
 		'uz-cyrl' => 'oʻzbekcha',
 		'uk-20th-print' => 'Printed Ukrainian 20th century',
+		'uk-generic-handwriting-1' => 'Ukrainian generic handwriting 1',
 		'yi-hd' => 'The Dybbuk for Yiddish Handwriting'
 	];
 
