@@ -668,6 +668,16 @@
         "tesseract": "ukr",
         "google": "uk"
     },
+    "uk-20th-print": {
+        "transkribus": {
+            "htr": 55365
+        }
+    },
+    "uk-generic-handwriting-1": {
+        "transkribus": {
+            "htr": 51906
+        }
+    },
     "ug": {
         "tesseract": "uig"
     },
