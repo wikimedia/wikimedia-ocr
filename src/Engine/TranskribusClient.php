@@ -249,24 +249,6 @@ class TranskribusClient {
 	}
 
 	/**
-	 * @param string $userName
-	 * @param string $password
-	 * @return ResponseInterface
-	 */
-	public function getAccessTokenResponse( string $userName, string $password ): ResponseInterface {
-		$body = [
-			'grant_type' => 'password',
-			'username' => $userName,
-			'password' => $password,
-			'client_id' => 'processing-api-client',
-			'scope' => 'offline_access',
-		];
-
-		$response = $this->authRequest( $body );
-		return $response;
-	}
-
-	/**
 	 * @param mixed[] $body
 	 * @return ResponseInterface
 	 */

@@ -9,8 +9,6 @@
 >
     <php>
         <ini name="error_reporting" value="-1" />
-        <env name="APP_TRANSKRIBUS_ACCESS_TOKEN" value="eyThisIsATestAccessToken"/>
-        <env name="APP_TRANSKRIBUS_REFRESH_TOKEN" value="OdeyThisIsATestRefreshToken"/>
         <env name="APP_TRANSKRIBUS_USERNAME" value=""/>
         <env name="APP_TRANSKRIBUS_PASSWORD" value=""/>
         <server name="APP_ENV" value="test" force="true" />
