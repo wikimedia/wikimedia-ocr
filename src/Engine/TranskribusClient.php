@@ -245,7 +245,7 @@ class TranskribusClient {
 
 			$response = $this->authRequest( $body );
 			return $response->getContent();
-		}, null );
+		});
 	}
 
 	/**
@@ -302,22 +302,26 @@ class TranskribusClient {
 
 	/**
 	 * Get the current OAuthTokens.
-	 * @param bool $bypassCache
 	 * @return string
 	 */
-	private function getOAuthTokens( bool $bypassCache = false ): string {
-		return $this->appKeysCache->get( 'transkribus-oauth-tokens', function () {
-			$body = [
-				'grant_type' => 'password',
-				'username' => $this->username,
-				'password' => $this->password,
-				'client_id' => 'processing-api-client',
-				'scope' => 'offline_access',
-			];
+	private function getOAuthTokens(): string {
+		try {
+			return $this->appKeysCache->get( 'transkribus-oauth-tokens', function () {
+				$body = [
+					'grant_type' => 'password',
+					'username' => $this->username,
+					'password' => $this->password,
+					'client_id' => 'processing-api-client',
+					'scope' => 'offline_access',
+				];
 
-			$response = $this->authRequest( $body );
-			return $response->getContent();
-		}, $bypassCache ? INF : null );
+				$response = $this->authRequest( $body );
+				return $response->getContent();
+			});
+		} catch ( ClientException $exception ) {
+			$statusCode = $exception->getResponse()->getStatusCode();
+			$this->throwException( $statusCode );
+		}
 	}
 
 	/**
