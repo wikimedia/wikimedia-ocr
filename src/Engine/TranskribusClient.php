@@ -245,7 +245,7 @@ class TranskribusClient {
 
 			$response = $this->authRequest( $body );
 			return $response->getContent();
-		});
+		} );
 	}
 
 	/**
@@ -317,7 +317,7 @@ class TranskribusClient {
 
 				$response = $this->authRequest( $body );
 				return $response->getContent();
-			});
+			} );
 		} catch ( ClientException $exception ) {
 			$statusCode = $exception->getResponse()->getStatusCode();
 			$this->throwException( $statusCode );
