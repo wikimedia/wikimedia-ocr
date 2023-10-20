@@ -29,9 +29,11 @@ If you need to make asset changes:
 
 You can [create a free account](https://readcoop.eu/transkribus/?sc=Transkribus) for Transkribus, and get a small number of free credits.
 
+You will also need to set the *username* and *password* of your Transkribus account in `.env.local`:
+
 ```dotenv
-APP_TRANSKRIBUS_USERNAME=
-APP_TRANSKRIBUS_PASSWORD=
+APP_TRANSKRIBUS_USERNAME=username
+APP_TRANSKRIBUS_PASSWORD=password
 ```
 
 **Note**: You will require sufficient credits in your account to use the Transkribus API.
