@@ -27,8 +27,6 @@ class AppExtensionTest extends OcrTestCase {
 						);
 		$transkribusEngine = new TranskribusEngine(
 								new TranskribusClient(
-									getenv( 'APP_TRANSKRIBUS_ACCESS_TOKEN' ),
-									getenv( 'APP_TRANSKRIBUS_REFRESH_TOKEN' ),
 									getenv( 'APP_TRANSKRIBUS_USERNAME' ),
 									getenv( 'APP_TRANSKRIBUS_PASSWORD' ),
 									new MockHttpClient(),

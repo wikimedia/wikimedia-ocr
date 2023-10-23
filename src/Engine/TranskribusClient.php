@@ -51,20 +51,15 @@ class TranskribusClient {
 
 	/**
 	 * TranskribusClient constructor.
-	 * @param string $accessToken
-	 * @param string $refreshToken
 	 * @param string $username
 	 * @param string $password
 	 * @param HttpClientInterface $httpClient
 	 * @param CacheInterface $cache General data cache.
 	 * @param CacheInterface $appKeysCache Cache for storing session ID and other private keys.
 	 */
-	public function __construct(
-		string $accessToken, string $refreshToken, string $username, string $password,
+	public function __construct( string $username, string $password,
 		HttpClientInterface $httpClient, CacheInterface $cache, CacheInterface $appKeysCache
 	) {
-		$this->accessToken = $accessToken;
-		$this->refreshToken = $refreshToken;
 		$this->username = $username;
 		$this->password = $password;
 		$this->httpClient = $httpClient;
@@ -174,6 +169,7 @@ class TranskribusClient {
 		string $url,
 		array $jsonBody = []
 	): object {
+		$this->setAccessToken();
 		$body = [
 			'headers' => [
 				'Content-Type' => 'application/json',
@@ -196,7 +192,7 @@ class TranskribusClient {
 		}
 
 		if ( $statusCode === 401 ) {
-			$this->setAccessToken();
+			$this->refreshAccessToken();
 
 			$body['headers']['Authorization'] = 'Bearer ' . $this->accessToken;
 			$response = $this->httpClient->request( $method, $url, $body );
@@ -215,49 +211,41 @@ class TranskribusClient {
 	}
 
 	private function setAccessToken(): void {
-		$response = $this->getRefreshTokenResponse( $this->refreshToken );
-		$statusCode = $response->getStatusCode();
-		if ( $statusCode !== 200 ) {
-			$this->throwException( $statusCode );
-		}
-		$content = json_decode( $response->getContent() );
+		$content = json_decode( $this->getOAuthTokens() );
 		if ( empty( $content ) ) {
 			$this->throwException( self::ERROR_NO_CONTENT );
 		}
 		$this->accessToken = $content->{'access_token'};
+		$this->refreshToken = $content->{'refresh_token'};
+	}
+
+	private function refreshAccessToken(): void {
+		$response = $this->getRefreshTokenResponse( $this->refreshToken );
+		$content = json_decode( $response );
+		if ( empty( $content ) ) {
+			$this->throwException( self::ERROR_NO_CONTENT );
+		}
+		$this->accessToken = $content->{'access_token'};
+		$this->refreshToken = $content->{'refresh_token'};
 	}
 
 	/**
+	 * Refresh and Get OAuthTokens.
 	 * @param string $token
-	 * @return ResponseInterface
+	 * @return string
 	 */
-	public function getRefreshTokenResponse( string $token ): ResponseInterface {
-		$body = [
-			'grant_type' => 'refresh_token',
-			'client_id' => 'processing-api-client',
-			'refresh_token' => $token,
-		];
+	public function getRefreshTokenResponse( string $token ): string {
+		$this->appKeysCache->delete( 'transkribus-oauth-tokens' );
+		return $this->appKeysCache->get( 'transkribus-oauth-tokens', function () use ( $token ) {
+			$body = [
+				'grant_type' => 'refresh_token',
+				'client_id' => 'processing-api-client',
+				'refresh_token' => $token,
+			];
 
-		$response = $this->authRequest( $body );
-		return $response;
-	}
-
-	/**
-	 * @param string $userName
-	 * @param string $password
-	 * @return ResponseInterface
-	 */
-	public function getAccessTokenResponse( string $userName, string $password ): ResponseInterface {
-		$body = [
-			'grant_type' => 'password',
-			'username' => $userName,
-			'password' => $password,
-			'client_id' => 'processing-api-client',
-			'scope' => 'offline_access',
-		];
-
-		$response = $this->authRequest( $body );
-		return $response;
+			$response = $this->authRequest( $body );
+			return $response->getContent();
+		} );
 	}
 
 	/**
@@ -310,6 +298,30 @@ class TranskribusClient {
 			$response = $this->restRequest( 'POST', '/auth/login', [], $params );
 			return $response['sessionId'];
 		}, $bypassCache ? INF : null );
+	}
+
+	/**
+	 * Get the current OAuthTokens.
+	 * @return string
+	 */
+	private function getOAuthTokens(): string {
+		try {
+			return $this->appKeysCache->get( 'transkribus-oauth-tokens', function () {
+				$body = [
+					'grant_type' => 'password',
+					'username' => $this->username,
+					'password' => $this->password,
+					'client_id' => 'processing-api-client',
+					'scope' => 'offline_access',
+				];
+
+				$response = $this->authRequest( $body );
+				return $response->getContent();
+			} );
+		} catch ( ClientException $exception ) {
+			$statusCode = $exception->getResponse()->getStatusCode();
+			$this->throwException( $statusCode );
+		}
 	}
 
 	/**
