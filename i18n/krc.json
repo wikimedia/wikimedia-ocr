@@ -13,6 +13,7 @@
 	"image-alt-text": "Оригинал сурат",
 	"language-code": "Тилле (амалсыз тюлдюле)",
 	"engine": "OCR мотор",
+	"engine-name-transkribus": "Transkribus OCR",
 	"engine-not-found-warning": "Изленнген мотор' $1 ' табылалмады. Буну орнуна дефолт мотор ' $2 ' хайырланады.",
 	"engine-invalid-langs-warning": "Тюбюндеги тилле джараусуздула неда мотор джанындан дагъан алмайдыла, неда джокъгъа саналадыла: $1",
 	"submit": "Бютеу бетни транскрипция эт",
@@ -50,5 +51,6 @@
 	"tesseract-psm-12": "OSD бла аралыкълы текст.",
 	"tesseract-psm-13": "Чий тизгин. Tesseract энчи хакланы атлатыб, джангыз текст тизгин кибик къара.",
 	"tesseract-param-error": "$2 багъагъа ие болгъан \"$1\" сайлама Tesseract джанындан дагъан болмаз. Максимум багъасы: $3",
-	"tesseract-internal-error": "Tesseract механизм ич халатны ызына къайтарды."
+	"tesseract-internal-error": "Tesseract механизм ич халатны ызына къайтарды.",
+	"transkribus-language-code": "Тил модель"
 }
