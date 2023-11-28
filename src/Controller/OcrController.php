@@ -113,7 +113,10 @@ class OcrController extends AbstractController {
 		static::$params['langs'] = $this->getLangs( $this->request );
 		static::$params['image_hosts'] = $this->engine->getImageHosts();
 		$crop = $this->request->query->get( 'crop' );
-		if ( !is_array( $crop ) ) {
+		if ( !is_array( $crop )
+			|| isset( $crop['width'] ) && !$crop['width']
+			|| isset( $crop['height'] ) && !$crop['height']
+		) {
 			$crop = [];
 		}
 		static::$params['crop'] = array_map( 'intval', $crop );
