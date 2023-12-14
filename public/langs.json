@@ -624,6 +624,11 @@
             "htr": 53149
         }
     },
+    "swe-lion-i": {
+        "transkribus": {
+            "htr": 5518
+        }
+    },
     "syr": {
         "tesseract": "syr",
         "google": "syr"
