@@ -312,6 +312,28 @@ class OcrController extends AbstractController {
 	}
 
 	/**
+	 * Get a list of Psms available for use with Tesseract.
+	 *
+	 * @Route("/api/tesseract/available_psms", name="apiPsms", methods={"GET"})
+	 * @OA\Response(response=200, description="List of available psm values and labels, in JSON format.")
+	 * @return JsonResponse
+	 */
+	public function apiAvailablePsms(): JsonResponse {
+		$this->setup();
+		$psms = [];
+		for ( $i = 0; $i <= 13; $i++ ) {
+			array_push( $psms, [
+				"value" => $i,
+				"label" => $this->intuition->msg( 'tesseract-psm-' . $i )
+			] );
+		}
+
+		return $this->getApiResponse( [
+			'available_psms' => $psms,
+		] );
+	}
+
+	/**
 	 * Get a list of available line detection IDs.
 	 *
 	 * @Route("/api/transkribus/available_line_ids", name="apiLineIds", methods={"GET"})
