@@ -3,7 +3,8 @@
 		"authors": [
 			"HanV",
 			"McDutchie",
-			"Romaine"
+			"Romaine",
+			"Siebrand"
 		]
 	},
 	"title": "WikimediaOCR",
@@ -65,5 +66,17 @@
 	"transkribus-no-lang-error": "Er is geen taal geselecteerd",
 	"transkribus-multiple-lang-error": "Meerdere talen zijn niet toegestaan, geef één taal op",
 	"transkribus-browse-public-models": "Door alle openbare taalmodellen voor Transkribus bladeren",
-	"transkribus-request-for-model": "Verzoeken om een model uit Transkribus toe te voegen aan het OCR-programma"
+	"transkribus-request-for-model": "Verzoeken om een model uit Transkribus toe te voegen aan het OCR-programma",
+	"transkribus-options": "Transkribus-opties",
+	"transkribus-line-label": "Lijndetectiemodel",
+	"transkribus-line-id-none-option": "Geen",
+	"transkribus-mixed-line-option": "Gemengde lijnoriëntatie",
+	"transkribus-line-help": "Laat dit leeg als u niet zeker weet welk lijndetectiemodel u moet gebruiken",
+	"transkribus-jobs": "Transkribus-taken",
+	"transkribus-job-id": "Taak-ID",
+	"transkribus-job-state": "Status",
+	"transkribus-job-description": "Beschrijving",
+	"transkribus-job-start": "Gestart",
+	"transkribus-job-end": "Voltooid",
+	"transkribus-job-waited": "Startvertraging (minuten)"
 }
