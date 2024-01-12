@@ -190,6 +190,11 @@ class OcrController extends AbstractController {
 			sort( static::$params['available_line_id_langs'] );
 		}
 
+		// Get Tesseract's full list of PSMs.
+		/** @var TesseractEngine */
+		$tesseract = $this->engineFactory->get( 'tesseract' );
+		static::$params['available_psms'] = $tesseract->getAvailablePsms();
+
 		// Intution::listToText() isn't available via Twig, and we only want to do this for the view and not the API.
 		static::$params['image_hosts'] = $this->intuition->listToText( static::$params['image_hosts'] );
 
@@ -312,24 +317,18 @@ class OcrController extends AbstractController {
 	}
 
 	/**
-	 * Get a list of Psms available for use with Tesseract.
+	 * Get a list of PSMs available for use with Tesseract.
 	 *
 	 * @Route("/api/tesseract/available_psms", name="apiPsms", methods={"GET"})
-	 * @OA\Response(response=200, description="List of available psm values and labels, in JSON format.")
+	 * @OA\Response(response=200, description="List of available Tesseract PSM values and labels, in JSON format.")
 	 * @return JsonResponse
 	 */
 	public function apiAvailablePsms(): JsonResponse {
 		$this->setup();
-		$psms = [];
-		for ( $i = 0; $i <= 13; $i++ ) {
-			array_push( $psms, [
-				"value" => $i,
-				"label" => $this->intuition->msg( 'tesseract-psm-' . $i )
-			] );
-		}
-
+		/** @var TesseractEngine */
+		$tesseract = $this->engineFactory->get( 'tesseract' );
 		return $this->getApiResponse( [
-			'available_psms' => $psms,
+			'available_psms' => $tesseract->getAvailablePsms(),
 		] );
 	}
 
