@@ -9,6 +9,7 @@
 	"title": "위키미디어OCR",
 	"form-heading": "이미지를 복사하기",
 	"image-url": "이미지 URL",
+	"image-alt-text": "원본 이미지",
 	"language-code": "언어 (선택사항)",
 	"engine": "OCR 엔진",
 	"submit": "복사",
@@ -19,5 +20,9 @@
 	"version": "버전 $1",
 	"report-issue": "문제점 보고",
 	"langs-placeholder": "자동 언어 감지를 위해 공란으로 남깁니다.",
-	"transkribus-language-code": "언어 모델"
+	"transkribus-language-code": "언어 모델",
+	"transkribus-no-lang-error": "선택한 언어가 없습니다",
+	"transkribus-line-id-none-option": "없음",
+	"transkribus-job-state": "상태",
+	"transkribus-job-description": "설명"
 }
