@@ -683,6 +683,11 @@
             "htr": 51906
         }
     },
+    "uk-wikisource-print": {
+        "transkribus": {
+            "htr": 60074
+        }
+    },
     "ug": {
         "tesseract": "uig"
     },
