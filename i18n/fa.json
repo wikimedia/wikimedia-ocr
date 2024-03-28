@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Darafsh",
+			"Ebraminio",
 			"Jeeputer",
 			"Mfatemi",
 			"Yoosef Pooranvary"
@@ -22,9 +23,9 @@
 	"submit-crop": "ناحیه رونویسی",
 	"drag-help": "ابزار برش را انتخاب کرده و چهارگوشی بر روی تصویر زیر بکشید تا فقط یک ناحیه از صفحه رونویسی شود.",
 	"drag-mode-move": "با کشیدن تصویر حرکت خواهد کرد.",
-	"drag-mode-move-alt": "آیکان نشان‌دهنده‌ی عمل «جابجایی»",
+	"drag-mode-move-alt": "آیکان نشان‌دهندهٔ عمل «جابجایی»",
 	"drag-mode-crop": "با کشیدن ناحیه چیدن جدیدی درست خواهد شد",
-	"drag-mode-crop-alt": "آیکان نشان‌دهنده‌ی عمل «چیدن»",
+	"drag-mode-crop-alt": "آیکان نشان‌دهندهٔ عمل «چیدن»",
 	"copy-to-clipboard": "کپی به کلیپ‌بورد",
 	"copied-to-clipboard": "کپی شد!",
 	"google-error": "سرویس گوگل خطایی برگرداند: $1",

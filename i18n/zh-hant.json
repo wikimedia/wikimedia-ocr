@@ -13,7 +13,7 @@
 	"image-url-help": "請插入一個托管在維基媒體伺服器的圖片 URL，例如像是：$1",
 	"image-url-error": "圖片 URL必須以{{PLURAL:$1|以下網域名稱|以下網域名稱之一}}為開頭，並且要以有效的副檔名作為結尾：$2",
 	"image-alt-text": "原始圖片",
-	"language-code": "語言（可選）",
+	"language-code": "語言（非必填）",
 	"engine": "OCR 引擎",
 	"engine-name-transkribus": "Transkribus OCR",
 	"engine-not-found-warning": "未找到請求的引擎「$1」。改使用預設引擎「$2」。",
