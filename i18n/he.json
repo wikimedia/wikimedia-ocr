@@ -72,5 +72,12 @@
 	"transkribus-line-label": "דגם זיהוי קו",
 	"transkribus-line-id-none-option": "אין",
 	"transkribus-mixed-line-option": "כיוון קו מעורב",
-	"transkribus-line-help": "נא להשאיר את זה ריק אם אינך בטוח באיזה דגם זיהוי קו להשתמש"
+	"transkribus-line-help": "נא להשאיר את זה ריק אם אינך בטוח באיזה דגם זיהוי קו להשתמש",
+	"transkribus-jobs": "משימות ל־Transkribus",
+	"transkribus-job-id": "מזהה משימה",
+	"transkribus-job-state": "מצב",
+	"transkribus-job-description": "תיאור",
+	"transkribus-job-start": "התחילה",
+	"transkribus-job-end": "הסתיימה",
+	"transkribus-job-waited": "השהיית התחלה (דקות)"
 }

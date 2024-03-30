@@ -624,6 +624,11 @@
             "htr": 53149
         }
     },
+    "swe-lion-i": {
+        "transkribus": {
+            "htr": 55158
+        }
+    },
     "syr": {
         "tesseract": "syr",
         "google": "syr"
@@ -667,6 +672,21 @@
     "uk": {
         "tesseract": "ukr",
         "google": "uk"
+    },
+    "uk-20th-print": {
+        "transkribus": {
+            "htr": 55365
+        }
+    },
+    "uk-generic-handwriting-1": {
+        "transkribus": {
+            "htr": 51906
+        }
+    },
+    "uk-wikisource-print": {
+        "transkribus": {
+            "htr": 60074
+        }
     },
     "ug": {
         "tesseract": "uig"

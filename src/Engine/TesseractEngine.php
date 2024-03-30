@@ -85,6 +85,26 @@ class TesseractEngine extends EngineBase {
 	}
 
 	/**
+	 * Get available PSM IDs and values.
+	 * @return mixed[][]
+	 */
+	public function getAvailablePsms(): array {
+		$psms = [];
+		$psmIds = [ 0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ];
+		foreach ( $psmIds as $psmId ) {
+			array_push( $psms, [
+				'value' => $psmId,
+				// The following messages can be used here: 'tesseract-psm-0', 'tesseract-psm-1',
+				// 'tesseract-psm-3', 'tesseract-psm-4', 'tesseract-psm-5', 'tesseract-psm-6', 'tesseract-psm-7',
+				// 'tesseract-psm-8', 'tesseract-psm-9', 'tesseract-psm-10', 'tesseract-psm-11', 'tesseract-psm-12',
+				// 'tesseract-psm-13'
+				'label' => $this->intuition->msg( 'tesseract-psm-' . $psmId ),
+			] );
+		}
+		return $psms;
+	}
+
+	/**
 	 * Validates the given option.
 	 * @param string $option
 	 * @param int $given

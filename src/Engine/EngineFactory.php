@@ -7,7 +7,7 @@ use App\Exception\EngineNotFoundException;
 
 class EngineFactory {
 
-	/** @var array<string, EngineBase> */
+	/** @var array<string, TesseractEngine|GoogleCloudVisionEngine|TranskribusEngine> */
 	private $engines;
 
 	/**
@@ -29,7 +29,7 @@ class EngineFactory {
 
 	/**
 	 * @param string $name
-	 * @return EngineBase
+	 * @return TesseractEngine|GoogleCloudVisionEngine|TranskribusEngine
 	 */
 	public function get( string $name ): EngineBase {
 		if ( !isset( $this->engines[$name] ) ) {

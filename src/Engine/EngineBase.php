@@ -93,8 +93,12 @@ abstract class EngineBase {
 		'sk-hand' => 'Handwritten Glagolitic',
 		'sr-latn' => 'Српски (латиница)',
 		'swe-3' => 'Stockholm Notaries 1700 3.0',
+		'swe-lion-i' => 'The Swedish Lion I',
 		'syr' => 'leššānā Suryāyā',
 		'uz-cyrl' => 'oʻzbekcha',
+		'uk-20th-print' => 'Printed Ukrainian 20th century',
+		'uk-generic-handwriting-1' => 'Ukrainian generic handwriting 1',
+		'uk-wikisource-print' => 'Ukranian Wikisource Print',
 		'yi-hd' => 'The Dybbuk for Yiddish Handwriting'
 	];
 

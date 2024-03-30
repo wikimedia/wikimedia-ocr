@@ -113,7 +113,10 @@ class OcrController extends AbstractController {
 		static::$params['langs'] = $this->getLangs( $this->request );
 		static::$params['image_hosts'] = $this->engine->getImageHosts();
 		$crop = $this->request->query->get( 'crop' );
-		if ( !is_array( $crop ) ) {
+		if ( !is_array( $crop )
+			|| isset( $crop['width'] ) && !$crop['width']
+			|| isset( $crop['height'] ) && !$crop['height']
+		) {
 			$crop = [];
 		}
 		static::$params['crop'] = array_map( 'intval', $crop );
@@ -187,6 +190,11 @@ class OcrController extends AbstractController {
 			sort( static::$params['available_line_id_langs'] );
 		}
 
+		// Get Tesseract's full list of PSMs.
+		/** @var TesseractEngine */
+		$tesseract = $this->engineFactory->get( 'tesseract' );
+		static::$params['available_psms'] = $tesseract->getAvailablePsms();
+
 		// Intution::listToText() isn't available via Twig, and we only want to do this for the view and not the API.
 		static::$params['image_hosts'] = $this->intuition->listToText( static::$params['image_hosts'] );
 
@@ -220,12 +228,12 @@ class OcrController extends AbstractController {
 	 * @OA\Schema(type="string")
 	 * )
 	 * @OA\Parameter(
-	 *     name="langs",
+	 *     name="langs[]",
 	 *     in="query",
 	 *     description="List of language codes.
 	 * Can be left empty, in which case the engine will do its best
 	 * (useful for unsupported languages).",
-	 * @OA\JsonContent(type="array", @OA\Items(type="string"))
+	 * @OA\Schema(type="array", @OA\Items(type="string"))
 	 * )
 	 * @OA\Parameter(
 	 *     name="psm",
@@ -240,10 +248,28 @@ class OcrController extends AbstractController {
 	 * @OA\Schema(type="int")
 	 * )
 	 * @OA\Parameter(
-	 *     name="crop",
+	 *     name="crop[x]",
 	 *     in="query",
-	 *     description="Crop parameters: an array with `x`, `y`, `width`, and `height` integer keys.",
-	 * @OA\Schema(type="array", @OA\Items(type="int"))
+	 *     description="Crop parameter `x` value.",
+	 * @OA\Schema(type="int")
+	 * )
+	 * @OA\Parameter(
+	 *     name="crop[y]",
+	 *     in="query",
+	 *     description="Crop parameter `y` value.",
+	 * @OA\Schema(type="int")
+	 * )
+	 * @OA\Parameter(
+	 *     name="crop[width]",
+	 *     in="query",
+	 *     description="Crop parameter `width` value.",
+	 * @OA\Schema(type="int")
+	 * )
+	 * @OA\Parameter(
+	 *     name="crop[height]",
+	 *     in="query",
+	 *     description="Crop parameter `height` value.",
+	 * @OA\Schema(type="int")
 	 * )
 	 * @OA\Response(response=200, description="The OCR text, and other data.")
 	 * @return JsonResponse
@@ -287,6 +313,22 @@ class OcrController extends AbstractController {
 		return $this->getApiResponse( [
 			'engine' => static::$params['engine'],
 			'available_langs' => $this->engine->getValidLangs( true ),
+		] );
+	}
+
+	/**
+	 * Get a list of PSMs available for use with Tesseract.
+	 *
+	 * @Route("/api/tesseract/available_psms", name="apiPsms", methods={"GET"})
+	 * @OA\Response(response=200, description="List of available Tesseract PSM values and labels, in JSON format.")
+	 * @return JsonResponse
+	 */
+	public function apiAvailablePsms(): JsonResponse {
+		$this->setup();
+		/** @var TesseractEngine */
+		$tesseract = $this->engineFactory->get( 'tesseract' );
+		return $this->getApiResponse( [
+			'available_psms' => $tesseract->getAvailablePsms(),
 		] );
 	}
 

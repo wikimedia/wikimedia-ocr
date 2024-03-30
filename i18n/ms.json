@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Anakmalaysia",
+			"Hakimi97",
+			"Tofeiku"
+		]
+	},
+	"title": "WikimediaOCR",
+	"subtitle": "Transkripsikan teks daripada imej",
+	"form-heading": "Transkripsikan imej",
+	"image-url": "URL imej",
+	"image-url-help": "Masukkan URL imej yang dihoskan pada pelayan Wikimedia seperti: $1",
+	"image-alt-text": "Imej asal",
+	"language-code": "Bahasa (pilihan)",
+	"engine": "Enjin OCR",
+	"engine-name-transkribus": "Transkribus OCR",
+	"copied-to-clipboard": "Disalin!",
+	"documentation": "Pendokumenan",
+	"api-tooltip": "Lihat pendokumenan API",
+	"version": "Versi $1",
+	"report-issue": "Laporkan masalah",
+	"langs-param-error": "{{PLURAL:$1|Bahasa|Bahasa-bahasa}} berikut tidak disokong oleh enjin OCR: $2",
+	"transkribus-language-code": "Model bahasa",
+	"transkribus-no-lang-error": "Tiada bahasa dipilih",
+	"transkribus-line-id-none-option": "Tiada"
+}

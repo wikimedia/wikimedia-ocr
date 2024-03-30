@@ -66,5 +66,12 @@
 	"transkribus-line-label": "Modellu de rilevamentu de lìnia",
 	"transkribus-line-id-none-option": "Perunu",
 	"transkribus-mixed-line-option": "Orientamentu de lìnia mistu",
-	"transkribus-line-help": "Lassa bòidu si non ses seguru de cale modellu de rilevamentu de lìnia impreare"
+	"transkribus-line-help": "Lassa bòidu si non ses seguru de cale modellu de rilevamentu de lìnia impreare",
+	"transkribus-jobs": "Fainas de Transkribus",
+	"transkribus-job-id": "ID de sa faina",
+	"transkribus-job-state": "Istadu",
+	"transkribus-job-description": "Descritzione",
+	"transkribus-job-start": "Incumintzadu",
+	"transkribus-job-end": "Acabadu",
+	"transkribus-job-waited": "Ritardu de incumintzu (minutos)"
 }

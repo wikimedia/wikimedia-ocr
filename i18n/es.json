@@ -6,6 +6,7 @@
 			"Avengium",
 			"Dmaza",
 			"Jackiezelaya",
+			"James",
 			"Mpayansilva",
 			"Ninovolador",
 			"Superzerocool"
@@ -56,5 +57,6 @@
 	"tesseract-psm-12": "Texto escaso con OSD.",
 	"tesseract-psm-13": "Línea cruda. Tratar la imagen como una sola línea de texto, ignorando los hacks que son específicos de Tesseract.",
 	"tesseract-param-error": "Tesseract no admite la opción \"$1\" con un valor de $2. Valor máximo: $3",
-	"tesseract-internal-error": "El motor Tesseract regresó un error interno."
+	"tesseract-internal-error": "El motor Tesseract regresó un error interno.",
+	"transkribus-language-code": "Modelo de lenguaje"
 }

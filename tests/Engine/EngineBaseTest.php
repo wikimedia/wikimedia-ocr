@@ -28,11 +28,11 @@ class EngineBaseTest extends OcrTestCase {
 	public function setUp(): void {
 		parent::setUp();
 
-		$this->googleEngine = $this->instatiateEngine( 'google' );
+		$this->googleEngine = $this->instantiateEngine( 'google' );
 
-		$this->tesseractEngine = $this->instatiateEngine( 'tesseract' );
+		$this->tesseractEngine = $this->instantiateEngine( 'tesseract' );
 
-		$this->transkribusEngine = $this->instatiateEngine( 'transkribus' );
+		$this->transkribusEngine = $this->instantiateEngine( 'transkribus' );
 	}
 
 	/**
@@ -110,14 +110,14 @@ class EngineBaseTest extends OcrTestCase {
 	public function provideLangs(): array {
 		return [
 			[
-				'engine' => $this->instatiateEngine( 'tesseract' ),
+				'engine' => $this->instantiateEngine( 'tesseract' ),
 				[ 'en', 'fr' ],
 				[ 'en', 'fr' ],
 				EngineBase::WARN_ON_INVALID_LANGS,
 				EngineBase::ERROR_ON_INVALID_LANGS,
 			],
 			[
-				'engine' => $this->instatiateEngine( 'transkribus' ),
+				'engine' => $this->instantiateEngine( 'transkribus' ),
 				[ 'en-b2022', 'fr-m1' ],
 				[ 'en-b2022', 'fr-m1' ],
 				EngineBase::WARN_ON_INVALID_LANGS,
@@ -165,7 +165,7 @@ class EngineBaseTest extends OcrTestCase {
 		static::assertNotEmpty( $this->transkribusEngine->getValidLineIds( true, true ), "Missing line IDs" );
 	}
 
-	public function instatiateEngine( string $engineName ): EngineBase {
+	public function instantiateEngine( string $engineName ): EngineBase {
 		self::bootKernel();
 		$this->projectDir = self::$kernel->getProjectDir();
 		$intuition = new Intuition();
@@ -188,8 +188,6 @@ class EngineBaseTest extends OcrTestCase {
 			case 'transkribus':
 				$transkribusEngine = new TranskribusEngine(
 					new TranskribusClient(
-						getenv( 'APP_TRANSKRIBUS_ACCESS_TOKEN' ),
-						getenv( 'APP_TRANSKRIBUS_REFRESH_TOKEN' ),
 						getenv( 'APP_TRANSKRIBUS_USERNAME' ),
 						getenv( 'APP_TRANSKRIBUS_PASSWORD' ),
 						new MockHttpClient(),

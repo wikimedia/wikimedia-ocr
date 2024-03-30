@@ -8,4 +8,5 @@ nelmio_api_doc:
         path_patterns:
             - ^/api$
             - ^/api/available_langs$
+            - ^/api/tesseract/available_psms$
             - ^/api/transkribus/available_line_ids$

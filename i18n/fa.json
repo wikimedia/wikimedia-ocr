@@ -2,8 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"Darafsh",
+			"Ebraminio",
 			"Jeeputer",
-			"Mfatemi"
+			"Mfatemi",
+			"Yoosef Pooranvary"
 		]
 	},
 	"title": "OCR ویکی‌مدیا",
@@ -21,9 +23,9 @@
 	"submit-crop": "ناحیه رونویسی",
 	"drag-help": "ابزار برش را انتخاب کرده و چهارگوشی بر روی تصویر زیر بکشید تا فقط یک ناحیه از صفحه رونویسی شود.",
 	"drag-mode-move": "با کشیدن تصویر حرکت خواهد کرد.",
-	"drag-mode-move-alt": "آیکان نشان‌دهنده‌ی عمل «جابجایی»",
+	"drag-mode-move-alt": "آیکان نشان‌دهندهٔ عمل «جابجایی»",
 	"drag-mode-crop": "با کشیدن ناحیه چیدن جدیدی درست خواهد شد",
-	"drag-mode-crop-alt": "آیکان نشان‌دهنده‌ی عمل «چیدن»",
+	"drag-mode-crop-alt": "آیکان نشان‌دهندهٔ عمل «چیدن»",
 	"copy-to-clipboard": "کپی به کلیپ‌بورد",
 	"copied-to-clipboard": "کپی شد!",
 	"google-error": "سرویس گوگل خطایی برگرداند: $1",
@@ -52,5 +54,26 @@
 	"tesseract-psm-12": "متن پراکنده با OSD",
 	"tesseract-psm-13": "خط خام. با تصویر به عنوان یک خط متن رفتار کن و از ترفندهای اختصاصی Tesseract صرف نظر کن.",
 	"tesseract-param-error": "گزینه $1 با مقدار $2 توسط Tesseract پشتیبانی نمی‌شود. مقدار بیشینه: $3",
-	"tesseract-internal-error": "موتور tesseract خطای داخلی برگرداند."
+	"tesseract-internal-error": "موتور tesseract خطای داخلی برگرداند.",
+	"transkribus-language-code": "مدل زبانی",
+	"transkribus-unauthorized-error": "کد خطا ' $1 ' :: درخواست مجاز نیست",
+	"transkribus-default-error": "کد خطا ' $1 ' :: درخواست تکمیل نشد، دوباره امتحان کنید!",
+	"transkribus-empty-response-error": "نتیجه بازگردانی‌شده از API ترنسکریبوس قابل تشخیص و تجزیه نیست",
+	"transkribus-init-process-error": "فرآیند Transkribus راه‌اندازی نشد",
+	"transkribus-failed-process-error": "فرآیند Transkribus ناموفق بود",
+	"transkribus-no-lang-error": "هیچ زبانی را انتخاب نکردید",
+	"transkribus-multiple-lang-error": "نمی‌توانید چند زبان را انتخاب کنید، پس فقط یکی را برگزینید",
+	"transkribus-browse-public-models": "مشاهده همه مدل‌های زبانی در ترنسکریبوس",
+	"transkribus-request-for-model": "ثبت درخواست افزودن یک مدل ترنسکریبوس به ابزار رونویسی",
+	"transkribus-options": "گزینه‌های ترنسکربوس",
+	"transkribus-line-label": "مدل تشخیص خط",
+	"transkribus-line-id-none-option": "هیچ کدام",
+	"transkribus-mixed-line-option": "چیدمان مختلط خطوط",
+	"transkribus-line-help": "اگر نمی‌دانید از کدام مدل تشخیص خطوط استفاده کنید این مورد را خالی بگذارید",
+	"transkribus-jobs": "وظایف ترنسکریبوس",
+	"transkribus-job-id": "وظیفه ID",
+	"transkribus-job-state": "وضعیت",
+	"transkribus-job-description": "توضیحات",
+	"transkribus-job-start": "آغاز شده",
+	"transkribus-job-end": "پایان"
 }
