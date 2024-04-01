@@ -3,7 +3,8 @@
 		"authors": [
 			"Brettchenweber",
 			"Justman10000",
-			"Stefan Weil"
+			"Stefan Weil",
+			"TomatoCake"
 		]
 	},
 	"title": "WikimediaOCR",
@@ -68,5 +69,12 @@
 	"transkribus-line-label": "Modell für Zeilenerkennung",
 	"transkribus-line-id-none-option": "Keines",
 	"transkribus-mixed-line-option": "Unterschiedlich ausgerichtete Textzeilen (Mixed Text Line Orientation)",
-	"transkribus-line-help": "Lassen Sie das Feld leer, wenn Sie nicht sicher sind, welches Modell Sie für die Erkennung der Textzeilen verwenden sollen."
+	"transkribus-line-help": "Lassen Sie das Feld leer, wenn Sie nicht sicher sind, welches Modell Sie für die Erkennung der Textzeilen verwenden sollen.",
+	"transkribus-jobs": "Transkribus-Aufträge",
+	"transkribus-job-id": "Auftragsnummer",
+	"transkribus-job-state": "Status",
+	"transkribus-job-description": "Beschreibung",
+	"transkribus-job-start": "Gestartet",
+	"transkribus-job-end": "Beendet",
+	"transkribus-job-waited": "Startverzögerung (Minuten)"
 }
