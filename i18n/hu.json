@@ -1,18 +1,24 @@
 {
 	"@metadata": {
 		"authors": [
+			"Dj",
 			"Hanna Tardos",
 			"Tacsipacsi"
 		]
 	},
-	"title": "Wikimédia OCR",
-	"image-url": "Kép URL-címe:",
+	"title": "WikimédiaOCR",
+	"subtitle": "Szöveg átírása képekből",
+	"form-heading": "Kép átírása",
+	"image-url": "Kép URL-címe",
 	"image-url-help": "Egy tényleges képfájl teljes URL-je, a következő domainek egyikével: $1",
 	"image-url-error": "A fájlnévnek egy érvényes kiterjesztéssel kell végződnie, és a következő {{PLURAL:$1|domainnévvel|domainnevek egyikével}} kell kezdődnie: $2",
 	"image-alt-text": "Az eredeti kép",
 	"language-code": "Két betűs nyelvkód (nem kötelező):",
-	"engine": "OCR-motor:",
-	"submit": "Mehet",
+	"engine": "OCR-motor",
+	"engine-not-found-warning": "A kért „$1” motor nem található. Ehelyett az alapértelmezett „$2” motort használja.",
+	"engine-invalid-langs-warning": "A következő nyelvek érvénytelenek vagy a motor által nem támogatottak, ezért figyelmen kívül hagyták: $1",
+	"submit": "Az egész oldal átírása",
+	"submit-crop": "Átírási terület",
 	"copy-to-clipboard": "Másolás a vágólapra",
 	"copied-to-clipboard": "Kimásolva!",
 	"google-error": "A Google-szolgáltatás hibát adott vissza: $1",
@@ -22,8 +28,13 @@
 	"report-issue": "Hibabejelentés",
 	"langs-param-error": "Az OCR-motor a következő {{PLURAL:$1|nyelvet|nyelveket}} nem támogatja: $2",
 	"tesseract-options": "Tesseract-beállítások",
+	"transkribus-line-id-none-option": "Nincs",
+	"transkribus-mixed-line-option": "Vegyes vonal tájolás",
+	"transkribus-line-help": "Hagyd üresen, ha nem vagy biztos abban, hogy melyik vonalérzékelési modellt használja",
 	"transkribus-job-id": "Feladatazonosító",
 	"transkribus-job-state": "Állapot",
 	"transkribus-job-description": "Leírás",
-	"transkribus-job-end": "Kész"
+	"transkribus-job-start": "Elindult",
+	"transkribus-job-end": "Kész",
+	"transkribus-job-waited": "Indítási késleltetés (perc)"
 }
