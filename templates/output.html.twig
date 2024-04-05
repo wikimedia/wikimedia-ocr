@@ -66,6 +66,13 @@
             <input type="submit" value="{{ msg( 'submit' ) }}" class="btn btn-info" />
         </div>
 
+        <div class="loader hidden">
+            <p>
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                {{ msg('loading-message') }}
+            </p>
+        </div>
+
         {% if text is defined %}
             <div class="ocr-output">
                 <hr/>
@@ -106,7 +113,6 @@
                 </div>
             </div>
         {% endif %}
-
     </form>
 
 {% endblock %}
