@@ -36,6 +36,7 @@
 	"report-issue": "問題回報",
 	"langs-placeholder": "留空以自動偵測語言",
 	"langs-param-error": "以下{{PLURAL:$1|語言}}不被 OCR 引擎支援：$2",
+	"loading-message": "正在執行轉譯…",
 	"tesseract-options": "Tesseract 選項",
 	"tesseract-psm-label": "頁面拆分方式",
 	"tesseract-psm-help": "嘗試「稀疏文字」來獲得較好的多行支援。",

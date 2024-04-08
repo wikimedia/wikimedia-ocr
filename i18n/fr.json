@@ -3,6 +3,7 @@
 		"authors": [
 			"Ajeje Brazorf",
 			"Gomoko",
+			"Hecatonchire",
 			"JenyxGym",
 			"Verdy p",
 			"Wladek92"
@@ -40,6 +41,7 @@
 	"report-issue": "Signaler un problème",
 	"langs-placeholder": "Laissez vide pour la détection automatique de la langue.",
 	"langs-param-error": "L{{PLURAL:$1|a|es}} langue{{PLURAL:$1||s}} suivante{{PLURAL:$1||s}} {{PLURAL:$1|n’est|ne sont}} plus prise{{PLURAL:$1||s}} en charge par le moteur ROC : $2",
+	"loading-message": "Transcription en cours...",
 	"tesseract-options": "Options de Tesseract",
 	"tesseract-psm-label": "Méthode de segmentation de page",
 	"tesseract-psm-help": "Essayer « Texte épars » pour une meilleure prise en charge du multicolonnage.",
