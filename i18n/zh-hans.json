@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			")8",
+			"Anterdc99",
 			"Crowley666",
 			"GuoPC",
 			"Shizhao",
@@ -38,6 +39,7 @@
 	"report-issue": "报告问题",
 	"langs-placeholder": "留空以进行自动语言检测。",
 	"langs-param-error": "以下{{PLURAL:$1|语言}}不受OCR引擎支持：$2",
+	"loading-message": "正在执行转录...",
 	"tesseract-options": "Tesseract选项",
 	"tesseract-psm-label": "页面拆分方式",
 	"tesseract-psm-help": "尝试“稀疏文本”来获得更好的多列支持。",
