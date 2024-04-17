@@ -73,6 +73,7 @@ abstract class EngineBase {
 		'ko-vert' => '한국어 (세로)',
 		'kur' => 'کوردی',
 		'la-caro' => 'Carolingian Minuscule Model CMM 9th-11th c.',
+		'la-in' => 'Latin Incunabula (Reichenau)',
 		'la-med' => 'UCL–University of Toronto #7',
 		'la-neo' => 'Pylaia_NeoLatin_Ravenstein',
 		'nl-1605' => 'Admiraliteit Zeeland 1605-1609 compleet',
