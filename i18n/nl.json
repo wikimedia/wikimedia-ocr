@@ -38,6 +38,7 @@
 	"report-issue": "Probleem melden",
 	"langs-placeholder": "Laat leeg voor automatische taaldetectie.",
 	"langs-param-error": "De volgende {{PLURAL:$1|taal wordt|talen worden}} niet ondersteund door de OCR-engine: $2",
+	"loading-message": "Transcriptie uitvoeren...",
 	"tesseract-options": "Tesseract-opties",
 	"tesseract-psm-label": "Pagina-segmentatiemethode",
 	"tesseract-psm-help": "Probeer \"Schaarse tekst\" voor een betere ondersteuning van meerdere kolommen.",

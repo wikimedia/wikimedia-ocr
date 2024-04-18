@@ -39,6 +39,7 @@
 	"report-issue": "Comunicar um problema",
 	"langs-placeholder": "Deixe em branco para detecção automática de idioma.",
 	"langs-param-error": "{{PLURAL:$1|A seguinte língua não é compatível|As seguintes línguas não são compatíveis}} com o motor OCR: $2",
+	"loading-message": "Realizando a transcrição...",
 	"tesseract-options": "Opções do Tesseract",
 	"tesseract-psm-label": "Método de segmentação de páginas",
 	"tesseract-psm-help": "Tente \"Texto esparso\" para melhor suporte a várias colunas.",

@@ -33,6 +33,7 @@
 	"report-issue": "Reportar un problema",
 	"langs-placeholder": "Lassar vacue pro detection automatic de lingua.",
 	"langs-param-error": "Le sequente lingua{{PLURAL:$1||s}} non es supportate per le motor OCR: $2",
+	"loading-message": "Transcription in curso…",
 	"tesseract-options": "Optiones de Tesseract",
 	"tesseract-psm-label": "Methodo de segmentation de pagina",
 	"tesseract-psm-help": "Essaya \"Texto sparse\" pro un melior gestion de plure columnas.",
