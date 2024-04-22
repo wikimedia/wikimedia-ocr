@@ -36,6 +36,7 @@
 	"report-issue": "Ein Problem melden",
 	"langs-placeholder": "Für die automatische Spracherkennung leer lassen.",
 	"langs-param-error": "Die {{PLURAL:$1|folgende Sprache wird|folgenden Sprachen werden}} von der OCR-Engine nicht unterstützt: $2",
+	"loading-message": "Transkription wird durchgeführt...",
 	"tesseract-options": "Tesseract-Optionen",
 	"tesseract-psm-label": "Verfahren zur Seitensegmentierung",
 	"tesseract-psm-help": "Versuche „Sparse text“ für eine bessere Erkennung mehrspaltiger Texte.",
