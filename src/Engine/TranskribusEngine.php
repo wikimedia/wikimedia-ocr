@@ -55,9 +55,10 @@ class TranskribusEngine extends EngineBase {
 	 * @return string[] Line detection model lang codes or model IDs or model ID names
 	 */
 	public function getValidLineIds( bool $onlyLineIds = false, bool $onlyLineIdLangs = false ): array {
+		$langs = $this->getLangList() [ static::getId() ];
 		$filteredLangList = array_filter(
-			$this->getLangList(), function ( $values ) {
-				return isset( $values[static::getId()]['line'] );
+			$langs, function ( $value ) {
+				return $value[ 'line' ] !== "" ;
 			}
 		);
 
@@ -77,7 +78,7 @@ class TranskribusEngine extends EngineBase {
 		// create a list that maps from line detection model ID to line detection model name
 		$list = [];
 		foreach ( $lineIdLangs as $lineIDKey ) {
-			$list[$filteredLangList[$lineIDKey][static::getId()]['line']] = $lineIDList[$lineIDKey];
+			$list[ $filteredLangList[ $lineIDKey ][ 'line' ] ] = $lineIDList[ $lineIDKey ];
 		}
 
 		// return only the line detection model IDs
