@@ -31,7 +31,7 @@ abstract class EngineBase {
 	/** @var HttpClientInterface */
 	private $httpClient;
 
-	/** @var string[][] Local PHP array copy of langs.json */
+	/** @var string[][] Local PHP array copy of models.json */
 	protected $langList;
 
 	/** @var string[] Additional localized names for non-standard language codes. */
@@ -137,7 +137,7 @@ abstract class EngineBase {
 	): EngineResult;
 
 	/**
-	 * Get the language list from langs.json
+	 * Get the language list from models.json
 	 * @return mixed[][]
 	 */
 	public function getLangList(): array {

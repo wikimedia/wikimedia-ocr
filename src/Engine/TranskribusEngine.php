@@ -64,7 +64,7 @@ class TranskribusEngine extends EngineBase {
 
 		$lineIdLangs = array_keys( $filteredLangList );
 
-		// return only the lang names as written in the langs.json file
+		// return only the lang names as written in the models.json file
 		if ( $onlyLineIdLangs ) {
 			return $lineIdLangs;
 		}
