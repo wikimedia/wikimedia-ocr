@@ -142,7 +142,7 @@ abstract class EngineBase {
 	 */
 	public function getLangList(): array {
 		if ( !$this->langList ) {
-			$this->langList = json_decode( file_get_contents( $this->projectDir . '/public/langs.json' ), true );
+			$this->langList = json_decode( file_get_contents( $this->projectDir . '/public/models.json' ), true );
 		}
 
 		return $this->langList;
@@ -154,18 +154,17 @@ abstract class EngineBase {
 	 * @return string[] ISO 639-1 codes, optionally as keys with language names as the values.
 	 */
 	public function getValidLangs( bool $withNames = false ): array {
-		$langs = array_keys( array_filter( $this->getLangList(), function ( $values ) {
-			return isset( $values[static::getId()] );
-		} ) );
-
-		if ( !$withNames ) {
-			return $langs;
-		}
-
-		// Add the localized names for each language.
+		$langs = $this->getLangList()[ static::getId() ];
 		$list = [];
-		foreach ( $langs as $lang ) {
-			$list[$lang] = $this->getLangName( $lang );
+		if ( !$withNames ) {
+			foreach ( $langs as $lang => $value ) {
+				$list[] = $lang;
+			}
+		} else {
+			// Add the localized names for each language.
+			foreach ( $langs as $lang => $value ) {
+				$list[ $lang ] = $value[ 'title' ];
+			}
 		}
 
 		return $list;
