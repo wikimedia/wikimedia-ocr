@@ -85,6 +85,7 @@ abstract class EngineBase {
 		'pl-m2' => 'Transkribus Polish M2',
 		'pt-m1' => 'General Portuguese M1',
 		'pt-17' => 'SPJCL17C V4.2',
+		'pt-hd' => 'Portuguese Handwriting 16th-19th century',
 		'ro-print' => 'RTA2 (Romanian Transition Alphabet)',
 		'rus-hd-2' => 'Russian generic handwriting 2',
 		'rus-print' => 'Russian print of the 18th century',
