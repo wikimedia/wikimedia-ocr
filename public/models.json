@@ -20,8 +20,8 @@
             "languages": ["az"],
             "title": "azərbaycanca"
         },
-        "az-Cyrl": {
-            "languages": ["az-Cyrl"],
+        "az-cyrl": {
+            "languages": ["az","Cyrl"],
             "title": "Azərbaycan (qədim yazı)"
         },
         "be": {
@@ -156,8 +156,8 @@
             "languages": ["gu"],
             "title": "ગુજરાતી"
         },
-        "he": {
-            "languages": ["iw"],
+        "iw": {
+            "languages": ["he"],
             "title": "עברית"
         },
         "hi": {
@@ -278,7 +278,7 @@
         },
         "nl": {
             "languages": ["nl"],
-            "title": "Nederlands"
+            "title": "Dutch"
         },
         "no": {
             "languages": ["no"],
@@ -320,8 +320,8 @@
             "languages": ["ru"],
             "title": "русский"
         },
-        "ru-petr1708": {
-            "languages": [],
+        "ru-PETR1708": {
+            "languages": ["ru"],
             "title": "Русский (старая орфография)"
         },
         "sa": {
@@ -408,10 +408,6 @@
             "languages": ["uk"],
             "title": "українська"
         },
-        "ur": {
-            "languages": ["ur"],
-            "title": "اردو"
-        },
         "uz": {
             "languages": ["uz"],
             "title": "oʻzbekcha/ўзбекча"
@@ -435,14 +431,6 @@
         "zh": {
             "languages": ["zh"],
             "title": "中文"
-        },
-        "zh-Hans": {
-            "languages": ["zh-Hans"],
-            "title": "中文（简体)"
-        },
-        "zh-Hant": {
-            "languages": ["zh-Hant"],
-            "title": "中文（繁體"
         },
         "zu": {
             "languages": ["zu"],
@@ -764,7 +752,7 @@
         },
         "nld": {
             "languages": ["nl"],
-            "title": "Nederlands"
+            "title": "Dutch"
         },
         "nor": {
             "languages": ["no"],

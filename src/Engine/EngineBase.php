@@ -189,7 +189,7 @@ abstract class EngineBase {
 	public function getLangCodes( array $langs ): array {
 		return array_map( function ( $lang ) {
 			$language = $this->getLangList()[static::getId()][$lang];
-			return $language['languages'][0];
+			return isset($language) ? $lang : '';
 		}, $langs );
 	}
 
