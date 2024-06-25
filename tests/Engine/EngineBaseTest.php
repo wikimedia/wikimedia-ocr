@@ -111,8 +111,8 @@ class EngineBaseTest extends OcrTestCase {
 		return [
 			[
 				'engine' => $this->instantiateEngine( 'tesseract' ),
-				[ 'en', 'fr' ],
-				[ 'en', 'fr' ],
+				[ 'eng', 'fra' ],
+				[ 'eng', 'fra' ],
 				EngineBase::WARN_ON_INVALID_LANGS,
 				EngineBase::ERROR_ON_INVALID_LANGS,
 			],
@@ -131,8 +131,8 @@ class EngineBaseTest extends OcrTestCase {
 	 * @covers EngineBase::getLangCodes
 	 */
 	public function testLangCodes(): void {
-		static::assertSame( [ 'eng', 'fra' ], $this->tesseractEngine->getLangCodes( [ 'en', 'fr' ] ) );
-		static::assertSame( [ 'en', 'iw' ], $this->googleEngine->getLangCodes( [ 'en', 'he' ] ) );
+		static::assertSame( [ 'eng', 'fra' ], $this->tesseractEngine->getLangCodes( [ 'eng', 'fra' ] ) );
+		static::assertSame( [ 'en', 'iw' ], $this->googleEngine->getLangCodes( [ 'en', 'iw' ] ) );
 	}
 
 	/**

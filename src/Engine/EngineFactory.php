@@ -32,9 +32,9 @@ class EngineFactory {
 	 * @return TesseractEngine|GoogleCloudVisionEngine|TranskribusEngine
 	 */
 	public function get( string $name ): EngineBase {
-		if ( !isset( $this->engines[$name] ) ) {
+		if ( !isset( $this->engines[ $name ] ) ) {
 			throw new EngineNotFoundException();
 		}
-		return $this->engines[$name];
+		return $this->engines[ $name ];
 	}
 }
