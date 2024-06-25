@@ -72,7 +72,7 @@ class TranskribusEngine extends EngineBase {
 		// create a list that maps from lang name to line detection model name
 		$lineIDList = [];
 		foreach ( $lineIdLangs as $lineIdLang ) {
-			$lineIDList[$lineIdLang] = $this->getLineIdModelName( $lineIdLang );
+			$lineIDList[ $lineIdLang ] = $this->getLineIdModelName( $lineIdLang );
 		}
 
 		// create a list that maps from line detection model ID to line detection model name
@@ -95,7 +95,7 @@ class TranskribusEngine extends EngineBase {
 	 * @return string
 	 */
 	public function getLineIdModelName( ?string $lineIdLang = null ): string {
-		return self::LINE_ID_MODEL_NAMES[$lineIdLang];
+		return self::LINE_ID_MODEL_NAMES[ $lineIdLang ];
 	}
 
 	/**

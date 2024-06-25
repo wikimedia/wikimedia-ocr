@@ -177,7 +177,7 @@ abstract class EngineBase {
 	 */
 	public function getLangName( ?string $lang = null ): string {
 		return $this->intuition->getLangName( $lang ) === ''
-			? ( self::LANG_NAMES[$lang] ?? '' )
+			? ( self::LANG_NAMES[ $lang ] ?? '' )
 			: $this->intuition->getLangName( $lang );
 	}
 
@@ -189,7 +189,7 @@ abstract class EngineBase {
 	public function getLangCodes( array $langs ): array {
 		return array_map( function ( $lang ) {
 			$language = $this->getLangList()[ static::getId() ][ $lang ];
-			return isset($language) ? $lang : '';
+			return isset( $language ) ? $lang : '';
 		}, $langs );
 	}
 
