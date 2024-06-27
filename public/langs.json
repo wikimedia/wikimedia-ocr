@@ -532,6 +532,11 @@
             "htr": 52754
         }
     },
+    "pt-hd": {
+        "transkribus": {
+            "htr": 53270
+        }
+    },
     "ur": {
         "tesseract": "urd",
         "google": "ur"
