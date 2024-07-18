@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Умар"
+		]
+	},
+	"title": "ВикимедиаOCR",
+	"subtitle": "Суьрташ тӀера текст йеша",
+	"form-heading": "Сурт схьадастар",
+	"image-url": "Суьртан URL",
+	"image-url-help": "Викимедиа-сервер тӀехь хӀоттийначу суьртан URL чуйилла, масала: $1.",
+	"image-alt-text": "Йуьхьанцара сурт",
+	"language-code": "Меттанаш (тӀехь дац)",
+	"submit": "Йерриг агӀо транскрипци йан",
+	"copy-to-clipboard": "Хийцаран буфере копийан.",
+	"copied-to-clipboard": "Копийина!",
+	"google-error": "Google сервисо йухадерзийна гӀалаташ: $1.",
+	"image-retrieval-failed": "Сурт схьаэца аьтто ца баьлла: $1.",
+	"documentation": "Документаци",
+	"api-tooltip": "API документаци хьажа",
+	"version": "Верси $1",
+	"report-issue": "Проблемех хаам бар",
+	"langs-placeholder": "Мотт авто къастош, меттиг йаьсса йита.",
+	"langs-param-error": "ОРТ моторо ловш дай рогӀера {{PLURAL:$1|меттанаш}}: $2.",
+	"tesseract-options": "Tesseract нисдаран гӀирс",
+	"tesseract-psm-label": "АгӀонан сегментацин кеп"
+}
