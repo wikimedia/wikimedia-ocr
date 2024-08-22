@@ -11,6 +11,7 @@
 	"image-url-help": "Викимедиа-сервер тӀехь хӀоттийначу суьртан URL чуйилла, масала: $1.",
 	"image-alt-text": "Йуьхьанцара сурт",
 	"language-code": "Меттанаш (тӀехь дац)",
+	"engine": "OCR бух",
 	"submit": "Йерриг агӀо транскрипци йан",
 	"copy-to-clipboard": "Хийцаран буфере копийан.",
 	"copied-to-clipboard": "Копийина!",
@@ -23,5 +24,6 @@
 	"langs-placeholder": "Мотт авто къастош, меттиг йаьсса йита.",
 	"langs-param-error": "ОРТ моторо ловш дай рогӀера {{PLURAL:$1|меттанаш}}: $2.",
 	"tesseract-options": "Tesseract нисдаран гӀирс",
-	"tesseract-psm-label": "АгӀонан сегментацин кеп"
+	"tesseract-psm-label": "АгӀонан сегментацин кеп",
+	"transkribus-job-description": "Цуьнах лаьцна"
 }
