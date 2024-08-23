@@ -7,6 +7,7 @@ use App\Exception\OcrException;
 use Krinkle\Intuition\Intuition;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use thiagoalessio\TesseractOCR\TesseractOCR;
+use thiagoalessio\TesseractOCR\UnsuccessfulCommandException;
 
 class TesseractEngine extends EngineBase {
 
@@ -69,7 +70,17 @@ class TesseractEngine extends EngineBase {
 		// so we have to load this one manually. We only process one image at a time, so don't benefit from
 		// multiple threads. See https://github.com/tesseract-ocr/tesseract/issues/898 for some more info.
 		putenv( 'OMP_THREAD_LIMIT=1' );
-		$text = $this->ocr->run();
+		try {
+			$text = $this->ocr->run();
+		} catch ( UnsuccessfulCommandException $e ) {
+			// An UnsuccessfulCommandException is thrown when there's no output, but that's not an
+			// actual error so we check for it here and just show a warning. The same exception class
+			// is also used for other things, hence the message check here.
+			if ( strpos( $e->getMessage(), 'The command did not produce any output' ) !== false ) {
+				return new EngineResult( '', [ $this->intuition->msg( 'tesseract-no-text-error' ) ] );
+			}
+			throw $e;
+		}
 
 		$warnings = $invalidLangs ? [ $this->getInvalidLangsWarning( $invalidLangs ) ] : [];
 		return new EngineResult( $text, $warnings );
