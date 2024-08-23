@@ -52,7 +52,7 @@
     "tesseract-psm-13": "Raw line. Treat the image as a single text line, bypassing hacks that are Tesseract-specific.",
     "tesseract-param-error": "The '$1' option with a value of $2 is not supported by Tesseract. Maximum value: $3",
     "tesseract-no-text-error": "The Tesseract engine did not return any text for this image.",
-    "tesseract-internal-error": "The Tesseract engine returned an internal error.",
+    "tesseract-internal-error": "The tesseract engine returned an internal error.",
     "transkribus-language-code": "Language Model",
     "transkribus-unauthorized-error": "Error Code '$1' :: The request is not authorized",
     "transkribus-default-error": "Error Code '$1' ::  Unable to complete request, try again!",
