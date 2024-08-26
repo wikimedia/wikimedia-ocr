@@ -349,6 +349,9 @@
         "google": "ja"
     },
     "jv": {
+        "transkribus": {
+            "htr": 116013
+        },
         "tesseract": "jav",
         "google": "jv"
     },
