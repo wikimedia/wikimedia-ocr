@@ -71,6 +71,7 @@ abstract class EngineBase {
 		'hu-hand-19' => 'Hungarian handwriting 19th–20th cent.',
 		'it-old' => 'italiano antico',
 		'it-hd-m1' => 'Transkribus Italian Handwriting M1',
+		'jv-01' => 'Javanese model v0.1 b06/24',
 		'ka-old' => 'ქართული (ძველი)',
 		'ko-vert' => '한국어 (세로)',
 		'kur' => 'کوردی',
