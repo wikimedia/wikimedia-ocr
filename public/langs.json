@@ -348,6 +348,11 @@
         "tesseract": "jpn",
         "google": "ja"
     },
+    "jv-01": {
+        "transkribus": {
+            "htr": 116013
+        }
+    },
     "jv": {
         "tesseract": "jav",
         "google": "jv"
