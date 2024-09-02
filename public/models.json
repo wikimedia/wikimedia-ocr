@@ -519,7 +519,11 @@
             "title": "Deutsch"
         },
         "frk": {
-            "languages": ["de-frk"],
+            "languages": ["de"],
+            "title": "Deutsch (Fraktur)"
+        },
+        "deu_latf": {
+            "languages": ["de"],
             "title": "Deutsch (Fraktur)"
         },
         "dzo": {
