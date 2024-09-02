@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Apple TD",
+			"MathXplore",
+			"もなー(偽物)",
+			"組曲師"
+		]
+	},
+	"title": "WikimediaOCR",
+	"subtitle": "画像からテキストを書き写す",
+	"image-url": "画像のURL",
+	"language-code": "言語（オプション）",
+	"engine": "OCRエンジン",
+	"engine-name-transkribus": "トランスクリバス OCR",
+	"copied-to-clipboard": "コピーしました",
+	"version": "バージョン $1",
+	"report-issue": "問題を報告",
+	"langs-placeholder": "自動言語検出のために空白のままにします。",
+	"transkribus-no-lang-error": "言語が選択されていません",
+	"transkribus-browse-public-models": "Transkribus のすべての公開言語モデルを閲覧する",
+	"transkribus-request-for-model": "Transkribus から OCR ツールにモデルを追加するリクエストを行う",
+	"transkribus-line-id-none-option": "なし",
+	"transkribus-job-id": "ジョブID",
+	"transkribus-job-state": "進捗",
+	"transkribus-job-description": "説明",
+	"transkribus-job-start": "開始",
+	"transkribus-job-end": "終了"
+}

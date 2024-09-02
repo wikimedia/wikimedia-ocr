@@ -3,8 +3,10 @@
 		"authors": [
 			"Ankry",
 			"Chrumps",
+			"Frozengeist",
 			"Strebski",
-			"WaldiSt"
+			"WaldiSt",
+			"Woytecr"
 		]
 	},
 	"title": "WikimediaOCR",
@@ -33,8 +35,14 @@
 	"version": "Wersja $1",
 	"report-issue": "Zgłoś problem",
 	"langs-placeholder": "Pozostaw puste aby automatycznie rozpoznać język.",
+	"loading-message": "Wykonywanie transkrypcji...",
 	"tesseract-options": "Opcje tesseract",
+	"tesseract-psm-label": "Metoda segmentacji stron",
 	"tesseract-internal-error": "Silnik tesseract zgłosił błąd wewnętrzny.",
 	"transkribus-browse-public-models": "Przeglądaj wszystkie modele języka publicznego dla Transkribus",
-	"transkribus-request-for-model": "Złóż wniosek o dodanie modelu z Transkribus do narzędzia OCR"
+	"transkribus-request-for-model": "Złóż wniosek o dodanie modelu z Transkribus do narzędzia OCR",
+	"transkribus-job-description": "Opis",
+	"transkribus-job-start": "Rozpoczęto",
+	"transkribus-job-end": "Zakończono",
+	"transkribus-job-waited": "Opóźnienie startu (minuty)"
 }

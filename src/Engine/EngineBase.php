@@ -36,6 +36,8 @@ abstract class EngineBase {
 
 	/** @var string[] Additional localized names for non-standard language codes. */
 	public const LANG_NAMES = [
+		'Fraktur' => 'Fraktur script',
+		'Latin' => 'Latin script',
 		'az-cyrl' => 'Azərbaycan (qədim yazı)',
 		'bali' => 'Balinese palm-leaf manuscripts 16th century',
 		'ben-print' => 'Bengali Printed Books +150 New',
@@ -69,6 +71,7 @@ abstract class EngineBase {
 		'hu-hand-19' => 'Hungarian handwriting 19th–20th cent.',
 		'it-old' => 'italiano antico',
 		'it-hd-m1' => 'Transkribus Italian Handwriting M1',
+		'jv-01' => 'Javanese model v0.1 b06/24',
 		'ka-old' => 'ქართული (ძველი)',
 		'ko-vert' => '한국어 (세로)',
 		'kur' => 'کوردی',
@@ -85,6 +88,7 @@ abstract class EngineBase {
 		'pl-m2' => 'Transkribus Polish M2',
 		'pt-m1' => 'General Portuguese M1',
 		'pt-17' => 'SPJCL17C V4.2',
+		'pt-hd' => 'Portuguese Handwriting 16th-19th century',
 		'ro-print' => 'RTA2 (Romanian Transition Alphabet)',
 		'rus-hd-2' => 'Russian generic handwriting 2',
 		'rus-print' => 'Russian print of the 18th century',
@@ -99,7 +103,7 @@ abstract class EngineBase {
 		'uz-cyrl' => 'oʻzbekcha',
 		'uk-20th-print' => 'Printed Ukrainian 20th century',
 		'uk-generic-handwriting-1' => 'Ukrainian generic handwriting 1',
-		'uk-wikisource-print' => 'Ukranian Wikisource Print',
+		'uk-wikisource-print' => 'Ukrainian Wikisource Print',
 		'yi-hd' => 'The Dybbuk for Yiddish Handwriting'
 	];
 

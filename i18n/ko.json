@@ -2,13 +2,16 @@
 	"@metadata": {
 		"authors": [
 			"Apzp79",
+			"Suleiman the Magnificent Television",
 			"Ykhwong",
 			"그냥기여자"
 		]
 	},
 	"title": "위키미디어OCR",
+	"subtitle": "이미지로부터 텍스트를 변환",
 	"form-heading": "이미지를 복사하기",
 	"image-url": "이미지 URL",
+	"image-url-help": "위키미디어 서버에 호스팅된 이미지 URL를 삽입하여 다음을 입력합니다: $1",
 	"image-alt-text": "원본 이미지",
 	"language-code": "언어 (선택사항)",
 	"engine": "OCR 엔진",

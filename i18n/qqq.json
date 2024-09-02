@@ -58,6 +58,7 @@
 	"tesseract-psm-12": "Form option for Tesseract page segmentation mode.",
 	"tesseract-psm-13": "Form option for Tesseract page segmentation mode.",
 	"tesseract-param-error": "Error message displayed when invalid values for Tesseract options are submitted.\n\nParameters:\n* $1 – the form label for the option. Currently, the only possible value here is {{msg-wm|wikimedia-ocr-tesseract-psm-label}}.\n* $2 – The value that was given.\n* $3 – the maximum value for the option (this will be an integer).",
+	"tesseract-no-text-error": "Error message displayed when Tesseract returned no text (e.g. for an image that has no text in it).",
 	"tesseract-internal-error": "Generic error message displayed when the tesseract command fails.",
 	"transkribus-language-code": "Form label for the 'Language Model' field for the Transkribus engine",
 	"transkribus-unauthorized-error": "Error message displayed when Transkribus access token has expired or login credentials are invalid.",

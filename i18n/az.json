@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nemoralis",
+			"Toghrul Rahimli",
+			"Şeyx Şamil"
+		]
+	},
+	"subtitle": "Şəkillərdən mətni transkripsiya edin",
+	"form-heading": "Şəkli transkripsiya edin",
+	"image-url": "Şəkil URL",
+	"image-url-help": "Vikimedia serverində yerləşdirilən şəkil URL-ni daxil edin, məsələn: $1",
+	"image-url-error": "Şəkil URL-i {{PLURAL:$1|aşağıdakı domen adı|aşağıdakı domen adlarından biri}} ilə başlamalıdır  və etibarlı fayl uzantısı ilə bitməlidir: $2",
+	"image-alt-text": "Orijinal şəkil",
+	"language-code": "Dillər (qeyri-məcburi)",
+	"engine": "OCR motoru",
+	"engine-not-found-warning": "Tələb olunan \"$1\" mühərriki tapılmadı. Əvəzində defolt mühərrik olan \"$2\" istifadə edin.",
+	"engine-invalid-langs-warning": "Aşağıdakı dillər etibarsızdır və ya mühərrik tərəfindən dəstəklənmir və nəzərə alınmayıb: $1",
+	"submit": "Bütün səhifəni transkripsiya et",
+	"submit-crop": "Transkripsiya sahəsi",
+	"drag-help": "Kəsmə alətini seçin və səhifənin yalnız bir sahəsini transkripsiya etmək üçün aşağıdakı şəkildə düzbucaqlı çəkin.",
+	"drag-mode-move": "Sürüşdürdükdə şəkil hərəkət edəcək",
+	"drag-mode-move-alt": "\"Yerini dəyiş\" hərəkətini təmsil edən ikona.",
+	"copy-to-clipboard": "Mübadilə buferinə kopyala",
+	"copied-to-clipboard": "Kopyalandı!",
+	"documentation": "Sənədləşdirmə",
+	"api-tooltip": "API sənədləşdirməsinə bax",
+	"version": "$1 versiyası",
+	"report-issue": "Bir problem bildir"
+}

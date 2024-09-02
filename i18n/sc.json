@@ -33,6 +33,7 @@
 	"report-issue": "Sinnala unu problema",
 	"langs-placeholder": "Lassa bòidu pro su reconnoschimentu automàticu de sa limba.",
 	"langs-param-error": "{{PLURAL:$1|Sa limba chi sighit no est suportada|Sas limbas chi sighint non sunt suportadas}} dae su motore OCR: $2",
+	"loading-message": "Faghende sa trascritzione...",
 	"tesseract-options": "Optziones de Tesseract",
 	"tesseract-psm-label": "Mètodu de segmentatzione de sas pàginas",
 	"tesseract-psm-help": "Proa \"Testu ispartzinadu\" pro unu suportu mègius cun colunnas mùltiplas.",

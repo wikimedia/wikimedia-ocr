@@ -1073,6 +1073,11 @@
             "htr": 38440,
             "line": ""
         },
+        "jv-01": {
+            "languages": ["jv"],
+            "title": "Javanese model v0.1 b06/24",
+            "htr": 116013
+        },
         "la-caro": {
             "languages": ["la"],
             "title": "Carolingian Minuscule Model CMM 9th-11th c.",

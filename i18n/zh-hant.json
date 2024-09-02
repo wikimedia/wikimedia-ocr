@@ -55,6 +55,7 @@
 	"tesseract-psm-12": "以 OSD 來稀疏文字。",
 	"tesseract-psm-13": "原始行。將圖片視為一行文字，繞過特定於 Tesseract 的駭客攻擊。",
 	"tesseract-param-error": "帶有值$2的選項「$1」不被 Tesseract 支援。最大值為：$3",
+	"tesseract-no-text-error": "Tesseract 引擎沒有回傳此圖片的任何文字。",
 	"tesseract-internal-error": "Tesseract 引擎返回一個內部錯誤。",
 	"transkribus-language-code": "語言模型",
 	"transkribus-unauthorized-error": "錯誤代碼 '$1' :: 未經授權的請求",
