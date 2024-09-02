@@ -35,10 +35,7 @@ if type jq &> /dev/null; then
   # Sort both just in case, and remove duplicates from the expected list to account for google having more variants that
   # map to the same code in tesseract (e.g. zh and zh-hans)
   AVAILABLE_LANGS=$(tesseract --list-langs | tail -n +2 | sort)
-  # Note: if you need the outer name: `jq -r 'to_entries[] | select(.value.tesseract!=null) | .key' public/models.json`
-  # FIXME: Excluding kur since apparently it's not available for all versions of tesseract (and not included in the
-  # tesseract-ocr-all package)
-  EXPECTED_LANGS=$(jq -r 'to_entries[] | select(.value.tesseract!=null) | .value.tesseract' public/models.json | sort -u | sed "/^kur$/d")
+  EXPECTED_LANGS=$(jq -r '.tesseract | keys | to_entries[] | .value' public/models.json | sort -u )
 
   EXTRA_LOCAL_LANGS=$( comm -23 <( echo "$AVAILABLE_LANGS" ) <( echo "$EXPECTED_LANGS" ) )
   MISSING_LOCAL_LANGS=$( comm -13 <( echo "$AVAILABLE_LANGS" ) <( echo "$EXPECTED_LANGS" ) )

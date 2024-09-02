@@ -458,7 +458,7 @@
             "languages": ["az"],
             "title": "azərbaycanca"
         },
-        "az-cyrl": {
+        "aze_cyrl": {
             "languages": ["aze","cyrl"],
             "title": "Azerbaijani (Cyrillic)"
         },
@@ -689,10 +689,6 @@
         "kmr": {
             "languages": ["ku"],
             "title": "Kurmanji (Kurdish - Latin Script)"
-        },
-        "kur": {
-            "languages": ["kur"],
-            "title": "Kurdish (Arabic Script)"
         },
         "ltz": {
             "languages": ["lb"],
