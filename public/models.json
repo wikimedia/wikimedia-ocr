@@ -1076,7 +1076,8 @@
         "jv-01": {
             "languages": ["jv"],
             "title": "Javanese model v0.1 b06/24",
-            "htr": 116013
+            "htr": 116013,
+            "line": ""
         },
         "la-caro": {
             "languages": ["la"],
