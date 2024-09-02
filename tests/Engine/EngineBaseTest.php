@@ -136,21 +136,21 @@ class EngineBaseTest extends OcrTestCase {
 	}
 
 	/**
-	 * @covers EngineBase::getLangName
-	 * @covers EngineBase::getValidLangs
+	 * @covers EngineBase::getModelName
+	 * @covers EngineBase::getValidModels
 	 */
 	public function testLangNames(): void {
 		// From Intuition.
-		static::assertSame( 'français', $this->tesseractEngine->getLangName( 'fr' ) );
+		static::assertSame( 'français', $this->tesseractEngine->getModelTitle( 'fr' ) );
 
 		// From EngineBase::LANG_NAMES
-		static::assertSame( 'moyen français (1400-1600)', $this->tesseractEngine->getLangName( 'frm' ) );
+		static::assertSame( 'moyen français (1400-1600)', $this->tesseractEngine->getModelTitle( 'frm' ) );
 
 		// Make sure every language has a name.
-		foreach ( $this->tesseractEngine->getValidLangs( true ) as $lang => $name ) {
+		foreach ( $this->tesseractEngine->getValidModels( true ) as $lang => $name ) {
 			static::assertNotEmpty( $name, "Missing lang name for '$lang'" );
 		}
-		foreach ( $this->googleEngine->getValidLangs( true ) as $lang => $name ) {
+		foreach ( $this->googleEngine->getValidModels( true ) as $lang => $name ) {
 			static::assertNotEmpty( $name, "Missing lang name for '$lang'" );
 		}
 	}

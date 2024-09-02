@@ -175,7 +175,7 @@ class OcrController extends AbstractController {
 		$this->setup();
 
 		// Pre-supply available langs for autocompletion in the form.
-		static::$params['available_langs'] = $this->engine->getValidLangs();
+		static::$params['available_langs'] = $this->engine->getValidModels();
 		sort( static::$params['available_langs'] );
 
 		// set empty array to avoid errors while rendering template on non-transkribus engines
@@ -312,7 +312,7 @@ class OcrController extends AbstractController {
 		$this->setup();
 		return $this->getApiResponse( [
 			'engine' => static::$params['engine'],
-			'available_langs' => $this->engine->getValidLangs( true ),
+			'available_langs' => $this->engine->getValidModels( true ),
 		] );
 	}
 

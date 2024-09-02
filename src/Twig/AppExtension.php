@@ -62,7 +62,7 @@ class AppExtension extends AbstractExtension {
 	 * @return string
 	 */
 	public function getOcrLangName( ?string $lang = null ): string {
-		return $this->tesseractEngine->getLangName( $lang );
+		return $this->tesseractEngine->getModelTitle( $lang );
 	}
 
 	/**
