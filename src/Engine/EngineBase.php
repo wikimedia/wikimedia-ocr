@@ -147,7 +147,9 @@ abstract class EngineBase {
 	public function getModelList(): array {
 		if ( !$this->modelList ) {
 			$models = json_decode( file_get_contents( $this->projectDir . '/public/models.json' ), true );
-			$this->modelList = $models[ static::getId() ];
+			if ( $models ) {
+				$this->modelList = $models[ static::getId() ];
+			}
 		}
 
 		return $this->modelList;
@@ -186,8 +188,7 @@ abstract class EngineBase {
 		if ( isset( static::LANG_NAMES[$model] ) ) {
 			return static::LANG_NAMES[$model];
 		}
-		$langName = $this->intuition->getLangName( $model );
-		return $langName ? $langName : '';
+		return $this->intuition->getLangName( $model ) ?: '';
 	}
 
 	/**
