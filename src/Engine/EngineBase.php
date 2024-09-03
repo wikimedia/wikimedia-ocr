@@ -292,7 +292,7 @@ abstract class EngineBase {
 		if ( !$image->needsCropping() ) {
 			// If it doesn't need cropping, use the full image's data.
 			$image->setData( $data );
-			$image->setSize( (int)$imageResponse->getHeaders()[ 'content-length' ][ 0 ] );
+			$image->setSize( (int)$imageResponse->getHeaders()['content-length'][0] );
 		} else {
 			// Otherwise, crop it.
 			$imagine = new Imagine();

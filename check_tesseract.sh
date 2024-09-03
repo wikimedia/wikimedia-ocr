@@ -33,7 +33,7 @@ fi
 
 if type jq &> /dev/null; then
   # Sort both just in case, and remove duplicates from the expected list to account for google having more variants that
-  # map to the same code in tesseract (e.g. zh and zh-hans).
+  # map to the same code in tesseract (e.g. zh and zh-hans)
   # Skip deu_latf as it's not insalled by default yet (but will be in the future).
   AVAILABLE_LANGS=$(tesseract --list-langs | tail -n +2 | sort)
   EXPECTED_LANGS=$(jq -r '.tesseract | keys | to_entries[] | .value' public/models.json | sort -u | sed "/^deu_latf$/d" )
