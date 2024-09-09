@@ -31,8 +31,8 @@ abstract class EngineBase {
 	/** @var HttpClientInterface */
 	private $httpClient;
 
-	/** @var string[][] Local PHP array copy of langs.json */
-	protected $langList;
+	/** @var string[][] Local PHP array copy of models.json */
+	protected $modelList;
 
 	/** @var string[] Additional localized names for non-standard language codes. */
 	public const LANG_NAMES = [
@@ -130,60 +130,65 @@ abstract class EngineBase {
 	 * @param string $imageUrl
 	 * @param string $invalidLangsMode
 	 * @param int[] $crop
-	 * @param string[]|null $langs
+	 * @param string[]|null $models
 	 * @return EngineResult
 	 */
 	abstract public function getResult(
 		string $imageUrl,
 		string $invalidLangsMode,
 		array $crop,
-		?array $langs = null
+		?array $models = null
 	): EngineResult;
 
 	/**
-	 * Get the language list from langs.json
+	 * Get the model list for this engine (from models.json).
 	 * @return mixed[][]
 	 */
-	public function getLangList(): array {
-		if ( !$this->langList ) {
-			$this->langList = json_decode( file_get_contents( $this->projectDir . '/public/langs.json' ), true );
+	public function getModelList(): array {
+		if ( !$this->modelList ) {
+			$models = json_decode( file_get_contents( $this->projectDir . '/public/models.json' ), true );
+			if ( $models ) {
+				$this->modelList = $models[ static::getId() ];
+			}
 		}
 
-		return $this->langList;
+		return $this->modelList;
 	}
 
 	/**
-	 * Get languages accepted by the engine.
-	 * @param bool $withNames Whether to include the localized language name.
-	 * @return string[] ISO 639-1 codes, optionally as keys with language names as the values.
+	 * Get names of models accepted by the engine.
+	 * @param bool $withNames Whether to include the model title (if available).
+	 * @return string[] Model codes, optionally as keys with model titles as the values.
 	 */
-	public function getValidLangs( bool $withNames = false ): array {
-		$langs = array_keys( array_filter( $this->getLangList(), function ( $values ) {
-			return isset( $values[static::getId()] );
-		} ) );
-
+	public function getValidModels( bool $withNames = false ): array {
+		$models = $this->getModelList();
 		if ( !$withNames ) {
-			return $langs;
+			return array_keys( $models );
 		}
 
-		// Add the localized names for each language.
+		// Add the titles for each model.
 		$list = [];
-		foreach ( $langs as $lang ) {
-			$list[$lang] = $this->getLangName( $lang );
+		foreach ( $models as $modelId => $modelDetails ) {
+			$list[$modelId] = $this->getModelTitle( $modelId );
 		}
 
 		return $list;
 	}
 
 	/**
-	 * Get the name of the given language. This adds a few translations that don't exist in Intuition.
-	 * @param string|null $lang
+	 * Get the title of the given model, falling back to a language name if the
+	 * model ID happens to match a language code.
+	 * @param string|null $model
 	 * @return string
 	 */
-	public function getLangName( ?string $lang = null ): string {
-		return $this->intuition->getLangName( $lang ) === ''
-			? ( self::LANG_NAMES[$lang] ?? '' )
-			: $this->intuition->getLangName( $lang );
+	public function getModelTitle( ?string $model = null ): string {
+		if ( isset( $this->getModelList()[ $model ]['title'] ) ) {
+			return $this->getModelList()[ $model ]['title'];
+		}
+		if ( isset( static::LANG_NAMES[$model] ) ) {
+			return static::LANG_NAMES[$model];
+		}
+		return $this->intuition->getLangName( $model ) ?: '';
 	}
 
 	/**
@@ -193,7 +198,8 @@ abstract class EngineBase {
 	 */
 	public function getLangCodes( array $langs ): array {
 		return array_map( function ( $lang ) {
-			return $this->getLangList()[$lang][static::getId()];
+			$language = $this->getModelList()[ $lang ];
+			return isset( $language ) ? $lang : '';
 		}, $langs );
 	}
 
@@ -236,7 +242,7 @@ abstract class EngineBase {
 	 * @throws OcrException If there are invalid languages and $invalidLangsMode is self::ERROR_ON_INVALID_LANGS
 	 */
 	public function filterValidLangs( ?array $langs, string $invalidLangsMode ): array {
-		$invalidLangs = array_values( array_diff( $langs, $this->getValidLangs() ) );
+		$invalidLangs = array_values( array_diff( $langs, $this->getValidModels() ) );
 		if ( !$invalidLangs ) {
 			return [ $langs, [] ];
 		}
