@@ -55,6 +55,7 @@
 	"tesseract-psm-12": "Knapper Text mit OSD.",
 	"tesseract-psm-13": "Rohzeile. Behandelt das Bild wie eine einzelne Textzeile und umgeht damit Tesseract-spezifische Hacks.",
 	"tesseract-param-error": "Die Option „$1“ mit einem Wert von $2 wird von Tesseract nicht unterstützt. Maximaler Wert: $3",
+	"tesseract-no-text-error": "Die Tesseract-Engine hat keinen Text für dieses Bild geliefert.",
 	"tesseract-internal-error": "Die Tesseract-Engine hat einen internen Fehler zurückgegeben.",
 	"transkribus-language-code": "Sprachmodell",
 	"transkribus-unauthorized-error": "Fehlercode '$1' :: Die Anfrage ist nicht autorisiert",
