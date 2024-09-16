@@ -58,6 +58,7 @@
 	"tesseract-psm-12": "דילול הטקסט בעזרת OSD.",
 	"tesseract-psm-13": "שורה גולמית. להתייחס לתמונה כשורת טקסט אחת, ולעקוף אפשרויות מיוחדות לטסרקט.",
 	"tesseract-param-error": "האפשרות $1 עם הערך $2 לא נתמכת על־ידי טסרקט. הערך המרבי הוא $3",
+	"tesseract-no-text-error": "מנוע Tesseract לא החזיר טקסט לתמונה הזאת.",
 	"tesseract-internal-error": "מנוע טסרקט החזיר שגיאה פנימית.",
 	"transkribus-language-code": "מודל שפה",
 	"transkribus-unauthorized-error": "קוד שגיאה ‚$1’ :: הבקשה לא מאומתת",
