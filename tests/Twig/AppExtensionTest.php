@@ -44,8 +44,8 @@ class AppExtensionTest extends OcrTestCase {
 	 * @covers AppExtension::getOcrLangName
 	 */
 	public function testOcrLangName(): void {
-		// Non-standard language code with name defined in EngineBase::LANG_NAMES
-		static::assertSame( 'Azərbaycan (qədim yazı)', $this->ext->getOcrLangName( 'az-cyrl' ) );
+		// Non-standard language code with name defined in models.json
+		static::assertSame( 'Azərbaycan (qədim yazı)', $this->ext->getOcrLangName( 'aze_cyrl' ) );
 
 		// Standard language code (name provided by Intuition)
 		static::assertSame( 'English', $this->ext->getOcrLangName( 'en' ) );

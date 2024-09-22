@@ -90,3 +90,23 @@ Run container
 ```
 ./docker/run.sh
 ```
+
+## Structure of models.json
+
+The engines' model and language information is stored in `/public/models.json`,
+from where it's read and returned in the `/api/available_langs` API endpoint.
+
+OCR engines take zero to many model names (often called 'languages' because
+there's direct mapping to those, but we're moving away from this nomenclature
+now because it doesn't always hold true).
+
+`models.json` is first grouped by engine, and then each engine has a list of models.
+These are identified by a 'model code', which is what the user provides in the `langs[]` parameter.
+For some engines these are passed through to the actual engine process or API,
+but others don't have convenient model names and so we invent them
+and add whatever extra info is needed as additional properties within `models.json`.
+
+In addition to the model code, every model needs to have at least a `title` and `languages` property.
+
+* `title`: This is what's shown (unlocalized) to the user.
+* `languages`: An array of ISO639 language codes. This is (or will be) what's used to group models when the user is browsing them.
