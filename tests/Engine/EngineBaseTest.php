@@ -143,7 +143,7 @@ class EngineBaseTest extends OcrTestCase {
 		// From Intuition.
 		static::assertSame( 'français', $this->tesseractEngine->getModelTitle( 'fr' ) );
 
-		// From EngineBase::LANG_NAMES
+		// From models.json
 		static::assertSame( 'moyen français (1400-1600)', $this->tesseractEngine->getModelTitle( 'frm' ) );
 
 		// Make sure every language has a name.

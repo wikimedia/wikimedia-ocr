@@ -21,7 +21,7 @@
             "title": "azərbaycanca"
         },
         "az-cyrl": {
-            "languages": ["az","Cyrl"],
+            "languages": ["az"],
             "title": "Azərbaycan (qədim yazı)"
         },
         "be": {
@@ -459,8 +459,8 @@
             "title": "azərbaycanca"
         },
         "aze_cyrl": {
-            "languages": ["aze","cyrl"],
-            "title": "Azerbaijani (Cyrillic)"
+            "languages": ["aze"],
+            "title": "Azərbaycan (qədim yazı)"
         },
         "bel": {
             "languages": ["be"],
