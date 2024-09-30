@@ -58,6 +58,8 @@
 	"tesseract-no-text-error": "لم يرد محرك Tesseract أي نص لهذه الصورة.",
 	"tesseract-internal-error": "أظهرت أداة tesseract خطأ داخلي.",
 	"transkribus-language-code": "نموذج اللغة",
+	"transkribus-unauthorized-error": "رمز الخطأ '$1' :: الطلب غير مصرح به",
+	"transkribus-default-error": "رمز الخطأ '$1' :: غير قادر على إكمال الطلب، حاول مرة أخرى!",
 	"transkribus-empty-response-error": "لم يتمكن من تحليل النتيجة من واجهة برمجة تطبيقات Transkribus",
 	"transkribus-init-process-error": "فشل في تهيئة عملية Transkribus",
 	"transkribus-failed-process-error": "فشلت عملية Transkribus",
