@@ -5,6 +5,7 @@
 			"Gomoko",
 			"Hecatonchire",
 			"JenyxGym",
+			"Mahabarata",
 			"Verdy p",
 			"Wladek92"
 		]
@@ -60,6 +61,7 @@
 	"tesseract-psm-12": "Texte épars avec OSD.",
 	"tesseract-psm-13": "Ligne brute. Traiter l’image comme une ligne de texte unique, en sautant les raccourcis spécifiques à Tesseract.",
 	"tesseract-param-error": "L’option « $1 » avec une valeur de $2 n’est pas prise en charge par Tesseract. Valeur maximale : $3",
+	"tesseract-no-text-error": "Le moteur Tesseract n'a renvoyé aucun texte pour cette image.",
 	"tesseract-internal-error": "Le moteur Tesseract a renvoyé une erreur interne.",
 	"transkribus-language-code": "Modèle de langue",
 	"transkribus-unauthorized-error": "Code d’erreur « $1 » : la requête n’est pas autorisée",

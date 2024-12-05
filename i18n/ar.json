@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Dr-Taher",
+			"Meno25",
 			"Mohanad",
 			"Mohanad Kh"
 		]
@@ -15,6 +16,7 @@
 	"image-alt-text": "الصورة الأصلية",
 	"language-code": "اللغات (اختياري)",
 	"engine": "أداة التعرف على الحروف",
+	"engine-name-transkribus": "ترانسكريبوس OCR",
 	"engine-not-found-warning": "لم يتم العثور على الأداة المطلوبة ' $1 '. استخدام الأداة الافتراضية \" $2 \" بدلاً من ذلك.",
 	"engine-invalid-langs-warning": "اللغات التالية غير صالحة أو غير مدعومة من قبل الأداة وجرى تجاهلها: $1",
 	"submit": "نسخ الصفحة بأكملها",
@@ -34,6 +36,7 @@
 	"report-issue": "أبلغ عن مشكلة",
 	"langs-placeholder": "اتركه فارغًا للكشف التلقائي عن اللغة.",
 	"langs-param-error": "التالي {{PLURAL:$1|هذه اللغة|هذه اللغات}} لا يدعمها أداة التعرف على الحروف: $2",
+	"loading-message": "جاري النسخ...",
 	"tesseract-options": "خيارات Tesseract",
 	"tesseract-psm-label": "طريقة تجزئة الصفحة",
 	"tesseract-psm-help": "جرب \"Sparse text\" للحصول على دعم أفضل للأعمدة المتعددة.",
@@ -52,5 +55,28 @@
 	"tesseract-psm-12": "نصوص متفرقة مع OSD.",
 	"tesseract-psm-13": "سطر أولي. تعامل مع الصورة كسطر نصي واحد، متجاوزًا الاختراقات الخاصة بـ Tesseract.",
 	"tesseract-param-error": "لا تدعم Tesseract خيار \"$1\" بقيمة $2. الحد الأقصى للقيمة: $3",
-	"tesseract-internal-error": "أظهرت أداة tesseract خطأ داخلي."
+	"tesseract-no-text-error": "لم يرد محرك Tesseract أي نص لهذه الصورة.",
+	"tesseract-internal-error": "أظهرت أداة tesseract خطأ داخلي.",
+	"transkribus-language-code": "نموذج اللغة",
+	"transkribus-unauthorized-error": "رمز الخطأ '$1' :: الطلب غير مصرح به",
+	"transkribus-default-error": "رمز الخطأ '$1' :: غير قادر على إكمال الطلب، حاول مرة أخرى!",
+	"transkribus-empty-response-error": "لم يتمكن من تحليل النتيجة من واجهة برمجة تطبيقات Transkribus",
+	"transkribus-init-process-error": "فشل في تهيئة عملية Transkribus",
+	"transkribus-failed-process-error": "فشلت عملية Transkribus",
+	"transkribus-no-lang-error": "لم يتم اختيار اللغة",
+	"transkribus-multiple-lang-error": "لا يُسمح باستخدام لغات متعددة، حدد لغة واحدة",
+	"transkribus-browse-public-models": "تصفح جميع نماذج اللغة العامة لـ Transkribus",
+	"transkribus-request-for-model": "قم بتقديم طلب لإضافة نموذج من Transkribus إلى أداة OCR",
+	"transkribus-options": "خيارات ترانسكريبوس",
+	"transkribus-line-label": "نموذج اكتشاف الخط",
+	"transkribus-line-id-none-option": "لا شيء",
+	"transkribus-mixed-line-option": "اتجاه الخط المختلط",
+	"transkribus-line-help": "اتركه فارغًا إذا لم تكن متأكدًا من نموذج اكتشاف الخط الذي يجب استخدامه",
+	"transkribus-jobs": "وظائف ترانسكريبوس",
+	"transkribus-job-id": "معرف الوظيفة",
+	"transkribus-job-state": "الحالة",
+	"transkribus-job-description": "الوصف",
+	"transkribus-job-start": "بدأ",
+	"transkribus-job-end": "انتهى",
+	"transkribus-job-waited": "تأخير البدء (بالدقائق)"
 }

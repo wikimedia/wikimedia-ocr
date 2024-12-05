@@ -6,6 +6,7 @@
 			"Crowley666",
 			"GuoPC",
 			"LittlePaw365",
+			"Midleading",
 			"Shizhao",
 			"Zhang8569",
 			"列维劳德"
@@ -59,6 +60,7 @@
 	"tesseract-psm-12": "使用OSD稀疏文本。",
 	"tesseract-psm-13": "原始行。将图像视为一行文本，绕过特定于Tesseract的黑客攻击。",
 	"tesseract-param-error": "带有值$2的“$1”选项不受Tesseract支持。最大值：$3",
+	"tesseract-no-text-error": "Tesseract 引擎没有返回此图片的任何文本。",
 	"tesseract-internal-error": "tesseract 引擎返回了一个内部错误。",
 	"transkribus-language-code": "语言模型",
 	"transkribus-unauthorized-error": "错误代码“ $1 ”:: 请求未经授权",
