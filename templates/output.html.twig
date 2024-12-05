@@ -48,9 +48,9 @@
                         data-placeholder="{{ msg('langs-placeholder') }}"
                     {% endif %}
                 >
-                    {% for lang in available_langs %}
-                        <option value="{{ lang }}" {% if lang in langs %}selected{% endif %}>
-                            {{- lang }}{% if ocr_lang_name(lang) is not empty %} &ndash; {{ ocr_lang_name(lang) }}{% endif -%}
+                    {% for lang_code,lang_name in available_langs %}
+                        <option value="{{ lang_code }}" {% if lang_code in langs %}selected{% endif %}>
+                            {{- lang_code }} &ndash; {{ lang_name -}}
                         </option>
                     {% endfor %}
                 </select>
