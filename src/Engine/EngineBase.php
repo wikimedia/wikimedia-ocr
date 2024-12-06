@@ -116,18 +116,6 @@ abstract class EngineBase {
 	}
 
 	/**
-	 * Transform the given ISO 639-1 codes into the language codes needed by this type of Engine.
-	 * @param string[] $langs
-	 * @return mixed[]
-	 */
-	public function getLangCodes( array $langs ): array {
-		return array_map( function ( $lang ) {
-			$language = $this->getModelList()[ $lang ];
-			return isset( $language ) ? $lang : '';
-		}, $langs );
-	}
-
-	/**
 	 * Set the allowed image hosts.
 	 * @param string $imageHosts
 	 */

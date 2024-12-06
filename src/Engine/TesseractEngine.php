@@ -62,7 +62,7 @@ class TesseractEngine extends EngineBase {
 		$this->ocr->imageData( $image->getData(), $image->getSize() );
 
 		if ( $validLangs ) {
-			$this->ocr->lang( ...$this->getLangCodes( $validLangs ) );
+			$this->ocr->lang( ...$validLangs );
 		}
 
 		// Env vars are passed through by the thiagoalessio/tesseract_ocr package to the tesseract command,
