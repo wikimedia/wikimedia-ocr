@@ -175,8 +175,8 @@ class OcrController extends AbstractController {
 		$this->setup();
 
 		// Pre-supply available langs for autocompletion in the form.
-		static::$params['available_langs'] = $this->engine->getValidModels();
-		sort( static::$params['available_langs'] );
+		static::$params['available_langs'] = $this->engine->getValidModels( true );
+		ksort( static::$params['available_langs'] );
 
 		// set empty array to avoid errors while rendering template on non-transkribus engines
 		static::$params['available_line_ids'] = [];
@@ -295,7 +295,7 @@ class OcrController extends AbstractController {
 	}
 
 	/**
-	 * Get a list of languages available for use with a specific OCR engine.
+	 * Get a list of models available for use with a specific OCR engine.
 	 *
 	 * @Route("/api/available_langs", name="apiLangs", methods={"GET"})
 	 * @OA\Parameter(
@@ -305,7 +305,7 @@ class OcrController extends AbstractController {
 	 *     example="tesseract",
 	 * @OA\Schema(type="string")
 	 * )
-	 * @OA\Response(response=200, description="List of available language codes and names, in JSON format.")
+	 * @OA\Response(response=200, description="List of available model codes and names, in JSON format.")
 	 * @return JsonResponse
 	 */
 	public function apiAvailableLangsAction(): JsonResponse {
