@@ -240,6 +240,10 @@
             "languages": ["lv"],
             "title": "latviešu"
         },
+        "mad": {
+            "languages": ["mad"],
+            "title": "Madhura, Basa Mathura, بَهاسَ مَدورا Madurese"
+        },
         "mi": {
             "languages": ["mi"],
             "title": "Māori"
