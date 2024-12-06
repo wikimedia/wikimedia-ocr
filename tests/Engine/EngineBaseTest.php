@@ -128,14 +128,6 @@ class EngineBaseTest extends OcrTestCase {
 	}
 
 	/**
-	 * @covers EngineBase::getLangCodes
-	 */
-	public function testLangCodes(): void {
-		static::assertSame( [ 'eng', 'fra' ], $this->tesseractEngine->getLangCodes( [ 'eng', 'fra' ] ) );
-		static::assertSame( [ 'en', 'iw' ], $this->googleEngine->getLangCodes( [ 'en', 'iw' ] ) );
-	}
-
-	/**
 	 * @covers EngineBase::getModelName
 	 * @covers EngineBase::getValidModels
 	 */

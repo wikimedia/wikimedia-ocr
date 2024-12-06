@@ -59,7 +59,7 @@ class GoogleCloudVisionEngine extends EngineBase {
 
 		$imageContext = new ImageContext();
 		if ( $validLangs ) {
-			$imageContext->setLanguageHints( $this->getLangCodes( $validLangs ) );
+			$imageContext->setLanguageHints( $validLangs );
 		}
 
 		if ( !$this->imageAnnotator ) {
