@@ -122,67 +122,103 @@
         },
         "ca": {
             "languages": ["ca"],
-            "title": "català"
+            "title": "Català / Catalan / Latn / Supports handwriting"
         },
         "ceb": {
             "languages": ["ceb"],
-            "title": "Cebuano"
+            "title": "Cebuano / Cebuano / Latn / Supports handwriting"
         },
         "chr": {
             "languages": ["chr"],
-            "title": "ᏣᎳᎩ"
+            "title": "ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ / Cherokee / Cher"
+        },
+        "cr": {
+            "languages": ["cr"],
+            "title": "Cree–Montagnais–Naskapi / Cree / Latn / Mapped / Supports handwriting"
+        },
+        "crh": {
+            "languages": ["crh"],
+            "title": "qırımtatar tili, къырымтатар тили / Crimean Tatar / Latn / Mapped / Supports handwriting"
         },
         "cs": {
             "languages": ["cs"],
-            "title": "čeština"
+            "title": "Čeština / Czech / Latn / Supports handwriting"
+        },
+        "cv": {
+            "languages": ["cv"],
+            "title": "Чӑвашла / Chuvash / Cyrl / Mapped / Supports handwriting"
         },
         "cy": {
             "languages": ["cy"],
-            "title": "Cymraeg"
+            "title": "Cymraeg / Welsh / Latn / Supports handwriting"
         },
         "da": {
             "languages": ["da"],
-            "title": "dansk"
+            "title": "Dansk / Danish / Latn / Supports handwriting"
+        },
+        "dak": {
+            "languages": ["dak"],
+            "title": "Dakhótiyapi, Dakȟótiyapi / Dakota / Latn / Mapped / Supports handwriting"
         },
         "de": {
             "languages": ["de"],
-            "title": "Deutsch"
+            "title": "Deutsch / German / Latn / Supports handwriting"
         },
         "dv": {
             "languages": ["dv"],
-            "title": "ދިވެހިބަސް"
+            "title": "dhivehi, dhivehi-bas / Dhivehi / Thaa"
         },
         "dz": {
             "languages": ["dz"],
-            "title": "ཇོང་ཁ"
+            "title": "རྫོང་ཁ / Dzongkha / Tibt"
+        },
+        "dua": {
+            "languages": ["dua"],
+            "title": "Douala / Duala / Latn / Mapped / Supports handwriting"
+        },
+        "ee": {
+            "languages": ["ee"],
+            "title": "Èʋegbe / Ewe / Latn / Mapped / Supports handwriting"
+        },
+        "efi": {
+            "languages": ["efi"],
+            "title": "Ikɔ Efik / Efik / Latn / Mapped / Supports handwriting"
         },
         "el": {
             "languages": ["el"],
-            "title": "Ελληνικά"
+            "title": "Ελληνικά / Greek / Grek / Supports handwriting"
         },
         "en": {
             "languages": ["en"],
-            "title": "English"
+            "title": "English / English / Latn / Supports handwriting"
         },
         "enm": {
             "languages": ["enm"],
-            "title": "Middle English (1100-1500)"
+            "title": "Middle English (1100-1500) / Middle English / Latn / Supports handwriting"
+        },
+        "en-GB": {
+            "languages": ["en"],
+            "title": "English (British) / English (British) / Latn / Mapped / Supports handwriting"
         },
         "eo": {
             "languages": ["eo"],
-            "title": "Esperanto"
+            "title": "Esperanto / Esperanto / Latn / Supports handwriting"
         },
         "es": {
             "languages": ["es"],
-            "title": "español"
+            "title": "Español / Spanish / Latn / Supports handwriting"
+        },
+        "es-419": {
+            "languages": ["es"],
+            "title": "Español (Latinoamérica) / Spanish (Latin American) / Latn / Mapped / Supports handwriting"
         },
         "et": {
             "languages": ["et"],
-            "title": "eesti"
+            "title": "Eesti keel / Estonian / Latn / Supports handwriting"
         },
         "eu": {
             "languages": ["eu"],
-            "title": "euskara"
+            "title": "Euskara / Basque / Latn / Supports handwriting"
         },
         "fa": {
             "languages": ["fa"],
