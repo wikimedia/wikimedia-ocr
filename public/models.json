@@ -1,53 +1,125 @@
 {
     "google": {
+        "ace": {
+            "languages": ["ace"],
+            "title": "بهسا اچيه / Acehnese / Latn / Mapped / Supports handwriting"
+        },
+        "ach": {
+            "languages": ["ach"],
+            "title": "Lwo / Acholi / Latn / Mapped / Supports handwriting"
+        },
+        "ada": {
+            "languages": ["ada"],
+            "title": "Dangme / Adangme / Latn / Mapped / Supports handwriting"
+        },
         "af": {
             "languages": ["af"],
-            "title": "Afrikaans"
+            "title": "Afrikaans / Afrikaans / Latn / Supports handwriting"
+        },
+        "ak": {
+            "languages": ["ak"],
+            "title": "Akan / Akan / Latn / Mapped / Supports handwriting"
+        },
+        "alg": {
+            "languages": ["alg"],
+            "title": "Anicinâbemowin / Algonquinian / Latn / Mapped / Supports handwriting"
         },
         "am": {
             "languages": ["am"],
-            "title": "አማርኛ"
+            "title": "አማርኛ / Amharic / Ethi"
+        },
+        "ang": {
+            "languages": ["ang"],
+            "title": "AÆnglisc, Englisc, Anglisc / Old English / Latn / Mapped / Supports handwriting"
         },
         "ar": {
             "languages": ["ar"],
-            "title": "العربية"
+            "title": "العربية / Arabic / Arab"
+        },
+        "arn": {
+            "languages": ["arn"],
+            "title": "Mapudungu / Araucanian, Mapuche / Latn / Mapped / Supports handwriting"
         },
         "as": {
             "languages": ["as"],
-            "title": "অসমীয়া"
+            "title": "অসমীয়া / Assamese / Beng / Supports handwriting"
+        },
+        "ast": {
+            "languages": ["ast"],
+            "title": "Asturianu / Asturian / Latn / Mapped / Supports handwriting"
+        },
+        "ath": {
+            "languages": ["ath"],
+            "title": "Dene / Athabaskan / Latn / Mapped / Supports handwriting"
+        },
+        "ay": {
+            "languages": ["ay"],
+            "title": "Aymar aru / Aymara / Latn / Mapped / Supports handwriting"
         },
         "az": {
             "languages": ["az"],
-            "title": "azərbaycanca"
+            "title": "azərbaycanca / Azerbaijani / Latn / Supports handwriting"
         },
         "az-cyrl": {
             "languages": ["az"],
-            "title": "Azərbaycan (qədim yazı)"
+            "title": "Azərbaycan (qədim yazı) / Azerbaijani (Old Orthography) / Cyrl / Supports handwriting"
+        },
+        "ba": {
+            "languages": ["ba"],
+            "title": "башҡорт теле / Bashkir / Cyrl / Mapped / Supports handwriting"
+        },
+        "ban": {
+          "languages": ["ban"],
+          "title": "Bhāṣa Bali / Balinese / Latn / Mapped / Supports handwriting"
+        },
+        "bem": {
+            "languages": ["bem"],
+            "title": "Chibemba / Bemba / Latn / Mapped / Supports handwriting"
         },
         "be": {
             "languages": ["be"],
-            "title": "беларуская"
+            "title": "беларуская / Belarusian / Cyrl / Supports handwriting"
         },
         "bg": {
             "languages": ["bg"],
-            "title": "български"
+            "title": "български / Bulgarian / Cyrl / Supports handwriting"
+        },
+        "bi": {
+            "languages": ["bi"],
+            "title": "Bichelamar / Bislama / Latn / Mapped / Supports handwriting"
+        },
+        "bik": {
+            "languages": ["bik"],
+            "title": "Bikol Naga / Bikol / Latn / Mapped / Supports handwriting"
+        },
+        "bm": {
+            "languages": ["bm"],
+            "title": "Bamanankan / Bambara / Latn / Mapped / Supports handwriting"
         },
         "bn": {
             "languages": ["bn"],
-            "title": "বাংলা"
+            "title": "বাংলা / Bengali / Beng / Supports handwriting"
+        },
+        "bnt": {
+            "languages": ["bnt"],
+            "title": "Narrow Bantu / Bantu / Latn / Mapped / Supports handwriting"
         },
         "bo": {
             "languages": ["bo"],
-            "title": "བོད་ཡིག"
+            "title": "བོད་ཡིག / Tibetan / Tibt"
         },
         "br": {
             "languages": ["br"],
-            "title": "brezhoneg"
+            "title": "Brezhoneg / Breton / Latn / Mapped / Supports handwriting"
         },
         "bs": {
             "languages": ["bs"],
-            "title": "bosanski"
+            "title": "bosanski / Bosnian / Latn / Supports handwriting"
         },
+        "btk": {
+            "languages": ["btk"],
+            "title": "Toba–Batak / Batak / Latn / Mapped / Supports handwriting"
+        }
         "ca": {
             "languages": ["ca"],
             "title": "català"
