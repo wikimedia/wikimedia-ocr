@@ -54,6 +54,7 @@
 	"tesseract-psm-12": "Taburkan teks dengan OSD.",
 	"tesseract-psm-13": "Barisan mentah. Anggap imej sebagai satu baris teks, memintas penggodaman yang khusus Tesseract.",
 	"tesseract-param-error": "Pilihan '$1' dengan nilai $2 adalah tidak disokong oleh Tesseract. Nilai maksimum: $3",
+	"tesseract-no-text-error": "Enjin Tesseract tidak mengembalikan sebarang teks untuk imej ini.",
 	"tesseract-internal-error": "Enjin tesseract mengembalikan ralat dalaman.",
 	"transkribus-language-code": "Model bahasa",
 	"transkribus-unauthorized-error": "Kod Ralat '$1' :: Permintaan tidak dibenarkan",
