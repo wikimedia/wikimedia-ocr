@@ -1,1394 +1,2545 @@
 {
     "google": {
         "ace": {
-            "languages": ["ace"],
-            "title": "بهسا اچيه / Acehnese / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "ace"
+            ],
+            "title": "Acehnese / بهسا اچيه / Latn / Mapped / Supports handwriting"
         },
         "ach": {
-            "languages": ["ach"],
-            "title": "Lwo / Acholi / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "ach"
+            ],
+            "title": "Acholi / Lwo / Latn / Mapped / Supports handwriting"
         },
         "ada": {
-            "languages": ["ada"],
-            "title": "Dangme / Adangme / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "ada"
+            ],
+            "title": "Adangme / Dangme / Latn / Mapped / Supports handwriting"
         },
         "af": {
-            "languages": ["af"],
+            "languages": [
+                "af"
+            ],
             "title": "Afrikaans / Afrikaans / Latn / Supports handwriting"
         },
         "ak": {
-            "languages": ["ak"],
+            "languages": [
+                "ak"
+            ],
             "title": "Akan / Akan / Latn / Mapped / Supports handwriting"
         },
         "alg": {
-            "languages": ["alg"],
-            "title": "Anicinâbemowin / Algonquinian / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "alg"
+            ],
+            "title": "Algonquinian / Anicinâbemowin / Latn / Mapped / Supports handwriting"
         },
         "am": {
-            "languages": ["am"],
-            "title": "አማርኛ / Amharic / Ethi"
+            "languages": [
+                "am"
+            ],
+            "title": "Amharic / አማርኛ / Ethi"
         },
         "ang": {
-            "languages": ["ang"],
-            "title": "AÆnglisc, Englisc, Anglisc / Old English / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "ang"
+            ],
+            "title": "Old English / Ænglisc, Englisc, Anglisc / Latn / Mapped / Supports handwriting"
         },
         "ar": {
-            "languages": ["ar"],
-            "title": "العربية / Arabic / Arab"
+            "languages": [
+                "ar"
+            ],
+            "title": "Arabic / العربية / Arab"
         },
         "arn": {
-            "languages": ["arn"],
-            "title": "Mapudungu / Araucanian, Mapuche / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "arn"
+            ],
+            "title": "Araucanian/Mapuche / Mapudungu / Latn / Mapped / Supports handwriting"
         },
         "as": {
-            "languages": ["as"],
-            "title": "অসমীয়া / Assamese / Beng / Supports handwriting"
+            "languages": [
+                "as"
+            ],
+            "title": "Assamese / অসমীয়া / Beng / Supports handwriting"
         },
         "ast": {
-            "languages": ["ast"],
-            "title": "Asturianu / Asturian / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "ast"
+            ],
+            "title": "Asturian / Asturianu / Latn / Mapped / Supports handwriting"
         },
         "ath": {
-            "languages": ["ath"],
-            "title": "Dene / Athabaskan / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "ath"
+            ],
+            "title": "Athabaskan / Dene / Latn / Mapped / Supports handwriting"
         },
         "ay": {
-            "languages": ["ay"],
-            "title": "Aymar aru / Aymara / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "ay"
+            ],
+            "title": "Aymara / Aymar aru / Latn / Mapped / Supports handwriting"
         },
         "az": {
-            "languages": ["az"],
-            "title": "azərbaycanca / Azerbaijani / Latn / Supports handwriting"
+            "languages": [
+                "az"
+            ],
+            "title": "Azerbaijani / Azərbaycan / Latn / Supports handwriting"
         },
-        "az-cyrl": {
-            "languages": ["az"],
-            "title": "Azərbaycan (qədim yazı) / Azerbaijani (Old Orthography) / Cyrl / Supports handwriting"
+        "az-Cyrl": {
+            "languages": [
+                "az-Cyrl"
+            ],
+            "title": "Azerbaijani / Azərbaycan (qədim yazı) / Cyrl / Supports handwriting"
         },
         "ba": {
-            "languages": ["ba"],
-            "title": "башҡорт теле / Bashkir / Cyrl / Mapped / Supports handwriting"
+            "languages": [
+                "ba"
+            ],
+            "title": "Bashkir / башҡорт теле / Cyrl / Mapped / Supports handwriting"
         },
         "ban": {
-          "languages": ["ban"],
-          "title": "Bhāṣa Bali / Balinese / Latn / Mapped / Supports handwriting"
-        },
-        "bem": {
-            "languages": ["bem"],
-            "title": "Chibemba / Bemba / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "ban"
+            ],
+            "title": "Balinese / Bhāṣa Bali / Latn / Mapped / Supports handwriting"
         },
         "be": {
-            "languages": ["be"],
-            "title": "беларуская / Belarusian / Cyrl / Supports handwriting"
+            "languages": [
+                "be"
+            ],
+            "title": "Belarusian / беларуская / Cyrl / Supports handwriting"
+        },
+        "bem": {
+            "languages": [
+                "bem"
+            ],
+            "title": "Bemba / Chibemba / Latn / Mapped / Supports handwriting"
         },
         "bg": {
-            "languages": ["bg"],
-            "title": "български / Bulgarian / Cyrl / Supports handwriting"
+            "languages": [
+                "bg"
+            ],
+            "title": "Bulgarian / български / Cyrl / Supports handwriting"
         },
         "bi": {
-            "languages": ["bi"],
-            "title": "Bichelamar / Bislama / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "bi"
+            ],
+            "title": "Bislama / Bichelamar / Latn / Mapped / Supports handwriting"
         },
         "bik": {
-            "languages": ["bik"],
-            "title": "Bikol Naga / Bikol / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "bik"
+            ],
+            "title": "Bikol / Bikol Naga / Latn / Mapped / Supports handwriting"
         },
         "bm": {
-            "languages": ["bm"],
-            "title": "Bamanankan / Bambara / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "bm"
+            ],
+            "title": "Bambara / Bamanankan / Latn / Mapped / Supports handwriting"
         },
         "bn": {
-            "languages": ["bn"],
-            "title": "বাংলা / Bengali / Beng / Supports handwriting"
+            "languages": [
+                "bn"
+            ],
+            "title": "Bengali / বাংলা / Beng / Supports handwriting"
         },
         "bnt": {
-            "languages": ["bnt"],
-            "title": "Narrow Bantu / Bantu / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "bnt"
+            ],
+            "title": "Bantu / Narrow Bantu / Latn / Mapped / Supports handwriting"
         },
         "bo": {
-            "languages": ["bo"],
-            "title": "བོད་ཡིག / Tibetan / Tibt"
+            "languages": [
+                "bo"
+            ],
+            "title": "Tibetan / བོད་སྐད་ / Tibt"
         },
         "br": {
-            "languages": ["br"],
-            "title": "Brezhoneg / Breton / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "br"
+            ],
+            "title": "Breton / Brezhoneg / Latn / Mapped / Supports handwriting"
         },
         "bs": {
-            "languages": ["bs"],
-            "title": "bosanski / Bosnian / Latn / Supports handwriting"
+            "languages": [
+                "bs"
+            ],
+            "title": "Bosnian / Bosanski / Latn / Supports handwriting"
         },
         "btk": {
-            "languages": ["btk"],
-            "title": "Toba–Batak / Batak / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "btk"
+            ],
+            "title": "Batak / Toba–Batak / Latn / Mapped / Supports handwriting"
         },
         "ca": {
-            "languages": ["ca"],
-            "title": "Català / Catalan / Latn / Supports handwriting"
+            "languages": [
+                "ca"
+            ],
+            "title": "Catalan / Català / Latn / Supports handwriting"
+        },
+        "ce": {
+            "languages": [
+                "ce"
+            ],
+            "title": "Chechen / нохчийн мотт / noxçiyn mott / Cyrl / Mapped / Supports handwriting"
         },
         "ceb": {
-            "languages": ["ceb"],
+            "languages": [
+                "ceb"
+            ],
             "title": "Cebuano / Cebuano / Latn / Supports handwriting"
         },
+        "cho": {
+            "languages": [
+                "cho"
+            ],
+            "title": "Choctaw / Chahta' / Latn / Mapped / Supports handwriting"
+        },
         "chr": {
-            "languages": ["chr"],
-            "title": "ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ / Cherokee / Cher"
+            "languages": [
+                "chr"
+            ],
+            "title": "Cherokee / ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ / Cher"
         },
         "cr": {
-            "languages": ["cr"],
-            "title": "Cree–Montagnais–Naskapi / Cree / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "cr"
+            ],
+            "title": "Cree / Cree–Montagnais–Naskapi / Latn / Mapped / Supports handwriting"
         },
         "crh": {
-            "languages": ["crh"],
-            "title": "qırımtatar tili, къырымтатар тили / Crimean Tatar / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "crh"
+            ],
+            "title": "Crimean Tatar / qırımtatar tili, къырымтатар тили / Latn / Mapped / Supports handwriting"
         },
         "cs": {
-            "languages": ["cs"],
-            "title": "Čeština / Czech / Latn / Supports handwriting"
+            "languages": [
+                "cs"
+            ],
+            "title": "Czech / Čeština / Latn / Supports handwriting"
         },
         "cv": {
-            "languages": ["cv"],
-            "title": "Чӑвашла / Chuvash / Cyrl / Mapped / Supports handwriting"
+            "languages": [
+                "cv"
+            ],
+            "title": "Chuvash / Чӑвашла / Cyrl / Mapped / Supports handwriting"
         },
         "cy": {
-            "languages": ["cy"],
-            "title": "Cymraeg / Welsh / Latn / Supports handwriting"
+            "languages": [
+                "cy"
+            ],
+            "title": "Welsh / Cymraeg / Latn / Supports handwriting"
         },
         "da": {
-            "languages": ["da"],
-            "title": "Dansk / Danish / Latn / Supports handwriting"
+            "languages": [
+                "da"
+            ],
+            "title": "Danish / Dansk / Latn / Supports handwriting"
         },
         "dak": {
-            "languages": ["dak"],
-            "title": "Dakhótiyapi, Dakȟótiyapi / Dakota / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "dak"
+            ],
+            "title": "Dakota / Dakhótiyapi, Dakȟótiyapi / Latn / Mapped / Supports handwriting"
         },
         "de": {
-            "languages": ["de"],
-            "title": "Deutsch / German / Latn / Supports handwriting"
-        },
-        "dv": {
-            "languages": ["dv"],
-            "title": "dhivehi, dhivehi-bas / Dhivehi / Thaa"
-        },
-        "dz": {
-            "languages": ["dz"],
-            "title": "རྫོང་ཁ / Dzongkha / Tibt"
+            "languages": [
+                "de"
+            ],
+            "title": "German / Deutsch / Latn / Supports handwriting"
         },
         "dua": {
-            "languages": ["dua"],
-            "title": "Douala / Duala / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "dua"
+            ],
+            "title": "Duala / Douala / Latn / Mapped / Supports handwriting"
+        },
+        "dv": {
+            "languages": [
+                "dv"
+            ],
+            "title": "Dhivehi / dhivehi, dhivehi-bas / Thaa"
+        },
+        "dz": {
+            "languages": [
+                "dz"
+            ],
+            "title": "Dzonkha / རྫོང་ཁ / Tibt"
         },
         "ee": {
-            "languages": ["ee"],
-            "title": "Èʋegbe / Ewe / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "ee"
+            ],
+            "title": "Ewe / Èʋegbe / Latn / Mapped / Supports handwriting"
         },
         "efi": {
-            "languages": ["efi"],
-            "title": "Ikɔ Efik / Efik / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "efi"
+            ],
+            "title": "Efik / Ikɔ Efik / Latn / Mapped / Supports handwriting"
         },
         "el": {
-            "languages": ["el"],
-            "title": "Ελληνικά / Greek / Grek / Supports handwriting"
+            "languages": [
+                "el"
+            ],
+            "title": "Greek / Ελληνικά / Grek / Supports handwriting"
         },
         "en": {
-            "languages": ["en"],
+            "languages": [
+                "en"
+            ],
             "title": "English / English / Latn / Supports handwriting"
         },
-        "enm": {
-            "languages": ["enm"],
-            "title": "Middle English (1100-1500) / Middle English / Latn / Mapped / Supports handwriting"
-        },
         "en-GB": {
-            "languages": ["en"],
+            "languages": [
+                "en-GB"
+            ],
             "title": "English (British) / English (British) / Latn / Mapped / Supports handwriting"
         },
+        "enm": {
+            "languages": [
+                "enm"
+            ],
+            "title": "Middle English / Middle English / Latn / Mapped / Supports handwriting"
+        },
         "eo": {
-            "languages": ["eo"],
+            "languages": [
+                "eo"
+            ],
             "title": "Esperanto / Esperanto / Latn / Supports handwriting"
         },
         "es": {
-            "languages": ["es"],
-            "title": "Español / Spanish / Latn / Supports handwriting"
+            "languages": [
+                "es"
+            ],
+            "title": "Spanish / Español / Latn / Supports handwriting"
         },
         "es-419": {
-            "languages": ["es"],
-            "title": "Español (Latinoamérica) / Spanish (Latin American) / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "es-419"
+            ],
+            "title": "Spanish (Latin American) / Español (Latinoamérica) / Latn / Mapped / Supports handwriting"
         },
         "et": {
-            "languages": ["et"],
-            "title": "Eesti keel / Estonian / Latn / Supports handwriting"
+            "languages": [
+                "et"
+            ],
+            "title": "Estonian / Eesti keel / Latn / Supports handwriting"
         },
         "eu": {
-            "languages": ["eu"],
-            "title": "Euskara / Basque / Latn / Supports handwriting"
+            "languages": [
+                "eu"
+            ],
+            "title": "Basque / Euskara / Latn / Supports handwriting"
         },
         "fa": {
-            "languages": ["fa"],
-            "title": "فارسی / Persian / Arab"
+            "languages": [
+                "fa"
+            ],
+            "title": "Persian / فارسی / Arab"
         },
         "ff": {
-            "languages": ["ff"],
-            "title": "Fulani, Fulah, Peul / Fulah / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "ff"
+            ],
+            "title": "Fulah / Fulani, Fulah, Peul / Latn / Mapped / Supports handwriting"
         },
         "fi": {
-            "languages": ["fi"],
-            "title": "Suomi / Finnish / Latn / Supports handwriting"
+            "languages": [
+                "fi"
+            ],
+            "title": "Finnish / Suomi / Latn / Supports handwriting"
         },
         "fil": {
-            "languages": ["fil"],
+            "languages": [
+                "fil"
+            ],
             "title": "Filipino / Filipino / Latn / Supports handwriting"
         },
         "fj": {
-            "languages": ["fj"],
-            "title": "Na Vosa Vakaviti / Fijian / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "fj"
+            ],
+            "title": "Fijian / Na Vosa Vakaviti / Latn / Mapped / Supports handwriting"
         },
         "fo": {
-            "languages": ["fo"],
-            "title": "føroyskt mál / Faroese / Latn / Supports handwriting"
+            "languages": [
+                "fo"
+            ],
+            "title": "Faroese / føroyskt mál / Latn / Mapped / Supports handwriting"
         },
         "fon": {
-            "languages": ["fon"],
-            "title": "fɔ̀ngbè / Fon / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "fon"
+            ],
+            "title": "Fon / fɔ̀ngbè / Latn / Mapped / Supports handwriting"
         },
         "fr": {
-            "languages": ["fr"],
-            "title": "Français / French / Latn / Supports handwriting"
+            "languages": [
+                "fr"
+            ],
+            "title": "French / Français / Latn / Supports handwriting"
         },
         "fr-CA": {
-            "languages": ["fr"],
-            "title": "Français canadien / French (Canadian) / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "fr-CA"
+            ],
+            "title": "French (Canadian) / Français canadien / Latn / Mapped / Supports handwriting"
         },
         "fro": {
-            "languages": ["fro"],
-            "title": "Franceis, François, Romanz / Old French / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "fro"
+            ],
+            "title": "Old French / Franceis, François, Romanz / Latn / Mapped / Supports handwriting"
         },
         "fy": {
-            "languages": ["fy"],
-            "title": "Frysk / Western Frisian / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "fy"
+            ],
+            "title": "Western Frisian / Frysk / Latn / Mapped / Supports handwriting"
         },
         "ga": {
-            "languages": ["ga"],
-            "title": "Gaeilge / Irish / Latn / Supports handwriting"
+            "languages": [
+                "ga"
+            ],
+            "title": "Irish / Gaeilge / Latn / Supports handwriting"
         },
         "gaa": {
-            "languages": ["gaa"],
-            "title": "Gã / Ga / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "gaa"
+            ],
+            "title": "Ga / Gã / Latn / Mapped / Supports handwriting"
         },
         "gay": {
-            "languages": ["gay"],
-            "title": "Basa Gayo / Gayo / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "gay"
+            ],
+            "title": "Gayo / Basa Gayo / Latn / Mapped / Supports handwriting"
         },
         "gd": {
-            "languages": ["gd"],
-            "title": "Gàidhlig / Scottish Gaelic / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "gd"
+            ],
+            "title": "Scottish Gaelic / Gàidhlig / Latn / Mapped / Supports handwriting"
+        },
+        "gil": {
+            "languages": [
+                "gil"
+            ],
+            "title": "Gilbertese / Kiribati / Latn / Mapped / Supports handwriting"
         },
         "gl": {
-            "languages": ["gl"],
-            "title": "Galego / Galician / Latn / Supports handwriting"
+            "languages": [
+                "gl"
+            ],
+            "title": "Galician / Galego / Latn / Supports handwriting"
         },
         "gmh": {
-            "languages": ["gmh"],
-            "title": "Mittelhochdeutsch / Middle High German / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "gmh"
+            ],
+            "title": "Middle High German / Mittelhochdeutsch / Latn / Mapped / Supports handwriting"
         },
         "gn": {
-            "languages": ["gn"],
-            "title": "Guaraní / Guarani / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "gn"
+            ],
+            "title": "Guarani / Guaraní / Latn / Mapped / Supports handwriting"
         },
         "goh": {
-            "languages": ["goh"],
-            "title": "Diutisk, Althochdeutsch / Old High German / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "goh"
+            ],
+            "title": "Old High German / Diutisk, Althochdeutsch / Latn / Mapped / Supports handwriting"
         },
         "got": {
-            "languages": ["got"],
+            "languages": [
+                "got"
+            ],
             "title": "Gothic / Gothic / Latn / Mapped / Supports handwriting"
         },
         "grc": {
-            "languages": ["grc"],
-            "title": "Αρχαία ελληνικά / Ancient Greek / Grek / Supports handwriting"
+            "languages": [
+                "grc"
+            ],
+            "title": "Ancient Greek / Αρχαία ελληνικά / Grek / Supports handwriting"
         },
         "gu": {
-            "languages": ["gu"],
-            "title": "ગુજરાતી / Gujarati / Gujr"
+            "languages": [
+                "gu"
+            ],
+            "title": "Gujarati / ગુજરાતી / Gujr"
         },
         "gv": {
-            "languages": ["gv"],
-            "title": "Gaelg, Gailck / Manx / Latn / Mapped / Supports handwriting"
+            "languages": [
+                "gv"
+            ],
+            "title": "Manx / Gaelg, Gailck / Latn / Mapped / Supports handwriting"
         },
-        "iw": {
-            "languages": ["he"],
-            "title": "עברית"
+        "ha": {
+            "languages": [
+                "ha"
+            ],
+            "title": "Hausa / Harshen/Halshen Hausa هَرْشَن هَوْسَ / Latn / Mapped / Supports handwriting"
+        },
+        "haw": {
+            "languages": [
+                "haw"
+            ],
+            "title": "Hawaiian / ʻŌlelo Hawaiʻi / Latn / Mapped / Supports handwriting"
         },
         "hi": {
-            "languages": ["hi"],
-            "title": "हिन्दी"
+            "languages": [
+                "hi"
+            ],
+            "title": "Hindi / हिन्दी / Deva / Supports handwriting"
+        },
+        "hil": {
+            "languages": [
+                "hil"
+            ],
+            "title": "Hiligaynon / Ilonggo / Latn / Mapped / Supports handwriting"
         },
         "hr": {
-            "languages": ["hr"],
-            "title": "hrvatski"
+            "languages": [
+                "hr"
+            ],
+            "title": "Croatian / Hrvatski / Latn / Supports handwriting"
         },
         "ht": {
-            "languages": ["ht"],
-            "title": "Kreyòl ayisyen"
+            "languages": [
+                "ht"
+            ],
+            "title": "Haitian Creole / Kreyòl Ayisyen / Latn / Supports handwriting"
         },
         "hu": {
-            "languages": ["hu"],
-            "title": "magyar"
+            "languages": [
+                "hu"
+            ],
+            "title": "Hungarian / Magyar / Latn / Supports handwriting"
         },
         "hy": {
-            "languages": ["hy"],
-            "title": "Հայերեն"
+            "languages": [
+                "hy"
+            ],
+            "title": "Armenian / Հայ / Armn"
+        },
+        "hz": {
+            "languages": [
+                "hz"
+            ],
+            "title": "Herero / Otjiherero / Latn / Mapped / Supports handwriting"
+        },
+        "iba": {
+            "languages": [
+                "iba"
+            ],
+            "title": "Iban / Jaku Iban / Latn / Mapped / Supports handwriting"
         },
         "id": {
-            "languages": ["id"],
-            "title": "Bahasa Indonesia"
+            "languages": [
+                "id"
+            ],
+            "title": "Indonesian / Bahasa Indonesia / Latn / Supports handwriting"
+        },
+        "ig": {
+            "languages": [
+                "ig"
+            ],
+            "title": "Igbo / Asụsụ Igbo / Latn / Mapped / Supports handwriting"
+        },
+        "ilo": {
+            "languages": [
+                "ilo"
+            ],
+            "title": "Iloko / Ilokano / Latn / Mapped / Supports handwriting"
         },
         "is": {
-            "languages": ["is"],
-            "title": "íslenska"
+            "languages": [
+                "is"
+            ],
+            "title": "Icelandic / Íslenska / Latn / Supports handwriting"
         },
         "it": {
-            "languages": ["it"],
-            "title": "italiano"
+            "languages": [
+                "it"
+            ],
+            "title": "Italian / Italiano / Latn / Supports handwriting"
+        },
+        "iw": {
+            "languages": [
+                "iw"
+            ],
+            "title": "Hebrew / עברית / Hebr"
         },
         "ja": {
-            "languages": ["ja"],
-            "title": "日本語"
+            "languages": [
+                "ja"
+            ],
+            "title": "Japanese / 日本語 / Jpan / Supports handwriting"
         },
         "jv": {
-            "languages": ["jv"],
-            "title": "Basa Jawa"
+            "languages": [
+                "jv"
+            ],
+            "title": "Javanese / Jawa / Latn / Supports handwriting"
         },
         "ka": {
-            "languages": ["ka"],
-            "title": "ქართული"
+            "languages": [
+                "ka"
+            ],
+            "title": "Georgian / ქართული / Geor"
+        },
+        "kaa": {
+            "languages": [
+                "kaa"
+            ],
+            "title": "Kara-Kalpak / Qaraqalpaq tili, Қарақалпақ тили, قاراقالپاق تىلى / Cyrl/Latn / Mapped"
+        },
+        "kab": {
+            "languages": [
+                "kab"
+            ],
+            "title": "Kabyle / Taqbaylit / Latn / Mapped / Supports handwriting"
+        },
+        "kac": {
+            "languages": [
+                "kac"
+            ],
+            "title": "Kachin / Jingpho / Latn / Mapped / Supports handwriting"
+        },
+        "kam": {
+            "languages": [
+                "kam"
+            ],
+            "title": "Kamba / Kikamba / Latn / Mapped / Supports handwriting"
+        },
+        "kg": {
+            "languages": [
+                "kg"
+            ],
+            "title": "Kongo / Kikongo / Latn / Mapped / Supports handwriting"
+        },
+        "kha": {
+            "languages": [
+                "kha"
+            ],
+            "title": "Khasi / Ka Ktien Khasi / Latn / Mapped / Supports handwriting"
+        },
+        "ki": {
+            "languages": [
+                "ki"
+            ],
+            "title": "Kikuyu / Gĩkũyũ / Latn / Mapped / Supports handwriting"
+        },
+        "kj": {
+            "languages": [
+                "kj"
+            ],
+            "title": "Kuanyama / Oshikwanyama / Latn / Mapped / Supports handwriting"
         },
         "kk": {
-            "languages": ["kk"],
-            "title": "қазақша"
+            "languages": [
+                "kk"
+            ],
+            "title": "Kazakh / Қазақ / Cyrl / Supports handwriting"
+        },
+        "kl": {
+            "languages": [
+                "kl"
+            ],
+            "title": "Kalaallisut / Kalaallisut / Latn / Mapped / Supports handwriting"
         },
         "km": {
-            "languages": ["km"],
-            "title": "ភាសាខ្មែរ"
-        },
-        "ky": {
-            "languages": ["ky"],
-            "title": "Кыргызча"
+            "languages": [
+                "km"
+            ],
+            "title": "Khmer / ភាសាខ្មែរ / Khmr"
         },
         "kn": {
-            "languages": ["kn"],
-            "title": "ಕನ್ನಡ"
+            "languages": [
+                "kn"
+            ],
+            "title": "Kannada / ಕನ್ನಡ / Knda"
         },
         "ko": {
-            "languages": ["ko"],
-            "title": "한국어"
+            "languages": [
+                "ko"
+            ],
+            "title": "Korean / 한국어 / Kore / Supports handwriting"
+        },
+        "kos": {
+            "languages": [
+                "kos"
+            ],
+            "title": "Kosraean / Kosraean / Latn / Mapped / Supports handwriting"
+        },
+        "kr": {
+            "languages": [
+                "kr"
+            ],
+            "title": "Kanuri / Kanuri / Latn / Mapped / Supports handwriting"
+        },
+        "kv": {
+            "languages": [
+                "kv"
+            ],
+            "title": "Komi / коми кыв / Cyrl / Mapped / Supports handwriting"
+        },
+        "ky": {
+            "languages": [
+                "ky"
+            ],
+            "title": "Kirghiz / Kirghiz / Cyrl / Supports handwriting"
         },
         "la": {
-            "languages": ["la"],
-            "title": "Latina"
+            "languages": [
+                "la"
+            ],
+            "title": "Latin / Latine / Latn / Supports handwriting"
+        },
+        "lg": {
+            "languages": [
+                "lg"
+            ],
+            "title": "Ganda / Luganda / Latn / Mapped / Supports handwriting"
+        },
+        "ln": {
+            "languages": [
+                "ln"
+            ],
+            "title": "Lingala / Ngala / Latn / Mapped / Supports handwriting"
         },
         "lo": {
-            "languages": ["lo"],
-            "title": "ລາວ"
+            "languages": [
+                "lo"
+            ],
+            "title": "Lao / ລາວ / Laoo"
+        },
+        "lol": {
+            "languages": [
+                "lol"
+            ],
+            "title": "Mongo / Nkundu / Latn / Mapped / Supports handwriting"
+        },
+        "loz": {
+            "languages": [
+                "loz"
+            ],
+            "title": "Lozi / siLozi / Latn / Mapped / Supports handwriting"
         },
         "lt": {
-            "languages": ["lt"],
-            "title": "lietuvių"
+            "languages": [
+                "lt"
+            ],
+            "title": "Lithuanian / Lietuvių / Latn / Supports handwriting"
+        },
+        "lu": {
+            "languages": [
+                "lu"
+            ],
+            "title": "Luba-Katanga / Kiluba / Latn / Mapped / Supports handwriting"
+        },
+        "luo": {
+            "languages": [
+                "luo"
+            ],
+            "title": "Luo / Dholuo / Latn / Mapped / Supports handwriting"
         },
         "lv": {
-            "languages": ["lv"],
-            "title": "latviešu"
+            "languages": [
+                "lv"
+            ],
+            "title": "Latvian / Latviešu / Latn / Supports handwriting"
         },
         "mad": {
-            "languages": ["mad"],
-            "title": "Madhura, Basa Mathura, بَهاسَ مَدورا Madurese"
+            "languages": [
+                "mad"
+            ],
+            "title": "Madurese / Madhura, Basa Mathura, بَهاسَ مَدورا / Latn / Mapped / Supports handwriting"
+        },
+        "man": {
+            "languages": [
+                "man"
+            ],
+            "title": "Mandingo / Mandinka, لغة مندنكا / Latn / Mapped / Supports handwriting"
+        },
+        "men": {
+            "languages": [
+                "men"
+            ],
+            "title": "Mende / Mɛnde yia / Latn / Mapped / Supports handwriting"
+        },
+        "mg": {
+            "languages": [
+                "mg"
+            ],
+            "title": "Malagasy / Malagasy / Latn / Mapped / Supports handwriting"
+        },
+        "mh": {
+            "languages": [
+                "mh"
+            ],
+            "title": "Marshallese / Ebon / Latn / Mapped / Supports handwriting"
         },
         "mi": {
-            "languages": ["mi"],
-            "title": "Māori"
+            "languages": [
+                "mi"
+            ],
+            "title": "Maori / Te reo Māori / Latn / Mapped / Supports handwriting"
+        },
+        "min": {
+            "languages": [
+                "min"
+            ],
+            "title": "Minangkabau / Baso Minangkabau, باسو مينڠكاباو / Latn / Mapped / Supports handwriting"
         },
         "mk": {
-            "languages": ["mk"],
-            "title": "македонски"
+            "languages": [
+                "mk"
+            ],
+            "title": "Macedonian / Македонски / Cyrl / Supports handwriting"
         },
         "ml": {
-            "languages": ["ml"],
-            "title": "മലയാളം"
+            "languages": [
+                "ml"
+            ],
+            "title": "Malayalam / മലയാളം / Mlym"
         },
         "mn": {
-            "languages": ["mn"],
-            "title": "монгол"
+            "languages": [
+                "mn"
+            ],
+            "title": "Mongolian / Монгол / Cyrl / Supports handwriting"
+        },
+        "moh": {
+            "languages": [
+                "moh"
+            ],
+            "title": "Mohawk / Kanienʼkéha / Latn / Mapped / Supports handwriting"
         },
         "mr": {
-            "languages": ["mr"],
-            "title": "मराठी"
+            "languages": [
+                "mr"
+            ],
+            "title": "Marathi / मराठी / Deva / Supports handwriting"
         },
         "ms": {
-            "languages": ["ms"],
-            "title": "Bahasa Melayu"
+            "languages": [
+                "ms"
+            ],
+            "title": "Malay / Bahasa Melayu / Latn / Supports handwriting"
         },
         "mt": {
-            "languages": ["mt"],
-            "title": "Malti"
+            "languages": [
+                "mt"
+            ],
+            "title": "Maltese / Malti / Latn / Supports handwriting"
+        },
+        "mus": {
+            "languages": [
+                "mus"
+            ],
+            "title": "Creek / Mvskoke / Latn / Mapped / Supports handwriting"
         },
         "my": {
-            "languages": ["my"],
-            "title": "မြန်မာဘာသာ"
+            "languages": [
+                "my"
+            ],
+            "title": "Burmese / မြန်မာ / Mymr"
+        },
+        "nah": {
+            "languages": [
+                "nah"
+            ],
+            "title": "Nahuatl / Nāhuatl / Latn / Mapped / Supports handwriting"
+        },
+        "nd": {
+            "languages": [
+                "nd"
+            ],
+            "title": "North Ndebele / Zimbabwe Ndebele / Latn / Mapped / Supports handwriting"
+        },
+        "nds": {
+            "languages": [
+                "nds"
+            ],
+            "title": "Low German / Plattdütsch, Plattdeutsch, Nedersaksisch / Latn / Mapped / Supports handwriting"
         },
         "ne": {
-            "languages": ["ne"],
-            "title": "नेपाली"
+            "languages": [
+                "ne"
+            ],
+            "title": "Nepali / नेपाली / Deva / Supports handwriting"
+        },
+        "ng": {
+            "languages": [
+                "ng"
+            ],
+            "title": "Ndonga / Ndonga / Latn / Mapped / Supports handwriting"
+        },
+        "niu": {
+            "languages": [
+                "niu"
+            ],
+            "title": "Niuean / ko e vagahau Niuē / Latn / Mapped / Supports handwriting"
         },
         "nl": {
-            "languages": ["nl"],
-            "title": "Dutch"
+            "languages": [
+                "nl"
+            ],
+            "title": "Dutch / Nederlands / Latn / Supports handwriting"
         },
         "no": {
-            "languages": ["no"],
-            "title": "norsk bokmål"
+            "languages": [
+                "no"
+            ],
+            "title": "Norwegian / Norsk / Latn / Supports handwriting"
+        },
+        "non": {
+            "languages": [
+                "non"
+            ],
+            "title": "Old Norse / Dǫnsk tunga / Latn / Mapped / Supports handwriting"
+        },
+        "nso": {
+            "languages": [
+                "nso"
+            ],
+            "title": "Northern Sotho / Sesotho sa Leboa / Latn / Mapped / Supports handwriting"
+        },
+        "nv": {
+            "languages": [
+                "nv"
+            ],
+            "title": "Navajo / Diné bizaad / Latn / Mapped / Supports handwriting"
+        },
+        "ny": {
+            "languages": [
+                "ny"
+            ],
+            "title": "Nyanja / Chichewa, Chinyanja / Latn / Mapped / Supports handwriting"
+        },
+        "nyn": {
+            "languages": [
+                "nyn"
+            ],
+            "title": "Nyankole / Runyankore / Latn / Mapped / Supports handwriting"
+        },
+        "nzi": {
+            "languages": [
+                "nzi"
+            ],
+            "title": "Nzima / Appolo / Latn / Mapped / Supports handwriting"
         },
         "oc": {
-            "languages": ["oc"],
-            "title": "occitan"
+            "languages": [
+                "oc"
+            ],
+            "title": "Occitan / Occitan, lenga d'òc, provençal / Latn / Mapped / Supports handwriting"
+        },
+        "oj": {
+            "languages": [
+                "oj"
+            ],
+            "title": "Ojibwa / Anishinaabemowin, ᐊᓂᔑᓈᐯᒧᐎᓐ / Latn / Mapped / Supports handwriting"
         },
         "or": {
-            "languages": ["or"],
-            "title": "ଓଡ଼ିଆ"
+            "languages": [
+                "or"
+            ],
+            "title": "Oriya / ଓଡ଼ିଆ / Orya"
+        },
+        "os": {
+            "languages": [
+                "os"
+            ],
+            "title": "Ossetic / ирон ӕвзаг / Cyrl / Mapped / Supports handwriting"
         },
         "pa": {
-            "languages": ["pa"],
-            "title": "ਪੰਜਾਬੀ"
+            "languages": [
+                "pa"
+            ],
+            "title": "Punjabi / ਪੰਜਾਬੀ / Guru"
+        },
+        "pag": {
+            "languages": [
+                "pag"
+            ],
+            "title": "Pangasinan / Salitan Pangasinan / Latn / Mapped / Supports handwriting"
+        },
+        "pam": {
+            "languages": [
+                "pam"
+            ],
+            "title": "Pampanga / Kapampangan / Latn / Mapped / Supports handwriting"
+        },
+        "pap": {
+            "languages": [
+                "pap"
+            ],
+            "title": "Papiamento / Papiamentu / Latn / Mapped / Supports handwriting"
         },
         "pl": {
-            "languages": ["pl"],
-            "title": "polski"
+            "languages": [
+                "pl"
+            ],
+            "title": "Polish / Polski / Latn / Supports handwriting"
+        },
+        "pro": {
+            "languages": [
+                "pro"
+            ],
+            "title": "Old Provencal / Occitan ancian / Latn / Mapped / Supports handwriting"
         },
         "ps": {
-            "languages": ["ps"],
-            "title": "پښتو"
+            "languages": [
+                "ps"
+            ],
+            "title": "Pashto / پښتو / Arab"
         },
         "pt": {
-            "languages": ["pt"],
-            "title": "português"
+            "languages": [
+                "pt"
+            ],
+            "title": "Portuguese / Português / Latn / Supports handwriting"
+        },
+        "pt-PT": {
+            "languages": [
+                "pt-PT"
+            ],
+            "title": "Portuguese (European) / Português (Portugal) / Latn / Mapped / Supports handwriting"
         },
         "qu": {
-            "languages": ["qu"],
-            "title": "Runa Simi"
+            "languages": [
+                "qu"
+            ],
+            "title": "Quechua / Kechua / Runa Simi / Latn / Mapped / Supports handwriting"
+        },
+        "rm": {
+            "languages": [
+                "rm"
+            ],
+            "title": "Romansh / Rumantsch / Latn / Mapped / Supports handwriting"
+        },
+        "rn": {
+            "languages": [
+                "rn"
+            ],
+            "title": "Rundi / Ikirundi / Latn / Mapped / Supports handwriting"
         },
         "ro": {
-            "languages": ["ro"],
-            "title": "română"
+            "languages": [
+                "ro"
+            ],
+            "title": "Romanian / Română / Latn / Supports handwriting"
+        },
+        "rom": {
+            "languages": [
+                "rom"
+            ],
+            "title": "Romany / Romani čhib / Latn / Mapped / Supports handwriting"
         },
         "ru": {
-            "languages": ["ru"],
-            "title": "русский"
+            "languages": [
+                "ru"
+            ],
+            "title": "Russian / Русский / Cyrl / Supports handwriting"
         },
         "ru-PETR1708": {
-            "languages": ["ru"],
-            "title": "Русский (старая орфография)"
+            "languages": [
+                "ru-PETR1708"
+            ],
+            "title": "Russian / Русский (старая орфография) / Cyrl / Supports handwriting"
+        },
+        "rw": {
+            "languages": [
+                "rw"
+            ],
+            "title": "Kinyarwanda / Kinyarwanda / Latn / Mapped / Supports handwriting"
         },
         "sa": {
-            "languages": ["sa"],
-            "title": "संस्कृतम्"
+            "languages": [
+                "sa"
+            ],
+            "title": "Sanskrit / संस्कृतम् / Deva / Supports handwriting"
+        },
+        "sah": {
+            "languages": [
+                "sah"
+            ],
+            "title": "Sakha / Sakha / Cyrl / Mapped / Supports handwriting"
+        },
+        "sco": {
+            "languages": [
+                "sco"
+            ],
+            "title": "Scots / (Braid) Scots, Lallans, Doric / Latn / Mapped / Supports handwriting"
+        },
+        "sg": {
+            "languages": [
+                "sg"
+            ],
+            "title": "Sango / yângâ tî sängö / Latn / Mapped / Supports handwriting"
         },
         "si": {
-            "languages": ["si"],
-            "title": "සිංහල"
+            "languages": [
+                "si"
+            ],
+            "title": "Sinhala / සිංහල / Sinh"
         },
         "sk": {
-            "languages": ["sk"],
-            "title": "slovenčina"
+            "languages": [
+                "sk"
+            ],
+            "title": "Slovak / Slovenčina / Latn / Supports handwriting"
         },
         "sl": {
-            "languages": ["sl"],
-            "title": "slovenščina"
+            "languages": [
+                "sl"
+            ],
+            "title": "Slovenian / Slovenščina / Latn / Supports handwriting"
+        },
+        "sm": {
+            "languages": [
+                "sm"
+            ],
+            "title": "Samoan / Gagana faʻa Sāmoa / Latn / Mapped / Supports handwriting"
+        },
+        "sn": {
+            "languages": [
+                "sn"
+            ],
+            "title": "Shona / chiShona / Latn / Mapped / Supports handwriting"
+        },
+        "son": {
+            "languages": [
+                "son"
+            ],
+            "title": "Songhai / Songhay / Latn / Mapped / Supports handwriting"
         },
         "sq": {
-            "languages": ["sq"],
-            "title": "shqip"
+            "languages": [
+                "sq"
+            ],
+            "title": "Albanian / shqip / Latn / Supports handwriting"
         },
         "sr": {
-            "languages": ["sr"],
-            "title": "српски / srpski"
+            "languages": [
+                "sr"
+            ],
+            "title": "Serbian / Српски / Cyrl / Supports handwriting"
         },
         "sr-Latn": {
-            "languages": ["sr-Latn"],
-            "title": "Српски (латиница)"
+            "languages": [
+                "sr-Latn"
+            ],
+            "title": "Serbian / Српски (латиница) / Latn / Supports handwriting"
+        },
+        "ss": {
+            "languages": [
+                "ss"
+            ],
+            "title": "Swati / siSwati / Latn / Mapped / Supports handwriting"
+        },
+        "st": {
+            "languages": [
+                "st"
+            ],
+            "title": "Southern Sotho / Sesotho / Latn / Mapped / Supports handwriting"
         },
         "su": {
-            "languages": ["su"],
-            "title": "Basa Sunda"
+            "languages": [
+                "su"
+            ],
+            "title": "Sundanese / ᮘᮞ ᮞᮥᮔ᮪ᮓ , Basa Sunda / Latn / Mapped / Supports handwriting"
         },
         "sv": {
-            "languages": ["sv"],
-            "title": "svenska"
+            "languages": [
+                "sv"
+            ],
+            "title": "Swedish / Svenska / Latn / Supports handwriting"
         },
         "sw": {
-            "languages": ["sw"],
-            "title": "Kiswahili"
+            "languages": [
+                "sw"
+            ],
+            "title": "Swahili / Swahili / Latn / Supports handwriting"
         },
         "syr": {
-            "languages": ["syr"],
-            "title": "leššānā Suryāyā"
+            "languages": [
+                "syr"
+            ],
+            "title": "Syriac / leššānā Suryāyā / Syriac"
         },
         "ta": {
-            "languages": ["ta"],
-            "title": "தமிழ்"
+            "languages": [
+                "ta"
+            ],
+            "title": "Tamil / தமிழ் / Taml"
         },
         "te": {
-            "languages": ["te"],
-            "title": "తెలుగు"
+            "languages": [
+                "te"
+            ],
+            "title": "Telugu / తెలుగు / Telu"
+        },
+        "tem": {
+            "languages": [
+                "tem"
+            ],
+            "title": "Temne / KʌThemnɛ / Latn / Mapped / Supports handwriting"
         },
         "tg": {
-            "languages": ["tg"],
-            "title": "тоҷикӣ"
+            "languages": [
+                "tg"
+            ],
+            "title": "Tajik / тоҷикӣ / Cyrl / Mapped / Supports handwriting"
         },
         "th": {
-            "languages": ["th"],
-            "title": "ไทย"
+            "languages": [
+                "th"
+            ],
+            "title": "Thai / ไทย / Thai"
         },
         "ti": {
-            "languages": ["ti"],
-            "title": "ትግርኛ"
+            "languages": [
+                "ti"
+            ],
+            "title": "Tigirinya / ትግርኛ / Ethi"
+        },
+        "tk": {
+            "languages": [
+                "tk"
+            ],
+            "title": "Turkmen / Türkmençe / Latn / Mapped / Supports handwriting"
         },
         "tl": {
-            "languages": ["tl"],
-            "title": "Tagalog"
+            "languages": [
+                "tl"
+            ],
+            "title": "Tagalog / Tagalog / Latn / Supports handwriting"
+        },
+        "tn": {
+            "languages": [
+                "tn"
+            ],
+            "title": "Tswana / Setswana / Latn / Mapped / Supports handwriting"
         },
         "to": {
-            "languages": ["to"],
-            "title": "lea faka-Tonga"
+            "languages": [
+                "to"
+            ],
+            "title": "Tongan / lea faka-Tonga / Latn / Mapped / Supports handwriting"
+        },
+        "tog": {
+            "languages": [
+                "tog"
+            ],
+            "title": "Nyasa Tonga / Chitonga / Latn / Mapped / Supports handwriting"
         },
         "tr": {
-            "languages": ["tr"],
-            "title": "Türkçe"
+            "languages": [
+                "tr"
+            ],
+            "title": "Turkish / Türkçe / Latn / Supports handwriting"
+        },
+        "ts": {
+            "languages": [
+                "ts"
+            ],
+            "title": "Tsonga / Xitsonga / Latn / Mapped / Supports handwriting"
         },
         "tt": {
-            "languages": ["tt"],
-            "title": "татарча/tatarça"
+            "languages": [
+                "tt"
+            ],
+            "title": "Tatar / татар теле / Cyrl/Latn / Mapped"
+        },
+        "ty": {
+            "languages": [
+                "ty"
+            ],
+            "title": "Tahitian / Reo Tahiti / Latn / Mapped / Supports handwriting"
+        },
+        "udm": {
+            "languages": [
+                "udm"
+            ],
+            "title": "Udmurt / удмурт кыл / Cyrl / Mapped / Supports handwriting"
         },
         "uk": {
-            "languages": ["uk"],
-            "title": "українська"
+            "languages": [
+                "uk"
+            ],
+            "title": "Ukrainian / Українська / Cyrl / Supports handwriting"
+        },
+        "ur": {
+            "languages": [
+                "ur"
+            ],
+            "title": "Urdu / اردو / Arab"
         },
         "uz": {
-            "languages": ["uz"],
-            "title": "oʻzbekcha/ўзбекча"
+            "languages": [
+                "uz"
+            ],
+            "title": "Uzbek / oʻzbekcha / Latn / Supports handwriting"
         },
         "uz-Cyrl": {
-            "languages": ["uz-cyrl"],
-            "title": "ўзбекча"
+            "languages": [
+                "uz-Cyrl"
+            ],
+            "title": "Uzbek / oʻzbekcha / Cyrl / Supports handwriting"
+        },
+        "ve": {
+            "languages": [
+                "ve"
+            ],
+            "title": "Venda / Tshivenḓa / Latn / Mapped / Supports handwriting"
         },
         "vi": {
-            "languages": ["vi"],
-            "title": "Tiếng Việt"
+            "languages": [
+                "vi"
+            ],
+            "title": "Vietnamese / Tiếng Việt / Latn / Supports handwriting"
+        },
+        "vot": {
+            "languages": [
+                "vot"
+            ],
+            "title": "Votic / Vod / Cyrl/Latn / Mapped"
+        },
+        "wo": {
+            "languages": [
+                "wo"
+            ],
+            "title": "Wolof / Wolof / Latn / Mapped / Supports handwriting"
+        },
+        "xh": {
+            "languages": [
+                "xh"
+            ],
+            "title": "Xhosa / isiXhosa / Latn / Mapped / Supports handwriting"
         },
         "yi": {
-            "languages": ["yi"],
-            "title": "ייִדיש"
+            "languages": [
+                "yi"
+            ],
+            "title": "Yiddish / Yiddish / Hebr"
         },
         "yo": {
-            "languages": ["yo"],
-            "title": "Yorùbá"
+            "languages": [
+                "yo"
+            ],
+            "title": "Yoruba / Èdè Yorùbá / Latn / Mapped / Supports handwriting"
+        },
+        "zap": {
+            "languages": [
+                "zap"
+            ],
+            "title": "Zapotec / Diidxazá / Latn / Mapped / Supports handwriting"
         },
         "zh": {
-            "languages": ["zh"],
-            "title": "中文"
+            "languages": [
+                "zh"
+            ],
+            "title": "Chinese / 普通话 / Hans/Hant"
+        },
+        "zh-Hans": {
+            "languages": [
+                "zh-Hans"
+            ],
+            "title": "Chinese (Mandarin, Simplified,) / 汉语 / Hans / Mapped"
+        },
+        "zh-Hant": {
+            "languages": [
+                "zh-Hant"
+            ],
+            "title": "Chinese (Mandarin, Traditional) / 漢語 / Hant / Mapped"
+        },
+        "zh-Hant-HK": {
+            "languages": [
+                "zh-Hant-HK"
+            ],
+            "title": "Chinese (Mandarin, Hong Kong) / 普通話 / Hant / Mapped"
         },
         "zu": {
-            "languages": ["zu"],
-            "title": "isiZulu"
+            "languages": [
+                "zu"
+            ],
+            "title": "Zulu / IsiZulu / Latn / Supports handwriting"
         }
     },
     "tesseract": {
         "afr": {
-            "languages": ["af"],
+            "languages": [
+                "af"
+            ],
             "title": "Afrikaans"
         },
         "amh": {
-            "languages": ["am"],
+            "languages": [
+                "am"
+            ],
             "title": "አማርኛ"
         },
         "ara": {
-            "languages": ["ar"],
+            "languages": [
+                "ar"
+            ],
             "title": "العربية"
         },
         "asm": {
-            "languages": ["as"],
+            "languages": [
+                "as"
+            ],
             "title": "অসমীয়া"
         },
         "aze": {
-            "languages": ["az"],
+            "languages": [
+                "az"
+            ],
             "title": "azərbaycanca"
         },
         "aze_cyrl": {
-            "languages": ["aze"],
+            "languages": [
+                "aze"
+            ],
             "title": "Azərbaycan (qədim yazı)"
         },
         "bel": {
-            "languages": ["be"],
+            "languages": [
+                "be"
+            ],
             "title": "беларуская"
         },
         "bul": {
-            "languages": ["bg"],
+            "languages": [
+                "bg"
+            ],
             "title": "български"
         },
         "ben": {
-            "languages": ["bn"],
+            "languages": [
+                "bn"
+            ],
             "title": "বাংলা"
         },
         "bod": {
-            "languages": ["bo"],
+            "languages": [
+                "bo"
+            ],
             "title": "བོད་ཡིག"
         },
         "bre": {
-            "languages": ["br"],
+            "languages": [
+                "br"
+            ],
             "title": "brezhoneg"
         },
         "bos": {
-            "languages": ["bs"],
+            "languages": [
+                "bs"
+            ],
             "title": "bosanski"
         },
         "cat": {
-            "languages": ["ca"],
+            "languages": [
+                "ca"
+            ],
             "title": "català"
         },
         "ceb": {
-            "languages": ["ceb"],
+            "languages": [
+                "ceb"
+            ],
             "title": "Cebuano"
         },
         "chr": {
-            "languages": ["chr"],
+            "languages": [
+                "chr"
+            ],
             "title": "ᏣᎳᎩ"
         },
         "ces": {
-            "languages": ["cs"],
+            "languages": [
+                "cs"
+            ],
             "title": "čeština"
         },
         "cos": {
-            "languages": ["cos"],
+            "languages": [
+                "cos"
+            ],
             "title": "Corsican"
         },
         "cym": {
-            "languages": ["cy"],
+            "languages": [
+                "cy"
+            ],
             "title": "Cymraeg"
         },
         "dan": {
-            "languages": ["da"],
+            "languages": [
+                "da"
+            ],
             "title": "dansk"
         },
         "deu": {
-            "languages": ["de"],
+            "languages": [
+                "de"
+            ],
             "title": "Deutsch"
         },
         "frk": {
-            "languages": ["de"],
+            "languages": [
+                "de"
+            ],
             "title": "Deutsch (Fraktur)"
         },
         "deu_latf": {
-            "languages": ["de"],
+            "languages": [
+                "de"
+            ],
             "title": "Deutsch (Fraktur)"
         },
         "dzo": {
-            "languages": ["dz"],
+            "languages": [
+                "dz"
+            ],
             "title": "ཇོང་ཁ"
         },
         "ell": {
-            "languages": ["el"],
+            "languages": [
+                "el"
+            ],
             "title": "Ελληνικά"
         },
         "eng": {
-            "languages": ["en"],
+            "languages": [
+                "en"
+            ],
             "title": "English"
         },
         "enm": {
-            "languages": ["enm"],
+            "languages": [
+                "enm"
+            ],
             "title": "Middle English (1100-1500)"
         },
         "epo": {
-            "languages": ["eo"],
+            "languages": [
+                "eo"
+            ],
             "title": "Esperanto"
         },
         "spa": {
-            "languages": ["es"],
+            "languages": [
+                "es"
+            ],
             "title": "español"
         },
         "spa_old": {
-            "languages": ["es-old"],
+            "languages": [
+                "es-old"
+            ],
             "title": "Spanish old"
         },
         "est": {
-            "languages": ["et"],
+            "languages": [
+                "et"
+            ],
             "title": "eesti"
         },
         "eus": {
-            "languages": ["eu"],
+            "languages": [
+                "eu"
+            ],
             "title": "euskara"
         },
         "fas": {
-            "languages": ["fa"],
+            "languages": [
+                "fa"
+            ],
             "title": "فارسی"
         },
         "fin": {
-            "languages": ["fi"],
+            "languages": [
+                "fi"
+            ],
             "title": "suomi"
         },
         "fao": {
-            "languages": ["fo"],
+            "languages": [
+                "fo"
+            ],
             "title": "føroyskt"
         },
         "fra": {
-            "languages": ["fr"],
+            "languages": [
+                "fr"
+            ],
             "title": "français"
         },
         "frm": {
-            "languages": ["frm"],
+            "languages": [
+                "frm"
+            ],
             "title": "moyen français (1400-1600)"
         },
         "fry": {
-            "languages": ["fy"],
+            "languages": [
+                "fy"
+            ],
             "title": "Frysk"
         },
         "gle": {
-            "languages": ["ga"],
+            "languages": [
+                "ga"
+            ],
             "title": "Gaeilge"
         },
         "gla": {
-            "languages": ["gd"],
+            "languages": [
+                "gd"
+            ],
             "title": "Gàidhlig"
         },
         "glg": {
-            "languages": ["gl"],
+            "languages": [
+                "gl"
+            ],
             "title": "galego"
         },
         "grc": {
-            "languages": ["grc"],
+            "languages": [
+                "grc"
+            ],
             "title": "Ἀρχαία ἑλληνικὴ"
         },
         "guj": {
-            "languages": ["gu"],
+            "languages": [
+                "gu"
+            ],
             "title": "ગુજરાતી"
         },
         "heb": {
-            "languages": ["he"],
+            "languages": [
+                "he"
+            ],
             "title": "עברית"
         },
         "hin": {
-            "languages": ["hi"],
+            "languages": [
+                "hi"
+            ],
             "title": "हिन्दी"
         },
         "hrv": {
-            "languages": ["hr"],
+            "languages": [
+                "hr"
+            ],
             "title": "hrvatski"
         },
         "hat": {
-            "languages": ["ht"],
+            "languages": [
+                "ht"
+            ],
             "title": "Kreyòl ayisyen"
         },
         "hun": {
-            "languages": ["hu"],
+            "languages": [
+                "hu"
+            ],
             "title": "magyar"
         },
         "hye": {
-            "languages": ["hy"],
+            "languages": [
+                "hy"
+            ],
             "title": "Հայերեն"
         },
         "ind": {
-            "languages": ["id"],
+            "languages": [
+                "id"
+            ],
             "title": "Bahasa Indonesia"
         },
         "isl": {
-            "languages": ["is"],
+            "languages": [
+                "is"
+            ],
             "title": "íslenska"
         },
         "ita": {
-            "languages": ["it"],
+            "languages": [
+                "it"
+            ],
             "title": "italiano"
         },
         "ita_old": {
-            "languages": ["it-old"],
+            "languages": [
+                "it-old"
+            ],
             "title": "Italian - Old"
         },
         "iku": {
-            "languages": ["iu"],
+            "languages": [
+                "iu"
+            ],
             "title": "Inuktitut"
         },
         "jpn": {
-            "languages": ["ja"],
+            "languages": [
+                "ja"
+            ],
             "title": "日本語"
         },
         "jav": {
-            "languages": ["jv"],
+            "languages": [
+                "jv"
+            ],
             "title": "Basa Jawa"
         },
         "kat": {
-            "languages": ["ka"],
+            "languages": [
+                "ka"
+            ],
             "title": "ქართული"
         },
         "kat_old": {
-            "languages": ["ka"],
+            "languages": [
+                "ka"
+            ],
             "title": "Georgian - Old"
         },
         "kaz": {
-            "languages": ["kk"],
+            "languages": [
+                "kk"
+            ],
             "title": "қазақша"
         },
         "khm": {
-            "languages": ["km"],
+            "languages": [
+                "km"
+            ],
             "title": "ភាសាខ្មែរ"
         },
         "kan": {
-            "languages": ["kn"],
+            "languages": [
+                "kn"
+            ],
             "title": "ಕನ್ನಡ"
         },
         "kor": {
-            "languages": ["ko"],
+            "languages": [
+                "ko"
+            ],
             "title": "한국어"
         },
         "kir": {
-            "languages": ["ky"],
+            "languages": [
+                "ky"
+            ],
             "title": "Кыргызча"
         },
         "kor_vert": {
-            "languages": ["ko-vert"],
+            "languages": [
+                "ko-vert"
+            ],
             "title": "Korean (vertical)"
         },
         "kmr": {
-            "languages": ["ku"],
+            "languages": [
+                "ku"
+            ],
             "title": "Kurmanji (Kurdish - Latin Script)"
         },
         "ltz": {
-            "languages": ["lb"],
+            "languages": [
+                "lb"
+            ],
             "title": "Luxembourgish"
         },
         "lat": {
-            "languages": ["la"],
+            "languages": [
+                "la"
+            ],
             "title": "Latina"
         },
         "lao": {
-            "languages": ["lo"],
+            "languages": [
+                "lo"
+            ],
             "title": "ລາວ"
         },
         "lit": {
-            "languages": ["lt"],
+            "languages": [
+                "lt"
+            ],
             "title": "lietuvių"
         },
         "lav": {
-            "languages": ["lv"],
+            "languages": [
+                "lv"
+            ],
             "title": "latviešu"
         },
         "mri": {
-            "languages": ["mi"],
+            "languages": [
+                "mi"
+            ],
             "title": "Māori"
         },
         "mkd": {
-            "languages": ["mk"],
+            "languages": [
+                "mk"
+            ],
             "title": "македонски"
         },
         "mal": {
-            "languages": ["ml"],
+            "languages": [
+                "ml"
+            ],
             "title": "മലയാളം"
         },
         "mon": {
-            "languages": ["mn"],
+            "languages": [
+                "mn"
+            ],
             "title": "монгол"
         },
         "mar": {
-            "languages": ["mr"],
+            "languages": [
+                "mr"
+            ],
             "title": "मराठी"
         },
         "msa": {
-            "languages": ["ms"],
+            "languages": [
+                "ms"
+            ],
             "title": "Bahasa Melayu"
         },
         "mlt": {
-            "languages": ["mt"],
+            "languages": [
+                "mt"
+            ],
             "title": "Malti"
         },
         "mya": {
-            "languages": ["mya"],
+            "languages": [
+                "mya"
+            ],
             "title": "မြန်မာဘာသာ"
         },
         "nep": {
-            "languages": ["ne"],
+            "languages": [
+                "ne"
+            ],
             "title": "नेपाली"
         },
         "nld": {
-            "languages": ["nl"],
+            "languages": [
+                "nl"
+            ],
             "title": "Dutch"
         },
         "nor": {
-            "languages": ["no"],
+            "languages": [
+                "no"
+            ],
             "title": "norsk bokmål"
         },
         "oci": {
-            "languages": ["oc"],
+            "languages": [
+                "oc"
+            ],
             "title": "occitan"
         },
         "ori": {
-            "languages": ["or"],
+            "languages": [
+                "or"
+            ],
             "title": "ଓଡ଼ିଆ"
         },
         "pan": {
-            "languages": ["pa"],
+            "languages": [
+                "pa"
+            ],
             "title": "ਪੰਜਾਬੀ"
         },
         "pol": {
-            "languages": ["pl"],
+            "languages": [
+                "pl"
+            ],
             "title": "polski"
         },
         "pus": {
-            "languages": ["ps"],
+            "languages": [
+                "ps"
+            ],
             "title": "پښتو"
         },
         "por": {
-            "languages": ["pt"],
+            "languages": [
+                "pt"
+            ],
             "title": "português"
         },
         "que": {
-            "languages": ["qu"],
+            "languages": [
+                "qu"
+            ],
             "title": "Runa Simi"
         },
         "ron": {
-            "languages": ["ro"],
+            "languages": [
+                "ro"
+            ],
             "title": "română"
         },
         "rus": {
-            "languages": ["ru"],
+            "languages": [
+                "ru"
+            ],
             "title": "русский"
         },
         "san": {
-            "languages": ["sa"],
+            "languages": [
+                "sa"
+            ],
             "title": "संस्कृतम्"
         },
         "sin": {
-            "languages": ["si"],
+            "languages": [
+                "si"
+            ],
             "title": "සිංහල"
         },
         "slk": {
-            "languages": ["sk"],
+            "languages": [
+                "sk"
+            ],
             "title": "slovenčina"
         },
         "slv": {
-            "languages": ["sl"],
+            "languages": [
+                "sl"
+            ],
             "title": "slovenščina"
         },
         "sqi": {
-            "languages": ["sq"],
+            "languages": [
+                "sq"
+            ],
             "title": "shqip"
         },
         "srp": {
-            "languages": ["sr"],
+            "languages": [
+                "sr"
+            ],
             "title": "српски / srpski"
         },
         "srp_latn": {
-            "languages": ["sr-latn"],
+            "languages": [
+                "sr-latn"
+            ],
             "title": "Српски (латиница)"
         },
         "sun": {
-            "languages": ["su"],
+            "languages": [
+                "su"
+            ],
             "title": "Basa Sunda"
         },
         "swe": {
-            "languages": ["sv"],
+            "languages": [
+                "sv"
+            ],
             "title": "svenska"
         },
         "swa": {
-            "languages": ["sw"],
+            "languages": [
+                "sw"
+            ],
             "title": "Kiswahili"
         },
         "syr": {
-            "languages": ["syr"],
+            "languages": [
+                "syr"
+            ],
             "title": "leššānā Suryāyā"
         },
         "tam": {
-            "languages": ["ta"],
+            "languages": [
+                "ta"
+            ],
             "title": "தமிழ்"
         },
         "tel": {
-            "languages": ["te"],
+            "languages": [
+                "te"
+            ],
             "title": "తెలుగు"
         },
         "tgk": {
-            "languages": ["tg"],
+            "languages": [
+                "tg"
+            ],
             "title": "тоҷикӣ"
         },
         "tha": {
-            "languages": ["th"],
+            "languages": [
+                "th"
+            ],
             "title": "ไทย"
         },
         "tir": {
-            "languages": ["ti"],
+            "languages": [
+                "ti"
+            ],
             "title": "ትግርኛ"
         },
         "fil": {
-            "languages": ["tl"],
+            "languages": [
+                "tl"
+            ],
             "title": "Tagalog"
         },
         "ton": {
-            "languages": ["to"],
+            "languages": [
+                "to"
+            ],
             "title": "lea faka-Tonga"
         },
         "tur": {
-            "languages": ["tr"],
+            "languages": [
+                "tr"
+            ],
             "title": "Türkçe"
         },
         "tat": {
-            "languages": ["tt"],
+            "languages": [
+                "tt"
+            ],
             "title": "татарча/tatarça"
         },
         "ukr": {
-            "languages": ["uk"],
+            "languages": [
+                "uk"
+            ],
             "title": "українська"
         },
         "urd": {
-            "languages": ["ur"],
+            "languages": [
+                "ur"
+            ],
             "title": "اردو"
         },
         "uig": {
-            "languages": ["ug"],
+            "languages": [
+                "ug"
+            ],
             "title": "Uighur; Uyghur"
         },
         "uzb": {
-            "languages": ["uz"],
+            "languages": [
+                "uz"
+            ],
             "title": "oʻzbekcha/ўзбекча"
         },
         "uzb_cyrl": {
-            "languages": ["uz-cyrl"],
+            "languages": [
+                "uz-cyrl"
+            ],
             "title": "ўзбекча"
         },
         "vie": {
-            "languages": ["vi"],
+            "languages": [
+                "vi"
+            ],
             "title": "Tiếng Việt"
         },
         "yid": {
-            "languages": ["yi"],
+            "languages": [
+                "yi"
+            ],
             "title": "ייִדיש"
         },
         "yor": {
-            "languages": ["yo"],
+            "languages": [
+                "yo"
+            ],
             "title": "Yorùbá"
         },
         "chi_sim": {
-            "languages": ["zh", "zh-hans"],
+            "languages": [
+                "zh",
+                "zh-hans"
+            ],
             "title": "中文"
         },
         "chi_tra": {
-            "languages": ["zh-hant"],
+            "languages": [
+                "zh-hant"
+            ],
             "title": "zh-hant – 中文（繁體)"
         }
     },
     "transkribus": {
         "bali": {
-            "languages": ["ban"],
+            "languages": [
+                "ban"
+            ],
             "title": "Balinese palm-leaf manuscripts 16th century",
             "htr": 48252,
             "line": 45612
         },
         "ben-print": {
-            "languages": ["bn"],
+            "languages": [
+                "bn"
+            ],
             "title": "Bengali Printed Books +150 New",
             "htr": 46239,
             "line": ""
         },
         "cs-space": {
-            "languages": ["cs"],
+            "languages": [
+                "cs"
+            ],
             "title": "Old Czech Handwriting (with spaces)",
             "htr": 49812,
             "line": ""
         },
         "cs-no-space": {
-            "languages": ["cs"],
+            "languages": [
+                "cs"
+            ],
             "title": "Old Czech Handwriting (without spaces)",
             "htr": 49186,
             "line": ""
         },
         "da-goth": {
-            "languages": ["da"],
+            "languages": [
+                "da"
+            ],
             "title": "19th century Danish Gothic handwriting v.1.1",
             "htr": 51398,
             "line": ""
         },
         "da-goth-print": {
-            "languages": ["da"],
+            "languages": [
+                "da"
+            ],
             "title": "Danish gothic print 1859-1888 v4",
             "htr": 45957,
             "line": ""
         },
         "da-gjen": {
-            "languages": ["Danish"],
+            "languages": [
+                "Danish"
+            ],
             "title": "Gjentofte 1881-1913 Denmark",
             "htr": 48496,
             "line": ""
         },
         "de-17": {
-            "languages": ["nl"],
+            "languages": [
+                "nl"
+            ],
             "title": "Dutch_XVII_Century",
             "htr": 38871,
             "line": ""
         },
         "de-hd-m1": {
-            "languages": ["nl"],
+            "languages": [
+                "nl"
+            ],
             "title": "Transkribus Dutch Handwriting M1",
             "htr": 38291,
             "line": ""
         },
         "dev": {
-            "languages": ["hi", "bra", "sa", "awa"],
+            "languages": [
+                "hi",
+                "bra",
+                "sa",
+                "awa"
+            ],
             "title": "Devanagari Mixed M1A",
             "htr": 45909,
             "line": ""
         },
         "el-ligo": {
-            "languages": ["gre", "it", "la"],
+            "languages": [
+                "gre",
+                "it",
+                "la"
+            ],
             "title": "Ligorio 0.3 PyL",
             "htr": 42105,
             "line": ""
         },
         "el-print": {
-            "languages": ["de", "gre", "la"],
+            "languages": [
+                "de",
+                "gre",
+                "la"
+            ],
             "title": "Noscemus GM 6",
             "htr": 52640,
             "line": ""
         },
         "en-b2022": {
-            "languages": ["en", "la"],
+            "languages": [
+                "en",
+                "la"
+            ],
             "title": "Transkribus B2022 English Model M4",
             "htr": 48327,
             "line": ""
         },
         "en-handwritten-m3": {
-            "languages": ["en"],
+            "languages": [
+                "en"
+            ],
             "title": "Transkribus English Handwriting M3",
             "htr": 37646,
             "line": ""
         },
         "en-print-m1": {
             "languages": [
-                "nl", "en", "fi", "fr",
-                "de", "it", "la", "sv",
-                "pt", "es", "pl",
-                "cs", "sk", "sl", "es"
+                "nl",
+                "en",
+                "fi",
+                "fr",
+                "de",
+                "it",
+                "la",
+                "sv",
+                "pt",
+                "es",
+                "pl",
+                "cs",
+                "sk",
+                "sl",
+                "es"
             ],
             "title": "Transkribus Print M1",
             "htr": 39995,
             "line": ""
         },
         "en-typewriter": {
-            "languages": ["nl", "en", "fi", "de"],
+            "languages": [
+                "nl",
+                "en",
+                "fi",
+                "de"
+            ],
             "title": "Transkribus Typewriter",
             "htr": 37545,
             "line": ""
         },
         "es-md": {
-            "languages": ["es"],
+            "languages": [
+                "es"
+            ],
             "title": "Diario de Madrid 1788-1825",
             "htr": 48440,
             "line": ""
         },
         "es-redonda-extended-v1_2": {
-            "languages": ["es"],
+            "languages": [
+                "es"
+            ],
             "title": "SpanishRedonda_sXVI-XVII_extended_v1.2",
             "htr": 48394,
             "line": ""
         },
         "et-court": {
-            "languages": ["et"],
+            "languages": [
+                "et"
+            ],
             "title": "Estonian Court Records 19thC",
             "htr": 48361,
             "line": ""
         },
         "fin": {
-            "languages": ["fi"],
+            "languages": [
+                "fi"
+            ],
             "title": "NLF_Newseye_GT_FI_M2+",
             "htr": 37748,
             "line": ""
         },
         "fr-m1": {
-            "languages": ["fr"],
+            "languages": [
+                "fr"
+            ],
             "title": "Transkribus French Model 1",
             "htr": 37758,
             "line": ""
         },
         "ger-hd-m1": {
-            "languages": ["de"],
+            "languages": [
+                "de"
+            ],
             "title": "Transkribus German handwriting M1",
             "htr": 35909,
             "line": ""
         },
         "ger-15": {
-            "languages": ["de"],
+            "languages": [
+                "de"
+            ],
             "title": "15th-16th century German",
             "htr": 45902,
             "line": ""
         },
         "he-dijest": {
-            "languages": ["he"],
+            "languages": [
+                "he"
+            ],
             "title": "Hebrew DiJeSt 2.0",
             "htr": 46003,
             "line": ""
         },
         "hu-hand-19": {
-            "languages": ["hu"],
+            "languages": [
+                "hu"
+            ],
             "title": "Hungarian handwriting 19th–20th cent.",
             "htr": 46058,
             "line": ""
         },
         "it-hd-m1": {
-            "languages": ["it"],
+            "languages": [
+                "it"
+            ],
             "title": "Transkribus Italian Handwriting M1",
             "htr": 38440,
             "line": ""
         },
         "jv-01": {
-            "languages": ["jv"],
+            "languages": [
+                "jv"
+            ],
             "title": "Javanese model v0.1 b06/24",
             "htr": 116013,
             "line": ""
         },
         "la-caro": {
-            "languages": ["la"],
+            "languages": [
+                "la"
+            ],
             "title": "Carolingian Minuscule Model CMM 9th-11th c.",
             "htr": 51210,
             "line": ""
         },
         "la-in": {
-            "languages": ["la"],
+            "languages": [
+                "la"
+            ],
             "title": "Latin Incunabula (Reichenau)",
             "htr": 61337,
             "line": ""
         },
         "la-med": {
-            "languages": ["la"],
+            "languages": [
+                "la"
+            ],
             "title": "UCL–University of Toronto #7",
             "htr": 48734,
             "line": ""
         },
         "la-neo": {
-            "languages": ["la"],
+            "languages": [
+                "la"
+            ],
             "title": "Pylaia_NeoLatin_Ravenstein",
             "htr": 27542,
             "line": ""
         },
         "nl-mount": {
-            "languages": ["nl"],
+            "languages": [
+                "nl"
+            ],
             "title": "Dutch Mountains (18th Century)",
             "htr": 37851,
             "line": ""
         },
         "nl-news": {
-            "languages": ["nl"],
+            "languages": [
+                "nl"
+            ],
             "title": "Dutch newspapers 17th century",
             "htr": 48942,
             "line": ""
         },
         "nl-1605": {
-            "languages": ["nl"],
+            "languages": [
+                "nl"
+            ],
             "title": "Admiraliteit Zeeland 1605-1609 compleet",
             "htr": 16804,
             "line": ""
         },
         "no-1820": {
-            "languages": ["no"],
+            "languages": [
+                "no"
+            ],
             "title": "NorHand 1820-1940",
             "htr": 48921,
             "line": ""
         },
         "no-1874": {
-            "languages": ["no"],
+            "languages": [
+                "no"
+            ],
             "title": "Sunnhordland Partition Protocols",
             "htr": 48721,
             "line": ""
         },
         "pl-m2": {
-            "languages": ["pl"],
+            "languages": [
+                "pl"
+            ],
             "title": "Transkribus Polish M2",
             "htr": 44976,
             "line": ""
         },
         "pt-m1": {
-            "languages": ["pt"],
+            "languages": [
+                "pt"
+            ],
             "title": "General Portuguese M1",
             "htr": 44949,
             "line": ""
         },
         "pt-17": {
-            "languages": ["pt"],
+            "languages": [
+                "pt"
+            ],
             "title": "SPJCL17C V4.2",
             "htr": 52754,
             "line": ""
         },
         "pt-hd": {
-            "languages": ["pt"],
+            "languages": [
+                "pt"
+            ],
             "title": "Portuguese Handwriting 16th-19th century",
             "htr": 53270,
             "line": ""
         },
         "ro-print": {
-            "languages": ["ro"],
+            "languages": [
+                "ro"
+            ],
             "title": "RTA2 (Romanian Transition Alphabet)",
             "htr": 51515,
             "line": ""
         },
         "rus-hd-2": {
-            "languages": ["ru"],
+            "languages": [
+                "ru"
+            ],
             "title": "Russian generic handwriting 2",
             "htr": 45595,
             "line": ""
         },
         "rus-print": {
-            "languages": ["ru"],
+            "languages": [
+                "ru"
+            ],
             "title": "Russian print of the 18th century",
             "htr": 44358,
             "line": ""
         },
         "san": {
-            "languages": ["hi", "bra", "sa", "awa"],
+            "languages": [
+                "hi",
+                "bra",
+                "sa",
+                "awa"
+            ],
             "title": "Devanagari Mixed M1A",
             "htr": 45909,
             "line": ""
         },
         "sk-hand": {
-            "languages": ["hr"],
+            "languages": [
+                "hr"
+            ],
             "title": "Handwritten Glagolitic",
             "htr": 48703,
             "line": ""
         },
         "sl-hand-18": {
-            "languages": ["la", "sl"],
+            "languages": [
+                "la",
+                "sl"
+            ],
             "title": "Slovenian 18th century manuscript",
             "htr": 51128,
             "line": ""
         },
         "swe-3": {
-            "languages": ["sv"],
+            "languages": [
+                "sv"
+            ],
             "title": "Stockholm Notaries 1700 3.0",
             "htr": 53149,
             "line": ""
         },
         "swe-lion-i": {
-            "languages": ["sv"],
+            "languages": [
+                "sv"
+            ],
             "title": "The Swedish Lion I",
             "htr": 55158,
             "line": ""
         },
         "uk-20th-print": {
-            "languages": ["uk"],
+            "languages": [
+                "uk"
+            ],
             "title": "Printed Ukrainian 20th century",
             "htr": 55365,
             "line": ""
         },
         "uk-generic-handwriting-1": {
-            "languages": ["uk"],
+            "languages": [
+                "uk"
+            ],
             "title": "Ukrainian generic handwriting 1",
             "htr": 51906,
             "line": ""
         },
         "uk-wikisource-print": {
-            "languages": ["uk"],
+            "languages": [
+                "uk"
+            ],
             "title": "Ukrainian Wikisource Print",
             "htr": 60074,
             "line": ""
         },
         "yi-hd": {
-            "languages": ["yi"],
+            "languages": [
+                "yi"
+            ],
             "title": "The Dybbuk for Yiddish Handwriting",
             "htr": 46159,
             "line": ""
