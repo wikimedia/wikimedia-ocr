@@ -3,7 +3,8 @@
 		"authors": [
 			"Nemoralis",
 			"Toghrul Rahimli",
-			"Şeyx Şamil"
+			"Şeyx Şamil",
+			"Əkrəm Cəfər"
 		]
 	},
 	"subtitle": "Şəkillərdən mətni transkripsiya edin",
@@ -21,7 +22,7 @@
 	"drag-help": "Kəsmə alətini seçin və səhifənin yalnız bir sahəsini transkripsiya etmək üçün aşağıdakı şəkildə düzbucaqlı çəkin.",
 	"drag-mode-move": "Sürüşdürdükdə şəkil hərəkət edəcək",
 	"drag-mode-move-alt": "\"Yerini dəyiş\" hərəkətini təmsil edən ikona.",
-	"copy-to-clipboard": "Mübadilə buferinə kopyala",
+	"copy-to-clipboard": "Mübadilə buferinə kopiyala",
 	"copied-to-clipboard": "Kopyalandı!",
 	"documentation": "Sənədləşdirmə",
 	"api-tooltip": "API sənədləşdirməsinə bax",
