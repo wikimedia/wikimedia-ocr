@@ -58,7 +58,7 @@ function fetchLineModelsJSON () {
 function updateLineModelOptions () {
     const staticOptions = $lineDetectionSelect[0].options;
     let staticOptionData = []; 
-    staticOptions.forEach(option => {
+    Array.prototype.forEach.call(staticOptions, option => {
         staticOptionData.push({
             text: option.text,
             value: option.value
