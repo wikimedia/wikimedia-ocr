@@ -118,6 +118,7 @@ $(function () {
         updateSelect2Options(engine);
         $('.engine-options').addClass('hidden');
         $(`#${engine}-options`).removeClass('hidden');
+
         if(engine === 'tesseract' || engine === 'google') {
             $select2.prop('required', false);
             $select2.attr('data-placeholder', previousDataPlaceholder);

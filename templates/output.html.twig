@@ -32,17 +32,16 @@
             </div>
             <div class="form-group">
                 <label for="lang">
-                    {{ msg('model') }}
+                    {{ msg('language-code') }}
                 </label>
                 <select
                     id="lang" 
-                    class="form-control" 
-                    name="langs[]" 
-                    multiple 
+                    class="form-control"
+                    name="langs[]"
+                    multiple
+                    data-placeholder="{{ msg('langs-placeholder') }}"
                     {% if engine == 'transkribus' %}
                         required
-                    {% else %}
-                        data-placeholder="{{ msg('langs-placeholder') }}"
                     {% endif %}
                 >
                     {% for lang_code,lang_name in available_langs %}
