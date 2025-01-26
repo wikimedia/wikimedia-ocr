@@ -1100,6 +1100,12 @@
             "htr": 49186,
             "line": ""
         },
+        "cu": {
+            "languages": ["cu"],
+            "title": "Church Slavonic (2)",
+            "htr": 26113,
+            "line": ""
+        },
         "da-goth": {
             "languages": ["da"],
             "title": "19th century Danish Gothic handwriting v.1.1",
