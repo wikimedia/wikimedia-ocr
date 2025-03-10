@@ -8,6 +8,7 @@
 			"Əkrəm Cəfər"
 		]
 	},
+	"title": "WikimediaOCR",
 	"subtitle": "Şəkillərdən mətni transkripsiya edin",
 	"form-heading": "Şəkli transkripsiya edin",
 	"image-url": "Şəkil URL",
@@ -16,6 +17,7 @@
 	"image-alt-text": "Orijinal şəkil",
 	"language-code": "Dillər (qeyri-məcburi)",
 	"engine": "OCR motoru",
+	"engine-name-transkribus": "Transkribus OCR",
 	"engine-not-found-warning": "Tələb olunan \"$1\" mühərriki tapılmadı. Əvəzində defolt mühərrik olan \"$2\" istifadə edin.",
 	"engine-invalid-langs-warning": "Aşağıdakı dillər etibarsızdır və ya mühərrik tərəfindən dəstəklənmir və nəzərə alınmayıb: $1",
 	"submit": "Bütün səhifəni transkripsiya et",
@@ -23,10 +25,23 @@
 	"drag-help": "Kəsmə alətini seçin və səhifənin yalnız bir sahəsini transkripsiya etmək üçün aşağıdakı şəkildə düzbucaqlı çəkin.",
 	"drag-mode-move": "Sürüşdürdükdə şəkil hərəkət edəcək",
 	"drag-mode-move-alt": "\"Yerini dəyiş\" hərəkətini təmsil edən ikona.",
+	"drag-mode-crop": "Sürüşdürmək yeni kəsim sahəsi yaradacaq",
+	"drag-mode-crop-alt": "\"Kəsmə\" hərəkətini təmsil edən ikona.",
 	"copy-to-clipboard": "Mübadilə buferinə kopiyala",
 	"copied-to-clipboard": "Kopyalandı!",
+	"google-error": "Google xidməti xəta verdi: $1",
+	"image-retrieval-failed": "Şəklin alınması uğursuz oldu: $1",
 	"documentation": "Sənədləşdirmə",
 	"api-tooltip": "API sənədləşdirməsinə bax",
 	"version": "$1 versiyası",
-	"report-issue": "Bir problem bildir"
+	"report-issue": "Bir problem bildir",
+	"langs-placeholder": "Avtomatik dil aşkarlanması üçün boş buraxın.",
+	"langs-param-error": "Aşağıdakı {{PLURAL:$1|dil|dillər}} OCR mühərriki tərəfindən dəstəklənmir: $2",
+	"loading-message": "Transkripsiya həyata keçirilir...",
+	"tesseract-options": "Tesseract seçimləri",
+	"tesseract-psm-label": "Səhifə bölmə metodları",
+	"tesseract-psm-help": "Daha yaxşı çox sütunlu dəstək üçün \"Seyrək mətn\"i sınayın.",
+	"tesseract-psm-0": "Yalnız oriyentasiya və skript aşkarlanması (OSD).",
+	"tesseract-psm-1": "OSD ilə avtomatik səhifə bölünməsi.",
+	"tesseract-psm-2": "Avtomatik səhifə bölünməsi, lakin OSD və ya OCR yoxdur. (həyata keçirilmir)"
 }
