@@ -1,7 +1,7 @@
 {
     "@metadata": {},
     "title": "WikimediaOCR",
-    "subtitle": "Transcribe text from images",
+    "subtitle": "A tool to transcribe text from scanned images on Wikimedia Commons, for use on Wikisource and elsewhere.",
     "form-heading": "Transcribe an image",
     "image-url": "Image URL",
     "image-url-help": "Insert an image URL hosted on a Wikimedia server such as: $1",
