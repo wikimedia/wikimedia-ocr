@@ -13,7 +13,7 @@
 		]
 	},
 	"title": "维基媒体OCR",
-	"subtitle": "从图像转录文本",
+	"subtitle": "从维基共享资源上的扫描图像转录文本，以供维基文库和其他项目使用的工具。",
 	"form-heading": "转录图像",
 	"image-url": "图像 URL",
 	"image-url-help": "插入在维基媒体服务器上托管的图像 URL，例如： $1",
