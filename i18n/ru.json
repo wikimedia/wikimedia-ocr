@@ -11,7 +11,7 @@
 		]
 	},
 	"title": "ВикимедиаOCR",
-	"subtitle": "Расшифровать текст с изображений",
+	"subtitle": "Инструмент для распознавания текста из отсканированных изображений с Викисклада для использования в Викитеке и других местах.",
 	"form-heading": "Расшифровать изображение",
 	"image-url": "URL изображения",
 	"image-url-help": "Вставьте URL-адрес изображения, размещенного на сервере Викимедиа, например: $1",
@@ -19,9 +19,11 @@
 	"image-alt-text": "Исходное изображение",
 	"language-code": "Языки (необязательно)",
 	"engine": "Движок OCR",
+	"engine-name-transkribus": "Transkribus OCR",
 	"engine-not-found-warning": "Запрошенный движок '$1' не найден. Вместо этого используется движок по умолчанию — '$2'.",
 	"engine-invalid-langs-warning": "Следующие языки недействительны или не поддерживаются движком и были проигнорированы: $1",
 	"submit": "Транскрибировать всю страницу",
+	"submit-crop": "Распознать область",
 	"copy-to-clipboard": "Скопировать в буфер обмена",
 	"copied-to-clipboard": "Скопировано!",
 	"google-error": "Служба Google вернула ошибку: $1",
@@ -42,5 +44,11 @@
 	"tesseract-internal-error": "Механизм тессеракта возвратил внутреннюю ошибку.",
 	"transkribus-language-code": "Языковая модель",
 	"transkribus-no-lang-error": "Язык не выбран",
-	"transkribus-multiple-lang-error": "Нельзя использовать несколько языков, выберите один язык"
+	"transkribus-multiple-lang-error": "Нельзя использовать несколько языков, выберите один язык",
+	"transkribus-job-id": "Идентификатор задачи",
+	"transkribus-job-state": "Состояние",
+	"transkribus-job-description": "Описание",
+	"transkribus-job-start": "Начато",
+	"transkribus-job-end": "Завершено",
+	"transkribus-job-waited": "Задержка запуска (в минутах)"
 }
