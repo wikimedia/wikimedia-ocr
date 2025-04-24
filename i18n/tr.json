@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hedda"
+			"Hedda",
+			"Slickdaddy"
 		]
 	},
 	"title": "WikimediaOCR",
@@ -51,5 +52,11 @@
 	"tesseract-psm-12": "OSD ile aralıklı metin.",
 	"tesseract-psm-13": "Ham satır. Görüntüyü, Tesseract'a özgü saldırıları atlayarak tek bir metin satırı olarak ele alın.",
 	"tesseract-param-error": "$2 değerine sahip '$1' seçeneği Tesseract tarafından desteklenmez. Maksimum değer: $3",
-	"tesseract-internal-error": "Tesseract motoru dahili bir hata verdi."
+	"tesseract-internal-error": "Tesseract motoru dahili bir hata verdi.",
+	"transkribus-language-code": "Dil Modeli",
+	"transkribus-no-lang-error": "Dil seçilmedi",
+	"transkribus-options": "Transkribus Seçenekleri",
+	"transkribus-job-state": "Durum",
+	"transkribus-job-description": "Açıklama",
+	"transkribus-job-waited": "Başlatma gecikmesi (dakika)"
 }
