@@ -8,7 +8,7 @@
 		]
 	},
 	"title": "WikimediaOCR",
-	"subtitle": "Transcribeer tekst uit afbeeldingen",
+	"subtitle": "Een hulpmiddel om tekst uit gescande afbeeldingen op Wikimedia Commons over te schrijven, voor gebruik op Wikisource en elders.",
 	"form-heading": "Transcribeer een afbeelding",
 	"image-url": "Afbeeldings-URL",
 	"image-url-help": "Voeg een afbeeldings-URL in die wordt gehost op een Wikimedia-server, zoals: $1",
