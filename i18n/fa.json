@@ -10,7 +10,7 @@
 		]
 	},
 	"title": "OCR ویکی‌مدیا",
-	"subtitle": "رونویسی متن از تصاویر",
+	"subtitle": "ابزاری برای رونویسی متن از تصاویر اسکن‌شده در ویکی‌انبار، برای استفاده در ویکی‌نبشته و جاهای دیگر.",
 	"form-heading": "رونویسی یک تصویر",
 	"image-url": "نشانی تصویر",
 	"image-url-help": "نشانی URL تصویری را که در کارگزار ویکی‌مدیا میزبانی شده است را وارد کنید، مانند: $1",
@@ -18,6 +18,7 @@
 	"image-alt-text": "تصویر اصلی",
 	"language-code": "زبان‌ها (اختیاری)",
 	"engine": "موتور OCR",
+	"engine-name-transkribus": "Transkribus OCR",
 	"engine-not-found-warning": "موتور درخواستی $1 پیدا نشد. به جای آن از موتور پیش‌فرض $2 استفاده می‌شود.",
 	"engine-invalid-langs-warning": "زبان‌های زیر نامعتبر بوده یا توسط موتور پشتیبانی نمی‌شوند و از آنها چشم‌پوشی شد: $1",
 	"submit": "رونویسی تمام صفحه",
@@ -37,6 +38,7 @@
 	"report-issue": "گزارش مشکل",
 	"langs-placeholder": "برای شناسایی خودکار زبان، خالی بگذارید.",
 	"langs-param-error": "این {{PLURAL:$1|زبان|زبان‌ها}} توسط موتور OCR پشتیبانی نمی‌شوند: $2",
+	"loading-message": "در حال انجام رونویسی...",
 	"tesseract-options": "گزینه‌های Tesseract",
 	"tesseract-psm-label": "روش بخش‌بندی صفحه",
 	"tesseract-psm-help": "برای پشتیبانی بهتر از متن چندستونی «متن پراکنده» را انتخاب کن.",
@@ -55,6 +57,7 @@
 	"tesseract-psm-12": "متن پراکنده با OSD",
 	"tesseract-psm-13": "خط خام. با تصویر به عنوان یک خط متن رفتار کن و از ترفندهای اختصاصی Tesseract صرف نظر کن.",
 	"tesseract-param-error": "گزینه $1 با مقدار $2 توسط Tesseract پشتیبانی نمی‌شود. مقدار بیشینه: $3",
+	"tesseract-no-text-error": "موتور Tesseract هیچ متنی برای این تصویر بازنگرداند.",
 	"tesseract-internal-error": "موتور tesseract خطای داخلی برگرداند.",
 	"transkribus-language-code": "مدل زبانی",
 	"transkribus-unauthorized-error": "کد خطا ' $1 ' :: درخواست مجاز نیست",
@@ -76,5 +79,6 @@
 	"transkribus-job-state": "وضعیت",
 	"transkribus-job-description": "توضیحات",
 	"transkribus-job-start": "آغاز شده",
-	"transkribus-job-end": "پایان"
+	"transkribus-job-end": "پایان",
+	"transkribus-job-waited": "تأخیر آغاز (دقیقه)"
 }
