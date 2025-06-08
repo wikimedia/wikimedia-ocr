@@ -1713,6 +1713,12 @@
             "htr": 60074,
             "line": ""
         },
+        "uk-chuhaister": {
+            "languages": ["uk"],
+            "title": "Ukrainian Chuhaister",
+            "htr": 339273,
+            "line": ""
+        },
         "yi-hd": {
             "languages": ["yi"],
             "title": "The Dybbuk for Yiddish Handwriting",
