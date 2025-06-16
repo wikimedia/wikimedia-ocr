@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ajeje Brazorf",
+			"Derugon",
 			"Gomoko",
 			"Hecatonchire",
 			"JenyxGym",
@@ -11,7 +12,7 @@
 		]
 	},
 	"title": "Reconnaissance optique des caractères (ROC) de Wikimedia",
-	"subtitle": "Transcrire le texte à partir d’images",
+	"subtitle": "Un outil pour transcrire du texte à partir d’images numérisées sur Wikimédia Commons, à destination de Wikisource ou autre.",
 	"form-heading": "Transcrire une image",
 	"image-url": "URL de l’image",
 	"image-url-help": "Insérer l’URL d’une image hébergée sur un serveur Wikimédia comme : $1",
