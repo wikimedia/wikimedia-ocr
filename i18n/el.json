@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jimkats",
+			"Norhorn"
+		]
+	},
+	"title": "WikimediaOCR",
+	"image-url": "URL εικόνας",
+	"image-alt-text": "Η αρχική εικόνα",
+	"engine": "Μηχανή OCR",
+	"engine-name-transkribus": "Transkribus OCR",
+	"copy-to-clipboard": "Αντιγραφή στο πρόχειρο",
+	"copied-to-clipboard": "Αντιγράφηκε!",
+	"google-error": "Η υπηρεσία Google επέστρεψε ένα σφάλμα: $1",
+	"image-retrieval-failed": "Η ανάκτηση εικόνας απέτυχε: $1",
+	"documentation": "Τεκμηρίωση",
+	"api-tooltip": "Δείτε την τεκμηρίωση του API",
+	"version": "Έκδοση $1",
+	"report-issue": "Αναφέρετε ένα πρόβλημα",
+	"transkribus-no-lang-error": "Δεν επιλέχθηκε γλώσσα",
+	"transkribus-line-id-none-option": "Κανένα",
+	"transkribus-job-id": "ID εργασίας",
+	"transkribus-job-state": "Κατάσταση",
+	"transkribus-job-description": "Περιγραφή",
+	"transkribus-job-start": "Ξεκίνησε",
+	"transkribus-job-end": "Τελείωσε",
+	"transkribus-job-waited": "Καθυστέρηση έναρξης (λεπτά)"
+}
