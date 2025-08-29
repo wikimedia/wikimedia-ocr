@@ -118,9 +118,6 @@ class TranskribusEngine extends EngineBase {
 	): EngineResult {
 		$this->checkImageUrl( $imageUrl );
 
-		$image = $this->getImage( $imageUrl, $crop );
-		$imageUrl = $image->getUrl();
-
 		$points = '';
 		if ( $crop ) {
 			$x = $crop['x'];
@@ -143,7 +140,8 @@ class TranskribusEngine extends EngineBase {
 		$modelCode = $validLangs[0];
 		$modelInfo = $this->getModelList()[$modelCode];
 		$htrModelId = (int)$modelInfo['htr'];
-		$processId = $this->transkribusClient->initProcess( $imageUrl, $htrModelId, $this->lineId, $points );
+		$image = $this->getImage( $imageUrl, $crop, self::DO_DOWNLOAD_IMAGE );
+		$processId = $this->transkribusClient->initProcess( $image, $htrModelId, $this->lineId, $points );
 
 		$resText = '';
 		while ( $this->transkribusClient->processStatus !== 'FINISHED' ) {
