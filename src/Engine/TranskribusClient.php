@@ -68,13 +68,13 @@ class TranskribusClient {
 	}
 
 	/**
-	 * @param string $imageURL
+	 * @param Image $image
 	 * @param int $htrId
 	 * @param int $lineId
 	 * @param string $points
 	 * @return int
 	 */
-	public function initProcess( string $imageURL, int $htrId, int $lineId, string $points ): int {
+	public function initProcess( Image $image, int $htrId, int $lineId, string $points ): int {
 		$jsonBody = [
 			'config' => [
 				'textRecognition' => [
@@ -82,7 +82,7 @@ class TranskribusClient {
 				],
 			],
 			'image' => [
-				'imageUrl' => $imageURL,
+				'base64' => base64_encode( $image->getData() ),
 			],
 		];
 
