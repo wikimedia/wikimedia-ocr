@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bapham123",
 			"Minh Nguyen",
 			"Nguyễn Mạnh An",
 			"Vinhtantran"
@@ -49,5 +50,7 @@
 	"tesseract-psm-12": "Dò văn bản bằng OSD.",
 	"tesseract-psm-13": "Dòng thô. Xem ảnh như một dòng văn bản duy nhất, bỏ qua những mẹo đặc thù của Tesseract.",
 	"tesseract-param-error": "Tùy chọn ‘$1’ với giá trị ‘$2’ không được Tesseract hỗ trợ. Giá trị tối đa: $3",
-	"tesseract-internal-error": "Bộ máy tesseract trả về lỗi nội bộ."
+	"tesseract-internal-error": "Bộ máy tesseract trả về lỗi nội bộ.",
+	"transkribus-no-lang-error": "Không có ngôn ngữ nào được chọn",
+	"transkribus-line-id-none-option": "Không có"
 }

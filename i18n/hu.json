@@ -13,7 +13,7 @@
 	"image-url-help": "Egy tényleges képfájl teljes URL-je, a következő domainek egyikével: $1",
 	"image-url-error": "A fájlnévnek egy érvényes kiterjesztéssel kell végződnie, és a következő {{PLURAL:$1|domainnévvel|domainnevek egyikével}} kell kezdődnie: $2",
 	"image-alt-text": "Az eredeti kép",
-	"language-code": "Két betűs nyelvkód (nem kötelező):",
+	"language-code": "Nyelvek (nem kötelező)",
 	"engine": "OCR-motor",
 	"engine-not-found-warning": "A kért „$1” motor nem található. Ehelyett az alapértelmezett „$2” motort használja.",
 	"engine-invalid-langs-warning": "A következő nyelvek érvénytelenek vagy a motor által nem támogatottak, ezért figyelmen kívül hagyták: $1",

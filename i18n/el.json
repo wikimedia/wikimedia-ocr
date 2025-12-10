@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jimkats",
+			"Norhorn"
+		]
+	},
+	"title": "WikimediaOCR",
+	"form-heading": "Μεταγραφή εικόνας",
+	"image-url": "URL εικόνας",
+	"image-alt-text": "Η αρχική εικόνα",
+	"language-code": "Γλώσσες (προαιρετικά)",
+	"engine": "Μηχανή OCR",
+	"engine-name-transkribus": "Transkribus OCR",
+	"submit": "Μεταγραφή ολόκληρης της σελίδας",
+	"submit-crop": "Περιοχή μεταγραφής",
+	"copy-to-clipboard": "Αντιγραφή στο πρόχειρο",
+	"copied-to-clipboard": "Αντιγράφηκε!",
+	"google-error": "Η υπηρεσία Google επέστρεψε ένα σφάλμα: $1",
+	"image-retrieval-failed": "Η ανάκτηση εικόνας απέτυχε: $1",
+	"documentation": "Τεκμηρίωση",
+	"api-tooltip": "Δείτε την τεκμηρίωση του API",
+	"version": "Έκδοση $1",
+	"report-issue": "Αναφέρετε ένα πρόβλημα",
+	"loading-message": "Εκτέλεση μεταγραφής...",
+	"tesseract-options": "Επιλογές Tesseract",
+	"transkribus-language-code": "Γλωσσικό Μοντέλο",
+	"transkribus-default-error": "Κωδικός σφάλματος '$1' :: Δεν είναι δυνατή η ολοκλήρωση του αιτήματος, προσπαθήστε ξανά!",
+	"transkribus-no-lang-error": "Δεν επιλέχθηκε γλώσσα",
+	"transkribus-options": "Επιλογές Transkribus",
+	"transkribus-line-label": "Μοντέλο Ανίχνευσης Γραμμής",
+	"transkribus-line-id-none-option": "Κανένα",
+	"transkribus-jobs": "Εργασίες Transcribus",
+	"transkribus-job-id": "ID εργασίας",
+	"transkribus-job-state": "Κατάσταση",
+	"transkribus-job-description": "Περιγραφή",
+	"transkribus-job-start": "Ξεκίνησε",
+	"transkribus-job-end": "Τελείωσε",
+	"transkribus-job-waited": "Καθυστέρηση έναρξης (λεπτά)"
+}

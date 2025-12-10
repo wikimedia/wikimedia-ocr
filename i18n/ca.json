@@ -7,7 +7,7 @@
 		]
 	},
 	"title": "WikimediaOCR",
-	"subtitle": "Transcriu text a partir d'imatges",
+	"subtitle": "Una eina per transcriure text a partir d'imatges escanejades a Wikimedia Commons, per al seu ús a Wikisource i en altres llocs.",
 	"form-heading": "Transcriu una imatge",
 	"image-url": "URL de la imatge",
 	"image-url-help": "Insereix una URL d'una imatge allotjada en un servidor de Wikimedia com ara: $1",

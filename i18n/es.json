@@ -15,7 +15,7 @@
 		]
 	},
 	"title": "WikimediaOCR",
-	"subtitle": "Transcribe texto de la imagen",
+	"subtitle": "Una herramienta para transcribir texto a partir de imágenes escaneadas en Wikimedia Commons, para su uso en Wikisource y en otros lugares.",
 	"form-heading": "Transcribe una imagen",
 	"image-url": "Enlace de la imagen:",
 	"image-url-help": "Inserte un enlace a una imagen alojada en un servidor de Wikimedia como: $1",
