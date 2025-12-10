@@ -1719,6 +1719,12 @@
             "htr": 339273,
             "line": ""
         },
+        "uk-be-ruthenian-chuhaister": {
+            "languages": ["uk", "be"],
+            "title": "Ruthenian Chuhaister",
+            "htr": 445285,
+            "line": ""
+        },
         "yi-hd": {
             "languages": ["yi"],
             "title": "The Dybbuk for Yiddish Handwriting",
