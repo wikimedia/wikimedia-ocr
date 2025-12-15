@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Mnam23",
+			"Penyuwangi",
 			"Veracious"
 		]
 	},
@@ -9,7 +10,7 @@
 	"subtitle": "Mentranskripkan teks dari gambar",
 	"form-heading": "Transkripsi sebuah gambar",
 	"image-url": "URL Gambar",
-	"image-url-help": "Masukkan URL gambar yang dihosting di server Wikimedia seperti: $1",
+	"image-url-help": "Sisipkan URL gambar yang dihosting di peladen Wikimedia seperti: $1",
 	"image-url-error": "URL gambar harus dimulai dengan {{PLURAL:$1|nama domain berikut|salah satu dari nama domain berikut}} dan diakhiri dengan ekstensi berkas valid: $2",
 	"image-alt-text": "Gambar asli",
 	"language-code": "Bahasa (opsional)",
