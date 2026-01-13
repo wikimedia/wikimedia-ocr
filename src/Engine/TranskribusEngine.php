@@ -6,6 +6,7 @@ namespace App\Engine;
 use App\Exception\OcrException;
 use Krinkle\Intuition\Intuition;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Imagine\Gd\Imagine;
 
 class TranskribusEngine extends EngineBase {
 
@@ -114,7 +115,8 @@ class TranskribusEngine extends EngineBase {
 		string $imageUrl,
 		string $invalidLangsMode,
 		array $crop,
-		?array $langs = null
+		?array $langs = null,
+		int $rotate = 0
 	): EngineResult {
 		$this->checkImageUrl( $imageUrl );
 
@@ -141,6 +143,13 @@ class TranskribusEngine extends EngineBase {
 		$modelInfo = $this->getModelList()[$modelCode];
 		$htrModelId = (int)$modelInfo['htr'];
 		$image = $this->getImage( $imageUrl, $crop, self::DO_DOWNLOAD_IMAGE );
+		if ( $rotate !== 0 ) {
+            $imagine = new Imagine();
+            $loaded  = $imagine->load( $image->getData() );
+            $loaded->rotate( $rotate );
+            $image->setData( $loaded->get( 'jpg' ) );
+        }
+		
 		$processId = $this->transkribusClient->initProcess( $image, $htrModelId, $this->lineId, $points );
 
 		$resText = '';

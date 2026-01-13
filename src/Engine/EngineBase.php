@@ -64,7 +64,8 @@ abstract class EngineBase {
 		string $imageUrl,
 		string $invalidLangsMode,
 		array $crop,
-		?array $models = null
+		?array $models = null,
+		int $rotate = 0
 	): EngineResult;
 
 	/**

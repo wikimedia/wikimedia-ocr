@@ -57,6 +57,7 @@ class OcrController extends AbstractController {
 	 * @var mixed[]
 	 */
 	public static $params = [
+		'rotate' => 0,
 		'image' => '',
 		'engine' => self::DEFAULT_ENGINE,
 		'langs' => [],
@@ -120,6 +121,10 @@ class OcrController extends AbstractController {
 			$crop = [];
 		}
 		static::$params['crop'] = array_map( 'intval', $crop );
+		// NEW: normalize rotation (degrees)
+        $rotate = (int)$this->request->query->get( 'rotate', static::$params['rotate'] );
+        $rotate = ($rotate % 360 + 360) % 360;//The rotation to 0–359 to keep the value predictable.
+        static::$params['rotate'] = $rotate;
 	}
 
 	/**
@@ -390,6 +395,7 @@ class OcrController extends AbstractController {
 				implode( '|', array_map( 'strval', static::$params['crop'] ) ),
 				static::$params['psm'],
 				static::$params['line_id'],
+				static::$params['rotate'], // NEW
 				// Warning messages are localized
 				$this->intuition->getLang(),
 			]
@@ -401,7 +407,8 @@ class OcrController extends AbstractController {
 				static::$params['image'],
 				$invalidLangsMode,
 				static::$params['crop'],
-				static::$params['langs']
+				static::$params['langs'],
+				static::$params['rotate'] // NEW
 			);
 		} );
 		if ( !$result instanceof EngineResult ) {
