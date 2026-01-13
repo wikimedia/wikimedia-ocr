@@ -198,21 +198,20 @@ $(function () {
                     $button.addClass('active');
                     this.cropper.setDragMode($button.data('drag-mode'));
                 });
-                    // React to rotate buttons.
-        if (rotateInput) {
-            $rotateButtons.on('click', event => {
-                const $button = $(event.currentTarget);
-                const delta = $button.hasClass('ocr-rotate-left') ? -90 : 90;
+                // React to rotate buttons.
+                if (rotateInput) {
+                    $rotateButtons.on('click', event => {
+                        const $button = $(event.currentTarget);
+                        const delta = $button.hasClass('ocr-rotate-left') ? -90 : 90;
 
-                // Update Cropper rotation.
-                this.cropper.rotate(delta);
+                        // Update Cropper rotation.
+                        this.cropper.rotate(delta);
 
-                // Track cumulative rotation in the hidden field.
-                const current = Number.parseFloat(rotateInput.value) || 0;
-                rotateInput.value = (current + delta + 360) % 360;
-            });
-        }
-
+                        // Track cumulative rotation in the hidden field.
+                        const current = Number.parseFloat(rotateInput.value) || 0;
+                        rotateInput.value = (current + delta + 360) % 360;
+                    });
+                }
             },
             data: {
                 x: Number.parseFloat(x.value),

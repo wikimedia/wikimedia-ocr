@@ -4,12 +4,11 @@ declare( strict_types = 1 );
 namespace App\Engine;
 
 use App\Exception\OcrException;
+use Imagine\Gd\Imagine;
 use Krinkle\Intuition\Intuition;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use thiagoalessio\TesseractOCR\TesseractOCR;
 use thiagoalessio\TesseractOCR\UnsuccessfulCommandException;
-use Imagine\Gd\Imagine;
-
 
 class TesseractEngine extends EngineBase {
 
@@ -64,10 +63,10 @@ class TesseractEngine extends EngineBase {
 		$image = $this->getImage( $imageUrl, $crop, self::DO_DOWNLOAD_IMAGE );
 		// If there is a rotation, apply it to the image data.
 		if ( $rotate !== 0 ) {
-    	$imagine = new Imagine();
-    	$loaded = $imagine->load( $image->getData() );
-    	$loaded->rotate( $rotate );
-    	$image->setData( $loaded->get( 'jpg' ) );
+		$imagine = new Imagine();
+		$loaded = $imagine->load( $image->getData() );
+		$loaded->rotate( $rotate );
+		$image->setData( $loaded->get( 'jpg' ) );
 		}
 		$this->ocr->imageData( $image->getData(), $image->getSize() );
 

@@ -4,9 +4,9 @@ declare( strict_types = 1 );
 namespace App\Engine;
 
 use App\Exception\OcrException;
+use Imagine\Gd\Imagine;
 use Krinkle\Intuition\Intuition;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Imagine\Gd\Imagine;
 
 class TranskribusEngine extends EngineBase {
 
@@ -144,12 +144,12 @@ class TranskribusEngine extends EngineBase {
 		$htrModelId = (int)$modelInfo['htr'];
 		$image = $this->getImage( $imageUrl, $crop, self::DO_DOWNLOAD_IMAGE );
 		if ( $rotate !== 0 ) {
-            $imagine = new Imagine();
-            $loaded  = $imagine->load( $image->getData() );
-            $loaded->rotate( $rotate );
-            $image->setData( $loaded->get( 'jpg' ) );
-        }
-		
+			$imagine = new Imagine();
+			$loaded  = $imagine->load( $image->getData() );
+			$loaded->rotate( $rotate );
+			$image->setData( $loaded->get( 'jpg' ) );
+		}
+
 		$processId = $this->transkribusClient->initProcess( $image, $htrModelId, $this->lineId, $points );
 
 		$resText = '';

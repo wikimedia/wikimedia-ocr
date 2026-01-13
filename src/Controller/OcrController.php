@@ -122,9 +122,9 @@ class OcrController extends AbstractController {
 		}
 		static::$params['crop'] = array_map( 'intval', $crop );
 		// NEW: normalize rotation (degrees)
-        $rotate = (int)$this->request->query->get( 'rotate', static::$params['rotate'] );
-        $rotate = ($rotate % 360 + 360) % 360;//The rotation to 0–359 to keep the value predictable.
-        static::$params['rotate'] = $rotate;
+		$rotate = (int)$this->request->query->get( 'rotate', static::$params['rotate'] );
+		$rotate = ( $rotate % 360 + 360 ) % 360;// The rotation to 0–359 to keep the value predictable.
+		static::$params['rotate'] = $rotate;
 	}
 
 	/**
