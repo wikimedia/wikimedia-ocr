@@ -14,7 +14,7 @@
 	"image-url-help": "Help text for the 'image' field.",
 	"image-url-error": "Error message shown when the 'image' field is not valid.",
 	"image-alt-text": "Alt text for the displayed image, next to the OCR text box.",
-	"language-code": "Form label for the 'languages' field.",
+	"language-code": "Form label for the 'model' field.",
 	"engine": "Form label for the 'engine' field.\nOCR is a common abbreviation in English for \"Optical Characters Recognition\".",
 	"engine-name-google": "Option text for the 'google' engine.\nOCR is a common abbreviation in English for \"Optical Characters Recognition\".",
 	"engine-name-tesseract": "Option text for the 'tesseract' engine.",
