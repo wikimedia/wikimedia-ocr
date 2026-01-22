@@ -3,7 +3,8 @@
 		"authors": [
 			"Ajeje Brazorf",
 			"Beta16",
-			"Candalua"
+			"Candalua",
+			"Ciampix"
 		]
 	},
 	"title": "WikimediaOCR",
@@ -35,6 +36,7 @@
 	"report-issue": "Segnala un problema",
 	"langs-placeholder": "Lascia vuoto per il rilevamento automatico della lingua.",
 	"langs-param-error": "{{PLURAL:$1|La lingua seguente non è supportata|Le lingue seguenti non sono supportate}} dal motore OCR: $2",
+	"loading-message": "Sto facendo la trascrizione...",
 	"tesseract-options": "Opzioni di Tesseract",
 	"tesseract-psm-label": "Metodo di segmentazione della pagina",
 	"tesseract-psm-help": "Prova \"Testo sparso\" per un migliore supporto multicolonna.",
@@ -53,6 +55,7 @@
 	"tesseract-psm-12": "Testo sparso con OSD.",
 	"tesseract-psm-13": "Linea grezza. Tratta l'immagine come una singola riga di testo, aggirando gli hack specifici di Tesseract.",
 	"tesseract-param-error": "L'opzione '$1' con un valore di $2 non è supportata da Tesseract. Valore massimo: $3",
+	"tesseract-no-text-error": "Il motore Tesseract non ha restituito alcun testo per questa immagine.",
 	"tesseract-internal-error": "Il motore Tesseract ha restituito un errore interno.",
 	"transkribus-language-code": "Modello linguistico",
 	"transkribus-unauthorized-error": "Codice di errore '$1' :: La richiesta non è autorizzata",
@@ -64,7 +67,12 @@
 	"transkribus-multiple-lang-error": "Non sono consentite più lingue, specificare una lingua",
 	"transkribus-browse-public-models": "Sfoglia tutti i modelli di linguaggio pubblico per Transkribus",
 	"transkribus-request-for-model": "Fai una richiesta per aggiungere un modello da Transkribus allo strumento OCR",
+	"transkribus-options": "Opzioni di Transkribus",
+	"transkribus-line-label": "Modello di rilevamento della riga",
 	"transkribus-line-id-none-option": "Nessuno",
+	"transkribus-mixed-line-option": "Orientamento riga misto",
+	"transkribus-line-help": "Lasciare vuoto se non si è sicuri di quale modello di rilevamento riga utilizzare",
+	"transkribus-jobs": "Lavori Transkribus",
 	"transkribus-job-id": "ID attività",
 	"transkribus-job-state": "Stato",
 	"transkribus-job-description": "Descrizione",
