@@ -93,12 +93,22 @@
                                 </button>
                             </div>
 
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default rotate-left" title="Rotate left">
+                                    ↺
+                                </button>
+                                <button type="button" class="btn btn-default rotate-right" title="Rotate right">
+                                    ↻
+                                </button>
+                            </div>
+
                             <input type="submit" value="{{ msg( 'submit-crop' ) }}" class="submit-crop btn btn-info disabled" disabled />
 
                             <input type="hidden" name="crop[x]" value="{% if crop.x is defined %}{{ crop.x }}{% endif %}" />
                             <input type="hidden" name="crop[y]" value="{% if crop.y is defined %}{{ crop.y }}{% endif %}" />
                             <input type="hidden" name="crop[width]" value="{% if crop.width is defined %}{{ crop.width }}{% endif %}" />
                             <input type="hidden" name="crop[height]" value="{% if crop.height is defined %}{{ crop.height }}{% endif %}" />
+                            <input type="hidden" name="rotate" id="rotate" value="{% if rotate is defined %}{{ rotate }}{% else %}0{% endif %}" />
                         </div>
                         <div><!-- This div is required for Cropper.js -->
                             <img id="source-image" class="img-responsive" src="{{ app.request.get('image') }}" alt="{{ msg('img-alt-text') }}" />
