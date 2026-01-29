@@ -58,13 +58,15 @@ abstract class EngineBase {
 	 * @param string $invalidLangsMode
 	 * @param int[] $crop
 	 * @param string[]|null $models
+	 * @param int $rotate
 	 * @return EngineResult
 	 */
 	abstract public function getResult(
 		string $imageUrl,
 		string $invalidLangsMode,
 		array $crop,
-		?array $models = null
+		?array $models = null,
+		int $rotate = 0
 	): EngineResult;
 
 	/**
@@ -184,13 +186,14 @@ abstract class EngineBase {
 	 * @param string $imageUrl The original image URL.
 	 * @param int[] $crop Array with keys `x, `y`, `width` and `height`.
 	 * @param ?bool $downloadMode Whether to download the image or not.
+	 * @param int $rotate Rotation angle in degrees.
 	 * @return Image
 	 * @throws OcrException If the image couldn't be fetched.
 	 */
-	public function getImage( string $imageUrl, array $crop, ?bool $downloadMode = false ): Image {
-		$image = new Image( $imageUrl, $crop );
+	public function getImage( string $imageUrl, array $crop, ?bool $downloadMode = false, int $rotate = 0 ): Image {
+		$image = new Image( $imageUrl, $crop, $rotate );
 
-		if ( self::DO_DOWNLOAD_IMAGE !== $downloadMode && !$image->needsCropping() ) {
+		if ( self::DO_DOWNLOAD_IMAGE !== $downloadMode && !$image->needsCropping() && !$image->needsRotation() ) {
 			return $image;
 		}
 
@@ -201,16 +204,23 @@ abstract class EngineBase {
 			throw new OcrException( 'image-retrieval-failed', [ $exception->getMessage() ] );
 		}
 
+		$imagine = new Imagine();
+		$loadedImage = $imagine->load( $data );
+
+		// Apply rotation first, before cropping.
+		if ( $image->needsRotation() ) {
+			$loadedImage = $loadedImage->rotate( $image->getRotate() );
+		}
+
 		if ( !$image->needsCropping() ) {
-			// If it doesn't need cropping, use the full image's data.
-			$image->setData( $data );
-			$image->setSize( (int)$imageResponse->getHeaders()['content-length'][0] );
+			// If it doesn't need cropping, use the rotated image's data (or original if no rotation).
+			$image->setData( $loadedImage->get( 'jpg' ) );
+			$image->setSize( strlen( $image->getData() ) );
 		} else {
-			// Otherwise, crop it.
-			$imagine = new Imagine();
-			$loadedImage = $imagine->load( $data );
+			// Otherwise, crop it after rotation.
 			$croppedImage = $image->getCrop()->apply( $loadedImage );
 			$image->setData( $croppedImage->get( 'jpg' ) );
+			$image->setSize( strlen( $image->getData() ) );
 		}
 
 		return $image;
