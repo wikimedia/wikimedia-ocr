@@ -90,6 +90,17 @@ class OcrController extends AbstractController {
 	 * @suppress PhanSuspiciousValueComparison
 	 */
 	private function setup(): void {
+		// Parse `?uselang=` and set Intuition language (sanitized). Try multiple setters for compatibility.
+		$uselang = $this->request->query->get( 'uselang' );
+		if ( $uselang ) {
+			// Sanitize to alphanumerics, dash and underscore only.
+			$sanitized = preg_replace( '/[^a-zA-Z0-9\\-_]/', '', (string)$uselang );
+			if ( $sanitized ) {
+				// Call Intuition::setLang directly (installed Intuition provides this).
+				$this->intuition->setLang( $sanitized );
+			}
+		}
+
 		$requestedEngine = $this->request->query->get( 'engine', static::$params['engine'] );
 		try {
 			$this->engine = $this->engineFactory->get( $requestedEngine );
