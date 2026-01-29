@@ -51,7 +51,8 @@ class GoogleCloudVisionEngine extends EngineBase {
 		string $imageUrl,
 		string $invalidLangsMode,
 		array $crop,
-		?array $langs = null
+		?array $langs = null,
+		int $rotate = 0
 	): EngineResult {
 		$this->checkImageUrl( $imageUrl );
 
@@ -66,7 +67,7 @@ class GoogleCloudVisionEngine extends EngineBase {
 			throw new OcrException( 'google-error', [ 'Key for Google OCR engine is missing' ] );
 		}
 
-		$image = $this->getImage( $imageUrl, $crop );
+		$image = $this->getImage( $imageUrl, $crop, false, $rotate );
 		$imageUrlOrData = $image->hasData() ? $image->getData() : $image->getUrl();
 		$response = $this->imageAnnotator->textDetection( $imageUrlOrData, [ 'imageContext' => $imageContext ] );
 
@@ -77,7 +78,7 @@ class GoogleCloudVisionEngine extends EngineBase {
 		if ( $response->getError()
 			&& stripos( $response->getError()->getMessage(), 'download the content and pass it in' ) !== false
 		) {
-			$image = $this->getImage( $imageUrl, $crop, self::DO_DOWNLOAD_IMAGE );
+			$image = $this->getImage( $imageUrl, $crop, self::DO_DOWNLOAD_IMAGE, $rotate );
 			$response = $this->imageAnnotator->textDetection( $image->getData(), [ 'imageContext' => $imageContext ] );
 		}
 
