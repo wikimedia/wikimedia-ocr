@@ -205,4 +205,64 @@ class EngineBaseTest extends OcrTestCase {
 		}
 		return $engine;
 	}
+
+	/**
+	 * @covers EngineBase::getResult
+	 * Test that all engines accept the rotation parameter without errors
+	 */
+	public function testEngineAcceptsRotationParameter(): void {
+		// Test that engines can be called with rotation parameter
+		// This is a smoke test to ensure rotation parameter doesn't break the interface
+		$this->tesseractEngine->setImageHosts( 'upload.wikimedia.org' );
+
+		// All engines should accept the rotation parameter in their signature
+		try {
+			// We don't expect actual OCR results here, just that the parameter is accepted
+			$reflection = new \ReflectionMethod( $this->tesseractEngine, 'getResult' );
+			$parameters = $reflection->getParameters();
+
+			// Check that 'rotate' parameter exists
+			$rotateParam = null;
+			foreach ( $parameters as $param ) {
+				if ( $param->getName() === 'rotate' ) {
+					$rotateParam = $param;
+					break;
+				}
+			}
+
+			$this->assertNotNull( $rotateParam, 'rotate parameter should exist in getResult()' );
+			$this->assertTrue( $rotateParam->isOptional(), 'rotate parameter should be optional' );
+			$this->assertSame( 0, $rotateParam->getDefaultValue(), 'rotate parameter should default to 0' );
+		} catch ( \Exception $e ) {
+			$this->fail( 'Failed to verify rotation parameter: ' . $e->getMessage() );
+		}
+	}
+
+	/**
+	 * @covers EngineBase::getResult
+	 * Test that rotation parameter is part of all engine interfaces
+	 */
+	public function testAllEnginesHaveRotationParameter(): void {
+		$engines = [
+			$this->googleEngine,
+			$this->tesseractEngine,
+			$this->transkribusEngine,
+		];
+
+		foreach ( $engines as $engine ) {
+			$reflection = new \ReflectionMethod( $engine, 'getResult' );
+			$parameters = $reflection->getParameters();
+
+			$paramNames = [];
+			foreach ( $parameters as $param ) {
+				$paramNames[] = $param->getName();
+			}
+
+			$this->assertContains(
+				'rotate',
+				$paramNames,
+				'Engine ' . get_class( $engine ) . ' should have rotate parameter'
+			);
+		}
+	}
 }

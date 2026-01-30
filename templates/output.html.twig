@@ -92,6 +92,23 @@
                                          alt="{{ msg('drag-mode-move-alt') }}" />
                                 </button>
                             </div>
+                            <button type="button"
+                                    class="btn btn-default ocr-rotate-left"
+                                    data-rotate="-90"
+                                    title="Rotate left 90°">
+                                <img src="{{ asset('build/images/rotate_left.svg') }}"
+                                     height="20" width="20"
+                                     alt="Rotate left" />
+                            </button>
+
+                            <button type="button"
+                                    class="btn btn-default ocr-rotate-right"
+                                    data-rotate="90"
+                                    title="Rotate right 90°">
+                                <img src="{{ asset('build/images/rotate_right.svg') }}"
+                                     height="20" width="20"
+                                     alt="Rotate right" />
+                            </button>
 
                             <input type="submit" value="{{ msg( 'submit-crop' ) }}" class="submit-crop btn btn-info disabled" disabled />
 
@@ -99,6 +116,9 @@
                             <input type="hidden" name="crop[y]" value="{% if crop.y is defined %}{{ crop.y }}{% endif %}" />
                             <input type="hidden" name="crop[width]" value="{% if crop.width is defined %}{{ crop.width }}{% endif %}" />
                             <input type="hidden" name="crop[height]" value="{% if crop.height is defined %}{{ crop.height }}{% endif %}" />
+
+                            {# NEW: rotate hidden field #}
+                            <input type="hidden" name="rotate" value="{{ rotate|default(0) }}" />
                         </div>
                         <div><!-- This div is required for Cropper.js -->
                             <img id="source-image" class="img-responsive" src="{{ app.request.get('image') }}" alt="{{ msg('img-alt-text') }}" />
