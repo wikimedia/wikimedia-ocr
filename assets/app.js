@@ -174,8 +174,10 @@ $(function () {
             y = document.querySelector('[name="crop[y]"]'),
             width  = document.querySelector('[name="crop[width]"]'),
             height = document.querySelector('[name="crop[height]"]'),
+            rotate = document.getElementById('rotate'),
             $modeButtons = $('.drag-mode');
-        new Cropper(img, {
+        let cropperInstance = null;
+        const cropper = new Cropper(img, {
             viewMode: 2,
             dragMode: 'move',
             // Remove double-click drag mode toggling, because we've got buttons for that.
@@ -184,6 +186,10 @@ $(function () {
             autoCrop: width.value > 0 && height.value > 0,
             responsive: true,
             ready () {
+                // Store cropper instance for use in event handlers
+                // `this` is the image element; the cropper instance is on `this.cropper`.
+                cropperInstance = this.cropper;
+                
                 // Make textarea match height of image.
                 $('#text').css({
                     height: this.cropper.getContainerData().height,
@@ -195,6 +201,48 @@ $(function () {
                     $button.addClass('active');
                     this.cropper.setDragMode($button.data('drag-mode'));
                 });
+                // Initialize rotation if present
+                if (rotate && rotate.value) {
+                    this.cropper.rotate(Number.parseFloat(rotate.value));
+                }
+
+                // Update rotation value from cropper
+                const updateRotationValue = () => {
+                    if (rotate && cropperInstance) {
+                        const currentRotate = cropperInstance.getData().rotate || 0;
+                        // Normalize to 0-359 range
+                        const normalizedRotate = ((currentRotate % 360) + 360) % 360;
+                        rotate.value = Math.round(normalizedRotate);
+                        // Enable submit button when rotation changes
+                        $('.btn.submit-crop').attr('disabled', false).removeClass('disabled');
+                    }
+                };
+
+                // Rotation buttons - set up inside ready() to ensure cropper is initialized
+                $('.rotate-left').off('click.rotate').on('click.rotate', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (cropperInstance && typeof cropperInstance.rotate === 'function') {
+                        cropperInstance.rotate(-90);
+                        updateRotationValue();
+                    } else {
+                        console.error('Cropper instance or rotate method not available');
+                    }
+                });
+
+                $('.rotate-right').off('click.rotate').on('click.rotate', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (cropperInstance && typeof cropperInstance.rotate === 'function') {
+                        cropperInstance.rotate(90);
+                        updateRotationValue();
+                    } else {
+                        console.error('Cropper instance or rotate method not available');
+                    }
+                });
+
+                // Track rotation changes via cropper events
+                $(img).on('rotate', updateRotationValue);
             },
             data: {
                 x: Number.parseFloat(x.value),
@@ -218,12 +266,15 @@ $(function () {
             $ocrOutputDiv.remove();
         });
 
-        // When submitting the main 'transcribe' button, do not send crop dimensions.
+        // When submitting the main 'transcribe' button, do not send crop dimensions or rotation.
         $('.submit-btn .btn').on('click', e => {
             x.value = null;
             y.value = null;
             width.value = null;
             height.value = null;
+            if (rotate) {
+                rotate.value = 0;
+            }
         });
     }
 });
