@@ -11,6 +11,8 @@ Documentation:
 * Of the API: https://ocr.wmcloud.org/api/doc
 * For contributors: [CONTRIBUTING.md](https://github.com/wikimedia/wikimedia-ocr/blob/main/CONTRIBUTING.md)
 
+Please report bugs via Phabricator: https://phabricator.wikimedia.org/tag/wikimedia_ocr
+
 ![CI](https://github.com/wikimedia/wikimedia-ocr/workflows/CI/badge.svg)
 
 ## Licenses
