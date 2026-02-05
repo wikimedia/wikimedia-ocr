@@ -1,5 +1,6 @@
 <?php
-declare( strict_types = 1 );
+
+declare( strict_types=1 );
 
 namespace App\Engine;
 
@@ -7,6 +8,7 @@ use App\Exception\OcrException;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use Google\Cloud\Vision\V1\ImageContext;
 use Google\Cloud\Vision\V1\TextAnnotation;
+use Imagine\Gd\Imagine;
 use Krinkle\Intuition\Intuition;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -51,7 +53,8 @@ class GoogleCloudVisionEngine extends EngineBase {
 		string $imageUrl,
 		string $invalidLangsMode,
 		array $crop,
-		?array $langs = null
+		?array $langs = null,
+		int $rotate = 0
 	): EngineResult {
 		$this->checkImageUrl( $imageUrl );
 
@@ -67,6 +70,12 @@ class GoogleCloudVisionEngine extends EngineBase {
 		}
 
 		$image = $this->getImage( $imageUrl, $crop );
+		if ( $rotate !== 0 ) {
+			$imagine = new Imagine();
+			$loaded  = $imagine->load( $image->getData() ?: file_get_contents( $image->getUrl() ) );
+			$loaded->rotate( $rotate );
+			$image->setData( $loaded->get( 'jpg' ) );
+		}
 		$imageUrlOrData = $image->hasData() ? $image->getData() : $image->getUrl();
 		$response = $this->imageAnnotator->textDetection( $imageUrlOrData, [ 'imageContext' => $imageContext ] );
 
@@ -78,6 +87,12 @@ class GoogleCloudVisionEngine extends EngineBase {
 			&& stripos( $response->getError()->getMessage(), 'download the content and pass it in' ) !== false
 		) {
 			$image = $this->getImage( $imageUrl, $crop, self::DO_DOWNLOAD_IMAGE );
+			if ( $rotate !== 0 ) {
+				$imagine = new Imagine();
+				$loaded  = $imagine->load( $image->getData() );
+				$loaded->rotate( $rotate );
+				$image->setData( $loaded->get( 'jpg' ) );
+			}
 			$response = $this->imageAnnotator->textDetection( $image->getData(), [ 'imageContext' => $imageContext ] );
 		}
 

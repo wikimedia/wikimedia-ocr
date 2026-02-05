@@ -36,7 +36,7 @@ jobs:
         extensions: ast
 
     - name: Read .nvmrc
-      run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+      run: echo "NODE_VERSION=$(cat .nvmrc)" >> $GITHUB_OUTPUT
       id: nvm
 
     - name: Set up Node ${{ steps.nvm.outputs.NODE_VERSION }}
