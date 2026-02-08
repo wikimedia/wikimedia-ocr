@@ -55,21 +55,40 @@
 
             <hr/>
             <footer>
-                <a target="_blank" href="https://github.com/wikimedia/wikimedia-ocr/releases/tag/{{ git_tag() }}">
-                    {{ msg('version', [git_tag()]) -}}
-                </a>
-                &bull;
-                <a target="_blank" href="https://www.mediawiki.org/wiki/Help:Extension:Wikisource/Wikimedia_OCR">
-                    {{ msg('documentation') -}}
-                </a>
-                &bull;
-                <a href="{{ path('app.swagger_ui') }}" title="{{ msg('api-tooltip') }}">
-                    {{ msg('api') -}}
-                </a>
-                &bull;
-                <a target="_blank" href="https://phabricator.wikimedia.org/maniphest/task/edit/form/1/?tags=wikimedia_ocr">
-                    {{ msg('report-issue') -}}
-                </a>
+                <p>
+                    <a target="_blank" href="https://github.com/wikimedia/wikimedia-ocr/releases/tag/{{ git_tag() }}">
+                        {{ msg('version', [git_tag()]) -}}
+                    </a>
+                    &bull;
+                    <a target="_blank" href="https://www.mediawiki.org/wiki/Help:Extension:Wikisource/Wikimedia_OCR">
+                        {{ msg('documentation') -}}
+                    </a>
+                    &bull;
+                    <a href="{{ path('app.swagger_ui') }}" title="{{ msg('api-tooltip') }}">
+                        {{ msg('api') -}}
+                    </a>
+                    &bull;
+                    <a target="_blank" href="https://phabricator.wikimedia.org/maniphest/task/edit/form/1/?tags=wikimedia_ocr">
+                        {{ msg('report-issue') -}}
+                    </a>
+                </p>
+                <form action="{{path('home')}}" method="get" class="form-inline">
+                    <div class="form-group">
+                        <label for="uselang">{{ msg('language') }}</label>
+                        <select name="uselang" class="form-control" id="uselang">
+                            {% for code,lang in all_langs() %}
+                                <option value="{{code}}" {% if code == lang() %}selected{% endif %}>
+                                    {% if lang %}
+                                        {{lang}}
+                                    {% else %}
+                                        ({{code}})
+                                    {% endif %}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="{{msg('language-switch')}}" class="btn btn-default">
+                    </div>
+                </form>
             </footer>
         </main>
     </body>
