@@ -1725,6 +1725,12 @@
             "htr": 445285,
             "line": ""
         },
+        "uk-generic-handwritten-typed": {
+            "languages": ["uk"],
+            "title": "Ukrainian generic handwritten and typed",
+            "htr": 144265,
+            "line": ""
+        },
         "yi-hd": {
             "languages": ["yi"],
             "title": "The Dybbuk for Yiddish Handwriting",
