@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Jimkats",
-			"Norhorn"
+			"Norhorn",
+			"Warudo"
 		]
 	},
 	"title": "WikimediaOCR",
@@ -37,7 +38,7 @@
 	"loading-message": "Εκτέλεση μεταγραφής...",
 	"tesseract-options": "Επιλογές Tesseract",
 	"tesseract-psm-label": "Μέθοδος τμηματοποίησης σελίδας",
-	"tesseract-psm-help": "Δοκιμάστε το \"Αραιό κείμενο\" για καλύτερη υποστήριξη πολλαπλών στηλών.",
+	"tesseract-psm-help": "Δοκιμάστε το «Αραιό κείμενο» για καλύτερη υποστήριξη πολλαπλών στηλών.",
 	"tesseract-psm-0": "Μόνο ανίχνευση προσανατολισμού και γραφής (OSD).",
 	"tesseract-psm-1": "Αυτόματη τμηματοποίηση σελίδας με OSD.",
 	"tesseract-psm-2": "Αυτόματη τμηματοποίηση σελίδας, αλλά χωρίς OSD ή OCR. (δεν έχει υλοποιηθεί)",
