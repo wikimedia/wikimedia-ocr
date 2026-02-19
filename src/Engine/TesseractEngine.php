@@ -51,14 +51,15 @@ class TesseractEngine extends EngineBase {
 		string $imageUrl,
 		string $invalidLangsMode,
 		array $crop,
-		?array $langs = null
+		?array $langs = null,
+		int $rotate = 0
 	): EngineResult {
 		// Check the URL and fetch the image data.
 		$this->checkImageUrl( $imageUrl );
 
 		[ $validLangs, $invalidLangs ] = $this->filterValidLangs( $langs, $invalidLangsMode );
 
-		$image = $this->getImage( $imageUrl, $crop, self::DO_DOWNLOAD_IMAGE );
+		$image = $this->getImage( $imageUrl, $crop, self::DO_DOWNLOAD_IMAGE, $rotate );
 		$this->ocr->imageData( $image->getData(), $image->getSize() );
 
 		if ( $validLangs ) {

@@ -16,6 +16,9 @@ class Image {
 	/** @var int[] Array of floats with keys: `x`, `y`, `width`, and `height`. */
 	private $crop;
 
+	/** @var int Rotation angle in degrees. */
+	private $rotate;
+
 	/** @var string|null Image data. */
 	private $data;
 
@@ -25,10 +28,12 @@ class Image {
 	/**
 	 * @param string $imageUrl
 	 * @param int[] $crop
+	 * @param int $rotate
 	 */
-	public function __construct( string $imageUrl, array $crop = [] ) {
+	public function __construct( string $imageUrl, array $crop = [], int $rotate = 0 ) {
 		$this->imageUrl = $imageUrl;
 		$this->crop = $crop;
+		$this->rotate = $rotate;
 	}
 
 	/**
@@ -51,6 +56,22 @@ class Image {
 			new Point( $this->crop['x'], $this->crop['y'] ),
 			new Box( $this->crop['width'], $this->crop['height'] )
 		);
+	}
+
+	/**
+	 * Check if rotation is needed.
+	 * @return bool
+	 */
+	public function needsRotation(): bool {
+		return $this->rotate !== 0;
+	}
+
+	/**
+	 * Get the rotation angle in degrees.
+	 * @return int
+	 */
+	public function getRotate(): int {
+		return $this->rotate;
 	}
 
 	public function hasData(): bool {
