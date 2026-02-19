@@ -58,13 +58,15 @@ abstract class EngineBase {
 	 * @param string $invalidLangsMode
 	 * @param int[] $crop
 	 * @param string[]|null $models
+	 * @param int $rotate Rotation in degrees (0-359)
 	 * @return EngineResult
 	 */
 	abstract public function getResult(
 		string $imageUrl,
 		string $invalidLangsMode,
 		array $crop,
-		?array $models = null
+		?array $models = null,
+		int $rotate = 0
 	): EngineResult;
 
 	/**
