@@ -34,6 +34,8 @@
 	"api-tooltip": "Vedi la documentazione dell'API",
 	"version": "Versione $1",
 	"report-issue": "Segnala un problema",
+	"language": "Lingua:",
+	"language-switch": "Cambia lingua",
 	"langs-placeholder": "Lascia vuoto per il rilevamento automatico della lingua.",
 	"langs-param-error": "{{PLURAL:$1|La lingua seguente non è supportata|Le lingue seguenti non sono supportate}} dal motore OCR: $2",
 	"loading-message": "Sto facendo la trascrizione...",

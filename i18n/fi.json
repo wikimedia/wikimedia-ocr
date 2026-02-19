@@ -3,6 +3,7 @@
 		"authors": [
 			"MITO",
 			"Pyscowicz",
+			"Samoasambia",
 			"Veikk0.ma"
 		]
 	},
@@ -33,6 +34,8 @@
 	"api-tooltip": "Katso rajapinnan dokumentaatio",
 	"version": "Versio $1",
 	"report-issue": "Tee vikailmoitus",
+	"language": "Kieli:",
+	"language-switch": "Vaihda kieltä",
 	"langs-placeholder": "Jätä tyhjäksi tunnistaaksesi kielen automaattisesti.",
 	"langs-param-error": "Tekstintunnistusmoottori ei tue seuraavaa {{PLURAL:$1|kieltä}}: $2",
 	"tesseract-options": "Tesseractin asetukset",
