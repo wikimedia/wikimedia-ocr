@@ -30,6 +30,8 @@
     "api-tooltip": "View the API documentation",
     "version": "Version $1",
     "report-issue": "Report an issue",
+    "language": "Language:",
+    "language-switch": "Switch language",
     "langs-placeholder": "Leave blank for automatic language detection.",
     "langs-param-error": "The following {{PLURAL:$1|language is|languages are}} not supported by the OCR engine: $2",
     "loading-message": "Performing transcription...",

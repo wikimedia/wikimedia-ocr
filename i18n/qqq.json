@@ -37,6 +37,8 @@
 	"api-tooltip": "Tooltip for the API link in the footer.",
 	"version": "Link text in the footer for the source code link.\n\nParameter:\n* $1 – the current application version number.\n\n{{identical|Version}}",
 	"report-issue": "Link text in the footer for the issue-reporting link.",
+	"language": "Label for the language-switching dropdown.",
+	"language-switch": "Button text for the language-switching dropdown.",
 	"langs-placeholder": "Placeholder text for the language input field.",
 	"langs-param-error": "Error message displayed when invalid language(s) are submitted.\n\nParameters:\n* $1 – number of invalid languages\n* $2 - the list of invalid languages\n\nOCR is a common abbreviation in English for \"Optical Characters Recognition\".",
 	"loading-message": "Loading message displayed when the transcription is being performed",
