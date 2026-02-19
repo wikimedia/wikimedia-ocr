@@ -37,11 +37,11 @@
                 <label id="transkribus-lang-label" for="lang" class="lang-label {% if engine != 'transkribus' %}hidden{% endif %}">
                     {{ msg('transkribus-language-code') }}
                 </label>
-                <select 
-                    id="lang" 
-                    class="form-control" 
-                    name="langs[]" 
-                    multiple 
+                <select
+                    id="lang"
+                    class="form-control"
+                    name="langs[]"
+                    multiple
                     {% if engine == 'transkribus' %}
                         required
                     {% else %}
@@ -63,7 +63,7 @@
         {% include '_transkribus_options.html.twig' with {engine: engine} %}
 
         <div class="form-group submit-btn">
-            <input type="submit" value="{{ msg( 'submit' ) }}" class="btn btn-info" />
+            <input type="submit" value="{{ msg( 'submit' ) }}" class="submit-full btn btn-info" />
         </div>
 
         <div class="loader hidden">

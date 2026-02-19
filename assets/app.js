@@ -57,7 +57,7 @@ function fetchLineModelsJSON () {
  */
 function updateLineModelOptions () {
     const staticOptions = $lineDetectionSelect[0].options;
-    let staticOptionData = []; 
+    let staticOptionData = [];
     Array.prototype.forEach.call(staticOptions, option => {
         staticOptionData.push({
             text: option.text,
@@ -70,7 +70,7 @@ function updateLineModelOptions () {
 
     // append static options
     staticOptionData.slice(0, 2).forEach(staticOption => {
-        $lineDetectionSelect.append(new Option(staticOption.text, staticOption.value, staticOption.value === null, false));    
+        $lineDetectionSelect.append(new Option(staticOption.text, staticOption.value, staticOption.value === null, false));
     });
 
     // append all other line detection models as options
@@ -135,7 +135,7 @@ $(function () {
         }
     });
 
-    // modify selected engine after loading the page with preselected engine 
+    // modify selected engine after loading the page with preselected engine
     let $engineRadioFields = $('[name=engine]:checked');
     if($engineRadioFields.val() === 'transkribus') {
         $select2.attr('data-placeholder', '')
@@ -155,14 +155,14 @@ $(function () {
         });
     }
 
-    var submitBtns = $('.submit-btn .btn, .submit-crop')
-    $('form').on('submit', e => {
-        submitBtns.attr("disabled", true);
+    const $submitBtns = $('.submit-full, .submit-crop')
+    $submitBtns.closest('form').on('submit', e => {
+        $submitBtns.attr("disabled", true);
         $(".loader").removeClass('hidden');
     });
     // Re-enable submit buttons on pagehide, so that they are re-enabled if returned to via browser history
     $(window).on('pagehide', e => {
-        submitBtns.attr("disabled", false);
+        $submitBtns.attr("disabled", false);
         $(".loader").addClass('hidden');
     });
 
@@ -219,7 +219,7 @@ $(function () {
         });
 
         // When submitting the main 'transcribe' button, do not send crop dimensions.
-        $('.submit-btn .btn').on('click', e => {
+        $('.submit-full').on('click', e => {
             x.value = null;
             y.value = null;
             width.value = null;
