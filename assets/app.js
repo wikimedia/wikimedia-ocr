@@ -1,12 +1,15 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 import 'select2';
+import {cleanText} from './textCleaner.js';
 
 const $ = require('jquery');
 const $select2 = $('#lang');
 var selectedLanguages = [];
 const $lineDetectionSelect = $('#line-id');
 var lineModels = null;
+let originalTranscript = "";
+let currentTranscript = "";
 
 const Cropper = require('cropperjs');
 import 'cropperjs/dist/cropper.css';
@@ -142,6 +145,63 @@ $(function () {
     } else {
         $select2.attr('data-placeholder', previousDataPlaceholder);
     }
+
+    const $modal = $('#filterModal');
+    const $closeModalBtn = $('#closeModal');
+    $closeModalBtn.on('click', e => {       // close modal on close button click
+        e.preventDefault();
+        $modal.addClass('hidden');
+    });
+    $modal.on('click', e => {       // close modal if click outside of modal content
+        if (e.target === $modal[0]) {
+            $modal.addClass('hidden');
+        }
+    });
+    //refresh cancels modal automatically
+    window.addEventListener("load", () => {
+    $modal.addClass('hidden');
+    });
+
+    const $cleanup = $('.cleanup');
+    $cleanup.on('click', e => {
+        e.preventDefault();
+        $modal.removeClass('hidden');
+        $cleanup.blur();
+    });
+
+    const $applyBtn = $('#applyBtn');
+    $applyBtn.on('click', e => {
+        e.preventDefault(); 
+        const optBasic = $('#optBasic');
+        const optOCR = $('#optOCR');
+        const optLinebreaks = $('#optLinebreaks');
+        //if first time, store original
+        const $textarea = $('#text');
+        if (!originalTranscript) {
+            originalTranscript = $textarea.val();
+        }
+
+        const options = {
+            basic: optBasic.prop('checked'),
+            ocr: optOCR.prop('checked'),
+            linebreaks: optLinebreaks.prop('checked')
+        };
+        if (!options.basic && !options.ocr && !options.linebreaks) {
+            // if no options selected, reset to original
+            currentTranscript = originalTranscript;
+        }
+        else {
+            // ALWAYS clean from original
+            const cleaned = cleanText(originalTranscript, options);
+            console.log("Cleaned transcript:", cleaned);
+            currentTranscript = cleaned;
+        }
+        
+        $textarea.val(currentTranscript);
+
+        $modal.addClass('hidden');
+    });
+    
 
     // For the result page. Makes the 'Copy' button copy the transcription to the clipboard.
     const $copyButton = $('.copy-button');

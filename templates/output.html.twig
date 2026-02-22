@@ -106,12 +106,33 @@
                     </div>
                     <div class="col-md-6">
                         <div class="output-buttons nojs-hide">
+                            <button type="button" class="btn btn-default cleanup" title="cleanup">
+                                    <img src="{{ asset('build/images/check_all.png') }}" height="20" width="20"
+                                         alt="{{ msg('cleanup') }}" />
+                            </button>
                             <button class="btn btn-info copy-button" data-copied-text="{{ msg('copied-to-clipboard') }}">{{ msg( 'copy-to-clipboard' ) }}</button>
                         </div>
                         <textarea class="form-control" rows="{{ text|textarea_rows }}" id="text">{{ text }}</textarea>
                     </div>
                 </div>
+
+                <div id="filterModal" class="modal hidden">
+                    <div class="modal-box">
+                        <h3>Cleanup Options</h3>
+
+                        <label><input type="checkbox" id="optBasic" checked> Basic cleanup</label><br>
+                        <label><input type="checkbox" id="optOCR"> OCR cleanup</label><br>
+                        <label><input type="checkbox" id="optLinebreaks"> Linebreak cleanup</label><br>
+
+                        <div class="modal-actions">
+                        <button class="btn btn-default" id="closeModal">Cancel</button>
+                        <button class="btn btn-info" id="applyBtn">Apply</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+        </div>
         {% endif %}
     </form>
 
