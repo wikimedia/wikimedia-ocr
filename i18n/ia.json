@@ -5,7 +5,7 @@
 		]
 	},
 	"title": "WikimediaOCR",
-	"subtitle": "Transcriber texto de imagines",
+	"subtitle": "Un instrumento pro transcriber texto de imagines scannate sur Wikipedia Commons, a usar sur Wikisource e alterubi.",
 	"form-heading": "Transcriber un imagine",
 	"image-url": "URL del imagine",
 	"image-url-help": "Insere un URL de imagine albergate sur un servitor de Wikimedia como: $1",
@@ -31,6 +31,8 @@
 	"api-tooltip": "Vider le documentation del API",
 	"version": "Version $1",
 	"report-issue": "Reportar un problema",
+	"language": "Lingua:",
+	"language-switch": "Cambiar de lingua",
 	"langs-placeholder": "Lassar vacue pro detection automatic de lingua.",
 	"langs-param-error": "Le sequente lingua{{PLURAL:$1||s}} non es supportate per le motor OCR: $2",
 	"loading-message": "Transcription in curso…",

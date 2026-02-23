@@ -31,6 +31,8 @@
 	"api-tooltip": "Féach ar dhoiciméadacht an API",
 	"version": "Leagan $1",
 	"report-issue": "Tuairiscigh fadhb",
+	"language": "Teanga:",
+	"language-switch": "Athraigh teanga",
 	"langs-placeholder": "Fág bán le haghaidh braiteadh teanga go huathoibríoch.",
 	"langs-param-error": "Ní thacaíonn an t-inneall OCR leis an {{PLURAL:$1|teanga|teangacha}} seo a leanas: $2",
 	"loading-message": "Ag déanamh trascríobh...",

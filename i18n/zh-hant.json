@@ -3,6 +3,7 @@
 		"authors": [
 			"Cookai1205",
 			"Kly",
+			"LowensteinYang",
 			"Winston Sung",
 			"捍粵者"
 		]
@@ -34,6 +35,8 @@
 	"api-tooltip": "檢視 API 文件",
 	"version": "版本 $1",
 	"report-issue": "問題回報",
+	"language": "語言：",
+	"language-switch": "切換語言",
 	"langs-placeholder": "留空以自動偵測語言",
 	"langs-param-error": "以下{{PLURAL:$1|語言}}不被 OCR 引擎支援：$2",
 	"loading-message": "正在執行轉譯…",

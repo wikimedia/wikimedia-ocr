@@ -37,6 +37,8 @@
 	"api-tooltip": "API 문서 보기",
 	"version": "버전 $1",
 	"report-issue": "문제점 보고",
+	"language": "언어:",
+	"language-switch": "언어 전환",
 	"langs-placeholder": "자동 언어 감지를 위해 비워두세요.",
 	"langs-param-error": "다음 {{PLURAL:$1|언어}}는 OCR 엔진에서 지원되지 않습니다: $2",
 	"loading-message": "변환 수행 중...",

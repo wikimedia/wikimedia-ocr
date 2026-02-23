@@ -36,6 +36,8 @@
 	"api-tooltip": "Bekijk de API-documentatie",
 	"version": "Versie $1",
 	"report-issue": "Probleem melden",
+	"language": "Taal:",
+	"language-switch": "Taal wijzigen",
 	"langs-placeholder": "Laat leeg voor automatische taaldetectie.",
 	"langs-param-error": "De volgende {{PLURAL:$1|taal wordt|talen worden}} niet ondersteund door de OCR-engine: $2",
 	"loading-message": "Transcriptie uitvoeren...",

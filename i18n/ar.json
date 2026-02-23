@@ -4,6 +4,7 @@
 			"Dr-Taher",
 			"Mdktb",
 			"Meno25",
+			"Mohammed Qays",
 			"Mohanad",
 			"Mohanad Kh"
 		]
@@ -38,6 +39,8 @@
 	"api-tooltip": "عرض وثائق API",
 	"version": "الإصدار $1",
 	"report-issue": "أبلغ عن مشكلة",
+	"language": "اللغة:",
+	"language-switch": "تبديل اللغة",
 	"langs-placeholder": "اتركه فارغًا للكشف التلقائي عن اللغة.",
 	"langs-param-error": "التالي {{PLURAL:$1|هذه اللغة|هذه اللغات}} لا يدعمها أداة التعرف على الحروف: $2",
 	"loading-message": "جاري النسخ...",
