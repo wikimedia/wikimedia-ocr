@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 namespace App\Engine;
 
 use App\Exception\OcrException;
+use Imagine\Gd\Imagine;
 use Krinkle\Intuition\Intuition;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use thiagoalessio\TesseractOCR\TesseractOCR;
@@ -51,7 +52,8 @@ class TesseractEngine extends EngineBase {
 		string $imageUrl,
 		string $invalidLangsMode,
 		array $crop,
-		?array $langs = null
+		?array $langs = null,
+		int $rotate = 0
 	): EngineResult {
 		// Check the URL and fetch the image data.
 		$this->checkImageUrl( $imageUrl );
@@ -59,6 +61,13 @@ class TesseractEngine extends EngineBase {
 		[ $validLangs, $invalidLangs ] = $this->filterValidLangs( $langs, $invalidLangsMode );
 
 		$image = $this->getImage( $imageUrl, $crop, self::DO_DOWNLOAD_IMAGE );
+		// If there is a rotation, apply it to the image data.
+		if ( $rotate !== 0 ) {
+		$imagine = new Imagine();
+		$loaded = $imagine->load( $image->getData() );
+		$loaded->rotate( $rotate );
+		$image->setData( $loaded->get( 'jpg' ) );
+		}
 		$this->ocr->imageData( $image->getData(), $image->getSize() );
 
 		if ( $validLangs ) {

@@ -87,4 +87,66 @@ class OcrControllerTest extends OcrTestCase {
 			],
 		];
 	}
+
+	/**
+	 * @dataProvider provideRotationNormalization
+	 * @covers OcrController
+	 * @param int $inputRotation
+	 * @param int $expectedRotation
+	 */
+	public function testRotationNormalization( int $inputRotation, int $expectedRotation ): void {
+		$request = new Request( [ 'rotate' => $inputRotation ] );
+		$requestStack = new RequestStack();
+		$requestStack->push( $request );
+		$request->setSession( new Session( new MockArraySessionStorage() ) );
+		$intuition = new Intuition( [] );
+		$controller = new OcrController(
+			$requestStack,
+			$intuition,
+			new EngineFactory(
+				new GoogleCloudVisionEngine(
+					dirname( __DIR__ ) . '/fixtures/google-account-keyfile.json',
+					$intuition,
+					$this->projectDir,
+					new MockHttpClient()
+				),
+				new TesseractEngine( new MockHttpClient(), $intuition, $this->projectDir, new TesseractOCR() ),
+				new TranskribusEngine(
+					new TranskribusClient(
+						getenv( 'APP_TRANSKRIBUS_USERNAME' ),
+						getenv( 'APP_TRANSKRIBUS_PASSWORD' ),
+						new MockHttpClient(),
+						new NullAdapter(),
+						new NullAdapter()
+					),
+					$intuition,
+					$this->projectDir,
+					new MockHttpClient()
+				),
+			),
+			new FilesystemAdapter()
+		);
+		// Trigger the setup to process rotation
+		$reflection = new \ReflectionMethod( $controller, 'setup' );
+		$reflection->setAccessible( true );
+		$reflection->invoke( $controller );
+
+		$this->assertSame( $expectedRotation, OcrController::$params['rotate'] );
+	}
+
+	/**
+	 * @return int[][]
+	 */
+	public function provideRotationNormalization(): array {
+		return [
+			'zero rotation' => [ 0, 0 ],
+			'positive rotation' => [ 90, 90 ],
+			'negative rotation' => [ -90, 270 ],
+			'large positive rotation' => [ 450, 90 ],
+			'large negative rotation' => [ -450, 270 ],
+			'boundary 359' => [ 359, 359 ],
+			'boundary 360' => [ 360, 0 ],
+			'boundary -360' => [ -360, 0 ],
+		];
+	}
 }
