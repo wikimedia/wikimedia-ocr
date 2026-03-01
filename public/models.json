@@ -548,6 +548,10 @@
             "languages": ["mn"],
             "title": "Монгол / Mongolian / Cyrl / Supports handwriting"
         },
+        "mnp": {
+            "languages": ["mnp"],
+            "title": "Mìng-dĕ̤ng-ngỳ̄ / Northern Min / Latn / Supports handwriting"
+        },
         "moh": {
             "languages": ["moh"],
             "title": "Kanienʼkéha / Mohawk / Latn / Mapped / Supports handwriting"
