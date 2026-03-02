@@ -1,5 +1,5 @@
 <?php
-declare( strict_types = 1 );
+declare( strict_types=1 );
 
 namespace App\Engine;
 
@@ -68,17 +68,24 @@ class GoogleCloudVisionEngine extends EngineBase {
 
 		$image = $this->getImage( $imageUrl, $crop );
 		$imageUrlOrData = $image->hasData() ? $image->getData() : $image->getUrl();
-		$response = $this->imageAnnotator->textDetection( $imageUrlOrData, [ 'imageContext' => $imageContext ] );
+		$response = $this->imageAnnotator->documentTextDetection(
+			$imageUrlOrData,
+			[ 'imageContext' => $imageContext ]
+		);
 
 		// Re-try with direct upload if the error returned is something similar to
 		// "The URL does not appear to be accessible by us. Please double check or download the content and pass it in."
 		// There doesn't seem to be a specific error code for this (it is usually 3, but that's also used for other
 		// things), so it seems like we have to check the actual message string.
-		if ( $response->getError()
+		if (
+			$response->getError()
 			&& stripos( $response->getError()->getMessage(), 'download the content and pass it in' ) !== false
 		) {
 			$image = $this->getImage( $imageUrl, $crop, self::DO_DOWNLOAD_IMAGE );
-			$response = $this->imageAnnotator->textDetection( $image->getData(), [ 'imageContext' => $imageContext ] );
+			$response = $this->imageAnnotator->documentTextDetection(
+				$image->getData(),
+				[ 'imageContext' => $imageContext ]
+			);
 		}
 
 		// Other errors, report to the user.
