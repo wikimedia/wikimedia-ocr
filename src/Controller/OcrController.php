@@ -15,6 +15,8 @@ use App\Engine\TranskribusEngine;
 use App\Exception\EngineNotFoundException;
 use Exception;
 use Krinkle\Intuition\Intuition;
+// phpcs:ignore MediaWiki.Classes.UnusedUseStatement.UnusedUse
+use OpenApi\Annotations as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +24,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+// phpcs:ignore MediaWiki.Classes.UnusedUseStatement.UnusedUse
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
