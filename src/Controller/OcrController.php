@@ -174,10 +174,6 @@ class OcrController extends AbstractController {
 	public function homeAction(): Response {
 		$this->setup();
 
-		// Pre-supply available langs for autocompletion in the form.
-		static::$params['available_langs'] = $this->engine->getValidModels( true );
-		ksort( static::$params['available_langs'] );
-
 		// set empty array to avoid errors while rendering template on non-transkribus engines
 		static::$params['available_line_ids'] = [];
 

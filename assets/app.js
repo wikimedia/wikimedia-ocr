@@ -7,42 +7,55 @@ const $select2 = $('#lang');
 var selectedLanguages = [];
 const $lineDetectionSelect = $('#line-id');
 var lineModels = null;
+var modelsData = null;
 
 const Cropper = require('cropperjs');
 import 'cropperjs/dist/cropper.css';
 
 /**
+ * Fetch /models.json once and cache the result.
+ * @return {jQuery.Promise}
+ */
+function fetchModelsJSON() {
+    return $.getJSON('/models.json').then(response => {
+        modelsData = response;
+    });
+}
+
+/**
  * Populate and re-initialize the Select2 input with languages supported by the given engine.
+ * Uses the cached modelsData from /models.json instead of making per-engine API calls.
  * @param {String} engine Supported engine ID such as 'google' or 'tesseract'.
  */
 function updateSelect2Options(engine)
 {
-    $.getJSON(`/api/available_langs?engine=${engine}`).then(response => {
-        const langs = response.available_langs;
-        let data = [];
+    if (!modelsData || !modelsData[engine]) {
+        return;
+    }
+    const models = modelsData[engine];
+    let data = [];
 
-        // Transform to data structure needed by Select2.
-        Object.keys(langs).forEach(lang => {
-            data.push({
-                id: lang,
-                text: `${lang} – ${langs[lang]}`,
-            });
+    // Transform to data structure needed by Select2, sorted alphabetically by model code.
+    Object.keys(models).sort().forEach(modelCode => {
+        data.push({
+            id: modelCode,
+            text: `${modelCode} – ${models[modelCode].title}`,
         });
-
-        // First clear any existing selections and empty all options.
-        $select2.val(null)
-            .empty()
-            .trigger('change');
-
-        // Update Select2 with the new options.
-        data.forEach(datum => {
-            const option = new Option(datum.text, datum.id, false, false);
-            $select2.append(option);
-        });
-
-        // Update selected languages.
-        $select2.val(selectedLanguages).trigger('change');
     });
+
+    // First clear any existing selections and empty all options.
+    $select2.val(null)
+        .empty()
+        .trigger('change');
+
+    // Update Select2 with the new options.
+    data.forEach(datum => {
+        const option = new Option(datum.text, datum.id, false, false);
+        $select2.append(option);
+    });
+
+    // Update selected languages.
+    $select2.val(selectedLanguages).trigger('change');
 }
 
 function fetchLineModelsJSON () {
@@ -84,6 +97,12 @@ $(function () {
 
     // fetch line detection model data
     fetchLineModelsJSON();
+
+    // Read pre-selected languages from data attribute (set by server from URL params).
+    var preSelectedLangs = $select2.data('selected-langs');
+    if (Array.isArray(preSelectedLangs)) {
+        selectedLanguages = preSelectedLangs;
+    }
 
     // Remove nojs class, for styling non-Javascript users.
     $('html').removeClass('nojs');
@@ -142,6 +161,12 @@ $(function () {
     } else {
         $select2.attr('data-placeholder', previousDataPlaceholder);
     }
+
+    // Fetch models.json and populate the language dropdown for the current engine.
+    fetchModelsJSON().then(() => {
+        const currentEngine = $('[name=engine]:checked').val() || 'google';
+        updateSelect2Options(currentEngine);
+    });
 
     // For the result page. Makes the 'Copy' button copy the transcription to the clipboard.
     const $copyButton = $('.copy-button');
