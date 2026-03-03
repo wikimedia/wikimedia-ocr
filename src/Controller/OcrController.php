@@ -63,6 +63,7 @@ class OcrController extends AbstractController {
 		'psm' => TesseractEngine::DEFAULT_PSM,
 		'crop' => [],
 		'line_id' => TranskribusEngine::DEFAULT_LINEID,
+		'rotate' => 0,
 	];
 
 	/**
@@ -120,6 +121,9 @@ class OcrController extends AbstractController {
 			$crop = [];
 		}
 		static::$params['crop'] = array_map( 'intval', $crop );
+		$rotate = (int)$this->request->query->get( 'rotate', 0 );
+		// Normalize rotation to 0-359 range
+		static::$params['rotate'] = ( ( $rotate % 360 ) + 360 ) % 360;
 	}
 
 	/**
@@ -271,6 +275,12 @@ class OcrController extends AbstractController {
 	 *     description="Crop parameter `height` value.",
 	 * @OA\Schema(type="int")
 	 * )
+	 * @OA\Parameter(
+	 *     name="rotate",
+	 *     in="query",
+	 *     description="Rotation angle in degrees (0-359).",
+	 * @OA\Schema(type="int")
+	 * )
 	 * @OA\Response(response=200, description="The OCR text, and other data.")
 	 * @return JsonResponse
 	 */
@@ -390,6 +400,7 @@ class OcrController extends AbstractController {
 				implode( '|', array_map( 'strval', static::$params['crop'] ) ),
 				static::$params['psm'],
 				static::$params['line_id'],
+				static::$params['rotate'],
 				// Warning messages are localized
 				$this->intuition->getLang(),
 			]
@@ -401,7 +412,8 @@ class OcrController extends AbstractController {
 				static::$params['image'],
 				$invalidLangsMode,
 				static::$params['crop'],
-				static::$params['langs']
+				static::$params['langs'],
+				static::$params['rotate']
 			);
 		} );
 		if ( !$result instanceof EngineResult ) {
