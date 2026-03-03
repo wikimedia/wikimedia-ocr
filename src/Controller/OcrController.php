@@ -1,7 +1,7 @@
 <?php
 // phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -32,7 +32,8 @@ use Symfony\Contracts\Cache\ItemInterface;
 // phpcs:ignore MediaWiki.Classes.UnusedUseStatement.UnusedUse
 // phpcs:ignore MediaWiki.Classes.UnusedUseStatement.UnusedUse
 
-class OcrController extends AbstractController {
+class OcrController extends AbstractController
+{
 	/** @var Intuition */
 	protected $intuition;
 
@@ -94,63 +95,65 @@ class OcrController extends AbstractController {
 	 * Setup the engine and parameters needed for the view. This must be called before every action.
 	 * @suppress PhanSuspiciousValueComparison
 	 */
-	private function setup(): void {
-		$requestedEngine = $this->request->query->get( 'engine', static::$params['engine'] );
+	private function setup(): void
+	{
+		$requestedEngine = $this->request->query->get('engine', static::$params['engine']);
 		try {
-			$this->engine = $this->engineFactory->get( $requestedEngine );
-		} catch ( EngineNotFoundException $e ) {
-			$this->addFlash( 'error', $this->intuition->msg(
+			$this->engine = $this->engineFactory->get($requestedEngine);
+		} catch (EngineNotFoundException $e) {
+			$this->addFlash('error', $this->intuition->msg(
 				'engine-not-found-warning',
-				[ 'variables' => [ $requestedEngine, static::DEFAULT_ENGINE ] ]
-			) );
-			$this->engine = $this->engineFactory->get( static::DEFAULT_ENGINE );
+				['variables' => [$requestedEngine, static::DEFAULT_ENGINE]]
+			));
+			$this->engine = $this->engineFactory->get(static::DEFAULT_ENGINE);
 		}
 
 		static::$params['engine'] = $this->engine::getId();
 		$this->setEngineOptions();
 
 		// Parameters.
-		static::$params['image'] = (string)$this->request->query->get( 'image' );
+		static::$params['image'] = (string) $this->request->query->get('image');
 		// Change protocol-relative URLs to https to avoid issues with Curl.
-		if ( substr( static::$params['image'], 0, 2 ) === '//' ) {
+		if (substr(static::$params['image'], 0, 2) === '//') {
 			static::$params['image'] = "https:" . static::$params['image'];
 		}
-		static::$params['langs'] = $this->getLangs( $this->request );
+		static::$params['langs'] = $this->getLangs($this->request);
 		static::$params['image_hosts'] = $this->engine->getImageHosts();
-		$crop = $this->request->query->get( 'crop' );
+		$crop = $this->request->query->get('crop');
 		if (
-			!is_array( $crop )
-			|| ( isset( $crop['width'] ) && !$crop['width'] )
-			|| ( isset( $crop['height'] ) && !$crop['height'] )
+			!is_array($crop)
+			|| (isset($crop['width']) && !$crop['width'])
+			|| (isset($crop['height']) && !$crop['height'])
 		) {
 			$crop = [];
 		}
-		static::$params['crop'] = array_map( 'intval', $crop );
+		static::$params['crop'] = array_map('intval', $crop);
 
-		static::$params['handle_refs'] = (bool)$this->request->query->get( 'handle_refs', false );
+		static::$params['handle_refs'] = (bool) $this->request->query->get('handle_refs', false);
 	}
 
 	/**
 	 * Set Engine-specific options based on user-provided input or the defaults.
 	 */
-	private function setEngineOptions(): void {
+	private function setEngineOptions(): void
+	{
 		// This is always set, even if Tesseract isn't initially chosen as the engine
 		// because we want the default set if the user changes the engine to Tesseract.
-		static::$params['psm'] = (int)$this->request->query->get( 'psm', (string)static::$params['psm'] );
+		static::$params['psm'] = (int) $this->request->query->get('psm', (string) static::$params['psm']);
 
 		// This is always set, even if Transkribus isn't initially chosen as the engine
 		// because we want the default set if the user changes the engine to Transkribus.
-		static::$params['line_id'] = (int)$this->request->query->get( 'line_id', (string)static::$params['line_id'] );
+		static::$params['line_id'] = (int) $this->request->query->get('line_id', (string) static::$params['line_id']);
 
 		// Apply the tesseract-specific settings
 		// NOTE: Intentionally excluding `oem`, see T285262
-		if ( TesseractEngine::getId() === static::$params['engine'] ) {
-			$this->engine->setPsm( static::$params['psm'] );
+		if (TesseractEngine::getId() === static::$params['engine']) {
+			$this->engine->setPsm(static::$params['psm']);
 		}
 
 		// Apply Transkribus specific settings
-		if ( TranskribusEngine::getId() === static::$params['engine'] ) {
-			$this->engine->setLineId( static::$params['line_id'] );
+		if (TranskribusEngine::getId() === static::$params['engine']) {
+			$this->engine->setLineId(static::$params['line_id']);
 		}
 	}
 
@@ -160,56 +163,58 @@ class OcrController extends AbstractController {
 	 * @param Request $request
 	 * @return string[]
 	 */
-	public function getLangs( Request $request ): array {
-		$lang = $request->query->get( 'lang' );
-		$langs = $request->query->all( 'langs' );
-		$langArray = array_merge( [ $lang ], $langs );
+	public function getLangs(Request $request): array
+	{
+		$lang = $request->query->get('lang');
+		$langs = $request->query->all('langs');
+		$langArray = array_merge([$lang], $langs);
 		// Remove invalid chars.
-		$langsSanitized = preg_replace( '/[^a-zA-Z0-9\-_]/', '', $langArray );
+		$langsSanitized = preg_replace('/[^a-zA-Z0-9\-_]/', '', $langArray);
 		// Remove empty and duplicated values, and then reorder keys (just for easier testing).
-		$langsFiltered = array_values( array_unique( array_filter( $langsSanitized ) ) );
+		$langsFiltered = array_values(array_unique(array_filter($langsSanitized)));
 		// If no languages specified, default to the user's.
 		// @TODO The default language code needs to vary based on the engine. T280617.
 		//return 0 === count($langsFiltered) ? [$this->intuition->getLang()] : $langsFiltered;
 		return $langsFiltered;
 	}
 
-	public function homeAction(): Response {
+	public function homeAction(): Response
+	{
 		$this->setup();
 
 		// Pre-supply available langs for autocompletion in the form.
-		static::$params['available_langs'] = $this->engine->getValidModels( true );
-		ksort( static::$params['available_langs'] );
+		static::$params['available_langs'] = $this->engine->getValidModels(true);
+		ksort(static::$params['available_langs']);
 
 		// set empty array to avoid errors while rendering template on non-transkribus engines
 		static::$params['available_line_ids'] = [];
 
-		if ( static::$params['engine'] === 'transkribus' ) {
+		if (static::$params['engine'] === 'transkribus') {
 			// Pre-supply the available line ids for autocompletion in the form.
-			static::$params['available_line_ids'] = $this->engine->getValidLineIds( true, false );
-			sort( static::$params['available_line_ids'] );
+			static::$params['available_line_ids'] = $this->engine->getValidLineIds(true, false);
+			sort(static::$params['available_line_ids']);
 
-			static::$params['available_line_id_langs'] = $this->engine->getValidLineIds( false, true );
-			sort( static::$params['available_line_id_langs'] );
+			static::$params['available_line_id_langs'] = $this->engine->getValidLineIds(false, true);
+			sort(static::$params['available_line_id_langs']);
 		}
 
 		// Get Tesseract's full list of PSMs.
 		/** @var TesseractEngine */
-		$tesseract = $this->engineFactory->get( 'tesseract' );
+		$tesseract = $this->engineFactory->get('tesseract');
 		static::$params['available_psms'] = $tesseract->getAvailablePsms();
 
 		// Intution::listToText() isn't available via Twig, and we only want to do this for the view and not the API.
-		static::$params['image_hosts'] = $this->intuition->listToText( static::$params['image_hosts'] );
+		static::$params['image_hosts'] = $this->intuition->listToText(static::$params['image_hosts']);
 
-		if ( static::$params['image'] ) {
-			$result = $this->getResult( EngineBase::ERROR_ON_INVALID_LANGS );
+		if (static::$params['image']) {
+			$result = $this->getResult(EngineBase::ERROR_ON_INVALID_LANGS);
 			static::$params['text'] = $result->getText();
-			foreach ( $result->getWarnings() as $warning ) {
-				$this->addFlash( 'warning', $warning );
+			foreach ($result->getWarnings() as $warning) {
+				$this->addFlash('warning', $warning);
 			}
 		}
 
-		return $this->render( 'output.html.twig', static::$params );
+		return $this->render('output.html.twig', static::$params);
 	}
 
 	/**
@@ -283,24 +288,25 @@ class OcrController extends AbstractController {
 	 * @OA\Response(response=200, description="The OCR text, and other data.")
 	 * @return JsonResponse
 	 */
-	public function apiAction(): JsonResponse {
+	public function apiAction(): JsonResponse
+	{
 		try {
 			$this->setup();
-		} catch ( Exception $exception ) {
-			return $this->getApiResponse( [
+		} catch (Exception $exception) {
+			return $this->getApiResponse([
 				"error" => $exception->getMessage(),
-			] );
+			]);
 		}
 
-		$result = $this->getResult( EngineBase::WARN_ON_INVALID_LANGS );
-		$responseParams = array_merge( static::$params, [
+		$result = $this->getResult(EngineBase::WARN_ON_INVALID_LANGS);
+		$responseParams = array_merge(static::$params, [
 			'text' => $result->getText(),
-		] );
+		]);
 		$warnings = $result->getWarnings();
-		if ( $warnings ) {
+		if ($warnings) {
 			$responseParams['warnings'] = $warnings;
 		}
-		return $this->getApiResponse( $responseParams );
+		return $this->getApiResponse($responseParams);
 	}
 
 	/**
@@ -317,12 +323,13 @@ class OcrController extends AbstractController {
 	 * @OA\Response(response=200, description="List of available model codes and names, in JSON format.")
 	 * @return JsonResponse
 	 */
-	public function apiAvailableLangsAction(): JsonResponse {
+	public function apiAvailableLangsAction(): JsonResponse
+	{
 		$this->setup();
-		return $this->getApiResponse( [
+		return $this->getApiResponse([
 			'engine' => static::$params['engine'],
-			'available_langs' => $this->engine->getValidModels( true ),
-		] );
+			'available_langs' => $this->engine->getValidModels(true),
+		]);
 	}
 
 	/**
@@ -332,13 +339,14 @@ class OcrController extends AbstractController {
 	 * @OA\Response(response=200, description="List of available Tesseract PSM values and labels, in JSON format.")
 	 * @return JsonResponse
 	 */
-	public function apiAvailablePsms(): JsonResponse {
+	public function apiAvailablePsms(): JsonResponse
+	{
 		$this->setup();
 		/** @var TesseractEngine */
-		$tesseract = $this->engineFactory->get( 'tesseract' );
-		return $this->getApiResponse( [
+		$tesseract = $this->engineFactory->get('tesseract');
+		return $this->getApiResponse([
 			'available_psms' => $tesseract->getAvailablePsms(),
-		] );
+		]);
 	}
 
 	/**
@@ -349,13 +357,14 @@ class OcrController extends AbstractController {
 	 * phpcs:enable
 	 * @return JsonResponse
 	 */
-	public function apiAvailableLineDetectionModelIds(): JsonResponse {
-		$this->request->query->set( 'engine', 'transkribus' );
+	public function apiAvailableLineDetectionModelIds(): JsonResponse
+	{
+		$this->request->query->set('engine', 'transkribus');
 		static::$params['engine'] = 'transkribus';
 		$this->setup();
-		return $this->getApiResponse( [
-			'available_line_ids' => $this->engine->getValidLineIds( false, false ),
-		] );
+		return $this->getApiResponse([
+			'available_line_ids' => $this->engine->getValidLineIds(false, false),
+		]);
 	}
 
 	/**
@@ -363,23 +372,24 @@ class OcrController extends AbstractController {
 	 * @param mixed[] $params
 	 * @return JsonResponse
 	 */
-	private function getApiResponse( array $params ): JsonResponse {
+	private function getApiResponse(array $params): JsonResponse
+	{
 		$response = new JsonResponse();
-		$response->setEncodingOptions( JSON_NUMERIC_CHECK );
-		$response->setStatusCode( Response::HTTP_OK );
+		$response->setEncodingOptions(JSON_NUMERIC_CHECK);
+		$response->setStatusCode(Response::HTTP_OK);
 
 		// Expose flash messages.
 		/** @var FlashBag $flashBag */
-		$flashBag = $this->session->getBag( 'flashes' );
+		$flashBag = $this->session->getBag('flashes');
 		'@phan-var FlashBag $flashBag';
-		if ( $flashBag->has( 'error' ) ) {
-			$params['error'] = $flashBag->get( 'error' );
+		if ($flashBag->has('error')) {
+			$params['error'] = $flashBag->get('error');
 		}
 
 		// Allow API requests from the Wikisource extension wherever it's installed.
-		$response->headers->set( 'Access-Control-Allow-Origin', '*' );
+		$response->headers->set('Access-Control-Allow-Origin', '*');
 
-		$response->setData( $params );
+		$response->setData($params);
 		return $response;
 	}
 
@@ -388,39 +398,40 @@ class OcrController extends AbstractController {
 	 * @param string $invalidLangsMode EngineBase::WARN_ON_INVALID_LANGS or EngineBase::ERROR_ON_INVALID_LANGS
 	 * @return EngineResult
 	 */
-	private function getResult( string $invalidLangsMode ): EngineResult {
-		ksort( static::$params['crop'] );
-		$cacheKey = md5( implode(
+	private function getResult(string $invalidLangsMode): EngineResult
+	{
+		ksort(static::$params['crop']);
+		$cacheKey = md5(implode(
 			'|',
 			[
 				static::$params['image'],
 				static::$params['engine'],
-				implode( '|', static::$params['langs'] ),
-				implode( '|', array_map( 'strval', static::$params['crop'] ) ),
+				implode('|', static::$params['langs']),
+				implode('|', array_map('strval', static::$params['crop'])),
 				static::$params['psm'],
 				static::$params['line_id'],
 				static::$params['handle_refs'] ? 'refs=1' : 'refs=0',
 				// Warning messages are localized
 				$this->intuition->getLang(),
 			]
-		) );
+		));
 
-		$result = $this->cache->get( $cacheKey, function ( ItemInterface $item ) use ( $invalidLangsMode ) {
-			$item->expiresAfter( (int)$this->getParameter( 'cache_ttl' ) );
+		$result = $this->cache->get($cacheKey, function (ItemInterface $item) use ($invalidLangsMode) {
+			$item->expiresAfter((int) $this->getParameter('cache_ttl'));
 			return $this->engine->getResult(
 				static::$params['image'],
 				$invalidLangsMode,
 				static::$params['crop'],
 				static::$params['langs']
 			);
-		} );
-		if ( !$result instanceof EngineResult ) {
-			throw new Exception( 'Incorrect (possibly cached) result: ' . var_export( $result, true ) );
+		});
+		if (!$result instanceof EngineResult) {
+			throw new Exception('Incorrect (possibly cached) result: ' . var_export($result, true));
 		}
 
-		if ( static::$params['handle_refs'] ) {
+		if (static::$params['handle_refs']) {
 			$result = new EngineResult(
-				ReferencePostProcessor::process( $result->getText() ),
+				ReferencePostProcessor::process($result->getText()),
 				$result->getWarnings()
 			);
 		}
