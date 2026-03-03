@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare( strict_types=1 );
 
 namespace App\Engine;
 
@@ -22,8 +22,7 @@ namespace App\Engine;
  *   - Trailing Unicode superscripts:   word¹    → replaced by <ref>
  *   - Bracket-wrapped digits:          word[1]  → replaced by <ref>
  */
-class ReferencePostProcessor
-{
+class ReferencePostProcessor {
 
 	/**
 	 * Map of Unicode superscript characters to their ASCII digit equivalents.
@@ -63,23 +62,22 @@ class ReferencePostProcessor
 	 * @return string Text with footnote markers replaced by <ref> tags, and
 	 *   the footnote block removed from the bottom.
 	 */
-	public static function process(string $text): string
-	{
-		$lines = explode("\n", $text);
+	public static function process( string $text ): string {
+		$lines = explode( "\n", $text );
 
-		[$footnotes, $footnoteStartIndex] = self::extractFootnotes($lines);
+		[ $footnotes, $footnoteStartIndex ] = self::extractFootnotes( $lines );
 
-		if (!$footnotes) {
+		if ( !$footnotes ) {
 			return $text;
 		}
 
 		// Keep only the body lines (above the footnote block).
-		$bodyLines = array_slice($lines, 0, $footnoteStartIndex);
+		$bodyLines = array_slice( $lines, 0, $footnoteStartIndex );
 
 		// Replace inline markers in body lines.
-		$bodyLines = self::replaceInlineMarkers($bodyLines, $footnotes);
+		$bodyLines = self::replaceInlineMarkers( $bodyLines, $footnotes );
 
-		return implode("\n", $bodyLines);
+		return implode( "\n", $bodyLines );
 	}
 
 	/**
@@ -89,8 +87,7 @@ class ReferencePostProcessor
 	 * @return array{array<string,string>,int} Tuple of [marker=>text map, start line index].
 	 *   Returns [[], 0] if no footnote block is detected.
 	 */
-	private static function extractFootnotes(array $lines): array
-	{
+	private static function extractFootnotes( array $lines ): array {
 		// A footnote block is a contiguous block of text at the end of the document.
 		// It consists of footnote start lines, continuation lines, and optionally blank lines.
 		// The block must start with a valid footnote line.
@@ -98,15 +95,15 @@ class ReferencePostProcessor
 		$footnoteStartIndex = -1;
 
 		// 1. Scan from top to bottom, finding every valid footnote start line.
-		for ($i = 0; $i < count($lines); $i++) {
-			$line = trim($lines[$i]);
-			if ($line === '') {
+		for ( $i = 0; $i < count( $lines ); $i++ ) {
+			$line = trim( $lines[$i] );
+			if ( $line === '' ) {
 				continue;
 			}
 
-			[$key,] = self::parseFootnoteLine($line);
+			[ $key, ] = self::parseFootnoteLine( $line );
 
-			if ($key !== null) {
+			if ( $key !== null ) {
 				// This line is a valid footnote start.
 				// Let's check if the REST of the document forms a valid footnote block
 				// starting from this line.
@@ -134,36 +131,36 @@ class ReferencePostProcessor
 
 		$footnotes = [];
 		$currentFootnoteLines = [];
-		$footnoteStartIndex = count($lines);
+		$footnoteStartIndex = count( $lines );
 
 		// We'll collect the blocks from bottom to top.
-		for ($i = count($lines) - 1; $i >= 0; $i--) {
-			$line = trim($lines[$i]);
+		for ( $i = count( $lines ) - 1; $i >= 0; $i-- ) {
+			$line = trim( $lines[$i] );
 
-			if ($line === '') {
-				if (!empty($currentFootnoteLines)) {
+			if ( $line === '' ) {
+				if ( !empty( $currentFootnoteLines ) ) {
 					// Blank line within a footnote
 					$currentFootnoteLines[] = '';
 				}
 				continue;
 			}
 
-			[$key, $footnoteText] = self::parseFootnoteLine($line);
+			[ $key, $footnoteText ] = self::parseFootnoteLine( $line );
 
-			if ($key !== null) {
+			if ( $key !== null ) {
 				// We found the start of the current footnote (or a new one).
-				$normKey = self::normaliseSuperscript($key);
+				$normKey = self::normaliseSuperscript( $key );
 
 				// Combine the text
 				$fullText = $footnoteText;
-				if (!empty($currentFootnoteLines)) {
+				if ( !empty( $currentFootnoteLines ) ) {
 					// $currentFootnoteLines were collected bottom-up, so reverse them.
-					$currentFootnoteLines = array_reverse($currentFootnoteLines);
-					$fullText .= ' ' . implode(' ', array_filter($currentFootnoteLines));
+					$currentFootnoteLines = array_reverse( $currentFootnoteLines );
+					$fullText .= ' ' . implode( ' ', array_filter( $currentFootnoteLines ) );
 				}
 
 				// Prepend to our list of footnotes
-				$footnotes = [$normKey => trim($fullText)] + $footnotes;
+				$footnotes = [ $normKey => trim( $fullText ) ] + $footnotes;
 
 				// Reset continuation collector
 				$currentFootnoteLines = [];
@@ -191,14 +188,14 @@ class ReferencePostProcessor
 		// We scan from top to bottom.
 		// 1. Gather all line indices that are footnote starts.
 		$starts = [];
-		for ($i = 0; $i < count($lines); $i++) {
-			if (trim($lines[$i]) !== '' && self::parseFootnoteLine(trim($lines[$i]))[0] !== null) {
+		for ( $i = 0; $i < count( $lines ); $i++ ) {
+			if ( trim( $lines[$i] ) !== '' && self::parseFootnoteLine( trim( $lines[$i] ) )[0] !== null ) {
 				$starts[] = $i;
 			}
 		}
 
-		if (empty($starts)) {
-			return [[], 0];
+		if ( empty( $starts ) ) {
+			return [ [], 0 ];
 		}
 
 		// 2. We want to find a split point index S in the document such that:
@@ -217,30 +214,30 @@ class ReferencePostProcessor
 		// Actually, even simpler: just scan upwards from the bottom.
 
 		$footnotesReversed = [];
-		$footnoteStartIndex = count($lines);
+		$footnoteStartIndex = count( $lines );
 
 		// Break the document from bottom to top into chunks separated by footnote starts.
 		$currentChunk = [];
 		// Assume the end of the document could be a footnote.
 		$inFootnoteBlock = true;
 
-		for ($i = count($lines) - 1; $i >= 0; $i--) {
-			$line = trim($lines[$i]);
+		for ( $i = count( $lines ) - 1; $i >= 0; $i-- ) {
+			$line = trim( $lines[$i] );
 
-			if ($line === '') {
-				if (!empty($currentChunk)) {
+			if ( $line === '' ) {
+				if ( !empty( $currentChunk ) ) {
 					$currentChunk[] = $line;
 				}
 				continue;
 			}
 
-			[$key, $footnoteText] = self::parseFootnoteLine($line);
+			[ $key, $footnoteText ] = self::parseFootnoteLine( $line );
 
-			if ($key !== null) {
+			if ( $key !== null ) {
 				// We found a footnote start!
-				$normKey = self::normaliseSuperscript($key);
-				$chunkLines = array_reverse($currentChunk);
-				$fullText = trim($footnoteText . ' ' . implode(' ', array_filter($chunkLines)));
+				$normKey = self::normaliseSuperscript( $key );
+				$chunkLines = array_reverse( $currentChunk );
+				$fullText = trim( $footnoteText . ' ' . implode( ' ', array_filter( $chunkLines ) ) );
 
 				$footnotesReversed[] = [
 					'key' => $normKey,
@@ -253,7 +250,7 @@ class ReferencePostProcessor
 				$inFootnoteBlock = true;
 			} else {
 				// Not a footnote start.
-				if ($inFootnoteBlock && count($currentChunk) < 3) {
+				if ( $inFootnoteBlock && count( $currentChunk ) < 3 ) {
 					// We allow a few lines of continuation logic.
 					$currentChunk[] = $line;
 				} else {
@@ -267,13 +264,13 @@ class ReferencePostProcessor
 		}
 
 		// If we reached here, and we never found any footnotes inside the block we scanned from the bottom:
-		if (empty($footnotesReversed)) {
-			return [[], 0];
+		if ( empty( $footnotesReversed ) ) {
+			return [ [], 0 ];
 		}
 
 		// Reconstruct the footnotes map in the correct order (top to bottom)
 		$footnotes = [];
-		for ($i = count($footnotesReversed) - 1; $i >= 0; $i--) {
+		for ( $i = count( $footnotesReversed ) - 1; $i >= 0; $i-- ) {
 			$fn = $footnotesReversed[$i];
 			$footnotes[$fn['key']] = $fn['text'];
 		}
@@ -282,7 +279,7 @@ class ReferencePostProcessor
 		// was positioned just ABOVE the highest footnote we found. We don't care, because
 		// $footnoteStartIndex is already correctly set to the index of the highest footnote we found.
 
-		return [$footnotes, $footnoteStartIndex];
+		return [ $footnotes, $footnoteStartIndex ];
 	}
 
 	/**
@@ -292,25 +289,24 @@ class ReferencePostProcessor
 	 * @return array{string|null,string} Tuple of [marker key, footnote text].
 	 *   Returns [null, ''] if the line is not a footnote entry.
 	 */
-	private static function parseFootnoteLine(string $line): array
-	{
+	private static function parseFootnoteLine( string $line ): array {
 		// [1] style
-		if (preg_match('/^\[(\d+)\]\s*(.+)$/u', $line, $m)) {
-			return [$m[1], trim($m[2])];
+		if ( preg_match( '/^\[(\d+)\]\s*(.+)$/u', $line, $m ) ) {
+			return [ $m[1], trim( $m[2] ) ];
 		}
 
 		// 1) or 1. style
-		if (preg_match('/^(\d+)[.)]\s+(.+)$/u', $line, $m)) {
-			return [$m[1], trim($m[2])];
+		if ( preg_match( '/^(\d+)[.)]\s+(.+)$/u', $line, $m ) ) {
+			return [ $m[1], trim( $m[2] ) ];
 		}
 
 		// ¹) Unicode superscript style
-		$superscriptChars = implode('', array_keys(self::SUPERSCRIPT_MAP));
-		if (preg_match('/^([' . $superscriptChars . ']+)[.)]\s+(.+)$/u', $line, $m)) {
-			return [$m[1], trim($m[2])];
+		$superscriptChars = implode( '', array_keys( self::SUPERSCRIPT_MAP ) );
+		if ( preg_match( '/^([' . $superscriptChars . ']+)[.)]\s+(.+)$/u', $line, $m ) ) {
+			return [ $m[1], trim( $m[2] ) ];
 		}
 
-		return [null, ''];
+		return [ null, '' ];
 	}
 
 	/**
@@ -320,38 +316,37 @@ class ReferencePostProcessor
 	 * @param array<string,string> $footnotes Map of normalised marker key → footnote text.
 	 * @return string[] Body lines with markers replaced.
 	 */
-	private static function replaceInlineMarkers(array $bodyLines, array $footnotes): array
-	{
+	private static function replaceInlineMarkers( array $bodyLines, array $footnotes ): array {
 		// Build a sorted list of keys (longest first to avoid partial replacements).
-		$keys = array_keys($footnotes);
-		usort($keys, static function (string $a, string $b): int {
-			return strlen($b) - strlen($a);
-		});
+		$keys = array_keys( $footnotes );
+		usort( $keys, static function ( string $a, string $b ): int {
+			return strlen( $b ) - strlen( $a );
+		} );
 
-		$superscriptChars = implode('', array_keys(self::SUPERSCRIPT_MAP));
+		$superscriptChars = implode( '', array_keys( self::SUPERSCRIPT_MAP ) );
 
-		foreach ($bodyLines as &$line) {
-			foreach ($keys as $key) {
-				$keyString = (string) $key;
+		foreach ( $bodyLines as &$line ) {
+			foreach ( $keys as $key ) {
+				$keyString = (string)$key;
 				$refTag = '<ref>' . $footnotes[$key] . '</ref>';
-				$escapedKey = preg_quote($keyString, '/');
+				$escapedKey = preg_quote( $keyString, '/' );
 
 				// Replace trailing digit(s) followed by ) — e.g. word1)
-				$line = preg_replace('/(' . $escapedKey . ')\)(?=\s|$)/u', $refTag, $line);
+				$line = preg_replace( '/(' . $escapedKey . ')\)(?=\s|$)/u', $refTag, $line );
 
 				// Replace bracket-wrapped — e.g. word[1]
-				$line = preg_replace('/\[' . $escapedKey . '\]/u', $refTag, $line);
+				$line = preg_replace( '/\[' . $escapedKey . '\]/u', $refTag, $line );
 
 				// Replace Unicode superscripts — e.g. word¹
-				$superscriptKey = self::digitToSuperscript($keyString);
-				if ($superscriptKey !== $keyString) {
-					$escapedSuper = preg_quote($superscriptKey, '/');
+				$superscriptKey = self::digitToSuperscript( $keyString );
+				if ( $superscriptKey !== $keyString ) {
+					$escapedSuper = preg_quote( $superscriptKey, '/' );
 					$pattern = '/[' . $superscriptChars . ']*' . $escapedSuper . '[' . $superscriptChars . ']*/u';
-					$line = preg_replace($pattern, $refTag, $line);
+					$line = preg_replace( $pattern, $refTag, $line );
 				}
 			}
 		}
-		unset($line);
+		unset( $line );
 
 		return $bodyLines;
 	}
@@ -362,9 +357,8 @@ class ReferencePostProcessor
 	 * @param string $str A string potentially containing Unicode superscript chars.
 	 * @return string ASCII digit equivalent.
 	 */
-	private static function normaliseSuperscript(string $str): string
-	{
-		return strtr($str, self::SUPERSCRIPT_MAP);
+	private static function normaliseSuperscript( string $str ): string {
+		return strtr( $str, self::SUPERSCRIPT_MAP );
 	}
 
 	/**
@@ -373,11 +367,10 @@ class ReferencePostProcessor
 	 * @param string $digits ASCII digit string.
 	 * @return string Unicode superscript string, or the original if no mapping exists.
 	 */
-	private static function digitToSuperscript(string $digits): string
-	{
-		$map = array_flip(self::SUPERSCRIPT_MAP);
+	private static function digitToSuperscript( string $digits ): string {
+		$map = array_flip( self::SUPERSCRIPT_MAP );
 		$result = '';
-		foreach (str_split($digits) as $ch) {
+		foreach ( str_split( $digits ) as $ch ) {
 			$result .= $map[$ch] ?? $ch;
 		}
 		return $result;
