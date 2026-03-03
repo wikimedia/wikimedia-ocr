@@ -68,6 +68,10 @@
                         {{ msg('api') -}}
                     </a>
                     &bull;
+                    <a target="_blank" href="https://phabricator.wikimedia.org/tag/wikimedia_ocr">
+                        {{ msg('issue-tracker') -}}
+                    </a>
+                    &bull;
                     <a target="_blank" href="https://phabricator.wikimedia.org/maniphest/task/edit/form/1/?tags=wikimedia_ocr">
                         {{ msg('report-issue') -}}
                     </a>
@@ -87,6 +91,7 @@
                             {% endfor %}
                         </select>
                         <input type="submit" value="{{msg('language-switch')}}" class="btn btn-default">
+                        <a href="https://translatewiki.net/wiki/Special:Translate?group=wikimedia-ocr&language={{ lang() }}" target="_blank">{{ msg('help-translate') }}</a>
                     </div>
                 </form>
             </footer>
