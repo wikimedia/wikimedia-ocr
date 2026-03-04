@@ -1,8 +1,8 @@
 framework:
-    cache:
-        prefix_seed: wikimedia-ocr
+  cache:
+    prefix_seed: wikimedia-ocr
 
-        default_redis_provider: "redis://%env(REDIS_HOST)%"
+    default_redis_provider: "redis://%env(REDIS_HOST)%"
 
-        pools:
-            cache.replicas: ~
+    pools:
+      cache.replicas: ~

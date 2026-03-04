@@ -1,0 +1,22 @@
+{
+	"extends": [
+		"wikimedia/client",
+		"wikimedia/jquery"
+	],
+	"env": {
+		"browser": true,
+		"node": true,
+		"es6": true
+	},
+	"parserOptions": {
+		"sourceType": "module"
+	},
+	"rules": {
+		"no-jquery/no-global-selector": "warn",
+		"no-unused-vars": "warn",
+		"no-new": "warn",
+		"semi-style": "warn",
+		"yml/no-empty-document": "warn",
+		"yml/no-empty-mapping-value": "warn"
+	}
+}
