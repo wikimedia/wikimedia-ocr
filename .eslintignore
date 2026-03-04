@@ -1,0 +1,6 @@
+bin/.phpunit/
+var/
+vendor/
+public/build/
+public/bundles/
+package-lock.json

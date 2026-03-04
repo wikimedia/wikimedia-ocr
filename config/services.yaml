@@ -4,63 +4,63 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    cache_ttl: '%env(APP_CACHE_TTL)%'
+  cache_ttl: "%env(APP_CACHE_TTL)%"
 
 services:
-    # default configuration for services in *this* file
-    _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
-    App\:
-        resource: '../src/'
-        exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Kernel.php'
-            - '../src/Tests/'
+  App\:
+    resource: ../src/
+    exclude:
+      - ../src/DependencyInjection/
+      - ../src/Kernel.php
+      - ../src/Tests/
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    App\Controller\:
-        resource: '../src/Controller/'
-        tags: ['controller.service_arguments']
+  App\Controller\:
+    resource: ../src/Controller/
+    tags: [ controller.service_arguments ]
 
     # https://symfony.com/doc/current/service_container/parent_services.html
-    App\Engine\EngineBase:
-        arguments:
-            $projectDir: '%kernel.project_dir%'
-        calls:
-            - setImageHosts: [ '%env(APP_IMAGE_HOSTS)%' ]
+  App\Engine\EngineBase:
+    arguments:
+      $projectDir: "%kernel.project_dir%"
+    calls:
+      - setImageHosts: [ "%env(APP_IMAGE_HOSTS)%" ]
 
-    App\Engine\TesseractEngine:
-        parent: App\Engine\EngineBase
+  App\Engine\TesseractEngine:
+    parent: App\Engine\EngineBase
 
-    App\Engine\GoogleCloudVisionEngine:
-        parent: App\Engine\EngineBase
-        arguments:
-            $keyFile: '%env(APP_GOOGLE_KEYFILE)%'
+  App\Engine\GoogleCloudVisionEngine:
+    parent: App\Engine\EngineBase
+    arguments:
+      $keyFile: "%env(APP_GOOGLE_KEYFILE)%"
 
-    App\Engine\TranskribusEngine:
-        parent: App\Engine\EngineBase
+  App\Engine\TranskribusEngine:
+    parent: App\Engine\EngineBase
 
-    App\Engine\TranskribusClient:
-        arguments:
-            $username: '%env(APP_TRANSKRIBUS_USERNAME)%'
-            $password: '%env(APP_TRANSKRIBUS_PASSWORD)%'
+  App\Engine\TranskribusClient:
+    arguments:
+      $username: "%env(APP_TRANSKRIBUS_USERNAME)%"
+      $password: "%env(APP_TRANSKRIBUS_PASSWORD)%"
 
-    App\EventListener\ExceptionListener:
-        arguments:
-            - '@request_stack'
-            - '@twig'
-            - '@Krinkle\Intuition\Intuition'
-            - '@monolog.logger.tesseract'
-        tags:
-            - { name: kernel.event_listener, event: kernel.exception }
+  App\EventListener\ExceptionListener:
+    arguments:
+      - "@request_stack"
+      - "@twig"
+      - '@Krinkle\Intuition\Intuition'
+      - "@monolog.logger.tesseract"
+    tags:
+      - { name: kernel.event_listener, event: kernel.exception }
 
     # Vendor services for autowiring
-    thiagoalessio\TesseractOCR\TesseractOCR:
+  thiagoalessio\TesseractOCR\TesseractOCR:
 
-    # please note that last definitions always *replace* previous ones
-    # add more service definitions when explicit configuration is needed
+  # please note that last definitions always *replace* previous ones
+  # add more service definitions when explicit configuration is needed
