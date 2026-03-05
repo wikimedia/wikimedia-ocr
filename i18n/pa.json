@@ -1,17 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
-			"Divya07-22"
+			"Cabal",
+			"Divya07-22",
+			"Satdeep gill"
 		]
 	},
-	"title": "WikimediaOCR",
+	"title": "ਵਿਕੀਮੀਡੀਆOCR",
 	"subtitle": "ਵਿਕੀਮੀਡੀਆ ਕਾਮਨਜ਼ ਤੋਂ ਸਕੈਨ ਕੀਤੀਆਂ ਤਸਵੀਰਾਂ ਤੋਂ ਟੈਕਸਟ ਟ੍ਰਾਂਸਕ੍ਰਾਈਬ ਕਰਨ ਲਈ ਇੱਕ ਸਾਧਨ, ਵਿਕੀਸੋਰਸ ਅਤੇ ਹੋਰ ਥਾਵਾਂ ਲਈ ਵਰਤੋਂ ਕਰਨ ਲਈ.",
 	"form-heading": "ਤਸਵੀਰ ਟ੍ਰਾਂਸਕ੍ਰਾਈਬ ਕਰੋ",
 	"image-url": "ਤਸਵੀਰ URL",
 	"image-url-help": "ਵਿਕੀਮੀਡੀਆ ਸਰਵਰ ਤੇ ਹੋਸਟ ਕੀਤੀ ਤਸਵੀਰ URL ਦਾਖਲ ਕਰੋ, ਉਦਾ: $1",
 	"image-url-error": "ਤਸਵੀਰ URL {{PLURAL:$1|ਇਸ ਡੋਮੇਨ ਨਾਮ ਤੋਂ|ਇਹਨਾਂ ਡੋਮੇਨ ਨਾਮਾਂ ਵਿੱਚੋਂ ਇੱਕ ਤੋਂ}} ਸ਼ੁਰੂ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ ਅਤੇ ਇੱਕ ਵੈਧ ਫਾਈਲ ਐਕਸਟੈਂਸ਼ਨ ਨਾਲ ਖਤਮ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ: $2",
-	"image-alt-text": "ਅਸਲ ਤਸਵੀਰ",
-	"language-code": "ਭਾਸ਼ਾਵਾਂ (ਵਿਕਲਪਿਕ)",
+	"image-alt-text": "ਅਸਲੀ ਚਿੱਤਰ",
+	"language-code": "ਬੋਲੀਆਂ (ਚੋਣਵੀਆਂ)",
 	"engine": "OCR ਇੰਜਣ",
 	"engine-name-google": "Google Cloud Vision OCR",
 	"engine-name-tesseract": "Tesseract OCR",
@@ -25,18 +27,18 @@
 	"drag-mode-move-alt": "'ਹਿਲਾਓ' ਕਿਰਿਆ ਦਰਸਾਉਣ ਵਾਲਾ ਆਈਕਨ।",
 	"drag-mode-crop": "ਖਿੱਚਣ ਨਾਲ ਨਵਾਂ ਕ੍ਰੌਪ ਖੇਤਰ ਬਣਦਾ ਹੈ",
 	"drag-mode-crop-alt": "'ਕ੍ਰੌਪ' ਕਿਰਿਆ ਦਰਸਾਉਣ ਵਾਲਾ ਆਈਕਨ।",
-	"copy-to-clipboard": "ਕਲਿੱਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕਰੋ",
+	"copy-to-clipboard": "ਚੂੰਢੀ-ਤਖਤੀ 'ਤੇ ਉਤਾਰਾ ਲਿਖੋ",
 	"copied-to-clipboard": "ਕਾਪੀ ਕੀਤਾ!",
 	"google-error": "Google ਸੇਵਾ ਨੇ ਗਲਤੀ ਵਾਪਸ ਕੀਤੀ: $1",
 	"image-retrieval-failed": "ਤਸਵੀਰ ਪ੍ਰਾਪਤੀ ਅਸਫਲ: $1",
-	"documentation": "ਦਸਤਾਵੇਜ਼ੀਕਰਨ",
+	"documentation": "ਲਿਖਤਾਂ",
 	"api": "API",
 	"api-tooltip": "API ਦਸਤਾਵੇਜ਼ੀਕਰਨ ਦੇਖੋ",
 	"version": "ਸੰਸਕਰਣ $1",
-	"report-issue": "ਸਮੱਸਿਆ ਦੀ ਰਿਪੋਰਟ ਕਰੋ",
+	"report-issue": "ਕਿਸੇ ਮੁੱਦੇ ਦੀ ਇਤਲਾਹ ਦਿਓ",
 	"language": "ਭਾਸ਼ਾ:",
 	"language-switch": "ਭਾਸ਼ਾ ਬਦਲੋ",
-	"langs-placeholder": "ਸਵੈਚਾਲਿਤ ਭਾਸ਼ਾ ਖੋਜ ਲਈ ਖਾਲੀ ਛੱਡੋ।",
+	"langs-placeholder": "ਆਪਣੇ-ਆਪ ਭਾਸ਼ਾ ਖੋਜ ਲਈ ਖਾਲੀ ਛੱਡੋ।",
 	"langs-param-error": "ਹੇਠਾਂ ਦਿੱਤੀ {{PLURAL:$1|ਭਾਸ਼ਾ ਨੂੰ|ਭਾਸ਼ਾਵਾਂ ਨੂੰ}} OCR ਇੰਜਣ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ: $2",
 	"loading-message": "ਟ੍ਰਾਂਸਕ੍ਰਿਪਸ਼ਨ ਚੱਲ ਰਿਹਾ ਹੈ...",
 	"tesseract-options": "Tesseract ਵਿਕਲਪ",
@@ -55,5 +57,11 @@
 	"tesseract-psm-10": "ਤਸਵੀਰ ਨੂੰ ਇੱਕ ਅੱਖਰ ਸਮਝੋ।",
 	"tesseract-psm-11": "ਜਿੰਨਾ ਹੋ ਸਕੇ ਟੈਕਸਟ ਲੱਭੋ। (Sparse text)",
 	"tesseract-psm-12": "OSD ਨਾਲ Sparse text।",
-	"tesseract-psm-13": "ਕੱਚੀ ਲਾਈਨ। Tesseract ਦੀ ਲਾਈਨ ਖੋਜ ਹੈਕ ਨੂੰ ਬਾਈਪਾਸ ਕਰਕੇ ਤਸਵੀਰ ਨੂੰ ਇੱਕ ਟੈਕਸਟ ਲਾਈਨ ਸਮਝੋ।"
+	"tesseract-psm-13": "ਕੱਚੀ ਲਾਈਨ। Tesseract ਦੀ ਲਾਈਨ ਖੋਜ ਹੈਕ ਨੂੰ ਬਾਈਪਾਸ ਕਰਕੇ ਤਸਵੀਰ ਨੂੰ ਇੱਕ ਟੈਕਸਟ ਲਾਈਨ ਸਮਝੋ।",
+	"transkribus-language-code": "ਭਾਸ਼ਾ ਨਮੂਨਾ",
+	"transkribus-line-id-none-option": "ਕੋਈ ਨਹੀਂ",
+	"transkribus-job-description": "ਵੇਰਵਾ",
+	"transkribus-job-start": "ਸ਼ੁਰੂ ਕੀਤਾ",
+	"transkribus-job-end": "ਪੂਰਾ ਹੋਇਆ",
+	"transkribus-job-waited": "ਸ਼ੁਰੂਆਤ ਵਿੱਚ ਦੇਰੀ (ਮਿੰਟ)"
 }

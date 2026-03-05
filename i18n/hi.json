@@ -1,7 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Divya07-22"
+			"Abijeet Patro",
+			"Divya07-22",
+			"संजीव कुमार"
 		]
 	},
 	"title": "WikimediaOCR",
@@ -55,5 +57,9 @@
 	"tesseract-psm-10": "छवि को एक एकल वर्ण मानें।",
 	"tesseract-psm-11": "विरल पाठ। बिना किसी विशेष क्रम के जितना संभव हो उतना पाठ खोजें।",
 	"tesseract-psm-12": "OSD के साथ विरल पाठ।",
-	"tesseract-psm-13": "कच्ची पंक्ति। छवि को एक एकल पाठ पंक्ति मानें, Tesseract-विशिष्ट हैक्स को दरकिनार करते हुए।"
+	"tesseract-psm-13": "कच्ची पंक्ति। छवि को एक एकल पाठ पंक्ति मानें, Tesseract-विशिष्ट हैक्स को दरकिनार करते हुए।",
+	"transkribus-line-id-none-option": "कुछ नहीं",
+	"transkribus-job-state": "स्थिति",
+	"transkribus-job-description": "विवरण",
+	"transkribus-job-end": "समाप्त"
 }
