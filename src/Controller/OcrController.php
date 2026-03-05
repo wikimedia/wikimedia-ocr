@@ -295,6 +295,28 @@ class OcrController extends AbstractController {
 	}
 
 	/**
+	 * Serve the models config with CORS headers so it can be fetched directly
+	 * from the Wikisource frontend without requiring a MediaWiki proxy.
+	 * Returns a simplified map of engine->{code: title} matching the shape
+	 * previously provided by the available_langs API.
+	 *
+	 * @Route("/api/models", name="apiModels", methods={"GET"})
+	 * @return JsonResponse
+	 */
+	public function apiModelsAction(): JsonResponse {
+		$path = $this->getParameter( 'kernel.project_dir' ) . '/public/models.json';
+		$raw = json_decode( file_get_contents( $path ), true );
+		$out = [];
+		foreach ( $raw as $engine => $models ) {
+			$out[ $engine ] = [];
+			foreach ( $models as $code => $info ) {
+				$out[ $engine ][ $code ] = $info[ 'title' ];
+			}
+		}
+		return $this->getApiResponse( $out );
+	}
+
+	/**
 	 * Get a list of models available for use with a specific OCR engine.
 	 *
 	 * @Route("/api/available_langs", name="apiLangs", methods={"GET"})
