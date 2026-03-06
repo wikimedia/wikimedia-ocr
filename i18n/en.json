@@ -78,5 +78,7 @@
     "transkribus-job-description": "Description",
     "transkribus-job-start": "Started",
     "transkribus-job-end": "Finished",
-    "transkribus-job-waited": "Start delay (minutes)"
+    "transkribus-job-waited": "Start delay (minutes)",
+    "rotate-left": "Rotate left",
+    "rotate-right": "Rotate right"
 }
