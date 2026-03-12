@@ -1,7 +1,7 @@
 <?php
 // phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
 
-declare( strict_types = 1 );
+declare( strict_types=1 );
 
 namespace App\Controller;
 
@@ -9,6 +9,7 @@ use App\Engine\EngineBase;
 use App\Engine\EngineFactory;
 use App\Engine\EngineResult;
 use App\Engine\GoogleCloudVisionEngine;
+use App\Engine\ReferencePostProcessor;
 use App\Engine\TesseractEngine;
 use App\Engine\TranskribusEngine;
 use App\Exception\EngineNotFoundException;
@@ -27,6 +28,9 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
+
+// phpcs:ignore MediaWiki.Classes.UnusedUseStatement.UnusedUse
+// phpcs:ignore MediaWiki.Classes.UnusedUseStatement.UnusedUse
 
 class OcrController extends AbstractController {
 	/** @var Intuition */
@@ -63,6 +67,7 @@ class OcrController extends AbstractController {
 		'psm' => TesseractEngine::DEFAULT_PSM,
 		'crop' => [],
 		'line_id' => TranskribusEngine::DEFAULT_LINEID,
+		'handle_refs' => false,
 	];
 
 	/**
@@ -113,13 +118,16 @@ class OcrController extends AbstractController {
 		static::$params['langs'] = $this->getLangs( $this->request );
 		static::$params['image_hosts'] = $this->engine->getImageHosts();
 		$crop = $this->request->query->get( 'crop' );
-		if ( !is_array( $crop )
-			|| isset( $crop['width'] ) && !$crop['width']
-			|| isset( $crop['height'] ) && !$crop['height']
+		if (
+			!is_array( $crop )
+			|| ( isset( $crop['width'] ) && !$crop['width'] )
+			|| ( isset( $crop['height'] ) && !$crop['height'] )
 		) {
 			$crop = [];
 		}
 		static::$params['crop'] = array_map( 'intval', $crop );
+
+		static::$params['handle_refs'] = (bool)$this->request->query->get( 'handle_refs', false );
 	}
 
 	/**
@@ -166,11 +174,6 @@ class OcrController extends AbstractController {
 		return $langsFiltered;
 	}
 
-	/**
-	 * The main form and result page.
-	 * @Route("/", name="home")
-	 * @return Response
-	 */
 	public function homeAction(): Response {
 		$this->setup();
 
@@ -246,6 +249,12 @@ class OcrController extends AbstractController {
 	 *     in="query",
 	 *     description="The line detection model ID to be used for Transkribus.",
 	 * @OA\Schema(type="int")
+	 * )
+	 * @OA\Parameter(
+	 *     name="handle_refs",
+	 *     in="query",
+	 *     description="Whether to automatically format footnote references into <ref> tags.",
+	 * @OA\Schema(type="boolean")
 	 * )
 	 * @OA\Parameter(
 	 *     name="crop[x]",
@@ -412,6 +421,7 @@ class OcrController extends AbstractController {
 				implode( '|', array_map( 'strval', static::$params['crop'] ) ),
 				static::$params['psm'],
 				static::$params['line_id'],
+				static::$params['handle_refs'] ? 'refs=1' : 'refs=0',
 				// Warning messages are localized
 				$this->intuition->getLang(),
 			]
@@ -429,6 +439,14 @@ class OcrController extends AbstractController {
 		if ( !$result instanceof EngineResult ) {
 			throw new Exception( 'Incorrect (possibly cached) result: ' . var_export( $result, true ) );
 		}
+
+		if ( static::$params['handle_refs'] ) {
+			$result = new EngineResult(
+				ReferencePostProcessor::process( $result->getText() ),
+				$result->getWarnings()
+			);
+		}
+
 		return $result;
 	}
 }

@@ -62,7 +62,17 @@
 
         {% include '_transkribus_options.html.twig' with {engine: engine} %}
 
-        <div class="form-group submit-btn">
+		<div class="form-group">
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" name="handle_refs" value="1" {% if handle_refs %}checked{% endif %} />
+					{{ msg('handle-refs') }}
+				</label>
+			</div>
+			<p class="help-block">{{ msg('handle-refs-help') }}</p>
+		</div>
+
+		<div class="form-group submit-btn">
             <input type="submit" value="{{ msg( 'submit' ) }}" class="submit-full btn btn-info" />
         </div>
 
