@@ -166,34 +166,78 @@ $(function () {
         $(".loader").addClass('hidden');
     });
 
+    // --- Image workspace (crop, rotate, OCR results) ---
     var $ocrOutputDiv = $('.ocr-output');
-    if ($ocrOutputDiv.length) {
-        // Cropper.
-        const img = document.getElementById('source-image'),
-            x = document.querySelector('[name="crop[x]"]'),
-            y = document.querySelector('[name="crop[y]"]'),
-            width  = document.querySelector('[name="crop[width]"]'),
-            height = document.querySelector('[name="crop[height]"]'),
-            $modeButtons = $('.drag-mode');
+    const img = document.getElementById('source-image');
+    const x = document.querySelector('[name="crop[x]"]');
+    const y = document.querySelector('[name="crop[y]"]');
+    const width = document.querySelector('[name="crop[width]"]');
+    const height = document.querySelector('[name="crop[height]"]');
+    const rotate = document.getElementById('rotate');
+    const $modeButtons = $('.drag-mode');
+    let cropperInstance = null;
+
+    /**
+     * Initialize (or re-initialize) Cropper.js on the source image.
+     */
+    function initCropper() {
+        if (cropperInstance) {
+            cropperInstance.destroy();
+            cropperInstance = null;
+        }
+
         new Cropper(img, {
             viewMode: 2,
             dragMode: 'move',
-            // Remove double-click drag mode toggling, because we've got buttons for that.
             toggleDragModeOnDblclick: false,
-            // Only show a crop area if it is defined.
             autoCrop: width.value > 0 && height.value > 0,
             responsive: true,
             ready () {
+                cropperInstance = this.cropper;
+
                 // Make textarea match height of image.
                 $('#text').css({
                     height: this.cropper.getContainerData().height,
                 });
                 // React to changes in the crop-mode buttons.
-                $modeButtons.on( 'click', event => {
+                $modeButtons.off('click.cropmode').on('click.cropmode', event => {
                     const $button = $(event.currentTarget);
                     $modeButtons.removeClass('active');
                     $button.addClass('active');
                     this.cropper.setDragMode($button.data('drag-mode'));
+                });
+                // Initialize rotation if present
+                if (rotate && rotate.value && rotate.value !== '0') {
+                    this.cropper.rotate(Number.parseFloat(rotate.value));
+                }
+
+                // Update rotation value from cropper
+                const updateRotationValue = () => {
+                    if (rotate && cropperInstance) {
+                        const currentRotate = cropperInstance.getData().rotate || 0;
+                        // Normalize to 0-359 range
+                        const normalizedRotate = ((currentRotate % 360) + 360) % 360;
+                        rotate.value = Math.round(normalizedRotate);
+                    }
+                };
+
+                // Rotation buttons
+                $('.rotate-left').off('click.rotate').on('click.rotate', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (cropperInstance && typeof cropperInstance.rotate === 'function') {
+                        cropperInstance.rotate(-90);
+                        updateRotationValue();
+                    }
+                });
+
+                $('.rotate-right').off('click.rotate').on('click.rotate', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (cropperInstance && typeof cropperInstance.rotate === 'function') {
+                        cropperInstance.rotate(90);
+                        updateRotationValue();
+                    }
                 });
             },
             data: {
@@ -207,23 +251,67 @@ $(function () {
                 y.value = Math.round(event.detail.y);
                 width.value = Math.round(event.detail.width);
                 height.value = Math.round(event.detail.height);
-                // Enable the cropping buttons. No need to disable them ever because there's no way to remove the crop box.
-                $('.btn.submit-crop').attr('disabled', false).removeClass('disabled');
-                $modeButtons.attr('disabled', false);
+                // Only enable the crop-submit button when a real crop area has been drawn by the user.
+                if (event.detail.width > 0 && event.detail.height > 0 && cropperInstance && cropperInstance.cropped) {
+                    $('.btn.submit-crop').attr('disabled', false).removeClass('disabled');
+                    $modeButtons.attr('disabled', false);
+                }
             }
         });
-
-        // When setting a new image URL, remove the preview and the crop dimensions.
-        $('[name=image]').on('change', e => {
-            $ocrOutputDiv.remove();
-        });
-
-        // When submitting the main 'transcribe' button, do not send crop dimensions.
-        $('.submit-full').on('click', e => {
-            x.value = null;
-            y.value = null;
-            width.value = null;
-            height.value = null;
-        });
     }
+
+    // Initialize cropper when image loads (works for both server-rendered and JS-set src).
+    $(img).on('load', function() {
+        $ocrOutputDiv.removeClass('hidden');
+        initCropper();
+    });
+
+    // If image is already loaded (cached), initialize immediately.
+    if (img.src && img.complete && img.naturalWidth > 0) {
+        initCropper();
+    }
+
+    // Hide output section on image load error (only when no OCR text present).
+    $(img).on('error', function() {
+        if (!$('#text').val()) {
+            $ocrOutputDiv.addClass('hidden');
+        }
+    });
+
+    // When the image URL input changes, update the source image.
+    $('[name=image]').on('input', function() {
+        const url = $(this).val();
+        if (url) {
+            // Reset crop and rotation for new image.
+            x.value = '';
+            y.value = '';
+            width.value = '';
+            height.value = '';
+            if (rotate) {
+                rotate.value = 0;
+            }
+            // Clear any existing OCR text.
+            $('#text').val('');
+            $('.copy-button').addClass('hidden');
+
+            // Destroy existing cropper before changing src.
+            if (cropperInstance) {
+                cropperInstance.destroy();
+                cropperInstance = null;
+            }
+            img.src = url;
+            // The 'load' event will show the output div and init cropper.
+        } else {
+            $ocrOutputDiv.addClass('hidden');
+        }
+    });
+
+    // When submitting the main 'transcribe' button, do not send crop dimensions.
+    // Rotation is preserved — the user intentionally set it.
+    $('.submit-full').on('click', e => {
+        x.value = null;
+        y.value = null;
+        width.value = null;
+        height.value = null;
+    });
 });
