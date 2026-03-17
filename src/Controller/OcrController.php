@@ -91,15 +91,22 @@ class OcrController extends AbstractController {
 	 */
 	private function setup(): void {
 		$requestedEngine = $this->request->query->get( 'engine', static::$params['engine'] );
-		try {
-			$this->engine = $this->engineFactory->get( $requestedEngine );
-		} catch ( EngineNotFoundException $e ) {
-			$this->addFlash( 'error', $this->intuition->msg(
-				'engine-not-found-warning',
-				[ 'variables' => [ $requestedEngine, static::DEFAULT_ENGINE ] ]
+
+	 	// If engine is passed as an array (e.g., engine[]=tesseract),
+		// take the first value to prevent TypeError
+		if ( is_array( $requestedEngine ) ) {
+    		$requestedEngine = $requestedEngine[0] ?? static::DEFAULT_ENGINE;
+		}
+ 
+	 	try {
+		    $this->engine = $this->engineFactory->get( $requestedEngine );
+	 	 } catch ( EngineNotFoundException $e ) {
+		 	$this->addFlash( 'error', $this->intuition->msg(
+			 	'engine-not-found-warning',
+			    [ 'variables' => [ $requestedEngine, static::DEFAULT_ENGINE ] ]
 			) );
 			$this->engine = $this->engineFactory->get( static::DEFAULT_ENGINE );
-		}
+	}
 
 		static::$params['engine'] = $this->engine::getId();
 		$this->setEngineOptions();
