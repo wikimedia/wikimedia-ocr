@@ -114,7 +114,8 @@ class TranskribusEngine extends EngineBase {
 		string $imageUrl,
 		string $invalidLangsMode,
 		array $crop,
-		?array $langs = null
+		?array $langs = null,
+		int $rotate = 0
 	): EngineResult {
 		$this->checkImageUrl( $imageUrl );
 
@@ -140,7 +141,7 @@ class TranskribusEngine extends EngineBase {
 		$modelCode = $validLangs[0];
 		$modelInfo = $this->getModelList()[$modelCode];
 		$htrModelId = (int)$modelInfo['htr'];
-		$image = $this->getImage( $imageUrl, $crop, self::DO_DOWNLOAD_IMAGE );
+		$image = $this->getImage( $imageUrl, $crop, self::DO_DOWNLOAD_IMAGE, $rotate );
 		$processId = $this->transkribusClient->initProcess( $image, $htrModelId, $this->lineId, $points );
 
 		$resText = '';

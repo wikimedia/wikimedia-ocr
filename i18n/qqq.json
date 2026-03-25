@@ -85,5 +85,7 @@
 	"transkribus-job-description": "Table column header text for the job description.",
 	"transkribus-job-start": "Table column header text for the job-started date.",
 	"transkribus-job-end": "Table column header text for the job-ended date",
-	"transkribus-job-waited": "Table column header text for the job start-delay, in minutes."
+	"transkribus-job-waited": "Table column header text for the job start-delay, in minutes.",
+	"rotate-left": "Tooltip for the rotate-left button.",
+	"rotate-right": "Tooltip for the rotate-right button."
 }
