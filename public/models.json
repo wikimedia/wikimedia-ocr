@@ -1507,6 +1507,12 @@
             "htr": 37545,
             "line": ""
         },
+        "es-gothic": {
+          "languages": ["es"],
+          "title": "SpanishGothic XV-XVI extended v1.2",
+          "htr": 45941,
+          "line": ""
+        },
         "es-md": {
             "languages": ["es"],
             "title": "Diario de Madrid 1788-1825",
