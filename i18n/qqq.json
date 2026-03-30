@@ -37,7 +37,7 @@
 	"api-tooltip": "Tooltip for the API link in the footer.",
 	"version": "Link text in the footer for the source code link.\n\nParameter:\n* $1 – the current application version number.\n\n{{identical|Version}}",
 	"issue-tracker": "Link text in the footer for the link to the tool's Phabricator project.",
-	"report-issue": "Link text in the footer for the link to create a new task in Phabricator.",
+	"report-issue": "Link text in the footer for the issue-reporting link.",
 	"language": "Label for the language-switching dropdown.",
 	"language-switch": "Button text for the language-switching dropdown.",
 	"help-translate": "Link text for a link to the tool's translation page on TranslateWiki.net.",

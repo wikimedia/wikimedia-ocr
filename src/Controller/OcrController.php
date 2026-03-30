@@ -91,6 +91,9 @@ class OcrController extends AbstractController {
 	 */
 	private function setup(): void {
 		$requestedEngine = $this->request->query->get( 'engine', static::$params['engine'] );
+		if ( is_array( $requestedEngine ) ) {
+			$requestedEngine = $requestedEngine[0] ?? static::$params['engine'];
+		}
 		try {
 			$this->engine = $this->engineFactory->get( $requestedEngine );
 		} catch ( EngineNotFoundException $e ) {
@@ -292,6 +295,28 @@ class OcrController extends AbstractController {
 			$responseParams['warnings'] = $warnings;
 		}
 		return $this->getApiResponse( $responseParams );
+	}
+
+	/**
+	 * Serve the models config with CORS headers so it can be fetched directly
+	 * from the Wikisource frontend without requiring a MediaWiki proxy.
+	 * Returns a simplified map of engine->{code: title} matching the shape
+	 * previously provided by the available_langs API.
+	 *
+	 * @Route("/api/models", name="apiModels", methods={"GET"})
+	 * @return JsonResponse
+	 */
+	public function apiModelsAction(): JsonResponse {
+		$path = $this->getParameter( 'kernel.project_dir' ) . '/public/models.json';
+		$raw = json_decode( file_get_contents( $path ), true );
+		$out = [];
+		foreach ( $raw as $engine => $models ) {
+			$out[ $engine ] = [];
+			foreach ( $models as $code => $info ) {
+				$out[ $engine ][ $code ] = $info[ 'title' ];
+			}
+		}
+		return $this->getApiResponse( $out );
 	}
 
 	/**
