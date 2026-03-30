@@ -78,5 +78,22 @@
     "transkribus-job-description": "Description",
     "transkribus-job-start": "Started",
     "transkribus-job-end": "Finished",
-    "transkribus-job-waited": "Start delay (minutes)"
+    "transkribus-job-waited": "Start delay (minutes)",
+    "pdf-imagick-missing": "The Imagick PHP extension is required for PDF processing but is not installed.",
+    "pdf-processing-error": "Error processing PDF: $1",
+    "pdf-form-heading": "Transcribe a PDF",
+    "pdf-url-help": "Enter a PDF URL hosted on a Wikimedia server. Pages will be classified and only text-containing pages will be OCR'd.",
+    "pdf-summary": "PDF Processing Summary",
+    "pdf-total-pages": "Total Pages",
+    "pdf-ocr-pages": "OCR'd Pages (Text & Image+Text)",
+    "pdf-skipped-pages": "Skipped Pages (Image only)",
+    "pdf-page-classifications": "Page Classifications",
+    "pdf-page": "Page",
+    "pdf-type": "Type",
+    "pdf-ocrd": "OCR'd",
+    "pdf-full-text": "Full Extracted Text",
+    "pdf-process": "Process PDF",
+    "pdf-start-page": "Start Page (optional)",
+    "pdf-end-page": "End Page (optional)",
+    "pdf-link-text": "Have a PDF? Use the PDF processor to classify pages and extract text from multi-page PDFs."
 }

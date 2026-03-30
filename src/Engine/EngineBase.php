@@ -11,7 +11,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 abstract class EngineBase {
 
-	public const ALLOWED_FORMATS = [ 'png', 'jpeg', 'jpg', 'gif', 'tiff', 'tif', 'webp' ];
+	public const ALLOWED_FORMATS = [ 'png', 'jpeg', 'jpg', 'gif', 'tiff', 'tif', 'webp', 'pdf' ];
 
 	public const WARN_ON_INVALID_LANGS = 'warn';
 	public const ERROR_ON_INVALID_LANGS = 'error';
@@ -173,7 +173,7 @@ abstract class EngineBase {
 	 * @param string[] $invalidLangs
 	 * @return string
 	 */
-	protected function getInvalidLangsWarning( array $invalidLangs ): string {
+	public function getInvalidLangsWarning( array $invalidLangs ): string {
 		return $this->intuition->msg(
 			'engine-invalid-langs-warning',
 			[ 'variables' => [ $this->intuition->listToText( $invalidLangs ) ] ]

@@ -8,6 +8,11 @@
                 <label for="image">{{ msg('image-url') }}</label>
                 <input name="image" id="image" class="form-control" type="url" value="{{ image }}" required />
                 <p class="help-block">{{ msg( 'image-url-help', [image_hosts] ) }}</p>
+                <p class="help-block">
+                    <strong>Have a PDF?</strong>
+                    <a href="{{ path('pdf') }}">Use the PDF processor</a>
+                    to classify pages and extract text from multi-page PDFs.
+                </p>
             </div>
             <div class="form-group">
                 <label>{{ msg('engine') }}</label>

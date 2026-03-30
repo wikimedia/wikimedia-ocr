@@ -6,6 +6,7 @@
     "require": {
         "php": ">=8.0",
         "ext-bcmath": "*",
+        "ext-imagick": "*",
         "ext-ctype": "*",
         "ext-gd": "*",
         "ext-iconv": "*",
@@ -42,7 +43,7 @@
     },
     "config": {
         "platform": {
-            "php": "8.0.30"
+            "php": "8.2.30"
         },
         "optimize-autoloader": true,
         "preferred-install": {
