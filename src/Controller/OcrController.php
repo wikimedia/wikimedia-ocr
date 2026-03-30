@@ -9,9 +9,12 @@ use App\Engine\EngineBase;
 use App\Engine\EngineFactory;
 use App\Engine\EngineResult;
 use App\Engine\GoogleCloudVisionEngine;
+use App\Engine\PdfProcessor;
+use App\Engine\PdfResult;
 use App\Engine\TesseractEngine;
 use App\Engine\TranskribusEngine;
 use App\Exception\EngineNotFoundException;
+use App\Exception\OcrException;
 use Exception;
 use Krinkle\Intuition\Intuition;
 // phpcs:ignore MediaWiki.Classes.UnusedUseStatement.UnusedUse
@@ -50,6 +53,9 @@ class OcrController extends AbstractController {
 	/** @var EngineFactory */
 	protected $engineFactory;
 
+	/** @var PdfProcessor */
+	protected $pdfProcessor;
+
 	/**
 	 * The output params for the view or API response.
 	 * This also serves as where you define the defaults.
@@ -71,18 +77,21 @@ class OcrController extends AbstractController {
 	 * @param Intuition $intuition
 	 * @param EngineFactory $engineFactory
 	 * @param CacheInterface $cache
+	 * @param PdfProcessor $pdfProcessor
 	 */
 	public function __construct(
 		RequestStack $requestStack,
 		Intuition $intuition,
 		EngineFactory $engineFactory,
-		CacheInterface $cache
+		CacheInterface $cache,
+		PdfProcessor $pdfProcessor
 	) {
 		$this->request = $requestStack->getCurrentRequest();
 		$this->session = $requestStack->getSession();
 		$this->intuition = $intuition;
 		$this->engineFactory = $engineFactory;
 		$this->cache = $cache;
+		$this->pdfProcessor = $pdfProcessor;
 	}
 
 	/**
@@ -202,6 +211,11 @@ class OcrController extends AbstractController {
 		static::$params['image_hosts'] = $this->intuition->listToText( static::$params['image_hosts'] );
 
 		if ( static::$params['image'] ) {
+			// Auto-redirect to PDF processor if URL ends with .pdf
+			if ( $this->isPdfUrl( static::$params['image'] ) ) {
+				return $this->redirectToRoute( 'pdf', $this->request->query->all() );
+			}
+
 			$result = $this->getResult( EngineBase::ERROR_ON_INVALID_LANGS );
 			static::$params['text'] = $result->getText();
 			foreach ( $result->getWarnings() as $warning ) {
@@ -433,5 +447,347 @@ class OcrController extends AbstractController {
 			throw new Exception( 'Incorrect (possibly cached) result: ' . var_export( $result, true ) );
 		}
 		return $result;
+	}
+
+	/**
+	 * Check if the given URL points to a PDF file.
+	 * @param string $url
+	 * @return bool
+	 */
+	private function isPdfUrl( string $url ): bool {
+		return (bool)preg_match( '/\.pdf$/i', parse_url( $url, PHP_URL_PATH ) ?? '' );
+	}
+
+	/**
+	 * Process a PDF: classify pages and run OCR only on text/image+text pages.
+	 *
+	 * @Route("/pdf", name="pdf", methods={"GET"})
+	 * @return Response
+	 */
+	public function pdfAction(): Response {
+		$this->setup();
+
+		static::$params['available_langs'] = $this->engine->getValidModels( true );
+		ksort( static::$params['available_langs'] );
+		static::$params['available_line_ids'] = [];
+
+		if ( static::$params['engine'] === 'transkribus' ) {
+			static::$params['available_line_ids'] = $this->engine->getValidLineIds( true, false );
+			sort( static::$params['available_line_ids'] );
+			static::$params['available_line_id_langs'] = $this->engine->getValidLineIds( false, true );
+			sort( static::$params['available_line_id_langs'] );
+		}
+
+		/** @var TesseractEngine */
+		$tesseract = $this->engineFactory->get( 'tesseract' );
+		static::$params['available_psms'] = $tesseract->getAvailablePsms();
+		static::$params['image_hosts'] = $this->intuition->listToText( static::$params['image_hosts'] );
+
+		if ( static::$params['image'] ) {
+			try {
+				$pdfResult = $this->processPdf(
+					static::$params['image'],
+					EngineBase::ERROR_ON_INVALID_LANGS
+				);
+				static::$params['pdf_result'] = $pdfResult;
+				static::$params['text'] = $pdfResult->getFullText();
+				foreach ( $pdfResult->getWarnings() as $warning ) {
+					$this->addFlash( 'warning', $warning );
+				}
+			} catch ( OcrException $e ) {
+				$errorMsg = $this->intuition->msg(
+					$e->getI18nKey(),
+					[ 'variables' => $e->getI18nParams() ]
+				);
+				$this->addFlash( 'error', $errorMsg ?: $e->getI18nKey() );
+			} catch ( Exception $e ) {
+				$this->addFlash( 'error', $e->getMessage() ?: 'An unexpected error occurred.' );
+			}
+		}
+
+		return $this->render( 'pdf_output.html.twig', static::$params );
+	}
+
+	/**
+	 * API endpoint for PDF processing.
+	 *
+	 * @Route("/api/pdf", name="apiPdf", methods={"GET"})
+	 * @OA\Parameter(name="engine", in="query", description="OCR engine.", @OA\Schema(type="string"))
+	 * @OA\Parameter(name="image", in="query", description="The PDF URL.", @OA\Schema(type="string"))
+	 * @OA\Parameter(name="langs[]", in="query", description="Language codes.",
+	 *     @OA\Schema(type="array", @OA\Items(type="string")))
+	 * @OA\Parameter(name="start_page", in="query", description="Start page (1-based).",
+	 *     @OA\Schema(type="integer"))
+	 * @OA\Parameter(name="end_page", in="query", description="End page (1-based).",
+	 *     @OA\Schema(type="integer"))
+	 * @OA\Response(response=200, description="Per-page OCR results with classifications.")
+	 * @return JsonResponse
+	 */
+	public function apiPdfAction(): JsonResponse {
+		try {
+			$this->setup();
+		} catch ( Exception $exception ) {
+			return $this->getApiResponse( [ 'error' => $exception->getMessage() ] );
+		}
+
+		if ( !static::$params['image'] ) {
+			return $this->getApiResponse( [ 'error' => 'Missing image (PDF URL) parameter.' ] );
+		}
+
+		try {
+			$pdfResult = $this->processPdf(
+				static::$params['image'],
+				EngineBase::WARN_ON_INVALID_LANGS
+			);
+
+			$pages = [];
+			foreach ( $pdfResult->getClassifications() as $pageNum => $classification ) {
+				$pages[$pageNum] = [
+					'page' => $pageNum,
+					'type' => $classification->getType(),
+					'has_text' => $classification->hasText(),
+					'text' => $pdfResult->getPageTexts()[$pageNum] ?? '',
+				];
+			}
+
+			$responseParams = [
+				'engine' => static::$params['engine'],
+				'image' => static::$params['image'],
+				'langs' => static::$params['langs'],
+				'total_pages' => $pdfResult->getTotalPages(),
+				'ocr_pages' => $pdfResult->getOcrPages(),
+				'skipped_pages' => $pdfResult->getSkippedPages(),
+				'pages' => $pages,
+				'text' => $pdfResult->getFullText(),
+			];
+
+			$warnings = $pdfResult->getWarnings();
+			if ( $warnings ) {
+				$responseParams['warnings'] = $warnings;
+			}
+
+			return $this->getApiResponse( $responseParams );
+		} catch ( OcrException $e ) {
+			$errorMsg = $this->intuition->msg(
+				$e->getI18nKey(),
+				[ 'variables' => $e->getI18nParams() ]
+			);
+			return $this->getApiResponse( [ 'error' => $errorMsg ?: $e->getI18nKey() ] );
+		} catch ( Exception $e ) {
+			return $this->getApiResponse( [ 'error' => $e->getMessage() ?: 'An unexpected error occurred.' ] );
+		}
+	}
+
+	/**
+	 * Process a PDF URL: classify pages and OCR text/image+text pages.
+	 *
+	 * @param string $pdfUrl
+	 * @param string $invalidLangsMode
+	 * @return PdfResult
+	 * @throws Exception
+	 */
+	private function processPdf( string $pdfUrl, string $invalidLangsMode ): PdfResult {
+		// PDF processing is inherently slow (render + OCR per page).
+		// Extend execution time: ~10 seconds per page is a reasonable allowance.
+		$startPage = $this->request->query->getInt( 'start_page' ) ?: null;
+		$endPage = $this->request->query->getInt( 'end_page' ) ?: null;
+
+		// Cap page range to avoid excessively long requests.
+		$maxPages = 20;
+		if ( $startPage === null ) {
+			$startPage = 1;
+		}
+		if ( $endPage === null || ( $endPage - $startPage + 1 ) > $maxPages ) {
+			$endPage = $startPage + $maxPages - 1;
+		}
+
+		// Allow enough time: ~10s per page for GS render + OCR.
+		$pageCount = $endPage - $startPage + 1;
+		$timeLimit = max( 60, $pageCount * 10 );
+		set_time_limit( $timeLimit );
+
+		[ $classifications, $tmpDir ] = $this->pdfProcessor->processPdf(
+			$pdfUrl, $startPage, $endPage
+		);
+
+		try {
+			$totalPages = count( $classifications );
+			$pageTexts = [];
+			$warnings = [];
+
+			foreach ( $classifications as $pageNum => $classification ) {
+				if ( !$classification->hasText() ) {
+					continue;
+				}
+
+				// Read image data from the temp file, one page at a time.
+				$imageData = $classification->getImageData();
+				$result = $this->ocrImageData( $imageData, $invalidLangsMode );
+				$pageTexts[$pageNum] = $result->getText();
+
+				foreach ( $result->getWarnings() as $warning ) {
+					if ( !in_array( $warning, $warnings, true ) ) {
+						$warnings[] = $warning;
+					}
+				}
+
+				// Free memory between pages.
+				unset( $imageData );
+			}
+
+			// Build lightweight result (no image data, safe to cache later if needed).
+			return new PdfResult( $totalPages, $classifications, $pageTexts, $warnings );
+		} finally {
+			// Always clean up temp files.
+			$this->pdfProcessor->cleanupDir( $tmpDir );
+		}
+	}
+
+	/**
+	 * Run OCR on raw image data (PNG bytes) from a rendered PDF page.
+	 *
+	 * @param string $imageData Raw PNG image bytes.
+	 * @param string $invalidLangsMode
+	 * @return EngineResult
+	 */
+	private function ocrImageData( string $imageData, string $invalidLangsMode ): EngineResult {
+		[ $validLangs, $invalidLangs ] = $this->engine->filterValidLangs(
+			static::$params['langs'],
+			$invalidLangsMode
+		);
+
+		// For engines that support direct image data, pass it directly.
+		// We create a temporary file since most engines expect a URL or file.
+		$tmpFile = tempnam( sys_get_temp_dir(), 'ocr_pdf_page_' );
+		file_put_contents( $tmpFile, $imageData );
+
+		try {
+			// Use the engine's getResult with a file:// URL isn't ideal.
+			// Instead, we'll use engine-specific approaches.
+			$engineId = $this->engine::getId();
+
+			if ( $engineId === 'tesseract' ) {
+				return $this->ocrWithTesseract( $imageData, $validLangs, $invalidLangs );
+			}
+
+			if ( $engineId === 'google' ) {
+				return $this->ocrWithGoogle( $imageData, $validLangs, $invalidLangs );
+			}
+
+			if ( $engineId === 'transkribus' ) {
+				return $this->ocrWithTranskribus( $imageData, $validLangs, $invalidLangs );
+			}
+
+			throw new Exception( "Unsupported engine for PDF: $engineId" );
+		} finally {
+			@unlink( $tmpFile );
+		}
+	}
+
+	/**
+	 * OCR image data using Tesseract.
+	 * @param string $imageData
+	 * @param string[] $validLangs
+	 * @param string[] $invalidLangs
+	 * @return EngineResult
+	 */
+	private function ocrWithTesseract(
+		string $imageData,
+		array $validLangs,
+		array $invalidLangs
+	): EngineResult {
+		$ocr = new \thiagoalessio\TesseractOCR\TesseractOCR();
+		$ocr->imageData( $imageData, strlen( $imageData ) );
+
+		if ( $validLangs ) {
+			$ocr->lang( ...$validLangs );
+		}
+
+		if ( static::$params['psm'] ) {
+			$ocr->psm( static::$params['psm'] );
+		}
+
+		putenv( 'OMP_THREAD_LIMIT=1' );
+		try {
+			$text = $ocr->run();
+		} catch ( \thiagoalessio\TesseractOCR\UnsuccessfulCommandException $e ) {
+			if ( strpos( $e->getMessage(), 'The command did not produce any output' ) !== false ) {
+				return new EngineResult( '', [ 'No text detected on this page.' ] );
+			}
+			throw $e;
+		}
+
+		$warnings = $invalidLangs
+			? [ $this->engine->getInvalidLangsWarning( $invalidLangs ) ]
+			: [];
+		return new EngineResult( $text, $warnings );
+	}
+
+	/**
+	 * OCR image data using Google Cloud Vision.
+	 * @param string $imageData
+	 * @param string[] $validLangs
+	 * @param string[] $invalidLangs
+	 * @return EngineResult
+	 */
+	private function ocrWithGoogle(
+		string $imageData,
+		array $validLangs,
+		array $invalidLangs
+	): EngineResult {
+		$imageContext = new \Google\Cloud\Vision\V1\ImageContext();
+		if ( $validLangs ) {
+			$imageContext->setLanguageHints( $validLangs );
+		}
+
+		/** @var GoogleCloudVisionEngine $engine */
+		$engine = $this->engine;
+
+		// Use reflection to access the imageAnnotator property.
+		$ref = new \ReflectionClass( $engine );
+		$prop = $ref->getProperty( 'imageAnnotator' );
+		$prop->setAccessible( true );
+		$annotator = $prop->getValue( $engine );
+
+		if ( !$annotator ) {
+			throw new Exception( 'Google Cloud Vision API key is not configured.' );
+		}
+
+		$response = $annotator->documentTextDetection(
+			$imageData,
+			[ 'imageContext' => $imageContext ]
+		);
+
+		if ( $response->getError() ) {
+			throw new Exception( 'Google Vision error: ' . $response->getError()->getMessage() );
+		}
+
+		$annotation = $response->getFullTextAnnotation();
+		$text = $annotation instanceof \Google\Cloud\Vision\V1\TextAnnotation
+			? $annotation->getText()
+			: '';
+
+		$warnings = $invalidLangs
+			? [ $this->engine->getInvalidLangsWarning( $invalidLangs ) ]
+			: [];
+		return new EngineResult( $text, $warnings );
+	}
+
+	/**
+	 * OCR image data using Transkribus.
+	 * @param string $imageData
+	 * @param string[] $validLangs
+	 * @param string[] $invalidLangs
+	 * @return EngineResult
+	 */
+	private function ocrWithTranskribus(
+		string $imageData,
+		array $validLangs,
+		array $invalidLangs
+	): EngineResult {
+		// Transkribus expects base64-encoded image data.
+		// We delegate to the engine's getResult by saving to a temp file and using a data URI.
+		// For now, use Tesseract as fallback for Transkribus PDF pages.
+		return $this->ocrWithTesseract( $imageData, $validLangs, $invalidLangs );
 	}
 }

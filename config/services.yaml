@@ -50,6 +50,10 @@ services:
             $username: '%env(APP_TRANSKRIBUS_USERNAME)%'
             $password: '%env(APP_TRANSKRIBUS_PASSWORD)%'
 
+    App\Engine\PdfProcessor:
+        calls:
+            - setImageHosts: [ '%env(APP_IMAGE_HOSTS)%' ]
+
     App\EventListener\ExceptionListener:
         arguments:
             - '@request_stack'
