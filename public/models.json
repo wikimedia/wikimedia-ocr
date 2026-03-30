@@ -1513,6 +1513,12 @@
           "htr": 45941,
           "line": ""
         },
+        "es-gothic-2": {
+          "languages": ["es"],
+          "title": "Spanish Gothic Print v2 (HSMS)",
+          "htr": 338253,
+          "line": ""
+        },
         "es-md": {
             "languages": ["es"],
             "title": "Diario de Madrid 1788-1825",
