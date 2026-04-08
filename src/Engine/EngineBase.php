@@ -140,16 +140,20 @@ abstract class EngineBase {
 		$parts = parse_url( $imageUrl );
 
 		// Check host.
-		if ( !in_array( $parts['host'], $this->getImageHosts() ) ) {
+		if ( !isset( $parts['host'] ) || !in_array( $parts['host'], $this->getImageHosts(), true ) ) {
 			$params = [ count( $this->getImageHosts() ), $this->intuition->listToText( $this->getImageHosts() ) ];
 			throw new OcrException( 'image-url-error', $params );
 		}
 
 		// Check file extension.
-		$formatRegex = implode( '|', self::ALLOWED_FORMATS );
-		$regex = "/.+($formatRegex)$/";
-		$matches = preg_match( $regex, strtolower( $parts['path'] ) );
-		if ( $matches !== 1 ) {
+		$validExt = false;
+		if ( isset( $parts['path'] ) ) {
+			$formatRegex = implode( '|', self::ALLOWED_FORMATS );
+			$regex = "/.+($formatRegex)$/";
+			$matches = preg_match( $regex, strtolower( $parts['path'] ) );
+			$validExt = $matches === 1;
+		}
+		if ( !$validExt ) {
 			$params = [ $this->intuition->listToText( self::ALLOWED_FORMATS ) ];
 			throw new OcrException( 'image-url-error-extension', $params );
 		}
