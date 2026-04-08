@@ -137,13 +137,21 @@ abstract class EngineBase {
 	 * @throws OcrException
 	 */
 	public function checkImageUrl( string $imageUrl ): void {
-		$hostRegex = implode( '|', array_map( 'preg_quote', $this->getImageHosts() ) );
-		$formatRegex = implode( '|', self::ALLOWED_FORMATS );
-		$regex = "/^https?:\/\/($hostRegex)\/.+($formatRegex)$/";
-		$matches = preg_match( $regex, strtolower( $imageUrl ) );
-		if ( $matches !== 1 ) {
+		$parts = parse_url( $imageUrl );
+
+		// Check host.
+		if ( !in_array( $parts['host'], $this->getImageHosts() ) ) {
 			$params = [ count( $this->getImageHosts() ), $this->intuition->listToText( $this->getImageHosts() ) ];
 			throw new OcrException( 'image-url-error', $params );
+		}
+
+		// Check file extension.
+		$formatRegex = implode( '|', self::ALLOWED_FORMATS );
+		$regex = "/.+($formatRegex)$/";
+		$matches = preg_match( $regex, strtolower( $parts['path'] ) );
+		if ( $matches !== 1 ) {
+			$params = [ $this->intuition->listToText( self::ALLOWED_FORMATS ) ];
+			throw new OcrException( 'image-url-error-extension', $params );
 		}
 	}
 
