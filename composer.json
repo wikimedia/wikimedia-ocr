@@ -36,7 +36,7 @@
 		"mediawiki/mediawiki-codesniffer": "^39.0",
 		"mediawiki/minus-x": "^1.1",
 		"mediawiki/phan-taint-check-plugin": "^4.0",
-		"symfony/phpunit-bridge": "5.4.*",
+		"phpunit/phpunit": "^9",
 		"symfony/stopwatch": "5.4.*",
 		"symfony/web-profiler-bundle": "5.4.*"
 	},
@@ -90,7 +90,7 @@
 			"./bin/console lint:yaml ./config",
 			"minus-x check .",
 			"@check-tesseract",
-			"./bin/phpunit"
+			"phpunit"
 		],
 		"phan": [
 			"phan --allow-polyfill-parser --long-progress-bar"
