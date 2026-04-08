@@ -19,7 +19,9 @@ jobs:
         php: [ '8.0', '8.1' ]
         runPhan: [ true ]
         include:
-          - php: [ '8.2', '8.3' ]
+          - php: '8.2'
+            runPhan: false
+          - php: '8.3'
             runPhan: false
 
     runs-on: ubuntu-latest
