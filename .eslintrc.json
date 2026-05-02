@@ -12,6 +12,5 @@
 		"sourceType": "module"
 	},
 	"rules": {
-		"no-jquery/no-global-selector": "warn"
 	}
 }

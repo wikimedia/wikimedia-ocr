@@ -3,8 +3,10 @@ import './styles/app.css';
 import 'select2';
 
 const $ = require( 'jquery' );
+// eslint-disable-next-line no-jquery/no-global-selector
 const $select2 = $( '#lang' );
 let selectedLanguages = [];
+// eslint-disable-next-line no-jquery/no-global-selector
 const $lineDetectionSelect = $( '#line-id' );
 let lineModels = null;
 
@@ -86,7 +88,7 @@ $( () => {
 	fetchLineModelsJSON();
 
 	// Remove nojs class, for styling non-Javascript users.
-	$( 'html' ).removeClass( 'nojs' );
+	document.documentElement.classList.remove( 'nojs' );
 
 	// Initiate Select2, which allows dynamic entry of languages.
 	$select2.select2( {
@@ -109,32 +111,33 @@ $( () => {
 	} );
 
 	const previousDataPlaceholder = $select2.attr( 'data-placeholder' );
+	const $form = $select2.closest( 'form' );
 
 	// Show engine-specific options.
-	$( '[name=engine]' ).on( 'change', ( e ) => {
+	$form.find( '[name=engine]' ).on( 'change', ( e ) => {
 		const engine = e.target.value;
 		updateSelect2Options( engine );
-		$( '.engine-options' ).addClass( 'hidden' );
-		$( `#${ engine }-options` ).removeClass( 'hidden' );
+		$form.find( '.engine-options' ).addClass( 'hidden' );
+		$form.find( `#${ engine }-options` ).removeClass( 'hidden' );
 		if ( engine === 'tesseract' || engine === 'google' ) {
 			$select2.prop( 'required', false );
 			$select2.attr( 'data-placeholder', previousDataPlaceholder );
 			$select2.data( 'select2' ).selection.placeholder.text = previousDataPlaceholder;
-			$( '#transkribus-lang-label' ).addClass( 'hidden' );
-			$( '#optional-lang-label' ).removeClass( 'hidden' );
+			$form.find( '#transkribus-lang-label' ).addClass( 'hidden' );
+			$form.find( '#optional-lang-label' ).removeClass( 'hidden' );
 		} else {
 			updateLineModelOptions();
-			$( '#transkribus-help' ).removeClass( 'hidden' );
+			$form.find( '#transkribus-help' ).removeClass( 'hidden' );
 			$select2.prop( 'required', true );
 			$select2.attr( 'data-placeholder', '' );
 			$select2.data( 'select2' ).selection.placeholder.text = '';
-			$( '#optional-lang-label' ).addClass( 'hidden' );
-			$( '#transkribus-lang-label' ).removeClass( 'hidden' );
+			$form.find( '#optional-lang-label' ).addClass( 'hidden' );
+			$form.find( '#transkribus-lang-label' ).removeClass( 'hidden' );
 		}
 	} );
 
 	// modify selected engine after loading the page with preselected engine
-	const $engineRadioFields = $( '[name=engine]:checked' );
+	const $engineRadioFields = $form.find( '[name=engine]:checked' );
 	if ( $engineRadioFields.val() === 'transkribus' ) {
 		$select2.attr( 'data-placeholder', '' );
 	} else {
@@ -142,29 +145,29 @@ $( () => {
 	}
 
 	// For the result page. Makes the 'Copy' button copy the transcription to the clipboard.
-	const $copyButton = $( '.copy-button' );
+	const $copyButton = $form.find( '.copy-button' );
 	if ( $copyButton.length ) {
 		$copyButton.on( 'click', ( e ) => {
 			e.preventDefault();
-			const $textarea = $( '#text' );
-			$textarea.trigger( 'select' );
+			document.getElementById( 'text' ).select();
 			document.execCommand( 'copy' );
 			$copyButton.text( $copyButton.data( 'copied-text' ) );
 		} );
 	}
 
-	const $submitBtns = $( '.submit-full, .submit-crop' );
-	$submitBtns.closest( 'form' ).on( 'submit', () => {
+	const $submitBtns = $form.find( '.submit-full, .submit-crop' );
+	const $loader = $form.find( '.loader' );
+	$form.on( 'submit', () => {
 		$submitBtns.attr( 'disabled', true );
-		$( '.loader' ).removeClass( 'hidden' );
+		$loader.removeClass( 'hidden' );
 	} );
 	// Re-enable submit buttons on pagehide, so that they are re-enabled if returned to via browser history
 	$( window ).on( 'pagehide', () => {
 		$submitBtns.attr( 'disabled', false );
-		$( '.loader' ).addClass( 'hidden' );
+		$loader.addClass( 'hidden' );
 	} );
 
-	const $ocrOutputDiv = $( '.ocr-output' );
+	const $ocrOutputDiv = $form.find( '.ocr-output' );
 	if ( $ocrOutputDiv.length ) {
 		// Cropper.
 		const img = document.getElementById( 'source-image' ),
@@ -172,7 +175,7 @@ $( () => {
 			y = document.querySelector( '[name="crop[y]"]' ),
 			width = document.querySelector( '[name="crop[width]"]' ),
 			height = document.querySelector( '[name="crop[height]"]' ),
-			$modeButtons = $( '.drag-mode' );
+			$modeButtons = $form.find( '.drag-mode' );
 		const cropper = new Cropper( img, {
 			viewMode: 2,
 			dragMode: 'move',
@@ -183,9 +186,7 @@ $( () => {
 			responsive: true,
 			ready() {
 				// Make textarea match height of image.
-				$( '#text' ).css( {
-					height: cropper.getContainerData().height
-				} );
+				document.getElementById( 'text' ).style.height = cropper.getContainerData().height + 'px';
 				// React to changes in the crop-mode buttons.
 				$modeButtons.on( 'click', ( event ) => {
 					const $button = $( event.currentTarget );
@@ -206,18 +207,18 @@ $( () => {
 				width.value = Math.round( event.detail.width );
 				height.value = Math.round( event.detail.height );
 				// Enable the cropping buttons. No need to disable them ever because there's no way to remove the crop box.
-				$( '.btn.submit-crop' ).attr( 'disabled', false ).removeClass( 'disabled' );
+				$form.find( '.btn.submit-crop' ).attr( 'disabled', false ).removeClass( 'disabled' );
 				$modeButtons.attr( 'disabled', false );
 			}
 		} );
 
 		// When setting a new image URL, remove the preview and the crop dimensions.
-		$( '[name=image]' ).on( 'change', () => {
+		$form.find( '[name=image]' ).on( 'change', () => {
 			$ocrOutputDiv.remove();
 		} );
 
 		// When submitting the main 'transcribe' button, do not send crop dimensions.
-		$( '.submit-full' ).on( 'click', () => {
+		$form.find( '.submit-full' ).on( 'click', () => {
 			x.value = null;
 			y.value = null;
 			width.value = null;
