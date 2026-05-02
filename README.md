@@ -1,6 +1,11 @@
 Wikimedia OCR
 =============
 
+> [!important]
+> This repository is moving to Wikimedia's GitLab: https://gitlab.wikimedia.org/toolforge-repos/ocr
+>
+> See [T420317](https://phabricator.wikimedia.org/T420317) for more information.
+
 A web service and UI for providing OCR text from images hosted on MediaWiki wikis.
 Can be integrated into the [ProofreadPage extension](https://www.mediawiki.org/wiki/Extension:ProofreadPage)
 via the [Wikisource extension](https://www.mediawiki.org/wiki/Extension:Wikisource).
